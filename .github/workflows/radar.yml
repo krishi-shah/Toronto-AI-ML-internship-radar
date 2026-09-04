@@ -44,13 +44,13 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # A shallow clone makes the rebase in the commit step unreliable.
           # The history is cheap to fetch because only README.md is committed.
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -74,7 +74,7 @@ jobs:
       # effect is that postings with no publish date are re-dated as first
       # seen today.
       - name: Restore radar state
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: radar.db
           key: radar-db-${{ github.run_id }}
