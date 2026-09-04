@@ -1,0 +1,136 @@
+name: radar
+
+# Fetches every source, classifies, and rewrites the listings block of
+# README.md. This is what keeps the feed live with the laptop closed.
+#
+# IMPORTANT: this repo must be PUBLIC. Actions minutes are unlimited only on
+# public repositories; on a private repo this schedule burns ~4,300 runs a
+# month and exhausts the free tier within days.
+#
+# No secrets are used. The commit is made with the built-in GITHUB_TOKEN.
+
+on:
+  schedule:
+    # Roughly every ten minutes. Deliberately off :00 and :30 -- GitHub queues
+    # scheduled runs and those are the congested minutes, so an on-the-hour
+    # cron is the one most likely to be delayed or dropped. Timing is
+    # best-effort either way; nothing is lost, since each run re-fetches
+    # everything and the README is rebuilt from the result.
+    - cron: "3,13,23,33,43,53 * * * *"
+  # Also the one-click way to re-enable the schedule: GitHub disables
+  # scheduled workflows on public repos after 60 days without repository
+  # activity. The README commits below normally count as activity.
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        required: true
+        default: run
+        type: choice
+        options: [run, check, seed, test]
+
+# Runs must never overlap: two runs fetching at once would both see the same
+# posting as new, and both would try to push a conflicting README.
+concurrency:
+  group: radar
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # A shallow clone makes the rebase in the commit step unreliable.
+          # The history is cheap to fetch because only README.md is committed.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # A classifier bug would quietly publish a garbled feed, so the tests
+      # gate the run rather than reporting after the fact.
+      - name: Unit tests
+        run: python -m unittest discover -s tests
+
+      # Run-to-run state: seen postings, per-source health, HTTP etags. Cached
+      # rather than committed -- the DB is ~5 MB of SQLite and a commit every
+      # ten minutes would add gigabytes of binary history a year. Cache keys
+      # are immutable, so the key must be unique per run and the prefix in
+      # restore-keys is what actually restores the newest one.
+      #
+      # A cache miss is survivable: every run re-fetches every source, and
+      # publish dates come from the sources themselves. The only visible
+      # effect is that postings with no publish date are re-dated as first
+      # seen today.
+      - name: Restore radar state
+        uses: actions/cache@v4
+        with:
+          path: radar.db
+          key: radar-db-${{ github.run_id }}
+          restore-keys: |
+            radar-db-
+
+      - name: Run radar
+        env:
+          # Not interpolated directly into the script below: an expression
+          # pasted into a shell command is how workflows get injected.
+          MODE: ${{ inputs.mode || 'run' }}
+          # Renders README.md only. The HTML dashboard is a local-only channel
+          # and nothing on the runner would open it.
+          RADAR_NOTIFIERS: readme
+          # Tracker listings and job titles carry emoji, and the runner's
+          # default encoding cannot always encode them.
+          PYTHONIOENCODING: utf-8
+        run: |
+          case "$MODE" in
+            run)   python radar.py ;;
+            check) python radar.py --check ;;
+            seed)  python radar.py --seed ;;
+            test)  python radar.py --test ;;
+            *)     echo "::error::unknown mode '$MODE'"; exit 1 ;;
+          esac
+
+      - name: Commit the feed
+        run: |
+          git config user.name  "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+
+          # A quiet run leaves the README byte-identical, so there is nothing
+          # to commit. Without this the schedule would push 144 identical
+          # READMEs a day.
+          if git diff --quiet -- README.md; then
+            echo "Feed unchanged; nothing to commit."
+            exit 0
+          fi
+
+          git add README.md
+          git commit --quiet -m "radar: $(TZ=America/Toronto date '+%Y-%m-%d %H:%M') Toronto"
+
+          # Commit once, then retry only the network half. Committing inside
+          # the loop would stack duplicate commits on every rejection.
+          for attempt in 1 2 3 4 5; do
+            if git push --quiet; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected, rebasing (attempt $attempt)."
+            if ! git pull --rebase --autostash --quiet; then
+              git rebase --abort 2>/dev/null || true
+              echo "::warning::Rebase failed; the next run will regenerate the feed."
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+
+          echo "::warning::Could not push the feed after 5 attempts."

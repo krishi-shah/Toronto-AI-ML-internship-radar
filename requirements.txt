@@ -1,0 +1,4 @@
+requests>=2.31
+
+# zoneinfo needs the IANA database on Windows; Linux runners already have it.
+tzdata; sys_platform == "win32"

@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.pem
+*.key
+
+# Run-to-run state. NOT committed: the file is ~5 MB of SQLite, and a commit
+# every ten minutes would add gigabytes of binary history a year. GitHub
+# Actions carries it between runs with actions/cache instead. Losing it costs
+# nothing but re-dating undated postings, since every run re-fetches anyway.
+radar.db
+
+# Local run log from run_radar.cmd
+radar.log
+radar.log.old
+
+# Generated HTML dashboard, rebuilt on every local run. The published feed is
+# the listings block in README.md.
+radar.html
+
+# Personal build brief. Kept out of the public repo: it is written in the
+# first person about my own job search and describes a Telegram delivery
+# design this code no longer uses.
+claude_code_prompt.md
