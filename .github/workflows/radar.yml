@@ -103,8 +103,12 @@ jobs:
 
       - name: Commit the feed
         run: |
-          git config user.name  "radar-bot"
-          git config user.email "radar-bot@users.noreply.github.com"
+          # Authored as me, not as a bot, so new postings show up on my own
+          # GitHub profile. The ID-prefixed noreply address is the one GitHub
+          # links to an account without publishing a real email; the bare
+          # username form only links for accounts created before July 2017.
+          git config user.name  "krishi-shah"
+          git config user.email "137468469+krishi-shah@users.noreply.github.com"
 
           # A quiet run leaves the README byte-identical, so there is nothing
           # to commit. Without this the schedule would push 144 identical
