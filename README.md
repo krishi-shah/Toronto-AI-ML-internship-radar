@@ -281,52 +281,8 @@ python radar.py --open     # build radar.html and open it
 Locally the HTML dashboard is the default channel; `radar.html` is gitignored
 and never published.
 
-<details>
-<summary>Running it on Windows Task Scheduler instead</summary>
-
-Superseded by GitHub Actions — kept because it works offline and alerts within
-seconds rather than within a queued cron slot.
-
-```powershell
-python radar.py --seed     # do this first, or the first run alerts on everything
-
-$dir = (Resolve-Path .).Path
-
-# AllowStartIfOnBatteries matters on a laptop: the default settings refuse to
-# start on battery. StartWhenAvailable catches up on runs missed while asleep.
-$set = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries `
-        -DontStopIfGoingOnBatteries -StartWhenAvailable `
-        -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
-
-$a1 = New-ScheduledTaskAction -Execute "$dir\run_radar.cmd" -WorkingDirectory $dir
-$t1 = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
-        -RepetitionInterval (New-TimeSpan -Minutes 10)
-Register-ScheduledTask -TaskName "Radar" -Action $a1 -Trigger $t1 -Settings $set -Force
-
-$a2 = New-ScheduledTaskAction -Execute "$dir\run_digest.cmd" -WorkingDirectory $dir
-$t2 = New-ScheduledTaskTrigger -Daily -At 17:00
-Register-ScheduledTask -TaskName "Radar Digest" -Action $a2 -Trigger $t2 -Settings $set -Force
-```
-
-Confirm with `Get-ScheduledTaskInfo -TaskName "Radar"` (`LastTaskResult 0` =
-success), and read the log with `Get-Content radar.log -Encoding UTF8 -Tail 30`
-— `-Encoding UTF8` matters, or PowerShell 5.1 mangles the emoji. Pause with
-`schtasks /change /tn "Radar" /disable`.
-
-> **Why not `schtasks` to create it?** The obvious
-> `schtasks /create ... /tr "...\run_radar.cmd"` *appears* to work and reports
-> SUCCESS, but it strips the quotes when storing the task. If the folder path
-> contains a space, Task Scheduler then runs the wrong executable and fails
-> with `-2147024894` (FILE_NOT_FOUND) — silently, on every run.
-> `Register-ScheduledTask` takes the path as a structured argument and is
-> unaffected. `schtasks` also cannot express a quoted spaced path *plus* an
-> argument, which is why the digest has its own wrapper script.
-
-Your laptop being asleep **delays alerts but never loses postings**: state
-lives in `radar.db`, so the next run after wake catches everything that
-appeared meanwhile.
-
-</details>
+A local run shares nothing with the cloud: it keeps its own `radar.db`, so
+running `--check` here cannot affect what the scheduled job considers new.
 
 ---
 
@@ -570,7 +526,6 @@ Corrections found along the way:
 | Wealthsimple is on Greenhouse | Ashby, token `wealthsimple` |
 | Ada exposes a careers page | Cloudflare 403 to every non-browser request; disabled, covered via trackers |
 | Clio/Xanadu list jobs in HTML | Rendered client-side; report ok with 0 and are covered via trackers |
-| `schtasks` can schedule this | It strips quotes, so a spaced folder path fails silently every run; `Register-ScheduledTask` is used instead |
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are hidden rather than shown as new |
@@ -579,8 +534,8 @@ Corrections found along the way:
 ## Known gaps
 
 - **Timing is best-effort.** GitHub queues scheduled runs, so the real gap
-  between runs drifts past ten minutes. Task Scheduler was punctual; this is
-  the price of the laptop being closed.
+  between runs drifts past ten minutes. A local scheduler was punctual; this
+  is the price of the laptop being closed.
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.
@@ -603,5 +558,3 @@ Corrections found along the way:
 | [notify.py](notify.py) | README feed, HTML dashboard, Windows toasts, backend interface |
 | [companies.py](companies.py) | Target list, notifiers, freshness and cycle settings |
 | [.github/workflows/radar.yml](.github/workflows/radar.yml) | The scheduler: scrape, test, render, commit |
-| [run_radar.cmd](run_radar.cmd) | Task Scheduler wrapper: sets cwd, logs, windowless |
-| [run_digest.cmd](run_digest.cmd) | Digest wrapper (schtasks cannot pass arguments) |

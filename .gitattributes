@@ -2,6 +2,3 @@
 # checking it out as LF everywhere keeps a local render from showing up as a
 # whole-file diff.
 * text=auto eol=lf
-
-# Batch wrappers are read by cmd.exe, which wants CRLF.
-*.cmd text eol=crlf

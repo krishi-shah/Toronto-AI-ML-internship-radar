@@ -12,7 +12,7 @@ venv/
 # nothing but re-dating undated postings, since every run re-fetches anyway.
 radar.db
 
-# Local run log from run_radar.cmd
+# Local run logs
 radar.log
 radar.log.old
 
