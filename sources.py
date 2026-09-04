@@ -796,7 +796,7 @@ def parse_tracker_readme(text: str) -> list[dict]:
     """Extract job rows from a tracker README.
 
     Handles both layouts these repos use in practice: markdown pipe tables
-    (``negarprh``, ``hanzili``, ``vanshb03``) and HTML ``<table>`` blocks
+    (``negarprh``, ``vanshb03``) and HTML ``<table>`` blocks
     (``SimplifyJobs``). Column order is resolved from the header rather than
     assumed, since the repos disagree on it, and ``↳`` continuation rows
     inherit the company above them.

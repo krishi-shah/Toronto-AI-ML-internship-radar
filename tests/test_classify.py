@@ -59,8 +59,8 @@ class TestStrictTier(unittest.TestCase):
     def test_perception_intern_for_av_company(self):
         self.assertEqual(tier("Perception Engineering Intern"), STRICT)
 
-    def test_remote_counts_as_location(self):
-        self.assertEqual(tier("NLP Intern", location="Remote"), STRICT)
+    def test_remote_in_canada_counts_as_location(self):
+        self.assertEqual(tier("NLP Intern", location="Remote in Canada"), STRICT)
 
     def test_new_grad_ml_role(self):
         self.assertEqual(tier("New Grad Machine Learning Engineer"), STRICT)
@@ -102,7 +102,7 @@ class TestAiNativeCompanyPromotion(unittest.TestCase):
             tier("Staff Software Engineer", company="Cohere", ai_native=True)
         )
 
-    def test_ai_native_still_needs_canada_signal(self):
+    def test_ai_native_still_needs_an_ontario_signal(self):
         self.assertEqual(
             tier("Software Engineer Intern", location="San Francisco, CA",
                  company="Cohere", ai_native=True),
@@ -121,12 +121,6 @@ class TestLooseTier(unittest.TestCase):
 
     def test_business_intern_in_canada(self):
         self.assertEqual(tier("Product Management Intern"), LOOSE)
-
-    def test_blank_location_never_binned(self):
-        self.assertEqual(tier("Machine Learning Intern", location=""), LOOSE)
-
-    def test_unparseable_location_goes_loose(self):
-        self.assertEqual(tier("ML Intern", location="Multiple Locations"), LOOSE)
 
     def test_summer_2027_demoted_out_of_strict(self):
         self.assertEqual(tier("Machine Learning Intern, Summer 2027"), LOOSE)
@@ -332,9 +326,10 @@ class TestSecondaryLocations(unittest.TestCase):
         )
         self.assertIsNone(classify(post).tier)
 
-    def test_is_remote_flag_counts_as_location_signal(self):
+    def test_is_remote_flag_alone_cannot_confirm_ontario(self):
+        """The flag says the role is remote, not which country it is remote in."""
         post = p("AI Intern", location="", raw={"isRemote": True})
-        self.assertEqual(classify(post).tier, STRICT)
+        self.assertEqual(classify(post).tier, LOOSE)
 
 
 class TestRejects(unittest.TestCase):
@@ -382,17 +377,140 @@ class TestFalsePositiveGuards(unittest.TestCase):
         self.assertEqual(tier("Maintenance Technician Intern"), LOOSE)
 
 
-class TestCanadianCities(unittest.TestCase):
-    def test_cities_and_provinces(self):
+class TestOntarioCities(unittest.TestCase):
+    """Ontario is the whole market: the radar exists for roles reachable
+    from Toronto, so the rest of Canada is noise however good it looks."""
+
+    def test_ontario_locations_reach_strict(self):
         for location in [
             "Toronto, ON",
             "Toronto, Ontario",
             "Waterloo, ON, Canada",
-            "Montréal, QC",
-            "Vancouver, British Columbia",
             "Ottawa, Canada",
             "Mississauga, ON",
+            "Oakville, ON, Canada",
+            "Markham, ON, Canada",
+            "Welland, ON, Canada",
+            "Kitchener, Ontario",
+            "London, ON",
+            "Greater Toronto Area",
+        ]:
+            with self.subTest(location=location):
+                self.assertEqual(tier("ML Intern", location=location), STRICT)
+
+    def test_other_provinces_are_rejected(self):
+        for location in [
+            "Montréal, QC",
+            "Vancouver, British Columbia",
             "Calgary, AB",
+            "Burnaby, BC, Canada",
+            "Longueuil, QC, Canada",
+            "Halifax, Nova Scotia",
+            "Winnipeg, Manitoba",
+            "Acheson, AB, Canada",
+        ]:
+            with self.subTest(location=location):
+                self.assertIsNone(tier("ML Intern", location=location))
+
+
+class TestForeignLocationsRejected(unittest.TestCase):
+    """Regression: these all reached the feed as "location unknown".
+
+    ``_FOREIGN_RE`` knew "united kingdom" but not "UK", and knew ", NY" but
+    not "Texas" or the abbreviations the tracker repos actually publish, so
+    London and San Francisco roles sailed through into the loose tier.
+    """
+
+    def test_foreign_locations_are_rejected(self):
+        for location in [
+            "London, UK",
+            "Texas",
+            "Remote - Texas, United States",
+            "SF",
+            "NYC",
+            "LA",
+            "New York, NY",
+            "Seattle, WA",
+            "Bangalore, India",
+            "Macclesfield, UK",
+            "Grove, Wantage, UK",
+        ]:
+            with self.subTest(location=location):
+                self.assertIsNone(tier("ML Intern", location=location))
+
+
+class TestRemoteScope(unittest.TestCase):
+    """Remote is only in scope when it is remote *in Canada*."""
+
+    def test_remote_in_canada_is_strict(self):
+        """Kinaxis publishes exactly this, and it is workable from Toronto."""
+        self.assertEqual(tier("ML Intern", location="Remote in Canada"), STRICT)
+
+    def test_remote_canada_wording_variants(self):
+        for location in ["Remote, Canada", "Canada (Remote)", "Remote - Canada"]:
+            with self.subTest(location=location):
+                self.assertEqual(tier("ML Intern", location=location), STRICT)
+
+    def test_bare_remote_is_kept_but_not_strict(self):
+        """"Remote" alone names no country, so it cannot be confirmed Ontario."""
+        self.assertEqual(tier("NLP Intern", location="Remote"), LOOSE)
+
+    def test_remote_elsewhere_in_canada_is_rejected(self):
+        self.assertIsNone(tier("ML Intern", location="Remote - Vancouver, BC"))
+
+    def test_remote_in_usa_is_rejected(self):
+        self.assertIsNone(tier("ML Intern", location="Remote in USA"))
+
+
+class TestUnreadableLocationsSurvive(unittest.TestCase):
+    """An unreadable location might be Toronto, so it is kept, never binned."""
+
+    def test_blank_location(self):
+        self.assertEqual(tier("Machine Learning Intern", location=""), LOOSE)
+
+    def test_placeholder_location(self):
+        self.assertEqual(tier("ML Intern", location="Multiple Locations"), LOOSE)
+
+    def test_bare_london_is_ambiguous_so_kept(self):
+        """London, Ontario is a real place; bare "London" cannot be resolved."""
+        self.assertEqual(tier("ML Intern", location="London"), LOOSE)
+
+    def test_hybrid_onsite_wording_is_not_read_as_ontario(self):
+        """Regression guard: ", ON" must not match the "on" in "on-site"."""
+        self.assertEqual(tier("ML Intern", location="Hybrid, on-site"), LOOSE)
+
+
+class TestOntarioNameCollisions(unittest.TestCase):
+    """Several Ontario city names exist elsewhere too.
+
+    Regression: John Deere's "Waterloo, IA" is Waterloo, *Iowa*, and a bare
+    ``\\bwaterloo\\b`` read it as Ontario and outranked the ", IA" state code.
+    """
+
+    def test_ontario_namesakes_abroad_are_rejected(self):
+        for location in [
+            "Waterloo, IA",
+            "Waterloo, Iowa",
+            "Hamilton, OH",
+            "Peterborough, England",
+            "Scarborough, ME",
+            "Ottawa, IL",
+            "Richmond Hill, GA",
+            "Sudbury, MA",
+        ]:
+            with self.subTest(location=location):
+                self.assertIsNone(tier("ML Intern", location=location))
+
+    def test_the_ontario_originals_still_reach_strict(self):
+        for location in [
+            "Waterloo, ON",
+            "Waterloo, ON, Canada",
+            "Waterloo, Ontario",
+            "Waterloo, Canada",
+            "Waterloo",
+            "Hamilton, ON, Canada",
+            "Ottawa, ON, Canada",
+            "Scarborough, Ontario",
         ]:
             with self.subTest(location=location):
                 self.assertEqual(tier("ML Intern", location=location), STRICT)

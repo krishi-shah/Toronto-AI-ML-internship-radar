@@ -159,44 +159,121 @@ _REJECT_TERMS = [
     r"\bdoctoral[\s\-]?candidates?[\s\-]?only\b",
 ]
 
-_CANADA_TERMS = [
-    r"\bcanada\b",
-    r"\bcanadian\b",
-    r"\btoronto\b",
+# Ontario is the whole market. The radar exists for roles reachable from
+# Toronto, so a Vancouver or Montreal posting is noise however good it looks.
+#
+# The province abbreviation needs the lookahead: with IGNORECASE, a bare
+# ",\s*ON\b" happily matches the "on" in "Hybrid, on-site".
+_ONTARIO_TERMS = [
     r"\bontario\b",
-    r"\bottawa\b",
-    r"\bwaterloo\b",
+    r"\btoronto\b",
+    r"\bgta\b",
+    r"greater[\s\-]?toronto",
+    r"\bkanata\b",
+    r"\bnepean\b",
     r"\bkitchener\b",
+    r"\bguelph\b",
     r"\bmississauga\b",
     r"\bbrampton\b",
-    r"\bmarkham\b",
     r"\bvaughan\b",
-    r"\bhamilton\b",
+    r"\bnorth[\s\-]?york\b",
+    r"\betobicoke\b",
+    r"\boshawa\b",
+    r"\bajax\b",
+    r"\bbarrie\b",
+    r"\bwelland\b",
+    r"\bst\.?\s*catharines\b",
+    r"\bbrantford\b",
+    r"\bsarnia\b",
+    r"\bthunder[\s\-]?bay\b",
+    r"\bcambridge,?\s*(?:on|ontario)\b",
+    r"\bburlington,?\s*(?:on|ontario)\b",
+    r"\bmilton,?\s*(?:on|ontario)\b",
     r"\blondon,?\s*(?:on|ontario)\b",
+    r"\bkingston,?\s*(?:on|ontario)\b",
+    r"\bwindsor,?\s*(?:on|ontario)\b",
+    r"\bygk\b",
+    r",\s*ON(?![\w-])",
+    r"\bON\s*,\s*Canada\b",
+]
+
+# Ontario city names that exist elsewhere too: Waterloo IA, Hamilton OH,
+# Peterborough UK, Scarborough ME, Ottawa IL. Bare, they are almost always the
+# Ontario one, but a qualifier after the comma has the final say -- otherwise
+# John Deere's "Waterloo, IA" reads as Ontario and outranks the ", IA" code.
+#
+# The guard reads: not followed by a comma and then somewhere that is not
+# Ontario or Canada. "Waterloo, ON" and "Waterloo, Ontario" survive it;
+# "Waterloo, IA" and "Waterloo, Iowa" do not.
+_ELSEWHERE = (
+    r"(?!\s*,\s*(?!ON(?![\w-]))(?:[A-Za-z]{2}(?![\w-])|iowa|ohio|illinois|"
+    r"maine|massachusetts|michigan|minnesota|missouri|kansas|indiana|"
+    r"wisconsin|georgia|colorado|connecticut|vermont|virginia|new\s+jersey|"
+    r"new\s+york|england|scotland|wales|australia|belgium))"
+)
+
+_AMBIGUOUS_ONTARIO_CITIES = [
+    r"\bwaterloo\b",
+    r"\bhamilton\b",
+    r"\bottawa\b",
+    r"\bmarkham\b",
+    r"\boakville\b",
+    r"\bwoodbridge\b",
+    r"\brichmond[\s\-]?hill\b",
+    r"\bscarborough\b",
+    r"\bwhitby\b",
+    r"\bpickering\b",
+    r"\bnewmarket\b",
+    r"\bpeterborough\b",
+    r"\bsudbury\b",
+    r"\bniagara\b",
+]
+
+_ONTARIO_TERMS += [city + _ELSEWHERE for city in _AMBIGUOUS_ONTARIO_CITIES]
+
+# Canadian, but not Ontario. Naming one of these rules a posting out unless
+# Ontario is named alongside it -- a role listed for both Toronto and
+# Vancouver is still a Toronto role.
+_NON_ONTARIO_CA_TERMS = [
     r"\bvancouver\b",
     r"\bburnaby\b",
+    r"\bkelowna\b",
     r"\bvictoria,?\s*(?:bc|british)\b",
     r"british[\s\-]?columbia",
     r"\bmontr[eé]al\b",
     r"\bqu[eé]bec\b",
+    r"\blaval\b",
+    r"\bgatineau\b",
+    r"\bsherbrooke\b",
+    r"\blongueuil\b",
+    r"saint[\s\-]?hubert",
     r"\bcalgary\b",
     r"\bedmonton\b",
     r"\balberta\b",
+    r"\bacheson\b",
     r"\bwinnipeg\b",
     r"\bmanitoba\b",
     r"\bhalifax\b",
     r"nova[\s\-]?scotia",
+    r"\bmoncton\b",
+    r"\bfredericton\b",
     r"\bsaskatoon\b",
     r"\bregina\b",
     r"saskatchewan",
     r"new[\s\-]?brunswick",
     r"newfoundland",
-    r"\bguelph\b",
-    r"\bkingston,?\s*(?:on|ontario)\b",
-    r"\bwindsor,?\s*(?:on|ontario)\b",
-    r"\bygk\b",
-    r",\s*(?:ON|QC|BC|AB|MB|SK|NS|NB|NL|PE|YT|NT|NU)\b",
-    r"\b(?:ON|QC|BC|AB)\s*,\s*Canada\b",
+    r"prince[\s\-]?edward[\s\-]?island",
+    r"\byukon\b",
+    r"\bnunavut\b",
+    r"northwest[\s\-]?territories",
+    r",\s*(?:QC|BC|AB|MB|SK|NS|NB|NL|PE|YT|NT|NU)(?![\w-])",
+]
+
+# Country-level only. This exists so "Remote in Canada" -- which names no
+# province at all -- stays in scope, since it is workable from Toronto.
+_CANADA_TERMS = [
+    r"\bcanada\b",
+    r"\bcanadian\b",
 ]
 
 _REMOTE_TERMS = [
@@ -261,13 +338,32 @@ def _compile(terms: Iterable[str]) -> re.Pattern:
 AI_RE = _compile(_AI_TERMS)
 STUDENT_RE = _compile(_STUDENT_TERMS)
 REJECT_RE = _compile(_REJECT_TERMS)
+ONTARIO_RE = _compile(_ONTARIO_TERMS)
+NON_ONTARIO_CA_RE = _compile(_NON_ONTARIO_CA_TERMS)
 CANADA_RE = _compile(_CANADA_TERMS)
 REMOTE_RE = _compile(_REMOTE_TERMS)
 
-# Countries that positively rule a posting out, but only when no Canadian or
-# remote signal appears anywhere alongside them.
+# Places that positively rule a posting out, unless Ontario is named alongside.
+#
+# The spelled-out US states and the city names below are the fix for a real
+# leak: this pattern knew "united kingdom" but not "UK", and ", NY" but not
+# "Texas", so "Barclays - London, UK" and "Hitachi - Texas" were read as
+# having no readable location and kept in the loose tier.
 _FOREIGN_RE = re.compile(
-    r"\b(?:united\s+states|usa|u\.s\.a?\.|india|united\s+kingdom|england|ireland|"
+    r"\b(?:u\.?k\.?|scotland|wales|northern\s+ireland)\b"
+    r"|\b(?:alabama|alaska|arizona|arkansas|california|colorado|connecticut|"
+    r"delaware|florida|georgia|hawaii|idaho|illinois|indiana|iowa|kansas|"
+    r"kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|"
+    r"mississippi|missouri|montana|nebraska|nevada|new\s+hampshire|"
+    r"new\s+jersey|new\s+mexico|new\s+york|north\s+carolina|north\s+dakota|"
+    r"ohio|oklahoma|oregon|pennsylvania|rhode\s+island|south\s+carolina|"
+    r"south\s+dakota|tennessee|texas|utah|vermont|virginia|washington|"
+    r"west\s+virginia|wisconsin|wyoming)\b"
+    r"|\b(?:san\s+francisco|san\s+jose|san\s+diego|palo\s+alto|mountain\s+view|"
+    r"sunnyvale|cupertino|bellevue|redmond|los\s+angeles|seattle|austin|"
+    r"boston|chicago|denver|atlanta|dallas|houston|phoenix|miami|"
+    r"philadelphia|pittsburgh|detroit|minneapolis|cambridge,\s*ma)\b"
+    r"|\b(?:united\s+states|usa|u\.s\.a?\.|india|united\s+kingdom|england|ireland|"
     r"germany|france|spain|poland|romania|netherlands|sweden|norway|denmark|"
     r"switzerland|israel|singapore|japan|china|korea|australia|new\s+zealand|"
     r"brazil|mexico|argentina|philippines|vietnam|taiwan|hong\s+kong|uae|"
@@ -280,6 +376,11 @@ _FOREIGN_RE = re.compile(
     r"VA|VT|WA|WI|WV|WY|DC)\b",
     re.IGNORECASE,
 )
+
+# Tracker repos publish bare city abbreviations as the entire location field
+# ("SF", "NYC", "LA"). Matched case-sensitively on purpose: a case-insensitive
+# "\bla\b" would fire on French-language location text.
+_FOREIGN_ABBR_RE = re.compile(r"\b(?:SF|LA|NYC|DC)\b")
 
 
 # --------------------------------------------------------------------------
@@ -299,7 +400,7 @@ class Verdict:
     reason: str
     ai: bool = False
     student: bool = False
-    canada: bool = False
+    ontario: bool = False
     location_known: bool = True
     cycle: str = "unknown"
 
@@ -351,15 +452,16 @@ def _flatten(val: Any, depth: int = 0) -> list[str]:
 def classify(posting: Posting) -> Verdict:
     """Route a posting to the instant tier, the 5pm digest, or the bin.
 
-    Strict (instant Telegram ping) requires all of:
+    Strict requires all of:
       * an AI/ML signal in the title, or a company flagged ``ai_native``
       * a student-level signal
-      * a positive Canada or remote location signal
+      * an Ontario location signal, or remote within Canada
       * no cycle token pointing exclusively at a season other than Winter 2027
 
-    Anything student-level that is Canadian or has no readable location falls
-    through to loose. Only unpaid, volunteer, high-school and PhD-only
-    postings are dropped outright.
+    Anything student-level that is in Ontario, or whose location cannot be
+    read at all, falls through to loose. Dropped outright: unpaid, volunteer,
+    high-school and PhD-only postings, past cycles, and anywhere outside
+    Ontario -- including the rest of Canada.
     """
     title = posting.title or ""
     loc_blob = _location_blob(posting)
@@ -377,16 +479,32 @@ def classify(posting: Posting) -> Verdict:
     if not student:
         return Verdict(REJECTED, "not student level", student=False)
 
-    canada = bool(CANADA_RE.search(loc_blob)) or bool(REMOTE_RE.search(loc_blob))
+    ontario = bool(ONTARIO_RE.search(loc_blob))
+    elsewhere_in_canada = bool(NON_ONTARIO_CA_RE.search(loc_blob))
+    remote = bool(REMOTE_RE.search(loc_blob))
+    foreign = bool(_FOREIGN_RE.search(loc_blob)) or bool(
+        _FOREIGN_ABBR_RE.search(loc_blob)
+    )
     location_known = bool(loc_blob.strip())
 
-    if not canada:
-        if location_known and _FOREIGN_RE.search(loc_blob):
+    # Ontario named anywhere wins, checked first on purpose: Ashby routinely
+    # lists a US primary location with Toronto in secondaryLocations, and a
+    # req open in both Toronto and Vancouver is still a Toronto req.
+    #
+    # "Remote in Canada" names no province at all, so it is taken on trust --
+    # it is workable from Toronto. Bare "Remote" is not: it says nothing about
+    # the country.
+    in_scope = ontario or (
+        remote and bool(CANADA_RE.search(loc_blob)) and not elsewhere_in_canada
+    )
+
+    if not in_scope:
+        if elsewhere_in_canada or foreign:
             return Verdict(
-                REJECTED, "located outside Canada", student=True,
-                location_known=True,
+                REJECTED, "outside Ontario", student=True, location_known=True,
             )
-        # No readable location: never bin it, let the digest decide.
+        # Nothing recognisable in the location. It might be Toronto, and the
+        # HTML link-diff layer never carries a location at all, so keep it.
         return Verdict(
             LOOSE, "location unknown", student=True, location_known=location_known,
         )
@@ -394,20 +512,20 @@ def classify(posting: Posting) -> Verdict:
     cycle = _cycle_verdict(f"{haystack} | {_cycle_blob(posting)}")
     if cycle == "past":
         return Verdict(
-            REJECTED, "cycle already passed", student=True, canada=True, cycle=cycle
+            REJECTED, "cycle already passed", student=True, ontario=True, cycle=cycle
         )
 
     ai = bool(AI_RE.search(title)) or posting.ai_native
 
     if not ai:
-        return Verdict(LOOSE, "no AI signal", student=True, canada=True, cycle=cycle)
+        return Verdict(LOOSE, "no AI signal", student=True, ontario=True, cycle=cycle)
     if cycle == "later":
         return Verdict(
-            LOOSE, "later cycle", ai=True, student=True, canada=True, cycle=cycle
+            LOOSE, "later cycle", ai=True, student=True, ontario=True, cycle=cycle
         )
 
-    return Verdict(STRICT, "ai + student + canada", ai=True, student=True,
-                   canada=True, cycle=cycle)
+    return Verdict(STRICT, "ai + student + ontario", ai=True, student=True,
+                   ontario=True, cycle=cycle)
 
 
 # Fields that carry a work term when the title does not. Community trackers

@@ -2,13 +2,17 @@
 
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
-A live feed of Winter 2027 AI/ML internships and co-ops in Canada. GitHub
-Actions re-scrapes every source roughly every ten minutes and rewrites the
-listings below, so the feed stays current with my laptop closed. Zero cost: no
-paid APIs, no scraping services, no proxies, no LLM calls, no accounts.
+A live feed of Winter 2027 AI/ML internships and co-ops in **Ontario**. GitHub
+Actions re-scrapes every source once an hour and rewrites the listings below,
+so the feed stays current with my laptop closed. Zero cost: no paid APIs, no
+scraping services, no proxies, no LLM calls, no accounts.
 
-Two rules shape what you see:
+Three rules shape what you see:
 
+- **Only Ontario.** Toronto, Waterloo, Ottawa, Mississauga and the rest of the
+  province, plus roles advertised as remote within Canada. Everywhere else is
+  rejected outright — including Vancouver, Montreal and Calgary. A role listed
+  for both Toronto and somewhere else is still a Toronto role and is kept.
 - **Only the last seven days**, newest first, each role labelled *Today*,
   *Yesterday* or *N days ago* so you can see at a glance what is still worth
   racing for. Older postings stay in the database so dedupe keeps working, but
@@ -225,12 +229,11 @@ _Updated Friday 04 September, 16:54 Toronto &middot; 13/14 sources healthy &midd
 
 ---
 
-## What "every ten minutes" actually means
+## What "hourly" actually means
 
 GitHub cron is best-effort, not a real-time scheduler. Runs are queued and can
-land 10–20 minutes apart, occasionally longer under load, which is why the
-schedule sits on odd minutes (`3,13,23,…`) rather than on the hour where the
-queue is most congested.
+start well after their slot under load, which is why the schedule sits at `:17`
+rather than on the hour, where the queue is most congested.
 
 Nothing is lost to a late run. Every run re-fetches every source, and the
 freshness window uses the provider's publish date, so a delayed run produces
@@ -239,8 +242,8 @@ the same feed a punctual one would.
 Two other things worth knowing about scheduled workflows:
 
 - **The repo must be public.** Actions minutes are unlimited on public repos.
-  On a private repo this schedule is ~4,300 runs a month and would exhaust the
-  free tier in days.
+  On a private repo this schedule is ~720 runs a month and would eat most of
+  the free tier.
 - **GitHub disables schedules after 60 days of repository inactivity.** The
   radar's own README commits count as activity, so an active feed keeps itself
   alive. If it ever does go idle, one `workflow_dispatch` re-enables it.
@@ -406,18 +409,36 @@ Two tiers, because a wide net plus one channel equals noise.
 
 - an AI/ML signal in the title, **or** an `ai_native` company
 - a student-level signal (intern, co-op, student, placement, new grad, …)
-- a positive Canada or remote location signal
+- an Ontario location signal, **or** remote within Canada
 - no cycle token pointing exclusively at a season other than Winter 2027
 
-**loose** — everything else student-level in Canada, including opaque titles
+**loose** — everything else student-level in Ontario, including opaque titles
 like "Technology Analyst, Rotational", plus anything whose location cannot be
 read at all. Ambiguous goes to loose, never to the bin.
 
-**Rejected** — unpaid, volunteer, high school, PhD-*only*, roles with an
-explicit non-Canadian location, and **postings for a cycle earlier than the
-target**. A bare "PhD" mention does not reject: plenty of ML internships prefer
-a PhD but accept master's students. A bare year with no season ("2026 Intern")
-does not reject either — too ambiguous.
+**Rejected** — unpaid, volunteer, high school, PhD-*only*, **anywhere outside
+Ontario**, and **postings for a cycle earlier than the target**. A bare "PhD"
+mention does not reject: plenty of ML internships prefer a PhD but accept
+master's students. A bare year with no season ("2026 Intern") does not reject
+either — too ambiguous.
+
+### Location scope
+
+Ontario is checked first, so a req open in both Toronto and Vancouver is kept
+as the Toronto role it is. Then:
+
+- **Remote in Canada is kept.** It names no province, and it is workable from
+  Toronto. Bare "Remote" is not enough — it says nothing about the country, so
+  it lands in loose rather than strict.
+- **The rest of Canada is rejected**, not demoted. Vancouver, Montreal,
+  Calgary and Halifax are all noise for someone who needs to be in Ontario.
+- **An unreadable location is kept.** The HTML link-diff layer carries no
+  location at all, and placeholders like "Multiple Locations" might well be
+  Toronto, so those stay in loose.
+
+The province abbreviation is matched as `,\s*ON(?![\w-])`. Without the
+lookahead, a case-insensitive `, ON` matches the "on" in "Hybrid, on-site" and
+quietly reads half the internet as Ontario.
 
 A posting naming several cycles keeps the best one: *"Summer 2026, Winter 2027,
 Fall 2027"* is a live Winter 2027 opportunity, not a dead 2026 one.
@@ -529,13 +550,17 @@ Corrections found along the way:
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are hidden rather than shown as new |
-| The state DB can just be committed | ~5 MB of SQLite every ten minutes is gigabytes of binary history a year; it lives in `actions/cache` instead |
+| The state DB can just be committed | ~5 MB of SQLite every run is gigabytes of binary history a year; it lives in `actions/cache` instead |
+| Rejecting known foreign places is enough | It knew "united kingdom" but not "UK", and ", NY" but not "Texas", so London and San Francisco roles were read as having no location and kept. Requiring a positive Ontario signal fixes the whole class |
 
 ## Known gaps
 
 - **Timing is best-effort.** GitHub queues scheduled runs, so the real gap
-  between runs drifts past ten minutes. A local scheduler was punctual; this
-  is the price of the laptop being closed.
+  between runs drifts past the hour. A local scheduler was punctual; this is
+  the price of the laptop being closed.
+- **Ontario is judged from the posting text.** A company that writes only
+  "Canada" with no province, and no remote wording, is not confirmable as
+  Ontario and lands in loose rather than strict.
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.

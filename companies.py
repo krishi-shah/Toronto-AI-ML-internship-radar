@@ -71,7 +71,8 @@ COMPANIES: list[dict] = [
 # README table -- Simplify's README is an HTML <table>, not markdown pipes.
 TRACKERS: list[dict] = [
     {"name": "Canadian-Tech-Internships-2027", "repo": "negarprh/Canadian-Tech-Internships-2027"},
-    {"name": "canada_sde_intern_position", "repo": "hanzili/canada_sde_intern_position"},
+    # hanzili/canada_sde_intern_position removed: 404 on both main and master,
+    # the repo is gone. It was failing every run and showing red in Sources.
     {"name": "Summer2027-Internships", "repo": "SimplifyJobs/Summer2027-Internships"},
     {"name": "New-Grad-Positions", "repo": "SimplifyJobs/New-Grad-Positions"},
     {"name": "vansh-Summer2027", "repo": "vanshb03/Summer2027-Internships"},
