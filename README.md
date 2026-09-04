@@ -1,6 +1,6 @@
 # Toronto AI/ML internship radar
 
-[![radar](https://github.com/krishi-shah/internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/internship-radar/actions/workflows/radar.yml)
+[![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
 A live feed of Winter 2027 AI/ML internships and co-ops in Canada. GitHub
 Actions re-scrapes every source roughly every ten minutes and rewrites the
