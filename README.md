@@ -32,12 +32,15 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 04 September, 17:40 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 04 September, 20:08 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 9 AI/ML matches
+### Strict &middot; 12 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Data Engineer Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807/application?embed=true) | Super | Toronto, ON, Canada | **Today** |
+| [Data Engineer Intern, Winter 2027, Fall 2026](https://jobs.ashbyhq.com/super.com/c54cf7df-73b3-49d4-acff-5dc04fba15a4/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | **Today** |
+| [Data Science Associate New Grad - Finance Rotational Program](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Toronto-ON/New-Graduate-Program---2027-Data-Science-Associate--Finance-Rotational-Program_JR164983) | Canadian Tire | Toronto, ON, Canada | Yesterday |
 | [Developer Intern Co-op - Machine Learning, Winter 2027](https://careers-kinaxis.icims.com/jobs/35297/job?mobile=true&needsRedirect=false) | Kinaxis | Remote in Canada | Yesterday |
 | [Data Scientist Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383410008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada | 2 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 2 days ago |
@@ -48,12 +51,27 @@ _Updated Friday 04 September, 17:40 Toronto &middot; 12/13 sources healthy &midd
 | [Data Engineer Co-op - Data Engineering, Winter 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---Data-Engineering_JR26081658) | Manulife Financial | Toronto, ON, Canada | 5 days ago |
 | [Data Engineering Software Developer Co-op, Winter 2027](https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Markham-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Data-Engineering-Software-Developer_JR-202618353) | General Motors | Markham, ON, Canada, Oshawa, ON, Canada | 5 days ago |
 
-### Loose &middot; 57 to review
+### Loose &middot; 71 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Engineer Co-op - Product, Winter 2027](http://jobs.ashbyhq.com/bree/17d8dd15-5f97-4003-8d6c-170dca13ff88/application?embed=true) | Bree | Toronto, ON, Canada | **Today** |
+| [Software Engineer Co-op - Backend, Winter 2027](http://jobs.ashbyhq.com/bree/42fe78c1-e73f-4918-bf71-776b8142112b/application?embed=true) | Bree | Toronto, ON, Canada | **Today** |
+| [Data Analytics Intern, Winter 2027, Fall 2025](https://jobs.ashbyhq.com/super.com/68809622-6599-4379-bb88-925b2d8fcfd9/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | **Today** |
+| [Software Engineer in Data Intern - 8 months, Winter 2027](https://jobs.ashbyhq.com/super.com/2c889dd2-0103-43e8-a405-e5b006d8b5ec/application?embed=true) | Super | Toronto, ON, Canada | **Today** |
+| [Software Engineer Intern - Platform, Winter 2027](https://jobs.ashbyhq.com/super.com/29751d58-eacc-4b5a-8e9d-e59cb7a595c7/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | **Today** |
+| [Software Engineer Intern - Full-Stack, Winter 2027](https://jobs.ashbyhq.com/super.com/b2615f7e-c6d2-46d6-9699-5027da9b5757/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | **Today** |
+| [Systems Engineering Co-op - Multiple Teams, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147549219) | General Dynamics UK | Ottawa, ON, Canada | **Today** |
+| [Systems Engineering Co-op - TacNET 8, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147537709) | General Dynamics UK | Ottawa, ON, Canada | **Today** |
+| [Software Developer Co-op/Intern - Core Algorithms, Winter 2027](https://careers-kinaxis.icims.com/jobs/35329/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | **Today** |
 | [Software Developer Intern - Mygeotab, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383412008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | **Today** |
 | [Software Engineering Co-op - 4 - 8 months, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147511629) | General Dynamics UK | Ottawa, ON, Canada | **Today** |
+| [Junior Software Developer Co-op Intern - Winter 2027 - 4 months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Junior-Software-Developer--Winter-2027---Co-op-Internship---4-months_R260026089) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Investment Intern Co-op - Gam, Summer 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Investment-Intern---GAM--Summer-2027--Co-op-Internship----4-months_R260026067) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Developer &amp; IT Specialist Co-op - Global Asset Management, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Global-Asset-Management--Winter-Developer---IT-Specialist--4-8-months-_R-0000186669) | Royal Bank of Canada | Toronto, ON, Canada, Vancouver, BC, Canada | Yesterday |
+| [Digital Technologies Intern/Co-op, Winter 2027, Summer 2027](https://pg.wd5.myworkdayjobs.com/1000/job/TORONTO-GO/Digital-Technologies-Internship-Co-op---Stage-ou-programme-coopratif-en-en-technologies-digitales_R000158595) | Procter &amp; Gamble | Toronto, ON, Canada | Yesterday |
+| [Analytics &amp; Insights Intern/Co-op, Summer 2027](https://pg.wd5.myworkdayjobs.com/1000/job/TORONTO-GO/Analytics---Insights-Internship-Co-op-Summer-2027--Stage-ou-programme-coopratif-en-Analyse-et-veille-stratgique-t-2027_R000158592) | Procter &amp; Gamble | Toronto, ON, Canada | Yesterday |
+| [Junior Software Developer Co-op Intern - Winter 2027 - 4 months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Junior-Software-Developer--Winter-2027---Co-op-Internship---4-months_R260026093) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Software Developer Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5376578008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Credit &amp; Fraud Analytics Intern (Winter 2027)](https://jobs.ashbyhq.com/wealthsimple/c4cea9f1-950e-4035-83a8-7126b72b3a28) | Wealthsimple | Toronto, Ontario | Yesterday |
 | [Diagnostics Design Engineering Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/91308?icims=1) | AMD | Markham, ON, Canada | Yesterday |
@@ -108,7 +126,6 @@ _Updated Friday 04 September, 17:40 Toronto &middot; 12/13 sources healthy &midd
 | [Reporting Analyst Intern, Summer 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/XMLNAME-2027-Canada-Summer-Co-op---Reporting-Analyst_JR26080667) | Manulife Financial | Toronto, ON, Canada | 5 days ago |
 | [Reporting Analyst Co-op, Summer 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/XMLNAME-2027-Canada-Winter-Co-op---Reporting-Analyst_JR26080665) | Manulife Financial | Toronto, ON, Canada | 5 days ago |
 | [ALM Risk Data &amp; Automation Analyst Intern - Group Risk Management - Balance Sheet and Liquidity Risk, Winter 2027](https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter---GRM--ALM-Risk-Data---Automation-Analyst-Intern--4-Months-_R-0000186330-2) | Royal Bank of Canada | Toronto, ON, Canada | 5 days ago |
-| [Quantitative Developer Intern - Investment Management - Fixed Income Platform Engineering, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/5998/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Ontario, Canada | 7 days ago |
 
 ### Sources
 
@@ -119,8 +136,8 @@ _Updated Friday 04 September, 17:40 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 85 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2831 | ok |
-| Summer2027-Internships \[tracker\] | 2879 | ok |
+| New-Grad-Positions \[tracker\] | 2875 | ok |
+| Summer2027-Internships \[tracker\] | 2986 | ok |
 | Tenstorrent \[greenhouse\] | 127 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
