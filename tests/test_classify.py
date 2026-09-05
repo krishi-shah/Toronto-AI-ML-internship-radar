@@ -9,10 +9,21 @@ import os
 import sys
 import time
 import unittest
+from datetime import datetime, timedelta, timezone
+from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core import LOOSE, STRICT, Posting, classify  # noqa: E402
+
+# A fixed offset rather than ZoneInfo: the day-label tests only need a stable
+# Toronto wall clock, and this keeps them running where tzdata is absent.
+EDT = timezone(timedelta(hours=-4), "EDT")
+
+
+def at(day, hour, minute=0):
+    """A September 2026 Toronto wall time, for pinning "now" in age tests."""
+    return datetime(2026, 9, day, hour, minute)
 
 
 def p(title, location="Toronto, Ontario, Canada", company="Acme",
@@ -265,34 +276,61 @@ class TestFreshness(unittest.TestCase):
 
 
 class TestDayLabels(unittest.TestCase):
-    """Ages are shown in calendar days, newest first."""
+    """Ages are shown in calendar days in Toronto, newest first.
 
-    def setUp(self):
+    Every case pins "now" rather than reading the wall clock. Two of these
+    used to derive it from ``time.time()``, which quietly assumed CI never
+    runs in the small hours: the 04:33 UTC scheduled run failed because at
+    00:33 Toronto, three hours ago really is yesterday, and thirty hours ago
+    really is two dates back.
+    """
+
+    def label(self, now_wall, then_wall):
+        """``_day_label`` with both instants given as Toronto wall times."""
         import notify
 
-        self.label = notify._day_label
-        self.now = int(time.time())
+        now = now_wall.replace(tzinfo=EDT)
+        then = int(then_wall.replace(tzinfo=EDT).timestamp())
+        with mock.patch.object(notify, "toronto_now", lambda: now):
+            return notify._day_label(then)
 
     def test_just_posted_is_today(self):
-        self.assertEqual(self.label(self.now)[0], "Today")
+        self.assertEqual(
+            self.label(at(5, 13, 0), at(5, 12, 50)), ("Today", 0)
+        )
 
-    def test_a_few_hours_ago_is_still_today(self):
-        self.assertEqual(self.label(self.now - 3 * 3600)[0], "Today")
+    def test_a_few_hours_earlier_the_same_day_is_today(self):
+        self.assertEqual(self.label(at(5, 13, 0), at(5, 10, 0))[0], "Today")
 
-    def test_thirty_hours_ago_is_yesterday_not_today(self):
-        """Calendar days, not 24-hour blocks: 11pm last night is Yesterday."""
-        self.assertEqual(self.label(self.now - 30 * 3600)[1], 1)
+    def test_late_last_night_read_after_midnight_is_yesterday(self):
+        """The whole point of calendar days: 11pm, read at 1am, is Yesterday."""
+        self.assertEqual(self.label(at(5, 1, 0), at(4, 23, 0)), ("Yesterday", 1))
+
+    def test_three_hours_before_a_small_hours_run_is_yesterday(self):
+        """Regression: the CI failure at 00:33 Toronto. Yesterday is correct."""
+        self.assertEqual(self.label(at(5, 0, 33), at(4, 21, 33))[0], "Yesterday")
+
+    def test_thirty_hours_before_midday_is_yesterday(self):
+        self.assertEqual(self.label(at(5, 13, 0), at(4, 7, 0)), ("Yesterday", 1))
+
+    def test_thirty_hours_before_a_small_hours_run_is_two_days(self):
+        """Regression: 30h before 05:06 spans two dates, so 2 is correct."""
+        self.assertEqual(self.label(at(5, 5, 6), at(3, 23, 6)), ("2 days ago", 2))
 
     def test_multiple_days_are_counted(self):
-        self.assertEqual(self.label(self.now - 4 * 86400), ("4 days ago", 4))
+        self.assertEqual(
+            self.label(at(9, 13, 0), at(5, 13, 0)), ("4 days ago", 4)
+        )
 
-    def test_today_is_flagged_for_highlighting(self):
-        self.assertEqual(self.label(self.now)[1], 0)
+    def test_future_timestamps_are_clamped_to_today(self):
+        self.assertEqual(self.label(at(5, 13, 0), at(6, 13, 0)), ("Today", 0))
 
     def test_bad_timestamps_do_not_crash(self):
+        import notify
+
         for ts in (0, -1, 99_999_999_999_999):
             with self.subTest(ts=ts):
-                label, days = self.label(ts)
+                label, days = notify._day_label(ts)
                 self.assertIsInstance(label, str)
                 self.assertIsInstance(days, int)
 
