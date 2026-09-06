@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 06 September, 10:12 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Sunday 06 September, 13:05 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 12 AI/ML matches
 
@@ -51,10 +51,11 @@ _Updated Sunday 06 September, 10:12 Toronto &middot; 12/13 sources healthy &midd
 | [Data Engineer Co-op - Data Engineering, Winter 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---Data-Engineering_JR26081658) | Manulife Financial | Toronto, ON, Canada | 7 days ago |
 | [Data Engineering Software Developer Co-op, Winter 2027](https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Markham-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Data-Engineering-Software-Developer_JR-202618353) | General Motors | Markham, ON, Canada, Oshawa, ON, Canada | 7 days ago |
 
-### Loose &middot; 72 to review
+### Loose &middot; 73 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Product Engineer New Grad](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Product-Engineer--New-Grad-_R-0000187092) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
 | [Software Engineer Co-op - Product, Winter 2027](http://jobs.ashbyhq.com/bree/17d8dd15-5f97-4003-8d6c-170dca13ff88/application?embed=true) | Bree | Toronto, ON, Canada | 2 days ago |
 | [Software Engineer Co-op - Backend, Winter 2027](http://jobs.ashbyhq.com/bree/42fe78c1-e73f-4918-bf71-776b8142112b/application?embed=true) | Bree | Toronto, ON, Canada | 2 days ago |
 | [Data Analytics Intern, Winter 2027, Fall 2025](https://jobs.ashbyhq.com/super.com/68809622-6599-4379-bb88-925b2d8fcfd9/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | 2 days ago |
@@ -137,8 +138,8 @@ _Updated Sunday 06 September, 10:12 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 88 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2863 | ok |
-| Summer2027-Internships \[tracker\] | 2989 | ok |
+| New-Grad-Positions \[tracker\] | 2869 | ok |
+| Summer2027-Internships \[tracker\] | 3021 | ok |
 | Tenstorrent \[greenhouse\] | 127 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
