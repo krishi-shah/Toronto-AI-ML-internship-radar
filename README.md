@@ -32,12 +32,17 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 07 September, 00:45 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 07 September, 06:21 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 10 AI/ML matches
+### Strict &middot; 15 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [AI/ML Engineer Student - Winter 2027 - 8 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--AI-ML-Engineer--Winter-2027--8-Months-_JR-8403) | OMERS | Toronto, ON, Canada | Yesterday |
+| [Data Science Risk Analyst Co-op Intern, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Data-Science-Risk-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024735-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Data Science Analyst Co-op Intern - Audit AI &amp; Analytics, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Data-Science-Analyst---Audit-AI---Analytics--Winter-2027--Co-op-Internship----4-Months_R260024761-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Data Science Analyst Co-op Intern - Audit AI &amp; Analytics, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Data-Science-Analyst---Audit-AI---Analytics--Winter-2027--Co-op-Internship----4-Months_R260024761-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Data Science Risk Analyst Co-op Intern, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Data-Science-Risk-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024735-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Data Engineer Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807/application?embed=true) | Super | Toronto, ON, Canada | 3 days ago |
 | [Data Engineer Intern, Winter 2027, Fall 2026](https://jobs.ashbyhq.com/super.com/c54cf7df-73b3-49d4-acff-5dc04fba15a4/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | 3 days ago |
 | [Data Science Associate New Grad - Finance Rotational Program](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Toronto-ON/New-Graduate-Program---2027-Data-Science-Associate--Finance-Rotational-Program_JR164983) | Canadian Tire | Toronto, ON, Canada | 4 days ago |
@@ -49,10 +54,15 @@ _Updated Monday 07 September, 00:45 Toronto &middot; 12/13 sources healthy &midd
 | [Software Development Intern / Data Science Intern - Multiple Teams, Winter 2027](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26/application?embed=true) | Wealthsimple | Toronto, ON, Canada | 6 days ago |
 | [Software Development and Data Science Internships (Winter 2027)](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26) | Wealthsimple | Toronto, Ontario | 7 days ago |
 
-### Loose &middot; 57 to review
+### Loose &middot; 62 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Portfolio Analytics Student - Winter 2027 - 4 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--Portfolio-Analytics--Winter-2027--4-Months-_JR-8402) | OMERS | Toronto, ON, Canada | Yesterday |
+| [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Business Analyst Co-op Intern - Data and Change Management, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Business-Analyst--Data-and-Change-Management---Winter-2027--Co-op-Internship----4-Months_R260024737-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Business Analyst Co-op Intern - Data and Change Management, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Business-Analyst--Data-and-Change-Management---Winter-2027--Co-op-Internship----4-Months_R260024737-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Product Engineer New Grad](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Product-Engineer--New-Grad-_R-0000187092) | Royal Bank of Canada | Toronto, ON, Canada | 2 days ago |
 | [Software Engineer Co-op - Product, Winter 2027](http://jobs.ashbyhq.com/bree/17d8dd15-5f97-4003-8d6c-170dca13ff88/application?embed=true) | Bree | Toronto, ON, Canada | 3 days ago |
 | [Software Engineer Co-op - Backend, Winter 2027](http://jobs.ashbyhq.com/bree/42fe78c1-e73f-4918-bf71-776b8142112b/application?embed=true) | Bree | Toronto, ON, Canada | 3 days ago |
@@ -120,9 +130,9 @@ _Updated Monday 07 September, 00:45 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2868 | ok |
-| Summer2027-Internships \[tracker\] | 3025 | ok |
-| Tenstorrent \[greenhouse\] | 127 | ok |
+| New-Grad-Positions \[tracker\] | 2864 | ok |
+| Summer2027-Internships \[tracker\] | 3049 | ok |
+| Tenstorrent \[greenhouse\] | 132 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
 | Wealthsimple \[ashby\] | 48 | ok |
