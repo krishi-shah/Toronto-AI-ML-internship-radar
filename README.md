@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 07 September, 12:28 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 07 September, 16:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 14 AI/ML matches
 
@@ -53,12 +53,13 @@ _Updated Monday 07 September, 12:28 Toronto &middot; 12/13 sources healthy &midd
 | [Machine Learning/Artificial Intelligence Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91363?icims=1) | AMD | Markham, ON, Canada | 6 days ago |
 | [Software Development Intern / Data Science Intern - Multiple Teams, Winter 2027](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26/application?embed=true) | Wealthsimple | Toronto, ON, Canada | 6 days ago |
 
-### Loose &middot; 61 to review
+### Loose &middot; 62 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [Portfolio Analytics Student - Winter 2027 - 4 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--Portfolio-Analytics--Winter-2027--4-Months-_JR-8402) | OMERS | Toronto, ON, Canada | Yesterday |
 | [Software Development Student - January 2027, N/A](https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/Canada---St-Johns---Newfoundland--Labrador/Verafin---Software-Development-Student--January-2027-_R0026898) | Nasdaq | Toronto, ON, Canada, St. John's, NL, Canada | Yesterday |
+| [Software Developer Intern, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/Intern---Software-Developer---8-months-Hybrid-in-Ottawa_R004358) | Entrust | Ottawa, ON, Canada | Yesterday |
 | [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Business Analyst Co-op Intern - Data and Change Management, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Business-Analyst--Data-and-Change-Management---Winter-2027--Co-op-Internship----4-Months_R260024737-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
@@ -128,8 +129,8 @@ _Updated Monday 07 September, 12:28 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2859 | ok |
-| Summer2027-Internships \[tracker\] | 3054 | ok |
+| New-Grad-Positions \[tracker\] | 2864 | ok |
+| Summer2027-Internships \[tracker\] | 3082 | ok |
 | Tenstorrent \[greenhouse\] | 132 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
