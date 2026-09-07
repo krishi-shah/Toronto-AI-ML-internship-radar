@@ -32,9 +32,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 07 September, 06:21 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 07 September, 12:28 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 15 AI/ML matches
+### Strict &middot; 14 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -52,13 +52,13 @@ _Updated Monday 07 September, 06:21 Toronto &middot; 12/13 sources healthy &midd
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 5 days ago |
 | [Machine Learning/Artificial Intelligence Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91363?icims=1) | AMD | Markham, ON, Canada | 6 days ago |
 | [Software Development Intern / Data Science Intern - Multiple Teams, Winter 2027](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26/application?embed=true) | Wealthsimple | Toronto, ON, Canada | 6 days ago |
-| [Software Development and Data Science Internships (Winter 2027)](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26) | Wealthsimple | Toronto, Ontario | 7 days ago |
 
-### Loose &middot; 62 to review
+### Loose &middot; 61 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [Portfolio Analytics Student - Winter 2027 - 4 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--Portfolio-Analytics--Winter-2027--4-Months-_JR-8402) | OMERS | Toronto, ON, Canada | Yesterday |
+| [Software Development Student - January 2027, N/A](https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/Canada---St-Johns---Newfoundland--Labrador/Verafin---Software-Development-Student--January-2027-_R0026898) | Nasdaq | Toronto, ON, Canada, St. John's, NL, Canada | Yesterday |
 | [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-1) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Business Analyst Co-op Intern - Data and Change Management, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Business-Analyst--Data-and-Change-Management---Winter-2027--Co-op-Internship----4-Months_R260024737-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Climate Risk Reporting Analyst Co-op Intern - Winter 2027 - 4 Months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Climate-Risk-Reporting-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024768-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
@@ -118,8 +118,6 @@ _Updated Monday 07 September, 06:21 Toronto &middot; 12/13 sources healthy &midd
 | [Software Engineer Intern - Summer or Winter, Summer 2026, Winter 2027](https://stripe.com/jobs/search?gh_jid=8130805) | Stripe | Toronto, ON, Canada | 6 days ago |
 | [Software Developer New Grad - Integrations](https://www.ixl.com/company/jobs?gh_jid=8765751002) | IXL Learning | Toronto, ON, Canada | 6 days ago |
 | [Mechatronic Infrastructure Diagnostic Systems Co-op, Winter 2027](https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Markham-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Mechatronic-Infrastructure-Diagnostic-Systems_JR-202618915) | General Motors | Markham, ON, Canada | 7 days ago |
-| [Design Intern (Winter 2027)](https://jobs.ashbyhq.com/wealthsimple/272ea39d-c94e-4400-956a-bbe8d40461b3) | Wealthsimple | Toronto, Ontario | 7 days ago |
-| [Marketing Rotational Program - 12 Months](https://jobs.ashbyhq.com/wealthsimple/760256ae-8dd2-4b69-9fd8-4162de1b6505) | Wealthsimple | Toronto, Ontario | 7 days ago |
 
 ### Sources
 
@@ -130,8 +128,8 @@ _Updated Monday 07 September, 06:21 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2864 | ok |
-| Summer2027-Internships \[tracker\] | 3049 | ok |
+| New-Grad-Positions \[tracker\] | 2859 | ok |
+| Summer2027-Internships \[tracker\] | 3054 | ok |
 | Tenstorrent \[greenhouse\] | 132 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
