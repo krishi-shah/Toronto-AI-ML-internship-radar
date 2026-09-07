@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 07 September, 16:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 07 September, 19:31 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 14 AI/ML matches
 
@@ -129,12 +129,12 @@ _Updated Monday 07 September, 16:35 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2864 | ok |
-| Summer2027-Internships \[tracker\] | 3082 | ok |
+| New-Grad-Positions \[tracker\] | 2859 | ok |
+| Summer2027-Internships \[tracker\] | 3055 | ok |
 | Tenstorrent \[greenhouse\] | 132 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
-| Wealthsimple \[ashby\] | 48 | ok |
+| Wealthsimple \[ashby\] | 47 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
