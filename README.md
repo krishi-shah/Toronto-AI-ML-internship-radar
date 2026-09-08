@@ -32,9 +32,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 08 September, 05:43 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 16 AI/ML matches
+### Strict &middot; 15 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -53,12 +53,12 @@ _Updated Tuesday 08 September, 05:43 Toronto &middot; 12/13 sources healthy &mid
 | [Data Scientist Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383410008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada | 6 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
-| [Machine Learning/Artificial Intelligence Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91363?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
 
-### Loose &middot; 78 to review
+### Loose &middot; 69 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Intern, Finance](https://jobs.ashbyhq.com/wealthsimple/50dcb3a5-b896-42c6-8173-0f6a95718ead) | Wealthsimple | Toronto, Ontario | **Today** |
 | [Product Analyst Co-op - Digital Pharmacy, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/243-Consumers-Road-Toronto-ON/Product-Analyst--Digital-Pharmacy---Co-op-Student_R2000699733) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
 | [Analyst Co-op Student - Product Information Management, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Analyst--Product-Information-Management---Co-op-Student_R2000697260-1) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
 | [Replenishment Optimization Data &amp; Analytics Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Replenishment-Optimization-Data---Analytics---Co-op-Student_R2000697074) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
@@ -125,18 +125,8 @@ _Updated Tuesday 08 September, 05:43 Toronto &middot; 12/13 sources healthy &mid
 | [Product Management Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383920008) | Geotab | Oakville, ON, Canada | 6 days ago |
 | [Data Analyst Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5324252008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada | 6 days ago |
 | [Tools and Automation Software Developer Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39341) | Nokia | Ottawa, ON, Canada | 6 days ago |
+| [Embedded Developer Intern - Multiple Teams, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5406651008) | Geotab | Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Vehicle Systems Engineering Intern - Winter/January 2027 - 4, 8 Months, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5381043008) | Geotab | Waterloo, ON, Canada | 7 days ago |
-| [Hardware Design Verification Engineer Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/90379?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Firmware Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91320?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Hardware Design Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91360?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Hardware Design Engineer Intern/Co-op - Long Term, Summer 2027](https://careers.amd.com/jobs/90367?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Graphics Software Engineer Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/90305?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Firmware Engineer Intern/Co-op - Long Term, Summer 2027](https://careers.amd.com/jobs/90297?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Analog and Mixed Signal Engineer Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/91369?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Diagnostics Design Engineer Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/90435?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Software Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91368?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Machine Learning/Artificial Intelligence Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/90383?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Graphics Software Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91359?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -145,14 +135,14 @@ _Updated Tuesday 08 September, 05:43 Toronto &middot; 12/13 sources healthy &mid
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
-| Cohere \[ashby\] | 143 | ok |
+| Cohere \[ashby\] | 144 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2859 | ok |
-| Summer2027-Internships \[tracker\] | 3096 | ok |
-| Tenstorrent \[greenhouse\] | 131 | ok |
+| New-Grad-Positions \[tracker\] | 2852 | ok |
+| Summer2027-Internships \[tracker\] | 3113 | ok |
+| Tenstorrent \[greenhouse\] | 129 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
-| Wealthsimple \[ashby\] | 47 | ok |
+| Wealthsimple \[ashby\] | 48 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
