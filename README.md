@@ -32,12 +32,15 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 08 September, 00:40 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 08 September, 05:43 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 14 AI/ML matches
+### Strict &middot; 16 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Applied Machine Learning Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Applied-Machine-Learning---Co-op-Student_R2000697038) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Applied Machine Learning Scientist Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/AI2-Applied-Machine-Learning-Scientist-Co-op--WINTER-2027-_R_1506697-1) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Data Science Intern/Co-op, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Enterprise-Real-Estate-Intern-Co-op_R_1504711) | TD Bank | Toronto, ON, Canada | Yesterday |
 | [AI/ML Engineer Student - Winter 2027 - 8 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--AI-ML-Engineer--Winter-2027--8-Months-_JR-8403) | OMERS | Toronto, ON, Canada | 2 days ago |
 | [Data Science Risk Analyst Co-op Intern, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Data-Science-Risk-Analyst--Winter-2027--Co-op-Internship----4-Months_R260024735-1) | Bank of Montreal | Toronto, ON, Canada | 2 days ago |
 | [Data Science Analyst Co-op Intern - Audit AI &amp; Analytics, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Data-Science-Analyst---Audit-AI---Analytics--Winter-2027--Co-op-Internship----4-Months_R260024761-1) | Bank of Montreal | Toronto, ON, Canada | 2 days ago |
@@ -51,12 +54,31 @@ _Updated Tuesday 08 September, 00:40 Toronto &middot; 12/13 sources healthy &mid
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
 | [Machine Learning/Artificial Intelligence Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91363?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Software Development Intern / Data Science Intern - Multiple Teams, Winter 2027](https://jobs.ashbyhq.com/wealthsimple/de09418a-8a12-46aa-a371-34bafaf5be26/application?embed=true) | Wealthsimple | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 61 to review
+### Loose &middot; 78 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Product Analyst Co-op - Digital Pharmacy, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/243-Consumers-Road-Toronto-ON/Product-Analyst--Digital-Pharmacy---Co-op-Student_R2000699733) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
+| [Analyst Co-op Student - Product Information Management, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Analyst--Product-Information-Management---Co-op-Student_R2000697260-1) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
+| [Replenishment Optimization Data &amp; Analytics Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Replenishment-Optimization-Data---Analytics---Co-op-Student_R2000697074) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Software Development Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Software-Development---Co-op-Student_R2000699845) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
+| [Revenue Management Co-op Student, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Revenue-Management---Co-op-Student_R2000695589) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
+| [Technical Analyst Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1685-Tech-Ave-Mississauga-ON/Business-Analyst-Co-op-Student_R2000697512-2) | Loblaw Companies | Mississauga, ON, Canada | Yesterday |
+| [Insights Analyst Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Insights-Analyst---Co-op-Student_R2000695181) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Technology Transformation Co-op - Technology Transformation, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Loblaw-Brands--Technology-Transformation---Co-op-Student_R2000695051) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Supply Chain Business Intelligence Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Supply-Chain-Business-Intelligence---Co-op-Student_R2000697069) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Saving &amp; Investing Shopping &amp; Buying Journey Intern Co-op - Saving &amp; Investing, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Saving---Investing--SIJ--Shopping---Buying-Journey-Intern-Co-op_R_1504408) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Business Intelligence Co-op Intern - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/AI2-Business-Intelligence-Co-op-Intern--WINTER-2027-_R_1506122) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Business Insights &amp; Analytics Co-op Intern, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/TD-Centre---TD-Tower---66-Wellington-Street-West-Toronto-Ontario/Business-Insights---Analytics-Co-op-Intern-Winter-2027_R_1506527) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Portfolio Analytics Developer Intern/Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/161-Bay-Street-Corporate-Toronto-Ontario/TD-Asset-Management-Portfolio-Analytics-Developer-Intern-Co-Op--Winter-2027-_R_1509223) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Commercial Deposits – Money Movement &amp; Digital Channels Intern/Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Commercial-Deposits--Money-Movement---Digital-Channels-Intern-Co-op--Winter-2027-_R_1503532) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Portfolio Analytics Data Analyst Intern/Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/TDAM-Portfolio-Analytics-Data-Analyst-Intern-Co-Op--Winter-202-_R_1506711) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Product Management Intern/Co-op - Personal Savings &amp; Investing, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Personal-Savings---Investing--PS-I--Product-Management-Intern-Co-op_R_1504373) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Summer Analyst - Software Engineering Rotational Program, Summer 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/XMLNAME-2027-Summer-Analyst---Software-Engineering-Rotational-Program--Toronto-_R_1509435) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Optical Verification Engineer Intern Co-op, Winter 2027](https://lumentum.wd5.myworkdayjobs.com/LITE/job/Canada---Ottawa-Bill-Leathem/Optical-Verification-Engineer-Co-op-Intern_20261193) | Lumentum | Ottawa, ON, Canada | Yesterday |
+| [Risk Management Quantitative Associate - Rotational Program](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Risk-Management-Quantitative-Associate-Rotational-Program_R_1503777) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Replenishment Optimization Data &amp; Analytics Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Replenishment-Optimization-Data---Analytics---Co-op-Student_R2000697099) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
 | [Portfolio Analytics Student - Winter 2027 - 4 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--Portfolio-Analytics--Winter-2027--4-Months-_JR-8402) | OMERS | Toronto, ON, Canada | 2 days ago |
 | [Software Development Student - January 2027, N/A](https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/Canada---St-Johns---Newfoundland--Labrador/Verafin---Software-Development-Student--January-2027-_R0026898) | Nasdaq | Toronto, ON, Canada, St. John's, NL, Canada | 2 days ago |
 | [Software Developer Intern, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/Intern---Software-Developer---8-months-Hybrid-in-Ottawa_R004358) | Entrust | Ottawa, ON, Canada | 2 days ago |
@@ -115,9 +137,6 @@ _Updated Tuesday 08 September, 00:40 Toronto &middot; 12/13 sources healthy &mid
 | [Software Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91368?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
 | [Machine Learning/Artificial Intelligence Intern/Co-op, Summer 2027](https://careers.amd.com/jobs/90383?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
 | [Graphics Software Engineer Intern/Co-op, Winter 2027, Summer 2027, Fall 2027](https://careers.amd.com/jobs/91359?icims=1) | AMD | Markham, ON, Canada | 7 days ago |
-| [Software Engineer New Grad](https://stripe.com/jobs/search?gh_jid=8157838) | Stripe | Toronto, ON, Canada | 7 days ago |
-| [Software Engineer Intern - Summer or Winter, Summer 2026, Winter 2027](https://stripe.com/jobs/search?gh_jid=8130805) | Stripe | Toronto, ON, Canada | 7 days ago |
-| [Software Developer New Grad - Integrations](https://www.ixl.com/company/jobs?gh_jid=8765751002) | IXL Learning | Toronto, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -128,8 +147,8 @@ _Updated Tuesday 08 September, 00:40 Toronto &middot; 12/13 sources healthy &mid
 | Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2864 | ok |
-| Summer2027-Internships \[tracker\] | 3081 | ok |
+| New-Grad-Positions \[tracker\] | 2859 | ok |
+| Summer2027-Internships \[tracker\] | 3096 | ok |
 | Tenstorrent \[greenhouse\] | 131 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
