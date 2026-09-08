@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 08 September, 14:42 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 15 AI/ML matches
 
@@ -54,10 +54,11 @@ _Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &mid
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 6 days ago |
 
-### Loose &middot; 69 to review
+### Loose &middot; 72 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Intern, Capital Markets (8 month term)](https://jobs.ashbyhq.com/wealthsimple/3f324be6-87bf-4352-a098-bde635287f9c) | Wealthsimple | Remote (Canada) | **Today** |
 | [Intern, Finance](https://jobs.ashbyhq.com/wealthsimple/50dcb3a5-b896-42c6-8173-0f6a95718ead) | Wealthsimple | Toronto, Ontario | **Today** |
 | [Product Analyst Co-op - Digital Pharmacy, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/243-Consumers-Road-Toronto-ON/Product-Analyst--Digital-Pharmacy---Co-op-Student_R2000699733) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
 | [Analyst Co-op Student - Product Information Management, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Analyst--Product-Information-Management---Co-op-Student_R2000697260-1) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
@@ -78,7 +79,10 @@ _Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &mid
 | [Summer Analyst - Software Engineering Rotational Program, Summer 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/XMLNAME-2027-Summer-Analyst---Software-Engineering-Rotational-Program--Toronto-_R_1509435) | TD Bank | Toronto, ON, Canada | Yesterday |
 | [Optical Verification Engineer Intern Co-op, Winter 2027](https://lumentum.wd5.myworkdayjobs.com/LITE/job/Canada---Ottawa-Bill-Leathem/Optical-Verification-Engineer-Co-op-Intern_20261193) | Lumentum | Ottawa, ON, Canada | Yesterday |
 | [Risk Management Quantitative Associate - Rotational Program](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Risk-Management-Quantitative-Associate-Rotational-Program_R_1503777) | TD Bank | Toronto, ON, Canada | Yesterday |
+| [Software Developer 1 Co-op Intern, Winter 2027](https://intactfc.wd3.myworkdayjobs.com/en-US/intactfc/job/Toronto-Ontario-CAN/Software-Developer-I---4-Month-Co-op-Internship--Winter-2027-_R155112) | Intact | Toronto, ON, Canada | Yesterday |
+| [Associate Product Manager Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Associate-Product-Manager---Co-op-Student_R2000694175-1) | Loblaw Companies | Toronto, ON, Canada | Yesterday |
 | [Replenishment Optimization Data &amp; Analytics Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Replenishment-Optimization-Data---Analytics---Co-op-Student_R2000697099) | Loblaw Companies | Brampton, ON, Canada | Yesterday |
+| [Junior Software Developer Co-op Intern - Winter 2027 - 4 months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Junior-Software-Developer--Winter-2027---Co-op-Internship---4-months_R260026100) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Portfolio Analytics Student - Winter 2027 - 4 Months, N/A](https://omers.wd3.myworkdayjobs.com/omers_external/job/Toronto-Ontario/Student--Portfolio-Analytics--Winter-2027--4-Months-_JR-8402) | OMERS | Toronto, ON, Canada | 2 days ago |
 | [Software Development Student - January 2027, N/A](https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/Canada---St-Johns---Newfoundland--Labrador/Verafin---Software-Development-Student--January-2027-_R0026898) | Nasdaq | Toronto, ON, Canada, St. John's, NL, Canada | 2 days ago |
 | [Software Developer Intern, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/Intern---Software-Developer---8-months-Hybrid-in-Ottawa_R004358) | Entrust | Ottawa, ON, Canada | 2 days ago |
@@ -98,6 +102,7 @@ _Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &mid
 | [Software Developer Co-op/Intern - Core Algorithms, Winter 2027](https://careers-kinaxis.icims.com/jobs/35329/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 4 days ago |
 | [Software Developer Intern - Mygeotab, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383412008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | 4 days ago |
 | [Software Engineering Co-op - 4 - 8 months, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147511629) | General Dynamics UK | Ottawa, ON, Canada | 4 days ago |
+| [Optical Test Co-op Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40113) | Nokia | Ottawa, ON, Canada | 4 days ago |
 | [Junior Software Developer Co-op Intern - Winter 2027 - 4 months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Junior-Software-Developer--Winter-2027---Co-op-Internship---4-months_R260026089) | Bank of Montreal | Toronto, ON, Canada | 5 days ago |
 | [Investment Intern Co-op - Gam, Summer 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Investment-Intern---GAM--Summer-2027--Co-op-Internship----4-months_R260026067) | Bank of Montreal | Toronto, ON, Canada | 5 days ago |
 | [Developer &amp; IT Specialist Co-op - Global Asset Management, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Global-Asset-Management--Winter-Developer---IT-Specialist--4-8-months-_R-0000186669) | Royal Bank of Canada | Toronto, ON, Canada, Vancouver, BC, Canada | 5 days ago |
@@ -125,8 +130,6 @@ _Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &mid
 | [Product Management Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383920008) | Geotab | Oakville, ON, Canada | 6 days ago |
 | [Data Analyst Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5324252008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada | 6 days ago |
 | [Tools and Automation Software Developer Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39341) | Nokia | Ottawa, ON, Canada | 6 days ago |
-| [Embedded Developer Intern - Multiple Teams, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5406651008) | Geotab | Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Vehicle Systems Engineering Intern - Winter/January 2027 - 4, 8 Months, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5381043008) | Geotab | Waterloo, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -134,15 +137,15 @@ _Updated Tuesday 08 September, 10:34 Toronto &middot; 12/13 sources healthy &mid
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 176 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 229 | ok |
 | Cohere \[ashby\] | 144 | ok |
 | Faire \[greenhouse\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 2852 | ok |
-| Summer2027-Internships \[tracker\] | 3113 | ok |
-| Tenstorrent \[greenhouse\] | 129 | ok |
+| New-Grad-Positions \[tracker\] | 2843 | ok |
+| Summer2027-Internships \[tracker\] | 3143 | ok |
+| Tenstorrent \[greenhouse\] | 130 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 81 | ok |
-| Wealthsimple \[ashby\] | 48 | ok |
+| Wealthsimple \[ashby\] | 49 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
