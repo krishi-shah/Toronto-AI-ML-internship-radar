@@ -32,12 +32,13 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 09 September, 05:49 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 09 September, 10:38 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 18 AI/ML matches
+### Strict &middot; 19 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Developer Intern - AI Solutions, Winter 2027](https://careers-kinaxis.icims.com/jobs/35343/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | **Today** |
 | [Applied Machine Learning Co-op, Winter 2027](https://myview.wd3.myworkdayjobs.com/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Applied-Machine-Learning---Co-op-Student_R2000697038) | Loblaw Companies | Brampton, ON, Canada | 2 days ago |
 | [Applied Machine Learning Scientist Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/AI2-Applied-Machine-Learning-Scientist-Co-op--WINTER-2027-_R_1506697-1) | TD Bank | Toronto, ON, Canada | 2 days ago |
 | [Data Science Intern/Co-op, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Enterprise-Real-Estate-Intern-Co-op_R_1504711) | TD Bank | Toronto, ON, Canada | 2 days ago |
@@ -57,7 +58,7 @@ _Updated Wednesday 09 September, 05:49 Toronto &middot; 12/13 sources healthy &m
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 81 to review
+### Loose &middot; 75 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -136,12 +137,6 @@ _Updated Wednesday 09 September, 05:49 Toronto &middot; 12/13 sources healthy &m
 | [Solution Architect Student - Winter 2027](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Solution-Architect--Winter-2027-_JR00127360) | Sun Life | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Business Operations Analyst Student - Winter 2027, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Welland-ON/Business-Operations-Analyst-Student--4-months----Winter-2027_JR164928) | Canadian Tire | Welland, ON, Canada | 7 days ago |
 | [Software Engineer Intern - API, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Software-Engineer--API---Winter-2027-_JR00127410) | Sun Life | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Software Developer Co-op Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39435) | Nokia | Ottawa, ON, Canada | 7 days ago |
-| [Product Management Intern - Growth &amp; Marketplace, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5291162008) | Geotab | Oakville, ON, Canada | 7 days ago |
-| [Product Coordinator Intern - Driver Compliance, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5360844008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Product Management Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383920008) | Geotab | Oakville, ON, Canada | 7 days ago |
-| [Data Analyst Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5324252008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada | 7 days ago |
-| [Tools and Automation Software Developer Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39341) | Nokia | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -152,12 +147,12 @@ _Updated Wednesday 09 September, 05:49 Toronto &middot; 12/13 sources healthy &m
 | Canadian-Tech-Internships-2027 \[tracker\] | 229 | ok |
 | Cohere \[ashby\] | 143 | ok |
 | Faire \[greenhouse\] | 61 | ok |
-| New-Grad-Positions \[tracker\] | 2873 | ok |
-| Summer2027-Internships \[tracker\] | 3270 | ok |
-| Tenstorrent \[greenhouse\] | 131 | ok |
+| New-Grad-Positions \[tracker\] | 2872 | ok |
+| Summer2027-Internships \[tracker\] | 3298 | ok |
+| Tenstorrent \[greenhouse\] | 130 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 82 | ok |
-| Wealthsimple \[ashby\] | 49 | ok |
+| Wealthsimple \[ashby\] | 48 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
