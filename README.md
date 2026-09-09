@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 09 September, 10:38 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 09 September, 14:38 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 19 AI/ML matches
 
@@ -58,10 +58,12 @@ _Updated Wednesday 09 September, 10:38 Toronto &middot; 12/13 sources healthy &m
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 | [Machine Learning Developer New Grad](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Machine-Learning-Developer--New-or-Recent-Graduate-_R260024265-1) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 75 to review
+### Loose &middot; 77 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Hardware Asset Management Analyst Co-op Intern - 8 months, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Hardware-Asset-Management-Analyst--Winter-2027--Co-op-Internship----8-months_R260026279-2) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
+| [Hardware Asset Management Analyst Co-op Intern - Multiple Teams, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Hardware-Asset-Management-Analyst--Winter-2027--Co-op-Internship----8-months_R260026279-3) | Bank of Montreal | Toronto, ON, Canada | Yesterday |
 | [Electrical Engineer New Grad](https://jobs.smartrecruiters.com/AECOM2/744000148322240) | AECOM | Markham, ON, Canada | Yesterday |
 | [Software Developer Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5414448008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Intern, Capital Markets (8 month term)](https://jobs.ashbyhq.com/wealthsimple/3f324be6-87bf-4352-a098-bde635287f9c) | Wealthsimple | Remote (Canada) | Yesterday |
@@ -146,9 +148,9 @@ _Updated Wednesday 09 September, 10:38 Toronto &middot; 12/13 sources healthy &m
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 229 | ok |
 | Cohere \[ashby\] | 143 | ok |
-| Faire \[greenhouse\] | 61 | ok |
-| New-Grad-Positions \[tracker\] | 2872 | ok |
-| Summer2027-Internships \[tracker\] | 3298 | ok |
+| Faire \[greenhouse\] | 60 | ok |
+| New-Grad-Positions \[tracker\] | 2868 | ok |
+| Summer2027-Internships \[tracker\] | 3314 | ok |
 | Tenstorrent \[greenhouse\] | 130 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 82 | ok |
