@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 11 September, 05:44 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 11 September, 10:27 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 16 AI/ML matches
 
@@ -55,10 +55,11 @@ _Updated Friday 11 September, 05:44 Toronto &middot; 12/13 sources healthy &midd
 | [Data Engineer Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807/application?embed=true) | Super | Toronto, ON, Canada | 7 days ago |
 | [Data Engineer Intern, Winter 2027, Fall 2026](https://jobs.ashbyhq.com/super.com/c54cf7df-73b3-49d4-acff-5dc04fba15a4/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | 7 days ago |
 
-### Loose &middot; 72 to review
+### Loose &middot; 70 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Developer Intern - Clients - Front End Technologies, Winter 2027](https://careers-kinaxis.icims.com/jobs/35320/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | **Today** |
 | [Commercial Insurance Product Owner Co-op Intern, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9354) | Definity Financial | Waterloo, ON, Canada | Yesterday |
 | [Business Intelligence Co-op, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9351) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Commercial Insurance Portfolio Analyst Co-op Intern, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9349) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | Yesterday |
@@ -128,9 +129,6 @@ _Updated Friday 11 September, 05:44 Toronto &middot; 12/13 sources healthy &midd
 | [Systems Engineering Co-op - Multiple Teams, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147549219) | General Dynamics UK | Ottawa, ON, Canada | 7 days ago |
 | [Systems Engineering Co-op - TacNET 8, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147537709) | General Dynamics UK | Ottawa, ON, Canada | 7 days ago |
 | [Software Developer Co-op/Intern - Core Algorithms, Winter 2027](https://careers-kinaxis.icims.com/jobs/35329/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
-| [Software Developer Intern - Mygeotab, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5383412008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Software Engineering Co-op - 4 - 8 months, Winter 2027](https://jobs.smartrecruiters.com/GDMSI/744000147511629) | General Dynamics UK | Ottawa, ON, Canada | 7 days ago |
-| [Optical Test Co-op Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40113) | Nokia | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -138,15 +136,15 @@ _Updated Friday 11 September, 05:44 Toronto &middot; 12/13 sources healthy &midd
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 257 | ok |
-| Cohere \[ashby\] | 143 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 253 | ok |
+| Cohere \[ashby\] | 144 | ok |
 | Faire \[greenhouse\] | 61 | ok |
-| New-Grad-Positions \[tracker\] | 2963 | ok |
-| Summer2027-Internships \[tracker\] | 3625 | ok |
-| Tenstorrent \[greenhouse\] | 131 | ok |
+| New-Grad-Positions \[tracker\] | 2958 | ok |
+| Summer2027-Internships \[tracker\] | 3620 | ok |
+| Tenstorrent \[greenhouse\] | 133 | ok |
 | Vector Institute \[html\] | 32 | ok |
-| Waabi \[lever\] | 82 | ok |
-| Wealthsimple \[ashby\] | 53 | ok |
+| Waabi \[lever\] | 83 | ok |
+| Wealthsimple \[ashby\] | 55 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
