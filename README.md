@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 11 September, 10:27 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 11 September, 14:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 16 AI/ML matches
 
@@ -55,7 +55,7 @@ _Updated Friday 11 September, 10:27 Toronto &middot; 12/13 sources healthy &midd
 | [Data Engineer Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807/application?embed=true) | Super | Toronto, ON, Canada | 7 days ago |
 | [Data Engineer Intern, Winter 2027, Fall 2026](https://jobs.ashbyhq.com/super.com/c54cf7df-73b3-49d4-acff-5dc04fba15a4/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | 7 days ago |
 
-### Loose &middot; 70 to review
+### Loose &middot; 72 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -64,6 +64,8 @@ _Updated Friday 11 September, 10:27 Toronto &middot; 12/13 sources healthy &midd
 | [Business Intelligence Co-op, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9351) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Commercial Insurance Portfolio Analyst Co-op Intern, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9349) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Analyst Co-op Intern - Consumer Insights &amp; Market Research, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9344) | Definity Financial | Toronto, ON, Canada | Yesterday |
+| [NPI Hardware Co-op - 8 month, Winter 2027, Summer 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/NPI-Hardware-Co-op--8-month---January-2027-_R031642) | Ciena | Ottawa, ON, Canada | Yesterday |
+| [Air Traffic Management Engineering Co-op Student - ATM - Tower Products, Winter 2027](https://navcanada.wd10.myworkdayjobs.com/NAV_Careers/job/Ottawa/Air-Traffic-Management--ATM--Tower-Products---Winter-2027-Coop-Student---2-positions_JR-8366) | NAV CANADA | Ottawa, ON, Canada | Yesterday |
 | [Embedded Developer Intern - Engine Data Reliability, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5396891008) | Geotab | Oakville, ON, Canada | Yesterday |
 | [Winter Intern - Investment Management - Multi-Asset, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6008/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Winnipeg, MB, Canada, Toronto, ON, Canada | Yesterday |
 | [Electrical Engineer Intern - Space Systems Division, Summer 2027](https://job-boards.greenhouse.io/rocketlab/jobs/7990043003) | Rocket Lab USA | Toronto, ON, Canada | 2 days ago |
@@ -138,13 +140,13 @@ _Updated Friday 11 September, 10:27 Toronto &middot; 12/13 sources healthy &midd
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 253 | ok |
 | Cohere \[ashby\] | 144 | ok |
-| Faire \[greenhouse\] | 61 | ok |
-| New-Grad-Positions \[tracker\] | 2958 | ok |
-| Summer2027-Internships \[tracker\] | 3620 | ok |
-| Tenstorrent \[greenhouse\] | 133 | ok |
+| Faire \[greenhouse\] | 62 | ok |
+| New-Grad-Positions \[tracker\] | 2960 | ok |
+| Summer2027-Internships \[tracker\] | 3637 | ok |
+| Tenstorrent \[greenhouse\] | 130 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 83 | ok |
-| Wealthsimple \[ashby\] | 55 | ok |
+| Wealthsimple \[ashby\] | 58 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
