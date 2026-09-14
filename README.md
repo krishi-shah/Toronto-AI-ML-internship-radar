@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 14 September, 10:06 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 14 September, 15:23 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 13 AI/ML matches
 
@@ -52,10 +52,17 @@ _Updated Monday 14 September, 10:06 Toronto &middot; 12/13 sources healthy &midd
 | [Data Scientist Intern, Winter 2027](https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Toronto-ON/Intern--Data-Scientist---Winter-2027_R999619-1) | Capital One | Toronto, ON, Canada | 7 days ago |
 | [Data Engineer Intern/Co-op - Winter 2027, Winter 2027](https://td.wd3.myworkdayjobs.com/TD_Bank_Careers/job/Toronto-Ontario/Data-Engineer-Co-op---Intern---Winter-2027-_R_1509826) | TD Bank | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 65 to review
+### Loose &middot; 72 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8142930) | Robinhood | Toronto, ON, Canada | **Today** |
+| [Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8199744) | Robinhood | Toronto, ON, Canada | **Today** |
+| [Software Developer Intern/Co-op, Winter 2027](https://boards.greenhouse.io/robinhood/jobs/8194428) | Robinhood | Toronto, ON, Canada | **Today** |
+| [iOS Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8199729) | Robinhood | Toronto, ON, Canada | **Today** |
+| [Software Engineer Intern - Early Careers - Software Engineering, Summer 2027](https://wd1.myworkdaysite.com/recruiting/wf/WellsFargoJobs/job/CHARLOTTE-NC/XMLNAME-2027-Technology-Summer-Internship---Early-Careers--Software-Engineering-_R-574285) | Wells Fargo | Iselin, Woodbridge Township, NJ, Charlotte, NC, St. Louis, MO, Phoenix, AZ, Chandler, AZ, Irving, TX | Yesterday |
+| [Software Engineering Intern - Optical Transport and IP Networking, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/Software-Engineering--Optical-Transport-and-IP-Networking-Intern_R031631) | Ciena | Ottawa, ON, Canada | Yesterday |
+| [Software Engineer Co-op, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Software-Engineer--Winter-2027-_JR00127612) | Sun Life | Waterloo, ON, Canada | Yesterday |
 | [Machine Learning Compiler &amp; Performance Engineering Intern - Systems, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721064018) | Qualcomm | Markham, ON, Canada | 3 days ago |
 | [Optical Test Intern Co-op, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39964) | Nokia | Ottawa, ON, Canada | 3 days ago |
 | [Software Engineer Intern - Machine Learning, Summer 2027](https://app.careerpuck.com/job-board/lyft/job/8802332002?gh_jid=8802332002) | Lyft | Toronto, ON, Canada | 3 days ago |
@@ -128,15 +135,15 @@ _Updated Monday 14 September, 10:06 Toronto &middot; 12/13 sources healthy &midd
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 269 | ok |
-| Cohere \[ashby\] | 145 | ok |
-| Faire \[greenhouse\] | 67 | ok |
-| New-Grad-Positions \[tracker\] | 2970 | ok |
-| Summer2027-Internships \[tracker\] | 3715 | ok |
-| Tenstorrent \[greenhouse\] | 129 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
+| Cohere \[ashby\] | 144 | ok |
+| Faire \[greenhouse\] | 66 | ok |
+| New-Grad-Positions \[tracker\] | 3004 | ok |
+| Summer2027-Internships \[tracker\] | 3804 | ok |
+| Tenstorrent \[greenhouse\] | 128 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 86 | ok |
-| Wealthsimple \[ashby\] | 57 | ok |
+| Wealthsimple \[ashby\] | 56 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
