@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 15 September, 09:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 15 September, 14:14 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 8 AI/ML matches
 
@@ -47,10 +47,12 @@ _Updated Tuesday 15 September, 09:35 Toronto &middot; 12/13 sources healthy &mid
 | [Developer Intern - AI Solutions, Winter 2027](https://careers-kinaxis.icims.com/jobs/35343/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 6 days ago |
 | [Artificial Intelligence Developer Intern Co-op - Winter 2027, Winter 2027](https://intactfc.wd3.myworkdayjobs.com/en-US/intactfc/job/Toronto-Ontario-CAN/AI-Developer---4-Month-Internship-Co-op--Winter-2027--_R155234) | Intact | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 56 to review
+### Loose &middot; 57 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Tools Development Co-op Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39230) | Nokia | Ottawa, ON, Canada | **Today** |
+| [Hardware Engineer Co-op Intern - IP Routing, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39600) | Nokia | Ottawa, ON, Canada | **Today** |
 | [Software Engineer Intern, Summer 2027](https://job-boards.greenhouse.io/doordashcanada/jobs/8170944) | DoorDash | Toronto, ON, Canada | Yesterday |
 | [Software Engineer Intern, Summer 2027](https://jobs.ashbyhq.com/Superhuman%20Platform%20Inc/5f1f25ee-709d-4ae0-ada4-d1f243bde89c/application?embed=true) | Superhuman | Toronto, ON, Canada | Yesterday |
 | [Software Development Engineer Co-op, Winter 2027](https://job-boards.greenhouse.io/athinkingape/jobs/8203048) | A Thinking Ape | Remote in Canada | Yesterday |
@@ -106,7 +108,6 @@ _Updated Tuesday 15 September, 09:35 Toronto &middot; 12/13 sources healthy &mid
 | [AI and Compiler Engineering Graduate Intern, Fall 2027](https://intel.wd1.myworkdayjobs.com/en-us/external/job/Virtual-Canada/AI-and-Compiler-Engineering-Graduate-Intern_JR0286850) | Intel | Remote in Canada | 7 days ago |
 | [Electrical Engineer New Grad](https://jobs.smartrecruiters.com/AECOM2/744000148322240) | AECOM | Markham, ON, Canada | 7 days ago |
 | [Software Developer Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5414448008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Intern, Capital Markets (8 month term)](https://jobs.ashbyhq.com/wealthsimple/3f324be6-87bf-4352-a098-bde635287f9c) | Wealthsimple | Remote (Canada) | 7 days ago |
 
 ### Sources
 
@@ -115,14 +116,14 @@ _Updated Tuesday 15 September, 09:35 Toronto &middot; 12/13 sources healthy &mid
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 262 | ok |
-| Cohere \[ashby\] | 144 | ok |
-| Faire \[greenhouse\] | 67 | ok |
-| New-Grad-Positions \[tracker\] | 3023 | ok |
-| Summer2027-Internships \[tracker\] | 3934 | ok |
-| Tenstorrent \[greenhouse\] | 124 | ok |
+| Cohere \[ashby\] | 142 | ok |
+| Faire \[greenhouse\] | 68 | ok |
+| New-Grad-Positions \[tracker\] | 3019 | ok |
+| Summer2027-Internships \[tracker\] | 3981 | ok |
+| Tenstorrent \[greenhouse\] | 127 | ok |
 | Vector Institute \[html\] | 32 | ok |
-| Waabi \[lever\] | 86 | ok |
-| Wealthsimple \[ashby\] | 55 | ok |
+| Waabi \[lever\] | 87 | ok |
+| Wealthsimple \[ashby\] | 56 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
