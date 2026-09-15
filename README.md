@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 15 September, 03:47 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 15 September, 09:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 8 AI/ML matches
 
@@ -47,7 +47,7 @@ _Updated Tuesday 15 September, 03:47 Toronto &middot; 12/13 sources healthy &mid
 | [Developer Intern - AI Solutions, Winter 2027](https://careers-kinaxis.icims.com/jobs/35343/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 6 days ago |
 | [Artificial Intelligence Developer Intern Co-op - Winter 2027, Winter 2027](https://intactfc.wd3.myworkdayjobs.com/en-US/intactfc/job/Toronto-Ontario-CAN/AI-Developer---4-Month-Internship-Co-op--Winter-2027--_R155234) | Intact | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 57 to review
+### Loose &middot; 56 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -107,7 +107,6 @@ _Updated Tuesday 15 September, 03:47 Toronto &middot; 12/13 sources healthy &mid
 | [Electrical Engineer New Grad](https://jobs.smartrecruiters.com/AECOM2/744000148322240) | AECOM | Markham, ON, Canada | 7 days ago |
 | [Software Developer Intern, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5414448008) | Geotab | Toronto, ON, Canada, Oakville, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Intern, Capital Markets (8 month term)](https://jobs.ashbyhq.com/wealthsimple/3f324be6-87bf-4352-a098-bde635287f9c) | Wealthsimple | Remote (Canada) | 7 days ago |
-| [Intern, Finance](https://jobs.ashbyhq.com/wealthsimple/50dcb3a5-b896-42c6-8173-0f6a95718ead) | Wealthsimple | Toronto, Ontario | 7 days ago |
 
 ### Sources
 
@@ -115,11 +114,11 @@ _Updated Tuesday 15 September, 03:47 Toronto &middot; 12/13 sources healthy &mid
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 262 | ok |
 | Cohere \[ashby\] | 144 | ok |
 | Faire \[greenhouse\] | 67 | ok |
-| New-Grad-Positions \[tracker\] | 3039 | ok |
-| Summer2027-Internships \[tracker\] | 3938 | ok |
+| New-Grad-Positions \[tracker\] | 3023 | ok |
+| Summer2027-Internships \[tracker\] | 3934 | ok |
 | Tenstorrent \[greenhouse\] | 124 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 86 | ok |
