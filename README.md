@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 16 September, 16:09 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 16 September, 18:58 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 7 AI/ML matches
 
@@ -46,7 +46,7 @@ _Updated Wednesday 16 September, 16:09 Toronto &middot; 12/13 sources healthy &m
 | [Data Scientist Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39965) | Nokia | Ottawa, ON, Canada | 5 days ago |
 | [Data Scientist New Grad](https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Toronto-ON/Associate--Data-Scientist---New-Grad--2027-Start_R999616-1) | Capital One | Toronto, ON, Canada | 6 days ago |
 
-### Loose &middot; 59 to review
+### Loose &middot; 57 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -107,8 +107,6 @@ _Updated Wednesday 16 September, 16:09 Toronto &middot; 12/13 sources healthy &m
 | [Data Analyst Student - Winter Term 2027, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Oakville-ON/Data-Analyst-Student----4-Months----Winter-Term-2027_JR164861) | Canadian Tire | Oakville, ON, Canada | 7 days ago |
 | [Markets Data Analyst Intern, Winter 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Markets-Data-Analyst--4-months-_R-0000186634) | Royal Bank of Canada | Toronto, ON, Canada | 7 days ago |
 | [Workforce Analyst Intern/Co-op, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Workforce-Analyst--Winter-2027--Co-op-Internship----8-Months_R260024513-1) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
-| [Business Insights &amp; Analytics Co-op, Winter 2027](https://www.d2l.com/careers/jobs/?job_id=8188363&gh_jid=8188363) | D2L | Kitchener, ON, Canada | 7 days ago |
-| [Software Developer Co-op, Winter 2027](https://www.d2l.com/careers/jobs/?job_id=8174229&gh_jid=8174229) | D2L | Kitchener, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -116,11 +114,11 @@ _Updated Wednesday 16 September, 16:09 Toronto &middot; 12/13 sources healthy &m
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 289 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 293 | ok |
 | Cohere \[ashby\] | 142 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3052 | ok |
-| Summer2027-Internships \[tracker\] | 4100 | ok |
+| New-Grad-Positions \[tracker\] | 3055 | ok |
+| Summer2027-Internships \[tracker\] | 4089 | ok |
 | Tenstorrent \[greenhouse\] | 125 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
