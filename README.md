@@ -32,9 +32,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 16 September, 07:38 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 16 September, 13:00 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 8 AI/ML matches
+### Strict &middot; 7 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -45,7 +45,6 @@ _Updated Wednesday 16 September, 07:38 Toronto &middot; 12/13 sources healthy &m
 | [Machine Learning Systems Software Development Engineer Intern - Annapurna Labs, Summer 2027, Winter 2027, Fall 2027](https://amazon.jobs/en/jobs/10538066/ml-systems-software-development-engineer-intern-annapurna-labs-2027) | Amazon | Toronto, ON, Canada | 5 days ago |
 | [Data Scientist Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39965) | Nokia | Ottawa, ON, Canada | 5 days ago |
 | [Data Scientist New Grad](https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Toronto-ON/Associate--Data-Scientist---New-Grad--2027-Start_R999616-1) | Capital One | Toronto, ON, Canada | 6 days ago |
-| [Developer Intern - AI Solutions, Winter 2027](https://careers-kinaxis.icims.com/jobs/35343/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
 
 ### Loose &middot; 59 to review
 
@@ -117,15 +116,15 @@ _Updated Wednesday 16 September, 07:38 Toronto &middot; 12/13 sources healthy &m
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 262 | ok |
-| Cohere \[ashby\] | 143 | ok |
-| Faire \[greenhouse\] | 69 | ok |
-| New-Grad-Positions \[tracker\] | 3055 | ok |
-| Summer2027-Internships \[tracker\] | 4094 | ok |
-| Tenstorrent \[greenhouse\] | 127 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 284 | ok |
+| Cohere \[ashby\] | 142 | ok |
+| Faire \[greenhouse\] | 68 | ok |
+| New-Grad-Positions \[tracker\] | 3066 | ok |
+| Summer2027-Internships \[tracker\] | 4114 | ok |
+| Tenstorrent \[greenhouse\] | 124 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
-| Wealthsimple \[ashby\] | 55 | ok |
+| Wealthsimple \[ashby\] | 57 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
