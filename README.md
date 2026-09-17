@@ -32,12 +32,14 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 16 September, 18:58 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 16 September, 21:27 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 7 AI/ML matches
+### Strict &middot; 9 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | **Today** |
+| [AI Engineer Intern - Winter 2027, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI-Engineer-Intern--Winter-2027-_R031667) | Ciena | Ottawa, ON, Canada | Yesterday |
 | [Data Scientist Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/b152bad3-df48-4049-9d44-ba7e57ea6499/apply) | Equitable Bank | Toronto, ON, Canada | Yesterday |
 | [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 2 days ago |
 | [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 2 days ago |
@@ -50,6 +52,11 @@ _Updated Wednesday 16 September, 18:58 Toronto &middot; 12/13 sources healthy &m
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Data Analyst Intern, N/A](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Investor-Services--PEY-Data-Analyst----12-16-months-_R-0000188126) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
+| [Software Engineer Intern - Investor Services - Months, N/A](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Investor-Services--PEY-Software-Engineer--12-months-_R-0000188109) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
+| [Data Analyst Student - Valuations, N/A](https://fccfac.wd3.myworkdayjobs.com/careers-carrieres/job/Regina-Saskatchewan/Student--Data-Analyst--Valuations-_R-1008821) | Farm Credit Canada | Drummondville, QC, Canada, Montreal, QC, Canada, Winnipeg, MB, Canada, Edmonton, AB, Canada, Regina, SK, Canada, Essex, ON, Canada, Rivière-du-Loup, QC, Canada | Yesterday |
+| [Quantum and Chemistry Research Intern - Quantum and AI for Chemistry, Summer 2027](https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Canada-Toronto/PhD-Research-Intern--Quantum-and-AI-for-Chemistry---2027_JR2024997) | NVIDIA | Toronto, ON, Canada | Yesterday |
+| [ASIC Development Methodology and Automation New Grad](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Development-Methodology-and-Automation---New-Grad_R031639) | Ciena | Ottawa, ON, Canada | Yesterday |
 | [Sensors Subsystem Engineering Intern - Low-Power AI - Audio, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721109229) | Qualcomm | Markham, ON, Canada | Yesterday |
 | [Sensors Subsystem Engineering Intern - Multiple Teams, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721109168) | Qualcomm | Markham, ON, Canada | Yesterday |
 | [Credit Risk Intern, Winter 2027](https://jobs.lever.co/eqbank/de711d74-f78a-4cdd-a4a1-fdaa6e6602c3/apply) | Equitable Bank | Toronto, ON, Canada | Yesterday |
@@ -102,11 +109,6 @@ _Updated Wednesday 16 September, 18:58 Toronto &middot; 12/13 sources healthy &m
 | [Embedded Developer Intern - Engine Data Reliability, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5396891008) | Geotab | Oakville, ON, Canada | 6 days ago |
 | [Winter Intern - Investment Management - Multi-Asset, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6008/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Winnipeg, MB, Canada, Toronto, ON, Canada | 6 days ago |
 | [Electrical Engineer Intern - Space Systems Division, Summer 2027](https://job-boards.greenhouse.io/rocketlab/jobs/7990043003) | Rocket Lab USA | Toronto, ON, Canada | 7 days ago |
-| [Compiler Engineer Intern - SYCL Runtime, Winter 2027](https://intel.wd1.myworkdayjobs.com/en-us/external/job/Canada-Toronto/Compiler-Engineering-Undergraduate-Intern---SYCL-Runtime_JR0286849) | Intel | Toronto, ON, Canada | 7 days ago |
-| [Modem Hardware Engineer Intern/Co-op, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/Wavelogic-Modem-HW-Engineering-Intern-Co-op--Winter-2027---4-month-_R031652) | Ciena | Ottawa, ON, Canada | 7 days ago |
-| [Data Analyst Student - Winter Term 2027, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Oakville-ON/Data-Analyst-Student----4-Months----Winter-Term-2027_JR164861) | Canadian Tire | Oakville, ON, Canada | 7 days ago |
-| [Markets Data Analyst Intern, Winter 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Markets-Data-Analyst--4-months-_R-0000186634) | Royal Bank of Canada | Toronto, ON, Canada | 7 days ago |
-| [Workforce Analyst Intern/Co-op, Winter 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/Workforce-Analyst--Winter-2027--Co-op-Internship----8-Months_R260024513-1) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -115,11 +117,11 @@ _Updated Wednesday 16 September, 18:58 Toronto &middot; 12/13 sources healthy &m
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 293 | ok |
-| Cohere \[ashby\] | 142 | ok |
+| Cohere \[ashby\] | 141 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3055 | ok |
-| Summer2027-Internships \[tracker\] | 4089 | ok |
-| Tenstorrent \[greenhouse\] | 125 | ok |
+| New-Grad-Positions \[tracker\] | 3080 | ok |
+| Summer2027-Internships \[tracker\] | 4180 | ok |
+| Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
 | Wealthsimple \[ashby\] | 56 | ok |
