@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 17 September, 14:16 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 17 September, 17:29 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 10 AI/ML matches
 
@@ -117,11 +117,11 @@ _Updated Thursday 17 September, 14:16 Toronto &middot; 12/13 sources healthy &mi
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 292 | ok |
-| Cohere \[ashby\] | 138 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 296 | ok |
+| Cohere \[ashby\] | 140 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3088 | ok |
-| Summer2027-Internships \[tracker\] | 4229 | ok |
+| New-Grad-Positions \[tracker\] | 3074 | ok |
+| Summer2027-Internships \[tracker\] | 4220 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
