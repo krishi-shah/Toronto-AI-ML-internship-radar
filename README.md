@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 17 September, 09:30 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 17 September, 14:16 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 10 AI/ML matches
 
@@ -49,7 +49,7 @@ _Updated Thursday 17 September, 09:30 Toronto &middot; 12/13 sources healthy &mi
 | [Data Scientist Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39965) | Nokia | Ottawa, ON, Canada | 6 days ago |
 | [Data Scientist New Grad](https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Toronto-ON/Associate--Data-Scientist---New-Grad--2027-Start_R999616-1) | Capital One | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 58 to review
+### Loose &middot; 57 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -110,7 +110,6 @@ _Updated Thursday 17 September, 09:30 Toronto &middot; 12/13 sources healthy &mi
 | [Software Developer Intern, Winter 2027](https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/CA-ON-MISSISSAUGA-P22M01--1801-Courtney-Park-Dr--P22M01-BLDG/Internship---Winter-2027---Software-Developer-Aerospace-Control-Systems---Web-Applications_01874412) | RTX | Mississauga, ON, Canada | 7 days ago |
 | [Software Engineer Co-op Intern - Winter 2027, Winter 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Software-Engineer--Winter-2027--Co-op-Internship----4-month_R260025826) | Bank of Montreal | Toronto, ON, Canada | 7 days ago |
 | [Embedded Developer Intern - Engine Data Reliability, Winter 2027](https://job-boards.greenhouse.io/internshiplist2000/jobs/5396891008) | Geotab | Oakville, ON, Canada | 7 days ago |
-| [Winter Intern - Investment Management - Multi-Asset, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6008/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Winnipeg, MB, Canada, Toronto, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -118,15 +117,15 @@ _Updated Thursday 17 September, 09:30 Toronto &middot; 12/13 sources healthy &mi
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 293 | ok |
-| Cohere \[ashby\] | 141 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 292 | ok |
+| Cohere \[ashby\] | 138 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3082 | ok |
-| Summer2027-Internships \[tracker\] | 4177 | ok |
+| New-Grad-Positions \[tracker\] | 3088 | ok |
+| Summer2027-Internships \[tracker\] | 4229 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
-| Wealthsimple \[ashby\] | 55 | ok |
+| Wealthsimple \[ashby\] | 54 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
