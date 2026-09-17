@@ -32,15 +32,15 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 17 September, 03:42 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 17 September, 09:30 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 10 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | Yesterday |
-| [Data Engineer Student, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Engineer--Winter-and-Summer-2027-_JR00127385) | Sun Life | Montreal, QC, Canada, Toronto, ON, Canada, Waterloo, ON, Canada | 2 days ago |
 | [AI Engineer Intern - Winter 2027, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI-Engineer-Intern--Winter-2027-_R031667) | Ciena | Ottawa, ON, Canada | 2 days ago |
+| [Data Engineer Student, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Engineer--Winter-and-Summer-2027-_JR00127385) | Sun Life | Montreal, QC, Canada, Toronto, ON, Canada, Waterloo, ON, Canada | 2 days ago |
 | [Data Scientist Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/b152bad3-df48-4049-9d44-ba7e57ea6499/apply) | Equitable Bank | Toronto, ON, Canada | 2 days ago |
 | [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 3 days ago |
 | [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 3 days ago |
@@ -121,8 +121,8 @@ _Updated Thursday 17 September, 03:42 Toronto &middot; 12/13 sources healthy &mi
 | Canadian-Tech-Internships-2027 \[tracker\] | 293 | ok |
 | Cohere \[ashby\] | 141 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3081 | ok |
-| Summer2027-Internships \[tracker\] | 4191 | ok |
+| New-Grad-Positions \[tracker\] | 3082 | ok |
+| Summer2027-Internships \[tracker\] | 4177 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
