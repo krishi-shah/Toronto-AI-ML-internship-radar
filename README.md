@@ -32,14 +32,14 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 18 September, 01:57 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 18 September, 07:18 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 11 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
-| [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | Yesterday |
 | [AI Quality Co-op Intern - Evaluation &amp; Security, Winter 2027](https://careers-kinaxis.icims.com/jobs/35378/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | Yesterday |
+| [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | Yesterday |
 | [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | 2 days ago |
 | [AI Engineer Intern - Winter 2027, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI-Engineer-Intern--Winter-2027-_R031667) | Ciena | Ottawa, ON, Canada | 3 days ago |
 | [Data Engineer Student, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Engineer--Winter-and-Summer-2027-_JR00127385) | Sun Life | Montreal, QC, Canada, Toronto, ON, Canada, Waterloo, ON, Canada | 3 days ago |
@@ -50,7 +50,7 @@ _Updated Friday 18 September, 01:57 Toronto &middot; 12/13 sources healthy &midd
 | [Machine Learning Systems Software Development Engineer Intern - Annapurna Labs, Summer 2027, Winter 2027, Fall 2027](https://amazon.jobs/en/jobs/10538066/ml-systems-software-development-engineer-intern-annapurna-labs-2027) | Amazon | Toronto, ON, Canada | 7 days ago |
 | [Data Scientist Co-op/Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39965) | Nokia | Ottawa, ON, Canada | 7 days ago |
 
-### Loose &middot; 55 to review
+### Loose &middot; 54 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -108,7 +108,6 @@ _Updated Friday 18 September, 01:57 Toronto &middot; 12/13 sources healthy &midd
 | [Data Engineer Intern, Summer 2027](https://app.careerpuck.com/job-board/lyft/job/8797376002?gh_jid=8797376002) | Lyft | Toronto, ON, Canada | 7 days ago |
 | [Data Science Intern - Algorithms, Summer 2027](https://app.careerpuck.com/job-board/lyft/job/8767697002?gh_jid=8767697002) | Lyft | Toronto, ON, Canada | 7 days ago |
 | [Software Engineer Co-op/Intern - Data Modeling &amp; Integration, Winter 2027](https://careers-kinaxis.icims.com/jobs/35349/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
-| [Developer Intern - Clients - Front End Technologies, Winter 2027](https://careers-kinaxis.icims.com/jobs/35320/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -119,8 +118,8 @@ _Updated Friday 18 September, 01:57 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 296 | ok |
 | Cohere \[ashby\] | 142 | ok |
 | Faire \[greenhouse\] | 68 | ok |
-| New-Grad-Positions \[tracker\] | 3105 | ok |
-| Summer2027-Internships \[tracker\] | 4329 | ok |
+| New-Grad-Positions \[tracker\] | 3097 | ok |
+| Summer2027-Internships \[tracker\] | 4306 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
