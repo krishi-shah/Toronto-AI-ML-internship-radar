@@ -32,9 +32,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 18 September, 18:35 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 18 September, 21:11 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 9 AI/ML matches
+### Strict &middot; 8 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -46,12 +46,15 @@ _Updated Friday 18 September, 18:35 Toronto &middot; 12/13 sources healthy &midd
 | [Data Scientist Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/b152bad3-df48-4049-9d44-ba7e57ea6499/apply) | Equitable Bank | Toronto, ON, Canada | 3 days ago |
 | [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 4 days ago |
 | [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 4 days ago |
-| [Machine Learning Engineer New Grad - AI Processors - Machine Learning Engineering](https://qualcomm.eightfold.ai/careers/job/446721063770) | Qualcomm | Markham, ON, Canada | 7 days ago |
 
-### Loose &middot; 48 to review
+### Loose &middot; 51 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Energy Analyst Intern - Economics - Multiple Teams, Summer 2027](https://job-boards.greenhouse.io/thebrattlegroup/jobs/4736066005) | The Brattle Group | Toronto, ON, Canada | **Today** |
+| [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | **Today** |
+| [MSIP Digital Design Verification Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156800) | Qualcomm | Toronto, ON, Canada | **Today** |
+| [Electrical and Optical Systems Intern - Silicon Validation Engineer - Interim Engineering Intern - Hardware, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156176) | Qualcomm | Ottawa, ON, Canada | **Today** |
 | [Low Power AI Software Development Intern - Interim Engineering Intern - Software, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143440) | Qualcomm | Markham, ON, Canada | Yesterday |
 | [Silicon Validation Intern, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143274) | Qualcomm | Toronto, ON, Canada | Yesterday |
 | [Full Stack Developer Intern, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Experienced-Jobs/job/Waterford-Waterford-Ireland/Student--Full-Stack-Developer_JR00126897) | Sun Life | Toronto, ON, Canada, Waterford, Ireland | Yesterday |
@@ -99,7 +102,6 @@ _Updated Friday 18 September, 18:35 Toronto &middot; 12/13 sources healthy &midd
 | [Business Analyst New Grad - Data &amp; Analytics](https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Business-Analyst---Data---Analytics---New-Grad--January-2027-_JR7065) | BDO Canada | Montreal, QC, Canada, Toronto, ON, Canada, Calgary, AB, Canada, Oakville, ON, Canada, Edmonton, AB, Canada, Ottawa, ON, Canada, Halifax Regional Municipality, NS, Canada | 5 days ago |
 | [Quantitative Developer Co-op Intern - Alpha Research Team - Multiple Teams, Summer 2027](https://bmo.wd3.myworkdayjobs.com/Campus/job/Toronto-ON-CAN/Quantitative-Developer--Alpha-Research-Team----GAM--Summer-2027--Co-op-Internship----12-months_R260026715) | Bank of Montreal | Toronto, ON, Canada | 5 days ago |
 | [Quantitative Developer Co-op Intern - Alpha Research Team - Multiple Teams, Summer 2027](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/Quantitative-Developer--Alpha-Research-Team----GAM--Summer-2027--Co-op-Internship----12-months_R260026715-2) | Bank of Montreal | Toronto, ON, Canada | 5 days ago |
-| [Machine Learning Compiler &amp; Performance Engineering Intern - Systems, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721064018) | Qualcomm | Markham, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -109,9 +111,9 @@ _Updated Friday 18 September, 18:35 Toronto &middot; 12/13 sources healthy &midd
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 292 | ok |
 | Cohere \[ashby\] | 142 | ok |
-| Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3090 | ok |
-| Summer2027-Internships \[tracker\] | 4339 | ok |
+| Faire \[greenhouse\] | 73 | ok |
+| New-Grad-Positions \[tracker\] | 3111 | ok |
+| Summer2027-Internships \[tracker\] | 4413 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
