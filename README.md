@@ -32,27 +32,29 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 21 September, 15:30 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 21 September, 19:18 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 8 AI/ML matches
+### Strict &middot; 9 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Data Operations Engineer AI Co-op - Winter 2027, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | **Today** |
+| [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | **Today** |
+| [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | **Today** |
 | [AI Quality Co-op Intern - Evaluation &amp; Security, Winter 2027](https://careers-kinaxis.icims.com/jobs/35378/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 4 days ago |
 | [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 4 days ago |
 | [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | 5 days ago |
 | [AI Engineer Intern - Winter 2027, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI-Engineer-Intern--Winter-2027-_R031667) | Ciena | Ottawa, ON, Canada | 6 days ago |
 | [Data Engineer Student, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Engineer--Winter-and-Summer-2027-_JR00127385) | Sun Life | Montreal, QC, Canada, Toronto, ON, Canada, Waterloo, ON, Canada | 6 days ago |
 | [Data Scientist Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/b152bad3-df48-4049-9d44-ba7e57ea6499/apply) | Equitable Bank | Toronto, ON, Canada | 6 days ago |
-| [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
-| [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 38 to review
+### Loose &middot; 37 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [Software Engineering Intern - Spring 2027, Spring 2027](https://job-boards.greenhouse.io/mercury/jobs/6199367004) | Mercury | SF, Remote in USA, NYC, Portland, OR, Remote in Canada | **Today** |
 | [ESG Data &amp; Reporting Student, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Toronto-ON/ESG-Data---Reporting-Student--4-months----Winter-2027_JR166009) | Canadian Tire | Toronto, ON, Canada | Yesterday |
+| [Junior Analytics and Automation Developer Student - Winter 2027](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/North-York-Ontario/Student--Jr-Analytics-and-Automation-Developer--Winter-2027-_JR00127514) | Sun Life | North York, ON, Canada, Waterloo, ON, Canada | Yesterday |
 | [Software Engineer Co-op - Winter 2027, Winter 2027](https://jobs.lever.co/achievers/e0700fce-b33b-435a-ab90-84bbd677e181/apply) | Achievers | Toronto, ON, Canada | 3 days ago |
 | [Energy Analyst Intern - Economics - Multiple Teams, Summer 2027](https://job-boards.greenhouse.io/thebrattlegroup/jobs/4736066005) | The Brattle Group | Toronto, ON, Canada | 3 days ago |
 | [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | 3 days ago |
@@ -87,8 +89,6 @@ _Updated Monday 21 September, 15:30 Toronto &middot; 12/13 sources healthy &midd
 | [Risk Analytics Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Risk-Analytics-Co-op-Winter-2027_2618885-1) | CIBC | Toronto, ON, Canada | 7 days ago |
 | [Data Governance Analyst Co-op, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Governance-Analyst--Winter-2027-_JR00127829) | Sun Life | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Risk Analytics Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Risk-Analytics-Co-op-Winter-2027_2618885) | CIBC | Toronto, ON, Canada | 7 days ago |
-| [Student Researcher - PhD, N/A](https://www.google.com/about/careers/applications/jobs/results/75043041429070534) | Google | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Technology Business Administration Co-op Intern - IT Business Management, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9345) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -98,10 +98,10 @@ _Updated Monday 21 September, 15:30 Toronto &middot; 12/13 sources healthy &midd
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
 | Cohere \[ashby\] | 142 | ok |
-| Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3075 | ok |
-| Summer2027-Internships \[tracker\] | 4303 | ok |
-| Tenstorrent \[greenhouse\] | 121 | ok |
+| Faire \[greenhouse\] | 75 | ok |
+| New-Grad-Positions \[tracker\] | 3070 | ok |
+| Summer2027-Internships \[tracker\] | 4419 | ok |
+| Tenstorrent \[greenhouse\] | 120 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
 | Wealthsimple \[ashby\] | 45 | ok |
