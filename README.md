@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 21 September, 10:12 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 21 September, 15:30 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 8 AI/ML matches
 
@@ -47,11 +47,12 @@ _Updated Monday 21 September, 10:12 Toronto &middot; 12/13 sources healthy &midd
 | [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 | [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 41 to review
+### Loose &middot; 38 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [Software Engineering Intern - Spring 2027, Spring 2027](https://job-boards.greenhouse.io/mercury/jobs/6199367004) | Mercury | SF, Remote in USA, NYC, Portland, OR, Remote in Canada | **Today** |
+| [ESG Data &amp; Reporting Student, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Toronto-ON/ESG-Data---Reporting-Student--4-months----Winter-2027_JR166009) | Canadian Tire | Toronto, ON, Canada | Yesterday |
 | [Software Engineer Co-op - Winter 2027, Winter 2027](https://jobs.lever.co/achievers/e0700fce-b33b-435a-ab90-84bbd677e181/apply) | Achievers | Toronto, ON, Canada | 3 days ago |
 | [Energy Analyst Intern - Economics - Multiple Teams, Summer 2027](https://job-boards.greenhouse.io/thebrattlegroup/jobs/4736066005) | The Brattle Group | Toronto, ON, Canada | 3 days ago |
 | [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | 3 days ago |
@@ -88,10 +89,6 @@ _Updated Monday 21 September, 10:12 Toronto &middot; 12/13 sources healthy &midd
 | [Risk Analytics Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Risk-Analytics-Co-op-Winter-2027_2618885) | CIBC | Toronto, ON, Canada | 7 days ago |
 | [Student Researcher - PhD, N/A](https://www.google.com/about/careers/applications/jobs/results/75043041429070534) | Google | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Technology Business Administration Co-op Intern - IT Business Management, Winter 2027](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9345) | Definity Financial | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
-| [Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8142930) | Robinhood | Toronto, ON, Canada | 7 days ago |
-| [Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8199744) | Robinhood | Toronto, ON, Canada | 7 days ago |
-| [Software Developer Intern/Co-op, Winter 2027](https://boards.greenhouse.io/robinhood/jobs/8194428) | Robinhood | Toronto, ON, Canada | 7 days ago |
-| [iOS Software Developer Intern, Summer 2027](https://boards.greenhouse.io/robinhood/jobs/8199729) | Robinhood | Toronto, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -102,12 +99,12 @@ _Updated Monday 21 September, 10:12 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
 | Cohere \[ashby\] | 142 | ok |
 | Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3083 | ok |
-| Summer2027-Internships \[tracker\] | 4294 | ok |
-| Tenstorrent \[greenhouse\] | 125 | ok |
+| New-Grad-Positions \[tracker\] | 3075 | ok |
+| Summer2027-Internships \[tracker\] | 4303 | ok |
+| Tenstorrent \[greenhouse\] | 121 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
-| Wealthsimple \[ashby\] | 47 | ok |
+| Wealthsimple \[ashby\] | 45 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
