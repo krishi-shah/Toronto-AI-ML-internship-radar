@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 21 September, 02:23 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 21 September, 10:12 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 8 AI/ML matches
 
@@ -47,10 +47,11 @@ _Updated Monday 21 September, 02:23 Toronto &middot; 12/13 sources healthy &midd
 | [Commercial Lending AI Engineer Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/54045eae-334a-4486-8e97-96e49e6a1487/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 | [Retail Lending AI Engineer Intern, Winter 2027](https://jobs.lever.co/eqbank/1c46930a-7ffe-4760-9d31-e08ea191ddea/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 40 to review
+### Loose &middot; 41 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Engineering Intern - Spring 2027, Spring 2027](https://job-boards.greenhouse.io/mercury/jobs/6199367004) | Mercury | SF, Remote in USA, NYC, Portland, OR, Remote in Canada | **Today** |
 | [Software Engineer Co-op - Winter 2027, Winter 2027](https://jobs.lever.co/achievers/e0700fce-b33b-435a-ab90-84bbd677e181/apply) | Achievers | Toronto, ON, Canada | 3 days ago |
 | [Energy Analyst Intern - Economics - Multiple Teams, Summer 2027](https://job-boards.greenhouse.io/thebrattlegroup/jobs/4736066005) | The Brattle Group | Toronto, ON, Canada | 3 days ago |
 | [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | 3 days ago |
@@ -98,15 +99,15 @@ _Updated Monday 21 September, 02:23 Toronto &middot; 12/13 sources healthy &midd
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 307 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
 | Cohere \[ashby\] | 142 | ok |
 | Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3093 | ok |
-| Summer2027-Internships \[tracker\] | 4348 | ok |
+| New-Grad-Positions \[tracker\] | 3083 | ok |
+| Summer2027-Internships \[tracker\] | 4294 | ok |
 | Tenstorrent \[greenhouse\] | 125 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
-| Wealthsimple \[ashby\] | 48 | ok |
+| Wealthsimple \[ashby\] | 47 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
