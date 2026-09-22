@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 22 September, 05:59 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Tuesday 22 September, 10:56 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 9 AI/ML matches
 
@@ -48,7 +48,7 @@ _Updated Tuesday 22 September, 05:59 Toronto &middot; 12/13 sources healthy &mid
 | [Data Engineer Student, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Engineer--Winter-and-Summer-2027-_JR00127385) | Sun Life | Montreal, QC, Canada, Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Data Scientist Intern - Winter 2027, Winter 2027](https://jobs.lever.co/eqbank/b152bad3-df48-4049-9d44-ba7e57ea6499/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 
-### Loose &middot; 31 to review
+### Loose &middot; 29 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -81,8 +81,6 @@ _Updated Tuesday 22 September, 05:59 Toronto &middot; 12/13 sources healthy &mid
 | [Credit Risk Intern, Winter 2027](https://jobs.lever.co/eqbank/de711d74-f78a-4cdd-a4a1-fdaa6e6602c3/apply) | Equitable Bank | Toronto, ON, Canada | 7 days ago |
 | [Incubation Developer Student Intern, N/A](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39968) | Nokia | Ottawa, ON, Canada | 7 days ago |
 | [Incubation Developer Student Intern, N/A](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39967) | Nokia | Ottawa, ON, Canada | 7 days ago |
-| [Software Tools Development Co-op Intern, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39230) | Nokia | Ottawa, ON, Canada | 7 days ago |
-| [Hardware Engineer Co-op Intern - IP Routing, Winter 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39600) | Nokia | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -90,12 +88,12 @@ _Updated Tuesday 22 September, 05:59 Toronto &middot; 12/13 sources healthy &mid
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 273 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 267 | ok |
 | Cohere \[ashby\] | 143 | ok |
-| Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3077 | ok |
-| Summer2027-Internships \[tracker\] | 4437 | ok |
-| Tenstorrent \[greenhouse\] | 120 | ok |
+| Faire \[greenhouse\] | 73 | ok |
+| New-Grad-Positions \[tracker\] | 3067 | ok |
+| Summer2027-Internships \[tracker\] | 4458 | ok |
+| Tenstorrent \[greenhouse\] | 119 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 85 | ok |
 | Wealthsimple \[ashby\] | 43 | ok |
