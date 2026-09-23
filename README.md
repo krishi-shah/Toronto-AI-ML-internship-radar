@@ -32,25 +32,31 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 23 September, 16:24 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 23 September, 19:43 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 6 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Data Engineer Co-op, N/A](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Data-Engineer--8-months-_R-0000188584) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
 | [Data Operations Engineer AI Co-op - Winter 2027, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 2 days ago |
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 2 days ago |
 | [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 2 days ago |
 | [AI Quality Co-op Intern - Evaluation &amp; Security, Winter 2027](https://careers-kinaxis.icims.com/jobs/35378/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 6 days ago |
 | [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 6 days ago |
-| [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | 7 days ago |
 
-### Loose &middot; 23 to review
+### Loose &middot; 29 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Firmware Development Intern - PAL, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721229661) | Qualcomm | Markham, ON, Canada | **Today** |
+| [Data Analytics Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/3ee6ff20-3502-410b-bf24-71db02488986/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | **Today** |
+| [Intern, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6014/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Toronto, ON, Canada | **Today** |
 | [Software Development Intern - Citizen Remote Identity Verification, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/Intern--Software-Development---Hybrid-in-Ottawa_R004360) | Entrust | Ottawa, ON, Canada | Yesterday |
 | [Software Development Intern, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/XMLNAME--Intern---Software-Development----8-months---Hybrid-Ottawa_R004359) | Entrust | Ottawa, ON, Canada | Yesterday |
+| [Electrical Component Engineering Intern, Fall 2026, Winter 2027](https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Toronto-Ontario-Canada/Electrical-Component-Engineering-Intern--Fall-2026-or-Winter-2027-_R0144279) | Hitachi Energy | Toronto, ON, Canada | Yesterday |
+| [Software Developer Co-op - Technology and Operations, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter-Student-Opportunities-Technology---Operations---Software-Developer--4-Months_R-0000184555-3) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
+| [Firmware Development Undergraduate Engineering Co-op, Winter 2027](https://intel.wd1.myworkdayjobs.com/en-us/external/job/Virtual-Canada/Firmware-Development-Undergraduate-Engineering-Co-op_JR0286862) | Intel | Remote in Canada | Yesterday |
 | [Software/Application Developer Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Software-Application-Developer-Co-op_2619461) | CIBC | Toronto, ON, Canada | 2 days ago |
 | [Software Developer Co-op - Software Developer, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/RBC-WATERPARK-PLACE-88-QUEENS-QUAY-WTORONTO/XMLNAME-2027-Winter-Student-Opportunities-RBC-Borealis---Software-Developer--4-8-Months_R-0000184501-3) | Royal Bank of Canada | Toronto, ON, Canada, Calgary, AB, Canada | 2 days ago |
 | [ASIC Engineer Intern, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Engineer-Intern_R031750) | Ciena | Ottawa, ON, Canada | 2 days ago |
@@ -80,10 +86,10 @@ _Updated Wednesday 23 September, 16:24 Toronto &middot; 12/13 sources healthy &m
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 267 | ok |
-| Cohere \[ashby\] | 142 | ok |
+| Cohere \[ashby\] | 146 | ok |
 | Faire \[greenhouse\] | 73 | ok |
-| New-Grad-Positions \[tracker\] | 3073 | ok |
-| Summer2027-Internships \[tracker\] | 4526 | ok |
+| New-Grad-Positions \[tracker\] | 3108 | ok |
+| Summer2027-Internships \[tracker\] | 4564 | ok |
 | Tenstorrent \[greenhouse\] | 122 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 86 | ok |
