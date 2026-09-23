@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Wednesday 23 September, 07:40 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Wednesday 23 September, 13:04 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 6 AI/ML matches
 
@@ -45,10 +45,12 @@ _Updated Wednesday 23 September, 07:40 Toronto &middot; 12/13 sources healthy &m
 | [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 6 days ago |
 | [System AI Engineer New Grad - Display - ASICS Engineering](https://qualcomm.eightfold.ai/careers/job/446721129106) | Qualcomm | Markham, ON, Canada | 7 days ago |
 
-### Loose &middot; 21 to review
+### Loose &middot; 23 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Development Intern - Citizen Remote Identity Verification, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/Intern--Software-Development---Hybrid-in-Ottawa_R004360) | Entrust | Ottawa, ON, Canada | Yesterday |
+| [Software Development Intern, Winter 2027](https://entrust.wd1.myworkdayjobs.com/entrustcareers/job/Canada---Ottawa/XMLNAME--Intern---Software-Development----8-months---Hybrid-Ottawa_R004359) | Entrust | Ottawa, ON, Canada | Yesterday |
 | [Software/Application Developer Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Software-Application-Developer-Co-op_2619461) | CIBC | Toronto, ON, Canada | 2 days ago |
 | [Software Developer Co-op - Software Developer, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/RBC-WATERPARK-PLACE-88-QUEENS-QUAY-WTORONTO/XMLNAME-2027-Winter-Student-Opportunities-RBC-Borealis---Software-Developer--4-8-Months_R-0000184501-3) | Royal Bank of Canada | Toronto, ON, Canada, Calgary, AB, Canada | 2 days ago |
 | [ASIC Engineer Intern, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Engineer-Intern_R031750) | Ciena | Ottawa, ON, Canada | 2 days ago |
@@ -78,13 +80,13 @@ _Updated Wednesday 23 September, 07:40 Toronto &middot; 12/13 sources healthy &m
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 267 | ok |
-| Cohere \[ashby\] | 143 | ok |
-| Faire \[greenhouse\] | 78 | ok |
-| New-Grad-Positions \[tracker\] | 3094 | ok |
-| Summer2027-Internships \[tracker\] | 4495 | ok |
-| Tenstorrent \[greenhouse\] | 120 | ok |
+| Cohere \[ashby\] | 141 | ok |
+| Faire \[greenhouse\] | 75 | ok |
+| New-Grad-Positions \[tracker\] | 3086 | ok |
+| Summer2027-Internships \[tracker\] | 4538 | ok |
+| Tenstorrent \[greenhouse\] | 124 | ok |
 | Vector Institute \[html\] | 32 | ok |
-| Waabi \[lever\] | 85 | ok |
+| Waabi \[lever\] | 86 | ok |
 | Wealthsimple \[ashby\] | 44 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
