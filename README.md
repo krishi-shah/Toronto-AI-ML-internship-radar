@@ -32,9 +32,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 24 September, 15:12 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 6 AI/ML matches
+### Strict &middot; 4 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -42,10 +42,8 @@ _Updated Thursday 24 September, 15:12 Toronto &middot; 12/13 sources healthy &mi
 | [Data Operations Engineer AI Co-op - Winter 2027, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 3 days ago |
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 3 days ago |
 | [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 3 days ago |
-| [AI Quality Co-op Intern - Evaluation &amp; Security, Winter 2027](https://careers-kinaxis.icims.com/jobs/35378/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
-| [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
 
-### Loose &middot; 34 to review
+### Loose &middot; 30 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -79,10 +77,6 @@ _Updated Thursday 24 September, 15:12 Toronto &middot; 12/13 sources healthy &mi
 | [Low Power AI Software Development Intern - Interim Engineering Intern - Software, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143440) | Qualcomm | Markham, ON, Canada | 7 days ago |
 | [Silicon Validation Intern, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143274) | Qualcomm | Toronto, ON, Canada | 7 days ago |
 | [Full Stack Developer Intern, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Experienced-Jobs/job/Waterford-Waterford-Ireland/Student--Full-Stack-Developer_JR00126897) | Sun Life | Toronto, ON, Canada, Waterford, Ireland | 7 days ago |
-| [Design Methodology Engineer Intern - MSIP - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721140936) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [Firmware Engineer Intern - Embedded Software Engineering - Embedded Firmware and SDK Development, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721141411) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [Physical Mixed Layout Engineer Intern - Canada - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721142985) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [Analog Design Intern - Hardware Engineering, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721140914) | Qualcomm | Toronto, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -93,12 +87,12 @@ _Updated Thursday 24 September, 15:12 Toronto &middot; 12/13 sources healthy &mi
 | Canadian-Tech-Internships-2027 \[tracker\] | 272 | ok |
 | Cohere \[ashby\] | 147 | ok |
 | Faire \[greenhouse\] | 75 | ok |
-| New-Grad-Positions \[tracker\] | 3079 | ok |
-| Summer2027-Internships \[tracker\] | 4573 | ok |
-| Tenstorrent \[greenhouse\] | 121 | ok |
+| New-Grad-Positions \[tracker\] | 3061 | ok |
+| Summer2027-Internships \[tracker\] | 4564 | ok |
+| Tenstorrent \[greenhouse\] | 123 | ok |
 | Vector Institute \[html\] | 32 | ok |
-| Waabi \[lever\] | 89 | ok |
-| Wealthsimple \[ashby\] | 42 | ok |
+| Waabi \[lever\] | 88 | ok |
+| Wealthsimple \[ashby\] | 43 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
