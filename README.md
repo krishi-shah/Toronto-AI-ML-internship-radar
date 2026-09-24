@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 24 September, 06:03 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 24 September, 11:09 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 6 AI/ML matches
 
@@ -45,10 +45,16 @@ _Updated Thursday 24 September, 06:03 Toronto &middot; 12/13 sources healthy &mi
 | [AI Quality Co-op Intern - Evaluation &amp; Security, Winter 2027](https://careers-kinaxis.icims.com/jobs/35378/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
 | [Developer Intern Co-op - AI Innovation, Winter 2027](https://careers-kinaxis.icims.com/jobs/35377/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | 7 days ago |
 
-### Loose &middot; 28 to review
+### Loose &middot; 34 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Validation Engineering Intern - Signal Integrity Products Group, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628) | Semtech | Burlington, ON, Canada | Yesterday |
+| [Firmware Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Firmware-Design-Intern_REQ3617) | Semtech | Ottawa, ON, Canada | Yesterday |
+| [Analog Design Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Analog-Design-Intern_REQ3625) | Semtech | Ottawa, ON, Canada | Yesterday |
+| [Analog Design Engineer Intern - Signal Integrity Products Group, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Analog-Design-Engineer-Intern_REQ3622) | Semtech | Burlington, ON, Canada | Yesterday |
+| [Digital IC Design Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Digital-IC-Design-Engineering-Intern_REQ3620) | Semtech | Ottawa, ON, Canada | Yesterday |
+| [Validation Engineering Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Validation-Engineering-Intern_REQ3618) | Semtech | Ottawa, ON, Canada | Yesterday |
 | [Firmware Development Intern - PAL, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721229661) | Qualcomm | Markham, ON, Canada | Yesterday |
 | [Data Analytics Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/3ee6ff20-3502-410b-bf24-71db02488986/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | Yesterday |
 | [Intern, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6014/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Toronto, ON, Canada | Yesterday |
@@ -87,8 +93,8 @@ _Updated Thursday 24 September, 06:03 Toronto &middot; 12/13 sources healthy &mi
 | Canadian-Tech-Internships-2027 \[tracker\] | 267 | ok |
 | Cohere \[ashby\] | 147 | ok |
 | Faire \[greenhouse\] | 73 | ok |
-| New-Grad-Positions \[tracker\] | 3091 | ok |
-| Summer2027-Internships \[tracker\] | 4563 | ok |
+| New-Grad-Positions \[tracker\] | 3092 | ok |
+| Summer2027-Internships \[tracker\] | 4580 | ok |
 | Tenstorrent \[greenhouse\] | 121 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 86 | ok |
