@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 25 September, 09:50 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 25 September, 14:38 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 4 AI/ML matches
 
@@ -43,10 +43,11 @@ _Updated Friday 25 September, 09:50 Toronto &middot; 12/13 sources healthy &midd
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 4 days ago |
 | [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 4 days ago |
 
-### Loose &middot; 34 to review
+### Loose &middot; 35 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Capital Markets Analyst Intern, Winter 2027](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Capital-Markets--AidenEdge-Program-Winter-Analyst--4-Months-_R-0000187318-2) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
 | [Validation Engineering Intern - Signal Integrity Products Group, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628) | Semtech | Burlington, ON, Canada | 2 days ago |
 | [Firmware Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Firmware-Design-Intern_REQ3617) | Semtech | Ottawa, ON, Canada | 2 days ago |
 | [Analog Design Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Analog-Design-Intern_REQ3625) | Semtech | Ottawa, ON, Canada | 2 days ago |
@@ -88,12 +89,12 @@ _Updated Friday 25 September, 09:50 Toronto &middot; 12/13 sources healthy &midd
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 292 | ok |
 | Cohere \[ashby\] | 147 | ok |
-| Faire \[greenhouse\] | 76 | ok |
-| New-Grad-Positions \[tracker\] | 3085 | ok |
-| Summer2027-Internships \[tracker\] | 4591 | ok |
-| Tenstorrent \[greenhouse\] | 124 | ok |
+| Faire \[greenhouse\] | 77 | ok |
+| New-Grad-Positions \[tracker\] | 3080 | ok |
+| Summer2027-Internships \[tracker\] | 4581 | ok |
+| Tenstorrent \[greenhouse\] | 123 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 88 | ok |
 | Wealthsimple \[ashby\] | 43 | ok |
