@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Thursday 24 September, 21:32 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 4 AI/ML matches
 
@@ -43,7 +43,7 @@ _Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &mi
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 3 days ago |
 | [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 3 days ago |
 
-### Loose &middot; 30 to review
+### Loose &middot; 34 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -53,6 +53,13 @@ _Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &mi
 | [Analog Design Engineer Intern - Signal Integrity Products Group, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Analog-Design-Engineer-Intern_REQ3622) | Semtech | Burlington, ON, Canada | Yesterday |
 | [Digital IC Design Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Digital-IC-Design-Engineering-Intern_REQ3620) | Semtech | Ottawa, ON, Canada | Yesterday |
 | [Validation Engineering Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Validation-Engineering-Intern_REQ3618) | Semtech | Ottawa, ON, Canada | Yesterday |
+| [Analog Design Intern Co-op - Master’s, Summer 2027](https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Toronto-Canada/Analog-Design-Intern--Master-s---2027-Co-Op_2603862) | Marvell | Toronto, ON, Canada | Yesterday |
+| [Analog and Mixed Signal Layout Engineer Intern Co-op, Summer 2027](https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Toronto-Canada/AMS-Layout-Engineer-Intern---BS---2027-Co-Op_2604790) | Marvell | Toronto, ON, Canada | Yesterday |
+| [Grit Co-op, Winter 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---GRIT_JR26080515) | Manulife Financial | Toronto, ON, Canada | Yesterday |
+| [Product Management &amp; Risk Technology Co-op, Winter 2027, Summer 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---Product-Management---Risk-Technology_JR26080874) | Manulife Financial | Toronto, ON, Canada | Yesterday |
+| [Quantum Technologies Intern, Winter 2027](https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter-Student-Opportunities-Technology---Operations---Quantum-Computing-Specialist--8-Months_R-0000188860) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
+| [Data Center Silicon Hardware Engineering Intern Co-op - BS, Summer 2027](https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Ottawa-Canada/Data-Center-Silicon-Hardware-Engineering-Intern---BS---2027-Co-Op_2604525) | Marvell | Toronto, ON, Canada, Ottawa, ON, Canada | Yesterday |
+| [Quantum Technologies Intern - 8 Months, Winter 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter-Student-Opportunities-Technology---Operations---Quantum-Computing-Specialist--8-Months_R-0000188860-1) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
 | [Firmware Development Intern - PAL, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721229661) | Qualcomm | Markham, ON, Canada | Yesterday |
 | [Data Analytics Intern, Winter 2027](https://jobs.ashbyhq.com/super.com/3ee6ff20-3502-410b-bf24-71db02488986/application?embed=true) | Super | Toronto, ON, Canada, Remote in Canada | Yesterday |
 | [Intern, Winter 2027](https://careersen-mackenzieinvestments.icims.com/jobs/6014/job?mobile=true&needsRedirect=false) | Mackenzie Investments | Toronto, ON, Canada | Yesterday |
@@ -74,9 +81,6 @@ _Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &mi
 | [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | 6 days ago |
 | [MSIP Digital Design Verification Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156800) | Qualcomm | Toronto, ON, Canada | 6 days ago |
 | [Electrical and Optical Systems Intern - Silicon Validation Engineer - Interim Engineering Intern - Hardware, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156176) | Qualcomm | Ottawa, ON, Canada | 6 days ago |
-| [Low Power AI Software Development Intern - Interim Engineering Intern - Software, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143440) | Qualcomm | Markham, ON, Canada | 7 days ago |
-| [Silicon Validation Intern, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721143274) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [Full Stack Developer Intern, N/A](https://sunlife.wd3.myworkdayjobs.com/en-US/Experienced-Jobs/job/Waterford-Waterford-Ireland/Student--Full-Stack-Developer_JR00126897) | Sun Life | Toronto, ON, Canada, Waterford, Ireland | 7 days ago |
 
 ### Sources
 
@@ -86,13 +90,13 @@ _Updated Thursday 24 September, 18:26 Toronto &middot; 12/13 sources healthy &mi
 | BenchSci \[lever\] | 1 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 272 | ok |
 | Cohere \[ashby\] | 147 | ok |
-| Faire \[greenhouse\] | 75 | ok |
-| New-Grad-Positions \[tracker\] | 3061 | ok |
-| Summer2027-Internships \[tracker\] | 4564 | ok |
+| Faire \[greenhouse\] | 76 | ok |
+| New-Grad-Positions \[tracker\] | 3101 | ok |
+| Summer2027-Internships \[tracker\] | 4628 | ok |
 | Tenstorrent \[greenhouse\] | 123 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 88 | ok |
-| Wealthsimple \[ashby\] | 43 | ok |
+| Wealthsimple \[ashby\] | 44 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
