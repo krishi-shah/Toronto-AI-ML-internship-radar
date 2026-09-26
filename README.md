@@ -32,12 +32,13 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 25 September, 18:23 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Friday 25 September, 21:36 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 4 AI/ML matches
+### Strict &middot; 5 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Engineer New Grad - Machine Learning Platform](https://jobs.ashbyhq.com/quora/cf34f80e-fe5c-454d-bc9a-4c59993ffda0/application?embed=true) | Quora | Remote in USA, Remote in Canada | **Today** |
 | [Data Engineer Co-op, N/A](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Data-Engineer--8-months-_R-0000188584) | Royal Bank of Canada | Toronto, ON, Canada | 3 days ago |
 | [Data Operations Engineer AI Co-op - Winter 2027, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 4 days ago |
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 4 days ago |
@@ -47,7 +48,12 @@ _Updated Friday 25 September, 18:23 Toronto &middot; 12/13 sources healthy &midd
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Software Developer Co-op, Winter 2027](https://jobs.intuit.com/job/toronto/winter-2027-software-developer-co-op-4-or-8-months/27595/101130613680) | Intuit | Toronto, ON, Canada | **Today** |
+| [Operations Analytics Co-op Intern - Intern, Spring 2027](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40261) | Nokia | Ottawa, ON, Canada | **Today** |
+| [Developer Intern - Back End Technologies, Winter 2027](https://careers-kinaxis.icims.com/jobs/35372/job?mobile=true&needsRedirect=false) | Kinaxis | Ottawa, ON, Canada | **Today** |
 | [Capital Markets Analyst Intern, Winter 2027](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Capital-Markets--AidenEdge-Program-Winter-Analyst--4-Months-_R-0000187318-2) | Royal Bank of Canada | Toronto, ON, Canada | Yesterday |
+| [Hardware Design and Verification Intern - PCBA, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Canada--Ottawa--383-Terry-Fox--Bldg-C/Hardware--PCBA--Design-and-Verification-Intern--Winter-2027---4-months-_R031752) | Ciena | Ottawa, ON, Canada | Yesterday |
+| [Processor Complex Engineer Co-op, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Processor-Complex-Engineering-Co-op--January-2027---4-months-_R031744) | Ciena | Ottawa, ON, Canada | Yesterday |
 | [Validation Engineering Intern - Signal Integrity Products Group, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628) | Semtech | Burlington, ON, Canada | 2 days ago |
 | [Firmware Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Firmware-Design-Intern_REQ3617) | Semtech | Ottawa, ON, Canada | 2 days ago |
 | [Analog Design Intern, Summer 2027](https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Ottawa-ON/Analog-Design-Intern_REQ3625) | Semtech | Ottawa, ON, Canada | 2 days ago |
@@ -77,11 +83,6 @@ _Updated Friday 25 September, 18:23 Toronto &middot; 12/13 sources healthy &midd
 | [ESG Data &amp; Reporting Student, N/A](https://canadiantirecorporation.wd3.myworkdayjobs.com/Enterprise_External_Careers_Site/job/Toronto-ON/ESG-Data---Reporting-Student--4-months----Winter-2027_JR166009) | Canadian Tire | Toronto, ON, Canada | 5 days ago |
 | [Junior Analytics and Automation Developer Student - Winter 2027](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/North-York-Ontario/Student--Jr-Analytics-and-Automation-Developer--Winter-2027-_JR00127514) | Sun Life | North York, ON, Canada, Waterloo, ON, Canada | 5 days ago |
 | [Mixed Signal IP Integration Engineer New Grad](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/Mixed-Signal-IP-Integration-Engineer---New-Grad_R031688) | Ciena | Ottawa, ON, Canada | 5 days ago |
-| [Software Engineer Co-op - Winter 2027, Winter 2027](https://jobs.lever.co/achievers/e0700fce-b33b-435a-ab90-84bbd677e181/apply) | Achievers | Toronto, ON, Canada | 7 days ago |
-| [Energy Analyst Intern - Economics - Multiple Teams, Summer 2027](https://job-boards.greenhouse.io/thebrattlegroup/jobs/4736066005) | The Brattle Group | Toronto, ON, Canada | 7 days ago |
-| [IP Applications Engineering Intern - Interim Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156615) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [MSIP Digital Design Verification Engineering Intern - HW, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156800) | Qualcomm | Toronto, ON, Canada | 7 days ago |
-| [Electrical and Optical Systems Intern - Silicon Validation Engineer - Interim Engineering Intern - Hardware, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721156176) | Qualcomm | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -92,8 +93,8 @@ _Updated Friday 25 September, 18:23 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 301 | ok |
 | Cohere \[ashby\] | 147 | ok |
 | Faire \[greenhouse\] | 76 | ok |
-| New-Grad-Positions \[tracker\] | 3069 | ok |
-| Summer2027-Internships \[tracker\] | 4555 | ok |
+| New-Grad-Positions \[tracker\] | 3115 | ok |
+| Summer2027-Internships \[tracker\] | 4659 | ok |
 | Tenstorrent \[greenhouse\] | 123 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 87 | ok |
