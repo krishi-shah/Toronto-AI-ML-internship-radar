@@ -32,7 +32,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 28 September, 02:57 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 28 September, 11:31 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
 ### Strict &middot; 5 AI/ML matches
 
@@ -44,7 +44,7 @@ _Updated Monday 28 September, 02:57 Toronto &middot; 12/13 sources healthy &midd
 | [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 7 days ago |
 | [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 7 days ago |
 
-### Loose &middot; 32 to review
+### Loose &middot; 31 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -79,7 +79,6 @@ _Updated Monday 28 September, 02:57 Toronto &middot; 12/13 sources healthy &midd
 | [Software/Application Developer Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Software-Application-Developer-Co-op_2619461) | CIBC | Toronto, ON, Canada | 7 days ago |
 | [Software Developer Co-op - Software Developer, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/RBC-WATERPARK-PLACE-88-QUEENS-QUAY-WTORONTO/XMLNAME-2027-Winter-Student-Opportunities-RBC-Borealis---Software-Developer--4-8-Months_R-0000184501-3) | Royal Bank of Canada | Toronto, ON, Canada, Calgary, AB, Canada | 7 days ago |
 | [ASIC Engineer Intern, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Engineer-Intern_R031750) | Ciena | Ottawa, ON, Canada | 7 days ago |
-| [Software Engineering Intern - Spring 2027, Spring 2027](https://job-boards.greenhouse.io/mercury/jobs/6199367004) | Mercury | SF, Remote in USA, NYC, Portland, OR, Remote in Canada | 7 days ago |
 
 ### Sources
 
@@ -87,15 +86,15 @@ _Updated Monday 28 September, 02:57 Toronto &middot; 12/13 sources healthy &midd
 |---|---|---|
 | Clio \[html\] | - | **FAIL** HTTPError: 403 Client Error: Forbidden for url: https://www.clio.com/about/careers/search/ |
 | BenchSci \[lever\] | 1 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 290 | ok |
-| Cohere \[ashby\] | 147 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 273 | ok |
+| Cohere \[ashby\] | 145 | ok |
 | Faire \[greenhouse\] | 76 | ok |
-| New-Grad-Positions \[tracker\] | 3057 | ok |
-| Summer2027-Internships \[tracker\] | 4465 | ok |
-| Tenstorrent \[greenhouse\] | 122 | ok |
+| New-Grad-Positions \[tracker\] | 3045 | ok |
+| Summer2027-Internships \[tracker\] | 4420 | ok |
+| Tenstorrent \[greenhouse\] | 123 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 87 | ok |
-| Wealthsimple \[ashby\] | 42 | ok |
+| Wealthsimple \[ashby\] | 41 | ok |
 | Xanadu \[html\] | - | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 
