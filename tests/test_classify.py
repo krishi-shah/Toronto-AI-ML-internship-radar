@@ -14,7 +14,7 @@ from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core import LOOSE, STRICT, Posting, classify  # noqa: E402
+from core import LOOSE, OTHER, STRICT, Posting, classify  # noqa: E402
 
 # A fixed offset rather than ZoneInfo: the day-label tests only need a stable
 # Toronto wall clock, and this keeps them running where tzdata is absent.
@@ -72,9 +72,6 @@ class TestStrictTier(unittest.TestCase):
 
     def test_remote_in_canada_counts_as_location(self):
         self.assertEqual(tier("NLP Intern", location="Remote in Canada"), STRICT)
-
-    def test_new_grad_ml_role(self):
-        self.assertEqual(tier("New Grad Machine Learning Engineer"), STRICT)
 
     def test_winter_2027_cycle_token(self):
         self.assertEqual(tier("AI Intern (W27)"), STRICT)
@@ -138,6 +135,80 @@ class TestLooseTier(unittest.TestCase):
 
     def test_later_cycle_is_never_rejected(self):
         self.assertIsNotNone(tier("Data Science Intern (S27)"))
+
+
+class TestNewGradCap(unittest.TestCase):
+    """Full-time new-grad roles are kept, but never strict: the radar hunts
+    internships and co-ops."""
+
+    def test_new_grad_ml_role_is_loose(self):
+        self.assertEqual(tier("New Grad Machine Learning Engineer"), LOOSE)
+
+    def test_quora_new_grad_remote_canada_is_loose(self):
+        """Regression: this reached strict on "Remote in Canada" + "New Grad"."""
+        verdict = classify(p(
+            "Software Engineer New Grad - Machine Learning Platform",
+            location="Remote in USA, Remote in Canada",
+            company="Quora",
+        ))
+        self.assertEqual(verdict.tier, LOOSE)
+        self.assertEqual(verdict.reason, "new grad, not internship")
+
+    def test_new_grad_at_ai_native_company_is_loose(self):
+        self.assertEqual(
+            tier("Software Engineer, New Grad", company="Cohere", ai_native=True),
+            LOOSE,
+        )
+
+    def test_intern_or_new_grad_stays_strict(self):
+        self.assertEqual(tier("ML Intern / New Grad"), STRICT)
+
+    def test_early_career_non_ai_is_loose(self):
+        self.assertEqual(tier("Early Career Software Developer"), LOOSE)
+
+
+class TestOtherFields(unittest.TestCase):
+    """Off-field student roles are kept, filed under "Other fields".
+
+    Titles are from the live feed on 29 September 2026, where they made up
+    most of the loose tier.
+    """
+
+    def test_off_field_titles_go_to_other(self):
+        for title, location in [
+            ("Analog Design Intern, Summer 2027", "Ottawa, ON, Canada"),
+            ("Hardware Design and Verification Intern - PCBA, Winter 2027",
+             "Ottawa, ON, Canada"),
+            ("Analog and Mixed Signal Layout Engineer Intern Co-op, Summer 2027",
+             "Toronto, ON, Canada"),
+            ("Capital Markets Analyst Intern, Winter 2027", "Toronto, ON, Canada"),
+            ("Firmware Intern, Summer 2027", "Ottawa, ON, Canada"),
+            ("Validation Engineering Intern, Summer 2027", "Ottawa, ON, Canada"),
+            ("Email Marketing Intern", "Toronto, ON, Canada"),
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(tier(title, location=location), OTHER)
+
+    def test_software_roles_stay_loose(self):
+        for title in [
+            "Software Developer Co-op, Winter 2027",
+            "Developer Intern - Back End Technologies, Winter 2027",
+            "Software Development Intern - Citizen Remote Identity Verification",
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(tier(title), LOOSE)
+
+    def test_ai_signal_beats_off_field(self):
+        self.assertEqual(tier("Machine Learning Firmware Intern"), STRICT)
+
+    def test_ai_native_company_beats_off_field(self):
+        self.assertEqual(
+            tier("Hardware Design Intern", company="Tenstorrent", ai_native=True),
+            STRICT,
+        )
+
+    def test_off_field_outside_ontario_is_still_rejected(self):
+        self.assertIsNone(tier("Analog Design Intern", location="Austin, TX"))
 
 
 class TestPastCycles(unittest.TestCase):
@@ -403,7 +474,7 @@ class TestFalsePositiveGuards(unittest.TestCase):
     """Short tokens like 'ai' and 'ml' must not match inside other words."""
 
     def test_email_does_not_match_ai(self):
-        self.assertEqual(tier("Email Marketing Intern"), LOOSE)
+        self.assertEqual(tier("Email Platform Intern"), LOOSE)
 
     def test_html_does_not_match_ml(self):
         self.assertEqual(tier("HTML Developer Intern"), LOOSE)

@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core import (  # noqa: E402
     LOOSE,
+    OTHER,
     STRICT,
     Posting,
     Store,
@@ -51,6 +52,13 @@ class TestTitleNormalization(unittest.TestCase):
                         "Machine Learning CO-OP", "Machine Learning Cooperative"]:
             with self.subTest(variant=variant):
                 self.assertEqual(normalize_title(variant), base)
+
+    def test_ampersand_matches_and(self):
+        """Regression: CIBC's board and a tracker spelled one role both ways."""
+        self.assertEqual(
+            normalize_title("AI & Data Analytics and Reporting Analyst Co-op"),
+            normalize_title("AI and Data Analytics and Reporting Analyst Co-op"),
+        )
 
     def test_cycle_labels_stripped(self):
         base = normalize_title("Machine Learning Intern")
@@ -332,6 +340,35 @@ class TestStoreDedupe(unittest.TestCase):
         self.assertEqual(len(self.store.pending_digest()), 1)
         self.store.mark_digested(["u1"])
         self.store.commit()
+        self.assertEqual(len(self.store.pending_digest()), 0)
+
+    def test_feed_lists_a_role_once_across_sources(self):
+        """Regression: RBC's Data Engineer Co-op showed twice, once from its
+        Workday board and once from a tracker."""
+        board = self._post("workday:rbc:R1", "Royal Bank of Canada", "Data Engineer Co-op")
+        board.posted_at = int(time.time()) - 3600
+        tracker = self._post("tracker:negar:x", "Royal Bank of Canada",
+                             "Data Engineer Co-op (Winter 2027)")
+        self.store.record(tracker, STRICT, "t")
+        self.store.record(board, STRICT, "t", notified=True)
+        self.store.commit()
+
+        rows = self.store.recent_jobs(STRICT, 50, 168)
+        self.assertEqual([r["uid"] for r in rows], ["workday:rbc:R1"])
+
+    def test_different_roles_are_all_listed(self):
+        self.store.record(self._post("u1"), STRICT, "t")
+        self.store.record(self._post("u2", title="Data Science Intern"), STRICT, "t")
+        self.store.commit()
+        self.assertEqual(len(self.store.recent_jobs(STRICT, 50, 168)), 2)
+
+    def test_other_fields_are_recorded_but_never_alerted_or_digested(self):
+        import radar
+
+        post = self._post("ashby:semtech:1", "Semtech", "Analog Design Intern")
+        new_strict, new_loose, _ = radar.triage([post], self.store)
+        self.assertEqual((new_strict, new_loose), ([], []))
+        self.assertEqual(len(self.store.recent_jobs(OTHER, 50, 168)), 1)
         self.assertEqual(len(self.store.pending_digest()), 0)
 
 

@@ -10,6 +10,7 @@ dead board never fails a run.
 
 from __future__ import annotations
 
+import json
 import re
 import threading
 import time
@@ -556,6 +557,56 @@ def _workday_url(cxs_url: str, external_path: str) -> str:
     return f"{m.group(1)}/en-US/{m.group(2)}{external_path}"
 
 
+AMAZON_PAGE = 100
+
+
+def _amazon_date(value: Any) -> int:
+    """Amazon writes "September  9, 2026", which ISO parsing cannot read."""
+    text = " ".join(_s(value).split())
+    try:
+        dt = datetime.strptime(text, "%B %d, %Y").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return 0
+    return int(dt.timestamp())
+
+
+def amazon(http: Http, company: str, token: str) -> list[Posting]:
+    """amazon.jobs search JSON. ``token`` is an ISO-3 country code (``CAN``).
+
+    Amazon runs its own careers site rather than a third-party ATS, but the
+    site's search is backed by a public JSON endpoint. Like Workday, it is
+    keyword-driven, so the same student terms are searched and merged.
+    """
+    found: dict[str, Posting] = {}
+    for term in WORKDAY_TERMS:
+        offset = 0
+        while offset <= 500:
+            data = http.json(
+                "https://www.amazon.jobs/en/search.json",
+                params={"base_query": term, "country": token,
+                        "result_limit": AMAZON_PAGE, "offset": offset},
+            ) or {}
+            jobs = data.get("jobs") or []
+            for job in jobs:
+                jid = _s(job.get("id_icims")) or _s(job.get("id"))
+                if not jid:
+                    continue
+                found[jid] = Posting(
+                    company=company,
+                    title=_s(job.get("title")),
+                    location=_join(job.get("normalized_location"), job.get("location")),
+                    url="https://www.amazon.jobs" + _s(job.get("job_path")),
+                    uid=f"amazon:{jid}",
+                    raw={k: job.get(k) for k in ("city", "state", "country_code",
+                                                 "job_category", "job_schedule_type")},
+                    posted_at=_amazon_date(job.get("posted_date")),
+                )
+            offset += AMAZON_PAGE
+            if len(jobs) < AMAZON_PAGE or offset >= int(data.get("hits") or 0):
+                break
+    return list(found.values())
+
+
 ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
     "ashby": ashby,
     "greenhouse": greenhouse,
@@ -567,6 +618,7 @@ ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
     "breezy": breezy,
     "personio": personio,
     "workday": workday,
+    "amazon": amazon,
 }
 
 
@@ -592,6 +644,9 @@ def html_links(http: Http, company: str, url: str) -> list[Posting]:
     text = http.text(url)
     if text is None:
         return []
+    structured = _jsonld_postings(company, url, text)
+    if structured:
+        return structured
     host = urlparse(url).netloc
     out: list[Posting] = []
     seen: set[str] = set()
@@ -624,6 +679,91 @@ def html_links(http: Http, company: str, url: str) -> list[Posting]:
                 raw={"anchor_text": label, "page": url},
             )
         )
+    return out
+
+
+_JSONLD_RE = re.compile(
+    r"<script[^>]+type\s*=\s*[\"']application/ld\+json[\"'][^>]*>(.*?)</script>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _jsonld_nodes(node: Any, depth: int = 0) -> Iterable[dict]:
+    """Every dict in a JSON-LD document, through lists and ``@graph``."""
+    if depth > 6:
+        return
+    if isinstance(node, list):
+        for item in node:
+            yield from _jsonld_nodes(item, depth + 1)
+    elif isinstance(node, dict):
+        yield node
+        for key in ("@graph", "itemListElement", "item"):
+            if key in node:
+                yield from _jsonld_nodes(node[key], depth + 1)
+
+
+def _jsonld_location(job: dict) -> str:
+    places = job.get("jobLocation") or []
+    parts: list[str] = []
+    for place in places if isinstance(places, list) else [places]:
+        addr = place.get("address") if isinstance(place, dict) else None
+        if isinstance(addr, dict):
+            parts.append(_join(addr.get("addressLocality"), addr.get("addressRegion"),
+                               addr.get("addressCountry")))
+        elif addr:
+            parts.append(_s(addr))
+    if _s(job.get("jobLocationType")).upper() == "TELECOMMUTE":
+        parts.append("Remote")
+        parts.extend(_s(r) for r in _as_list(job.get("applicantLocationRequirements")))
+    return _join(*parts)
+
+
+def _as_list(val: Any) -> list:
+    if val is None:
+        return []
+    return val if isinstance(val, list) else [val]
+
+
+def _jsonld_postings(company: str, page: str, text: str) -> list[Posting]:
+    """schema.org ``JobPosting`` records embedded in a careers page.
+
+    Google for Jobs indexes these, so plenty of careers sites that render
+    their listings client-side still ship them in the HTML. When present they
+    carry a real title, location and publish date, which a bare anchor never
+    does -- so they replace the link-diff result rather than add to it.
+    """
+    out: list[Posting] = []
+    seen: set[str] = set()
+    for blob in _JSONLD_RE.findall(text):
+        try:
+            doc = json.loads(unescape(blob.strip()))
+        except ValueError:
+            continue
+        for node in _jsonld_nodes(doc):
+            kinds = _as_list(node.get("@type"))
+            if "JobPosting" not in kinds:
+                continue
+            title = _s(node.get("title"))
+            link = urljoin(page, _s(node.get("url")) or page)
+            ident = node.get("identifier")
+            jid = _s(ident.get("value") if isinstance(ident, dict) else ident)
+            key = jid or f"{link}#{title}"
+            if not title or key in seen:
+                continue
+            seen.add(key)
+            org = node.get("hiringOrganization")
+            out.append(
+                Posting(
+                    company=company,
+                    title=title,
+                    location=_jsonld_location(node),
+                    url=link,
+                    uid=f"html:{company}:{key}",
+                    raw={"employmentType": _s(node.get("employmentType")),
+                         "organization": _s(org), "page": page},
+                    posted_at=_date(node.get("datePosted")),
+                )
+            )
     return out
 
 
@@ -677,6 +817,19 @@ def tracker(http: Http, name: str, repo: str) -> list[Posting]:
     raise last_error or RuntimeError(f"no readable listing in {repo}")
 
 
+# Trackers fill the season field with these when no term is known. Appended
+# to the title verbatim they produce rows like "Data Engineer Co-op, N/A".
+_SEASON_PLACEHOLDERS = {"n/a", "na", "tbd", "tba", "-", "none", "unknown", "null"}
+
+
+def _season(*parts: Any) -> str:
+    """Join the season fields of a tracker item, dropping placeholders."""
+    terms: list[Any] = []
+    for part in parts:
+        terms.extend(part if isinstance(part, (list, tuple)) else [part])
+    return _join(*(t for t in terms if _s(t).lower() not in _SEASON_PLACEHOLDERS))
+
+
 def _tracker_from_json(name: str, repo: str, data: list[dict]) -> list[Posting]:
     out = []
     for item in data:
@@ -688,7 +841,7 @@ def _tracker_from_json(name: str, repo: str, data: list[dict]) -> list[Posting]:
         url = _s(item.get("url"))
         if not url:
             continue
-        season = _join(item.get("season"), item.get("terms"))
+        season = _season(item.get("season"), item.get("terms"))
         out.append(
             Posting(
                 company=_s(item.get("company_name")),
@@ -737,7 +890,8 @@ _COL_ALIASES = {
     "company": ("company", "employer", "organization"),
     "title": ("role", "position", "title", "job"),
     "location": ("location", "city", "where"),
-    "url": ("apply", "application", "link", "url"),
+    # speedyapply calls its apply-button column "Posting".
+    "url": ("apply", "application", "link", "url", "posting"),
     "date": ("date", "posted", "age", "added", "when"),
     # Trackers bury the work term here ("Intern - 4mo - Fall 2026"), which is
     # the only place the cycle appears for some rows.
@@ -811,15 +965,26 @@ def _cell_text(cell: str) -> str:
     return _WS_RE.sub(" ", unescape(_TAG_RE.sub(" ", cell))).strip(" |*")
 
 
+# Apply buttons are often a badge image wrapped in a link --
+# "[![Apply](https://img.shields.io/...)](https://real.posting)" -- and the
+# first URL in the cell is then the badge, not the job.
+_IMAGE_URL_RE = re.compile(
+    r"img\.shields\.io|i\.imgur\.com|\.(?:png|svg|jpe?g|gif|webp)(?:[?#]|$)",
+    re.IGNORECASE,
+)
+
+
 def _cell_url(cell: str) -> str:
-    m = _HREF_RE.search(cell)
-    if m:
-        return unescape(m.group(1))
-    m = _MD_LINK_RE.search(cell)
-    if m:
-        return unescape(m.group(1))
-    m = re.search(r"https?://\S+", cell)
-    return unescape(m.group(0).rstrip(">)")) if m else ""
+    candidates = [
+        *_HREF_RE.findall(cell),
+        *_MD_LINK_RE.findall(cell),
+        *(u.rstrip(">)") for u in re.findall(r"https?://[^\s)\]\"'<>]+", cell)),
+    ]
+    for url in candidates:
+        url = unescape(url)
+        if not _IMAGE_URL_RE.search(url):
+            return url
+    return ""
 
 
 def _map_columns(header: list[str]) -> dict[str, int]:
@@ -1006,6 +1171,39 @@ def sniff(http: Http, url: str) -> list[str]:
         lines.append(
             f'    {{"name": "{name_guess}", "platform": "{platform}", '
             f'"token": "{token}", "ai_native": False}},'
+        )
+    return lines
+
+
+# Platforms whose board token is usually just the company slug, so it can be
+# guessed. Workday, iCIMS and SuccessFactors cannot be.
+PROBE_PLATFORMS = ("ashby", "greenhouse", "lever", "smartrecruiters", "workable")
+
+
+def probe(http: Http, slug: str) -> list[str]:
+    """Try ``slug`` as a board token on every guessable ATS.
+
+    ``sniff`` needs the careers page to name its ATS, which a JS-rendered page
+    (Clio, Xanadu) never does and a Cloudflare-walled one (Ada) never serves.
+    The ATS APIs themselves are usually still reachable, so guess instead.
+    Only boards with at least one posting count: SmartRecruiters answers 200
+    with an empty list for any slug at all.
+    """
+    name = slug.replace("-", " ").replace("_", " ").title()
+    lines: list[str] = []
+    for platform in PROBE_PLATFORMS:
+        try:
+            found = ADAPTERS[platform](http, name, slug)
+        except Exception as exc:  # noqa: BLE001 - a miss is the common case
+            lines.append(f"# {platform:<16} miss  ({type(exc).__name__})")
+            continue
+        if not found:
+            lines.append(f"# {platform:<16} miss  (0 postings)")
+            continue
+        lines.append(f"# {platform:<16} HIT   {len(found)} postings")
+        lines.append(
+            f'    {{"name": "{name}", "platform": "{platform}", '
+            f'"token": "{slug}", "ai_native": False}},'
         )
     return lines
 

@@ -6,11 +6,14 @@ Add a company by running the sniffer and pasting the line it prints:
 
 Fields
 ------
-name       Display name used in alerts and in the dedupe fingerprint.
+name       Display name used in alerts and in the dedupe fingerprint. Match the
+           name the trackers use ("Royal Bank of Canada", not "RBC") so a role
+           seen on both collapses into one row.
 platform   One of: ashby, greenhouse, lever, smartrecruiters, workable,
-           recruitee, teamtailor, breezy, personio, workday, html.
+           recruitee, teamtailor, breezy, personio, workday, amazon, html.
 token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs``
-           URL; for ``html`` it is the careers page URL.
+           URL; for ``amazon`` an ISO-3 country code; for ``html`` it is the
+           careers page URL. ``python radar.py --probe <slug>`` guesses tokens.
 ai_native  True for companies where *every* engineering role is an AI role.
            A generic title like "Software Engineer Intern" at one of these
            still earns an instant ping instead of waiting for the 5pm digest.
@@ -24,46 +27,128 @@ COMPANIES: list[dict] = [
     {"name": "Tenstorrent", "platform": "greenhouse", "token": "tenstorrent", "ai_native": True},
     {"name": "Wealthsimple", "platform": "ashby", "token": "wealthsimple", "ai_native": False},
     {"name": "Faire", "platform": "greenhouse", "token": "faire", "ai_native": False},
+    {"name": "Deep Genomics", "platform": "lever", "token": "deepgenomics", "ai_native": True},
+    {"name": "Cerebras", "platform": "ashby", "token": "cerebras", "ai_native": True},
 
-    # -- Toronto AI, HTML fallback --------------------------------------
-    # No ATS signature is exposed on these careers pages, and token guesses
-    # against Ashby/Greenhouse/Lever all 404. The link-diff layer is the
-    # fallback: it stores the anchor set and flags any link that is new.
-    {"name": "Vector Institute", "platform": "html", "token": "https://vectorinstitute.ai/careers/", "ai_native": True},
-    # Clio and Xanadu render their listings client-side, so the link-diff layer
-    # sees the page but finds no job anchors. They report ok with 0 postings
-    # rather than failing. If you find their real board, sniff it and swap
-    # these lines for an API entry -- the trackers cover them meanwhile.
-    {"name": "Clio", "platform": "html", "token": "https://www.clio.com/about/careers/search/", "ai_native": False},
-    {"name": "Xanadu", "platform": "html", "token": "https://www.xanadu.ai/careers/", "ai_native": True},
+    # -- AI labs with Canadian roles ------------------------------------
+    {"name": "Anthropic", "platform": "greenhouse", "token": "anthropic", "ai_native": True},
+    {"name": "OpenAI", "platform": "ashby", "token": "openai", "ai_native": True},
+    {"name": "Scale AI", "platform": "greenhouse", "token": "scaleai", "ai_native": False},
 
-    # Ada: www.ada.cx returns Cloudflare 403 to every non-browser request,
-    # including with full browser headers. There is no free way through it, so
-    # it is disabled rather than left to fail every run and skew the health
-    # warning. Ada postings still reach you via the community trackers.
-    # {"name": "Ada", "platform": "html", "token": "https://www.ada.cx/careers", "ai_native": True},
+    # -- Toronto / Waterloo / Ottawa tech, verified live 29 Sep 2026 ------
+    # Each carries Canadian postings on its board. Not ai_native: their AI roles
+    # still need an AI signal in the title to reach strict.
+    {"name": "1Password", "platform": "ashby", "token": "1password", "ai_native": False},
+    {"name": "StackAdapt", "platform": "greenhouse", "token": "stackadapt", "ai_native": False},
+    {"name": "Geotab", "platform": "greenhouse", "token": "geotab", "ai_native": False},
+    {"name": "Wattpad", "platform": "lever", "token": "wattpad", "ai_native": False},
+    {"name": "Loopio", "platform": "ashby", "token": "loopio", "ai_native": False},
+    {"name": "Hopper", "platform": "ashby", "token": "hopper", "ai_native": False},
+    {"name": "Clearco", "platform": "ashby", "token": "clearco", "ai_native": False},
+    {"name": "Shakepay", "platform": "greenhouse", "token": "shakepay", "ai_native": False},
+    {"name": "Neo Financial", "platform": "ashby", "token": "neofinancial", "ai_native": False},
+    {"name": "Jobber", "platform": "ashby", "token": "jobber", "ai_native": False},
+    {"name": "Float", "platform": "ashby", "token": "float", "ai_native": False},
+    {"name": "Hootsuite", "platform": "greenhouse", "token": "hootsuite", "ai_native": False},
+    {"name": "Ubisoft", "platform": "smartrecruiters", "token": "ubisoft2", "ai_native": False},
 
-    # -- Workday placeholders -------------------------------------------
-    # Workday tokens cannot be guessed. To fill one in:
+    # -- Global tech with Toronto offices -------------------------------
+    {"name": "Instacart", "platform": "greenhouse", "token": "instacart", "ai_native": False},
+    {"name": "Stripe", "platform": "greenhouse", "token": "stripe", "ai_native": False},
+    {"name": "Lyft", "platform": "greenhouse", "token": "lyft", "ai_native": False},
+    {"name": "Affirm", "platform": "greenhouse", "token": "affirm", "ai_native": False},
+    {"name": "Okta", "platform": "greenhouse", "token": "okta", "ai_native": False},
+    {"name": "GitLab", "platform": "greenhouse", "token": "gitlab", "ai_native": False},
+    {"name": "Elastic", "platform": "greenhouse", "token": "elastic", "ai_native": False},
+    {"name": "Samsara", "platform": "greenhouse", "token": "samsara", "ai_native": False},
+    {"name": "Ramp", "platform": "ashby", "token": "ramp", "ai_native": False},
+    {"name": "Robinhood", "platform": "greenhouse", "token": "robinhood", "ai_native": False},
+    {"name": "Databricks", "platform": "greenhouse", "token": "databricks", "ai_native": False},
+    {"name": "MongoDB", "platform": "greenhouse", "token": "mongodb", "ai_native": False},
+    {"name": "Pinterest", "platform": "greenhouse", "token": "pinterest", "ai_native": False},
+    {"name": "Airbnb", "platform": "greenhouse", "token": "airbnb", "ai_native": False},
+    {"name": "Reddit", "platform": "greenhouse", "token": "reddit", "ai_native": False},
+    {"name": "Dropbox", "platform": "greenhouse", "token": "dropbox", "ai_native": False},
+    {"name": "Tailscale", "platform": "greenhouse", "token": "tailscale", "ai_native": False},
+    {"name": "PagerDuty", "platform": "greenhouse", "token": "pagerduty", "ai_native": False},
+    {"name": "Snowflake", "platform": "ashby", "token": "snowflake", "ai_native": False},
+    {"name": "Twilio", "platform": "greenhouse", "token": "twilio", "ai_native": False},
+    {"name": "Coinbase", "platform": "greenhouse", "token": "coinbase", "ai_native": False},
+    {"name": "Confluent", "platform": "ashby", "token": "confluent", "ai_native": False},
+    {"name": "ServiceNow", "platform": "smartrecruiters", "token": "servicenow", "ai_native": False},
+
+    # -- Own careers sites with a public JSON search ---------------------
+    # Amazon hires ML and robotics interns in Toronto (Annapurna Labs, Amazon
+    # Robotics) but posts on amazon.jobs only.
+    {"name": "Amazon", "platform": "amazon", "token": "CAN", "ai_native": False},
+
+    # -- Workday ---------------------------------------------------------
+    # Workday tokens cannot be guessed. To add one:
     #   1. Open the company's Workday careers site in a browser.
     #   2. Open DevTools -> Network, filter XHR, and search for a job.
     #   3. Find the POST whose URL contains "/wday/cxs/".
     #   4. Copy that full request URL (it ends in "/jobs") in as the token.
-    # The tenant and site slugs differ from the company name often enough that
-    # guessing them wastes an evening. Verify with: python radar.py --check
+    # A posting URL already in the feed also works: its tenant and site slugs
+    # are the two path pieces the cxs URL needs. Verify with --check.
     #
-    # {"name": "RBC Borealis", "platform": "workday",
-    #  "token": "https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/RBCCareers/jobs",
-    #  "ai_native": True},
-    # {"name": "TD Layer 6", "platform": "workday",
-    #  "token": "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_External/jobs",
-    #  "ai_native": True},
-    # {"name": "Scotiabank", "platform": "workday",
-    #  "token": "https://scotiabank.wd3.myworkdayjobs.com/wday/cxs/scotiabank/Scotiabank_Careers/jobs",
-    #  "ai_native": False},
-    # {"name": "Nvidia", "platform": "workday",
-    #  "token": "https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs",
-    #  "ai_native": True},
+    # RBC Borealis posts through RBC's own boards, and TD Layer 6 through
+    # TD_Bank_Careers (found by sniffing layer6.ai/careers), so the bank
+    # entries below are how those two labs are covered.
+    {"name": "Royal Bank of Canada", "platform": "workday",
+     "token": "https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/RBCEARLYTALENT1/jobs",
+     "ai_native": False},
+    {"name": "Royal Bank of Canada", "platform": "workday",
+     "token": "https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/rbcglobal1/jobs",
+     "ai_native": False},
+    {"name": "TD", "platform": "workday",
+     "token": "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_Bank_Careers/jobs",
+     "ai_native": False},
+    {"name": "CIBC", "platform": "workday",
+     "token": "https://cibc.wd3.myworkdayjobs.com/wday/cxs/cibc/search/jobs",
+     "ai_native": False},
+    {"name": "CIBC", "platform": "workday",
+     "token": "https://cibc.wd3.myworkdayjobs.com/wday/cxs/cibc/campus/jobs",
+     "ai_native": False},
+    {"name": "BMO", "platform": "workday",
+     "token": "https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/External/jobs",
+     "ai_native": False},
+    {"name": "Manulife Financial", "platform": "workday",
+     "token": "https://manulife.wd3.myworkdayjobs.com/wday/cxs/manulife/MFCJH_Jobs/jobs",
+     "ai_native": False},
+    {"name": "Sun Life", "platform": "workday",
+     "token": "https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Experienced-Jobs/jobs",
+     "ai_native": False},
+    {"name": "Nvidia", "platform": "workday",
+     "token": "https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs",
+     "ai_native": False},
+    {"name": "Intel", "platform": "workday",
+     "token": "https://intel.wd1.myworkdayjobs.com/wday/cxs/intel/External/jobs",
+     "ai_native": False},
+    {"name": "Autodesk", "platform": "workday",
+     "token": "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/jobs",
+     "ai_native": False},
+    {"name": "Ciena", "platform": "workday",
+     "token": "https://ciena.wd5.myworkdayjobs.com/wday/cxs/ciena/Careers/jobs",
+     "ai_native": False},
+    {"name": "Entrust", "platform": "workday",
+     "token": "https://entrust.wd1.myworkdayjobs.com/wday/cxs/entrust/entrustcareers/jobs",
+     "ai_native": False},
+    # Scotiabank and AMD answer 422 to the standard cxs search; left out until
+    # someone captures the request their own site sends.
+
+    # -- Careers pages, HTML layer ---------------------------------------
+    # For careers pages with no API. Pages that embed schema.org JobPosting
+    # data yield real titles, locations and dates; anything else falls back
+    # to the link diff, which flags every new anchor.
+    {"name": "Vector Institute", "platform": "html", "token": "https://vectorinstitute.ai/careers/", "ai_native": True},
+
+    # Checked and left out, all covered by the trackers meanwhile:
+    #   Clio, Ada      -- Cloudflare 403 to every non-browser request, and no
+    #                     Ashby/Greenhouse/Lever/SmartRecruiters/Workable board
+    #   Xanadu, Limina -- listings rendered client-side, no board found
+    #   Untether AI    -- TLS handshake fails from python-requests
+    #   Kinaxis        -- iCIMS, which answers 405 to non-browser requests
+    #   Arteria AI     -- Greenhouse board exists but is empty
 ]
 
 # Community trackers. Branch names differ per repo, so the fetcher tries dev,
@@ -76,6 +161,10 @@ TRACKERS: list[dict] = [
     {"name": "Summer2027-Internships", "repo": "SimplifyJobs/Summer2027-Internships"},
     {"name": "New-Grad-Positions", "repo": "SimplifyJobs/New-Grad-Positions"},
     {"name": "vansh-Summer2027", "repo": "vanshb03/Summer2027-Internships"},
+    # AI/ML-only student roles, which is exactly this radar's target.
+    {"name": "speedyapply-AI-2027", "repo": "speedyapply/2027-AI-College-Jobs"},
+    {"name": "speedyapply-SWE-2027", "repo": "speedyapply/2027-SWE-College-Jobs"},
+    {"name": "zapply-Internships-2027", "repo": "zapplyjobs/Internships-2027"},
 ]
 
 # Where alerts go.
@@ -109,5 +198,6 @@ TARGET_CYCLE = (2027, 1)
 # broken scraper looks exactly like a quiet hiring week.
 HEALTH_FAIL_THRESHOLD = 0.2
 
-# Thread pool width for source fetching.
-MAX_WORKERS = 12
+# Thread pool width for source fetching. Requests to one host are serialised
+# by the politeness gap anyway, so this mostly overlaps different boards.
+MAX_WORKERS = 16

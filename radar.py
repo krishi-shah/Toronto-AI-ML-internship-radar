@@ -10,6 +10,7 @@ Windows notifications plus a local HTML dashboard.
     python radar.py --seed           mark everything currently live as seen
     python radar.py --digest         release the queued loose digest
     python radar.py --sniff <url>    detect ATS and print a config line
+    python radar.py --probe <slug>   guess a board token on the common ATSes
     python radar.py --open           rebuild and open the dashboard
     python radar.py --test           fire one fake alert
 """
@@ -28,7 +29,7 @@ from typing import Callable, Optional
 import companies as cfg
 import notify
 import sources
-from core import LOOSE, STRICT, Posting, Store, Verdict, classify, toronto_now
+from core import LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, toronto_now
 
 # Tracker READMEs and job titles carry emoji and arrows; the Windows console
 # defaults to cp1252 and would crash on the first one.
@@ -47,6 +48,7 @@ DB_PATH = os.environ.get("RADAR_DB", "radar.db")
 def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting]], bool]]:
     """Return ``(source_name, thunk, ai_native)`` for every configured source."""
     tasks: list[tuple[str, Callable[[], list[Posting]], bool]] = []
+    labels: set[str] = set()
 
     for entry in cfg.COMPANIES:
         name = entry["name"]
@@ -54,6 +56,12 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
         token = entry["token"]
         ai_native = bool(entry.get("ai_native"))
         label = f"{name} [{platform}]"
+        # One company can run several boards (RBC has two Workday sites), and
+        # the health table is keyed by label, so repeats get the board's slug.
+        if label in labels:
+            slug = token.rstrip("/").removesuffix("/jobs").rsplit("/", 1)[-1]
+            label = f"{name} [{platform}:{slug}]"
+        labels.add(label)
 
         if platform == "html":
             tasks.append(
@@ -184,8 +192,13 @@ def triage(
         any_fps.add(fp)
         if verdict.tier == STRICT:
             strict_fps.add(fp)
+        # Other-fields rows are only ever shown in the feed, never alerted on
+        # or digested, so they are recorded and go no further.
         store.record(post, verdict.tier, verdict.reason)
-        (new_strict if verdict.tier == STRICT else new_loose).append((post, verdict))
+        if verdict.tier == STRICT:
+            new_strict.append((post, verdict))
+        elif verdict.tier == LOOSE:
+            new_loose.append((post, verdict))
 
     store.commit()
     return new_strict, new_loose, skipped
@@ -321,6 +334,7 @@ def cmd_check(store: Store) -> int:
     seen_fp: set[str] = set()
     raw_strict = 0
     loose = 0
+    other = 0
     stale = 0
     for post in postings:
         verdict = classify(post)
@@ -336,6 +350,8 @@ def cmd_check(store: Store) -> int:
                 stale += 1
         elif verdict.tier == LOOSE:
             loose += 1
+        elif verdict.tier == OTHER:
+            other += 1
 
     dupes = raw_strict - len(seen_fp)
     notes = []
@@ -346,6 +362,7 @@ def cmd_check(store: Store) -> int:
     print(
         f"\n{total_sources - len(errors)}/{total_sources} sources ok · "
         f"{len(postings)} postings · {len(strict)} strict · {loose} loose"
+        f" · {other} other fields"
         + (f"  ({', '.join(notes)})" if notes else "")
     )
 
@@ -367,6 +384,16 @@ def cmd_sniff(url: str) -> int:
     print(f"Sniffing {url}\n")
     for line in sources.sniff(http, url):
         print(line)
+    return 0
+
+
+def cmd_probe(slugs: list[str]) -> int:
+    http = sources.Http()
+    for slug in slugs:
+        print(f"Probing '{slug}'")
+        for line in sources.probe(http, slug):
+            print(line)
+        print()
     return 0
 
 
@@ -427,6 +454,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--seed", action="store_true", help="mark everything live as seen")
     parser.add_argument("--digest", action="store_true", help="send the queued loose digest")
     parser.add_argument("--sniff", metavar="URL", help="detect ATS for a careers page")
+    parser.add_argument("--probe", metavar="SLUG", nargs="+",
+                        help="guess a board token on Ashby/Greenhouse/Lever/...")
     parser.add_argument("--test", action="store_true", help="fire one fake alert")
     parser.add_argument("--health", action="store_true", help="print the health table")
     parser.add_argument("--open", action="store_true", help="rebuild and open the dashboard")
@@ -435,6 +464,8 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     if args.sniff:
         return cmd_sniff(args.sniff)
+    if args.probe:
+        return cmd_probe(args.probe)
 
     store = Store(args.db)
     try:

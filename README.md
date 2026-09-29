@@ -20,6 +20,9 @@ Three rules shape what you see:
 - **Only live cycles.** Winter 2027 is the target. Fall 2026 and earlier are
   rejected outright — that recruiting is over. Summer 2027 and later are kept
   but demoted below the strict tier.
+- **Internships first.** Full-time new-grad roles are kept but never strict,
+  and student roles in fields with no AI angle (analog design, firmware,
+  capital markets, …) are folded into a collapsed *Other fields* section.
 
 Within those bounds it is tuned for recall: ambiguous postings are kept, never
 binned.
@@ -121,10 +124,14 @@ Two other things worth knowing about scheduled workflows:
 
 1. Push this to a **public** GitHub repo.
 2. Actions → **radar** → *Run workflow* with mode **`seed`**. Seeding marks
-   the ~6,300 currently-live postings as already seen. **Skip this and the
+   the ~20,000 currently-live postings as already seen. **Skip this and the
    first real run treats the entire backlog as new.**
 3. Run it once more with mode **`run`** to render the feed immediately, then
    leave the schedule to it.
+
+Do the same seed-then-run whenever the cache prefix in the workflow is bumped
+(currently `radar-db-v3-`). Stored rows keep the tier they were classified
+into, so a classifier change only reaches old postings through a fresh DB.
 
 No secrets to configure. The workflow commits with the built-in `GITHUB_TOKEN`
 and talks to nothing but public job boards.
@@ -165,6 +172,7 @@ python radar.py --seed           mark everything currently live as seen
 python radar.py --digest         release the queued loose digest
 python radar.py --open           rebuild and open the HTML dashboard
 python radar.py --sniff <url>    detect the ATS behind a careers page
+python radar.py --probe <slug>…  guess a board token on Ashby, Greenhouse, Lever, …
 python radar.py --test           fire one fake alert through the channels
 python radar.py --health         per-source last success, last error, counts
 ```
@@ -220,6 +228,18 @@ Then confirm before trusting it: `python radar.py --check`.
 For iCIMS and SuccessFactors the sniffer says so explicitly and prints an
 HTML-fallback line instead — neither exposes a clean public API.
 
+When the careers page is rendered client-side or sits behind Cloudflare, the
+sniffer sees nothing. Guess the token instead — the ATS APIs are usually still
+reachable even when the company's own site is not:
+
+```bash
+python radar.py --probe deepgenomics deep-genomics
+```
+
+It tries each slug on Ashby, Greenhouse, Lever, SmartRecruiters and Workable,
+and prints a paste-ready line for every board that has postings. An empty board
+counts as a miss: SmartRecruiters answers 200 with an empty list for any slug.
+
 ### Workday
 
 Workday tokens cannot be guessed; the tenant and site slugs rarely match the
@@ -233,8 +253,11 @@ If it does not, copy the real one from the browser: DevTools → **Network**,
 filter **Fetch/XHR**, search for a job, find the POST whose URL contains
 `/wday/cxs/`, and use that full URL (it ends in `/jobs`) as the `token`.
 
-Commented-out placeholders for RBC Borealis, TD Layer 6, Scotiabank and Nvidia
-are already in [companies.py](companies.py).
+A posting URL already in the feed works too: in
+`https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/...` the tenant is `rbc`
+and the site is `RBCEARLYTALENT1`, so the token is
+`https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/RBCEARLYTALENT1/jobs`. That is
+how the RBC, TD, CIBC, BMO and Manulife boards were added.
 
 ---
 
@@ -245,20 +268,26 @@ Three coverage layers feed one dedupe-and-notify pipeline.
 **Layer 1 — ATS APIs.** Public JSON endpoints, no auth. One adapter per
 platform in [sources.py](sources.py): Ashby, Greenhouse, Lever,
 SmartRecruiters, Workable, Recruitee, Teamtailor, Breezy, Personio (XML),
-Workday.
+Workday, plus Amazon's own careers search (`amazon.jobs/en/search.json`),
+which is where its Toronto ML and robotics internships are posted.
 
 Workday is the awkward one: its search is keyword-driven, so a single query
 never surfaces everything. Each board is queried for `intern`, `co-op`,
 `student` and `new grad`, paginated by offset, and merged on the provider's own
-requisition id.
+requisition id. Amazon's search is keyword-driven the same way and is handled
+identically.
 
-**Layer 2 — HTML fallback.** For careers pages with no API. Fetches the page,
-extracts every anchor, filters to same-domain or job-ish links, and treats the
-link set as state. Any new link is a candidate. Crude by design: it cannot miss
-a link appearing.
+**Layer 2 — careers pages.** For careers pages with no API. If the page embeds
+schema.org `JobPosting` data (what Google for Jobs indexes), those records are
+used: real titles, locations, remote scope and publish dates. Otherwise it
+falls back to the link diff: extract every anchor, filter to same-domain or
+job-ish links, and treat any new link as a candidate. Crude by design: it
+cannot miss a link appearing.
 
-**Layer 3 — community trackers.** Five tracker repos, branch names differing
-(`dev` vs `main`), so each is tried rather than hardcoded.
+**Layer 3 — community trackers.** Seven tracker repos, including
+speedyapply's AI/ML-only list. Branch names differ (`dev` vs `main`), so each
+is tried rather than hardcoded. Apply buttons that are a badge image wrapped
+in a link resolve to the link, never the badge.
 
 > **Note on format:** these repos no longer agree on layout. Simplify's README
 > is now an HTML `<table>`, not a markdown pipe table — a pipe parser reads it
@@ -275,13 +304,22 @@ Two tiers, because a wide net plus one channel equals noise.
 **strict** — instant notification. Requires all of:
 
 - an AI/ML signal in the title, **or** an `ai_native` company
-- a student-level signal (intern, co-op, student, placement, new grad, …)
+- an internship-level signal (intern, co-op, student, placement, work term, …)
 - an Ontario location signal, **or** remote within Canada
 - no cycle token pointing exclusively at a season other than Winter 2027
 
 **loose** — everything else student-level in Ontario, including opaque titles
 like "Technology Analyst, Rotational", plus anything whose location cannot be
-read at all. Ambiguous goes to loose, never to the bin.
+read at all. Ambiguous goes to loose, never to the bin. Full-time early-career
+roles (new grad, entry level, early talent) are capped here even with an AI
+title: they are a different race from a Winter 2027 co-op.
+
+**other fields** — student roles in Ontario whose title names a discipline
+with no AI angle and carries no AI signal: analog and mixed-signal design,
+PCB, ASIC, firmware, signal integrity, electrical and mechanical engineering,
+capital markets, accounting, audit, marketing, sales, HR. Kept, never alerted
+on, and shown collapsed below loose. An AI signal always wins, so "ML Firmware
+Intern" stays strict.
 
 **Rejected** — unpaid, volunteer, high school, PhD-*only*, **anywhere outside
 Ontario**, and **postings for a cycle earlier than the target**. A bare "PhD"
@@ -389,9 +427,9 @@ matter for a local file:
 python -m unittest discover -s tests
 ```
 
-127 tests over the places a bug silently costs a job: the tier classifier, the
-dedupe fingerprint, cycle parsing, the freshness window, and the escaping and
-change-detection in the published feed. Fixtures are real title and location
+174 tests over the places a bug silently costs a job: the tier classifier, the
+dedupe fingerprint, cycle parsing, the freshness window, tracker and careers-page
+parsing, and the escaping and change-detection in the published feed. Fixtures are real title and location
 shapes taken from live boards. The workflow runs them before every scrape, so
 a classifier bug cannot publish a garbled feed.
 
@@ -402,8 +440,11 @@ a classifier bug cannot publish a garbled feed.
 Verified against real boards, most recent `--check`:
 
 ```
-14/14 sources ok · 6302 postings · 13 strict · 541 loose
+69/69 sources ok · 20053 postings · 3 strict · 529 loose · 88 other fields
 ```
+
+Strict is small on purpose: it counts only roles posted in the last seven days
+that are Winter 2027 (or undated) AI/ML internships in Ontario.
 
 Endpoint shapes were confirmed against live companies rather than assumed.
 Corrections found along the way:
@@ -413,7 +454,10 @@ Corrections found along the way:
 | Trackers publish markdown tables | Simplify uses HTML `<table>`; all three Simplify-family repos publish `listings.json`, used instead |
 | Wealthsimple is on Greenhouse | Ashby, token `wealthsimple` |
 | Ada exposes a careers page | Cloudflare 403 to every non-browser request; disabled, covered via trackers |
-| Clio/Xanadu list jobs in HTML | Rendered client-side; report ok with 0 and are covered via trackers |
+| Clio/Xanadu list jobs in HTML | Rendered client-side (Clio also 403s), and `--probe` finds no public board; removed, covered via trackers |
+| Workday tokens must come from DevTools | Any Workday posting URL already in the feed carries the tenant and site slugs; RBC, TD, CIBC, BMO and Manulife were added that way |
+| TD Layer 6 is on `TD_External` | 404; `--sniff https://layer6.ai/careers/` points at `TD_Bank_Careers` |
+| A tracker's apply column holds the job URL | Some wrap a shields.io badge in a link, so the first URL in the cell was the badge image |
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are hidden rather than shown as new |
@@ -431,21 +475,23 @@ Corrections found along the way:
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.
-- **Clio and Xanadu** render listings client-side, so the HTML layer sees the
-  page but finds no job anchors. They report ok with 0 postings.
+- **Clio, Xanadu, Limina, Untether AI and Kinaxis** are not scraped directly:
+  client-side rendering, a TLS handshake python-requests cannot complete, or
+  iCIMS answering 405. The trackers cover them.
+- **Scotiabank and AMD** answer 422 to the standard Workday search; they need
+  the exact request their own site sends, captured from DevTools.
+- **Workday "N Locations"** rows name no city, so they land in loose as
+  location unknown rather than strict.
 - **Datacenter IPs get blocked more often** than a home connection, so a
   source can pass locally and fail on the runner. The Sources table in the feed
   is where that shows up.
-- **Workday placeholders** ship commented out. Uncomment and paste real `cxs`
-  URLs to add RBC Borealis, TD Layer 6, Scotiabank and Nvidia directly — the
-  trackers already surface many of their postings meanwhile.
 
 ## Layout
 
 | File | Contents |
 |---|---|
 | [radar.py](radar.py) | CLI, concurrent orchestration, pipeline |
-| [sources.py](sources.py) | ATS adapters, HTML fallback, tracker parsers, sniffer |
+| [sources.py](sources.py) | ATS adapters, careers-page layer, tracker parsers, sniffer, prober |
 | [core.py](core.py) | Tier classifier, fingerprint, SQLite state and health |
 | [notify.py](notify.py) | README feed, HTML dashboard, Windows toasts, backend interface |
 | [companies.py](companies.py) | Target list, notifiers, freshness and cycle settings |

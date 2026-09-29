@@ -56,14 +56,13 @@ def health(source="Cohere [ashby]", ok=1, job_count=143, last_error=None):
 
 
 class FakeStore:
-    def __init__(self, strict=(), loose=(), health_rows=()):
-        self._strict = list(strict)
-        self._loose = list(loose)
+    def __init__(self, strict=(), loose=(), other=(), health_rows=()):
+        self._rows = {"strict": list(strict), "loose": list(loose),
+                      "other": list(other)}
         self._health = list(health_rows)
 
     def recent_jobs(self, tier, limit=60, max_age_hours=None):
-        rows = self._strict if tier == "strict" else self._loose
-        return rows[:limit]
+        return self._rows[tier][:limit]
 
     def health_rows(self):
         return self._health
@@ -178,6 +177,27 @@ class TestRendering(ReadmeCase):
         self.assertFalse(self.render(strict=[job()]))
         self.assertEqual(self.read(), "# Radar\n\nNo markers here.\n")
 
+    def test_other_fields_render_collapsed_below_loose(self):
+        self.render(
+            loose=[job(title="Software Developer Co-op")],
+            other=[job(title="Analog Design Intern", company="Semtech",
+                       url="https://e.com/analog")],
+        )
+        body = self.read()
+        self.assertIn(
+            "<details><summary>Other fields &middot; 1 outside AI/ML</summary>\n\n"
+            "| Role | Company | Location | Posted |",
+            body,
+        )
+        self.assertIn("[Analog Design Intern](https://e.com/analog)", body)
+        self.assertLess(body.index("Software Developer Co-op"),
+                        body.index("<details>"))
+        self.assertLess(body.index("</details>"), body.index("### Sources"))
+
+    def test_no_other_fields_section_when_empty(self):
+        self.render(loose=[job()])
+        self.assertNotIn("<details>", self.read())
+
     def test_missing_file_is_not_fatal(self):
         writer = ReadmeWriter(FakeStore(), path=os.path.join(self.dir.name, "nope.md"))
         self.assertFalse(writer.render())
@@ -201,6 +221,20 @@ class TestNoOpWhenUnchanged(ReadmeCase):
         self.write(stale)
 
         self.assertTrue(self.render(strict=rows, health_rows=[health()]))
+        self.assertEqual(self.read(), stale)
+
+    def test_unchanged_feed_with_other_fields_writes_nothing(self):
+        kwargs = dict(strict=[job()], other=[job(title="Firmware Intern")],
+                      health_rows=[health()])
+        self.render(**kwargs)
+        stale = "\n".join(
+            "_Updated Monday 01 January, 00:00 Toronto &middot; stale._"
+            if line.startswith("_Updated ") else line
+            for line in self.read().splitlines()
+        ) + "\n"
+        self.write(stale)
+
+        self.assertTrue(self.render(**kwargs))
         self.assertEqual(self.read(), stale)
 
     def test_new_posting_does_produce_a_write(self):

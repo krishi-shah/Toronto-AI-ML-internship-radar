@@ -126,24 +126,58 @@ _STUDENT_TERMS = [
     r"\bstudent\b",
     r"\bplacement\b",
     r"work[\s\-]?term",
+    r"\bon[\s\-]?campus\b",
+    r"\bundergrad",
+    r"\bapprentice",
+    r"\btrainee\b",
+    r"rotational",
+    r"\bw2[5-9]\b",
+    r"\bs2[5-9]\b",
+    r"\bf2[5-9]\b",
+]
+
+# Full-time early-career roles. Still student-level for the loose tier, but
+# never strict on their own: the radar hunts internships and co-ops, and a
+# "New Grad ML Engineer" posting is a different race.
+_NEWGRAD_TERMS = [
     r"new[\s\-]?grad",
     r"new[\s\-]?graduate",
     r"recent[\s\-]?graduate",
     r"university[\s\-]?graduate",
     r"campus[\s\-]?hire",
-    r"\bon[\s\-]?campus\b",
-    r"\bundergrad",
     r"early[\s\-]?career",
     r"early[\s\-]?talent",
     r"emerging[\s\-]?talent",
     r"entry[\s\-]?level",
-    r"\bapprentice",
-    r"\btrainee\b",
-    r"rotational",
     r"\bgraduate[\s\-]?program",
-    r"\bw2[5-9]\b",
-    r"\bs2[5-9]\b",
-    r"\bf2[5-9]\b",
+]
+
+# Disciplines with no AI/ML angle. A student role in one of these is kept, but
+# filed under "Other fields" instead of crowding the loose tier. Only consulted
+# when the title carries no AI signal, so "ML Firmware Intern" is unaffected.
+_OFF_FIELD_TERMS = [
+    r"\banalog\b",
+    r"mixed[\s\-]?signal",
+    r"\bams\b",
+    r"\bpcba?\b",
+    r"\basic\b",
+    r"\blayout\b",
+    r"\bfirmware\b",
+    r"signal[\s\-]?integrity",
+    r"\bvalidation[\s\-]?engineer",
+    r"hardware[\s\-]?(?:design|engineer)",
+    r"\bic[\s\-]?design",
+    r"\belectrical\b",
+    r"\bmechanical\b",
+    r"\bcivil\b",
+    r"capital[\s\-]?markets",
+    r"\baccounting\b",
+    r"\baudit",
+    r"\bmarketing\b",
+    r"\bsales\b",
+    r"human[\s\-]?resources",
+    r"\bhr\b",
+    r"talent[\s\-]?acquisition",
 ]
 
 # Explicit rejects. Deliberately short: anything ambiguous belongs in loose.
@@ -337,6 +371,8 @@ def _compile(terms: Iterable[str]) -> re.Pattern:
 
 AI_RE = _compile(_AI_TERMS)
 STUDENT_RE = _compile(_STUDENT_TERMS)
+NEWGRAD_RE = _compile(_NEWGRAD_TERMS)
+OFF_FIELD_RE = _compile(_OFF_FIELD_TERMS)
 REJECT_RE = _compile(_REJECT_TERMS)
 ONTARIO_RE = _compile(_ONTARIO_TERMS)
 NON_ONTARIO_CA_RE = _compile(_NON_ONTARIO_CA_TERMS)
@@ -389,6 +425,7 @@ _FOREIGN_ABBR_RE = re.compile(r"\b(?:SF|LA|NYC|DC)\b")
 
 STRICT = "strict"
 LOOSE = "loose"
+OTHER = "other"
 REJECTED = None
 
 
@@ -454,12 +491,14 @@ def classify(posting: Posting) -> Verdict:
 
     Strict requires all of:
       * an AI/ML signal in the title, or a company flagged ``ai_native``
-      * a student-level signal
+      * an internship-level signal (new-grad-only roles cap at loose)
       * an Ontario location signal, or remote within Canada
       * no cycle token pointing exclusively at a season other than Winter 2027
 
     Anything student-level that is in Ontario, or whose location cannot be
-    read at all, falls through to loose. Dropped outright: unpaid, volunteer,
+    read at all, falls through to loose -- or to ``other`` when the title
+    names a discipline with no AI angle (analog design, capital markets, ...).
+    Dropped outright: unpaid, volunteer,
     high-school and PhD-only postings, past cycles, and anywhere outside
     Ontario -- including the rest of Canada.
     """
@@ -470,13 +509,11 @@ def classify(posting: Posting) -> Verdict:
     if REJECT_RE.search(haystack):
         return Verdict(REJECTED, "reject term")
 
-    student = bool(STUDENT_RE.search(title))
-    if not student:
-        # Some boards keep the level out of the title entirely.
-        student = bool(STUDENT_RE.search(loc_blob)) or bool(
-            STUDENT_RE.search(str(posting.raw.get("employmentType", "")))
-        )
-    if not student:
+    # Some boards keep the level out of the title entirely.
+    level_text = f"{title} | {loc_blob} | {(posting.raw or {}).get('employmentType', '')}"
+    internship = bool(STUDENT_RE.search(level_text))
+    new_grad = not internship and bool(NEWGRAD_RE.search(level_text))
+    if not (internship or new_grad):
         return Verdict(REJECTED, "not student level", student=False)
 
     ontario = bool(ONTARIO_RE.search(loc_blob))
@@ -518,7 +555,14 @@ def classify(posting: Posting) -> Verdict:
     ai = bool(AI_RE.search(title)) or posting.ai_native
 
     if not ai:
+        if OFF_FIELD_RE.search(title):
+            return Verdict(OTHER, "off-field", student=True, ontario=True, cycle=cycle)
         return Verdict(LOOSE, "no AI signal", student=True, ontario=True, cycle=cycle)
+    if new_grad:
+        return Verdict(
+            LOOSE, "new grad, not internship", ai=True, student=True,
+            ontario=True, cycle=cycle,
+        )
     if cycle == "later":
         return Verdict(
             LOOSE, "later cycle", ai=True, student=True, ontario=True, cycle=cycle
@@ -631,6 +675,7 @@ def normalize_title(title: str) -> str:
     co-op / internship / new-grad spelling variants onto one token each.
     """
     s = (title or "").lower()
+    s = s.replace("&", " and ")
     s = _COOP_RE.sub(" coop ", s)
     s = _INTERN_RE.sub(" intern ", s)
     s = _NEWGRAD_RE.sub(" newgrad ", s)
@@ -832,9 +877,16 @@ class Store:
             clause += f" AND {age_expr} >= ?"
             params.append(int(time.time()) - max_age_hours * 3600)
         params.append(limit)
+        # One row per role. A role on both its own board and a tracker is
+        # stored twice (dedupe only suppresses the second alert), and listing
+        # both would put every overlap in the feed twice. The copy carrying a
+        # provider date wins, since its age is real rather than discovered.
         cur = self.conn.execute(
-            f"SELECT *, {age_expr} AS shown_at FROM jobs WHERE tier = ?{clause}"
-            f" ORDER BY shown_at DESC LIMIT ?",
+            f"SELECT * FROM (SELECT *, {age_expr} AS shown_at,"
+            " ROW_NUMBER() OVER (PARTITION BY fingerprint"
+            "   ORDER BY (posted_at > 0) DESC, first_seen ASC) AS copy"
+            f" FROM jobs WHERE tier = ?{clause})"
+            " WHERE copy = 1 ORDER BY shown_at DESC LIMIT ?",
             params,
         )
         return cur.fetchall()

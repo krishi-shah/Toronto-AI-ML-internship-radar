@@ -40,6 +40,7 @@ MAX_TOASTS_PER_RUN = 5
 # How many rows each tier contributes to a rendered feed.
 STRICT_LIMIT = 60
 LOOSE_LIMIT = 150
+OTHER_LIMIT = 150
 
 
 class Notifier(Protocol):
@@ -198,6 +199,9 @@ h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;
   letter-spacing:.04em;text-transform:uppercase}
 .tag.s{color:var(--strict);background:var(--strict-bg)}
 .tag.l{color:var(--loose);background:var(--loose-bg)}
+.tag.o{color:var(--muted);background:var(--bg);border:1px solid var(--line)}
+details>summary{cursor:pointer;list-style:none}
+details>summary h2{display:inline-block}
 .empty{color:var(--muted);font-style:italic;padding:.85rem 0}
 table{width:100%;border-collapse:collapse;font-size:.85rem}
 td{padding:.4rem .5rem;border-bottom:1px solid var(--line)}
@@ -252,7 +256,7 @@ def _when_label(row: Any) -> tuple[str, bool]:
 
 
 def _row_html(row: Any, tag: str) -> str:
-    label = "strict" if tag == "s" else "loose"
+    label = {"s": "strict", "l": "loose", "o": "other"}[tag]
     when, today = _when_label(row)
     hot = " hot" if today else ""
 
@@ -291,6 +295,7 @@ class DashboardWriter:
         window = _window_label(max_age)
         strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, max_age)
         loose_rows = self.store.recent_jobs("loose", LOOSE_LIMIT, max_age)
+        other_rows = self.store.recent_jobs("other", OTHER_LIMIT, max_age)
         health = self.store.health_rows()
 
         ok_count = sum(1 for h in health if h["ok"])
@@ -318,6 +323,14 @@ class DashboardWriter:
             if loose_rows
             else f'<div class="empty">Nothing in the last {window}.</div>'
         )
+
+        if other_rows:
+            body.append(
+                f"<details><summary><h2>Other fields &middot; {len(other_rows)}"
+                " outside AI/ML</h2></summary>"
+                + "".join(_row_html(r, "o") for r in other_rows)
+                + "</details>"
+            )
 
         body.append("<h2>Sources</h2><div class=\"scroll\"><table>")
         for h in health:
@@ -447,8 +460,21 @@ class ReadmeWriter:
         window = _window_label(max_age)
         strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, max_age)
         loose_rows = self.store.recent_jobs("loose", LOOSE_LIMIT, max_age)
+        other_rows = self.store.recent_jobs("other", OTHER_LIMIT, max_age)
         health = self.store.health_rows()
         ok_count = sum(1 for h in health if h["ok"])
+
+        # GitHub only renders the table inside <details> when a blank line
+        # separates it from the <summary>.
+        other = [
+            f"<details><summary>Other fields &middot; {len(other_rows)}"
+            " outside AI/ML</summary>",
+            "",
+            *_md_table(other_rows, window),
+            "",
+            "</details>",
+            "",
+        ] if other_rows else []
 
         lines = [
             f"_Updated {toronto_now():%A %d %B, %H:%M} Toronto"
@@ -463,6 +489,7 @@ class ReadmeWriter:
             "",
             *_md_table(loose_rows, window),
             "",
+            *other,
             "### Sources",
             "",
             "| Source | Postings | Status |",
