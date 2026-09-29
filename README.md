@@ -32,19 +32,16 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Monday 28 September, 18:03 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
+_Updated Monday 28 September, 21:59 Toronto &middot; 12/13 sources healthy &middot; last 7 days, newest first._
 
-### Strict &middot; 5 AI/ML matches
+### Strict &middot; 2 AI/ML matches
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
 | [Software Engineer New Grad - Machine Learning Platform](https://jobs.ashbyhq.com/quora/cf34f80e-fe5c-454d-bc9a-4c59993ffda0/application?embed=true) | Quora | Remote in USA, Remote in Canada | 3 days ago |
 | [Data Engineer Co-op, N/A](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Data-Engineer--8-months-_R-0000188584) | Royal Bank of Canada | Toronto, ON, Canada | 6 days ago |
-| [Data Operations Engineer AI Co-op - Winter 2027, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 7 days ago |
-| [AI Solutions Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 7 days ago |
-| [Data Science Co-op, Winter 2027](https://rodanenergysolutionsinc.applytojob.com/apply/Bn4sqYBZPe/Data-Science-Coop-Student-Winter-2027) | Rodan Energy Solutions | Mississauga, ON, Canada | 7 days ago |
 
-### Loose &middot; 31 to review
+### Loose &middot; 28 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
@@ -76,9 +73,6 @@ _Updated Monday 28 September, 18:03 Toronto &middot; 12/13 sources healthy &midd
 | [Software Developer Co-op - Technology and Operations, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter-Student-Opportunities-Technology---Operations---Software-Developer--4-Months_R-0000184555-3) | Royal Bank of Canada | Toronto, ON, Canada | 6 days ago |
 | [Firmware Development Undergraduate Engineering Co-op, Winter 2027](https://intel.wd1.myworkdayjobs.com/en-us/external/job/Virtual-Canada/Firmware-Development-Undergraduate-Engineering-Co-op_JR0286862) | Intel | Remote in Canada | 6 days ago |
 | [Embedded Software Engineer Intern, N/A](https://analogdevices.wd1.myworkdayjobs.com/External/job/Canada-Toronto/Embedded-Software-Engineer_R266615) | Analog Devices | Toronto, ON, Canada, Vancouver, BC, Canada | 6 days ago |
-| [Software/Application Developer Co-op, Winter 2027](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Software-Application-Developer-Co-op_2619461) | CIBC | Toronto, ON, Canada | 7 days ago |
-| [Software Developer Co-op - Software Developer, N/A](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/RBC-WATERPARK-PLACE-88-QUEENS-QUAY-WTORONTO/XMLNAME-2027-Winter-Student-Opportunities-RBC-Borealis---Software-Developer--4-8-Months_R-0000184501-3) | Royal Bank of Canada | Toronto, ON, Canada, Calgary, AB, Canada | 7 days ago |
-| [ASIC Engineer Intern, Winter 2027](https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/ASIC-Engineer-Intern_R031750) | Ciena | Ottawa, ON, Canada | 7 days ago |
 
 ### Sources
 
@@ -89,8 +83,8 @@ _Updated Monday 28 September, 18:03 Toronto &middot; 12/13 sources healthy &midd
 | Canadian-Tech-Internships-2027 \[tracker\] | 273 | ok |
 | Cohere \[ashby\] | 145 | ok |
 | Faire \[greenhouse\] | 74 | ok |
-| New-Grad-Positions \[tracker\] | 3007 | ok |
-| Summer2027-Internships \[tracker\] | 4392 | ok |
+| New-Grad-Positions \[tracker\] | 3005 | ok |
+| Summer2027-Internships \[tracker\] | 4395 | ok |
 | Tenstorrent \[greenhouse\] | 125 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 87 | ok |
