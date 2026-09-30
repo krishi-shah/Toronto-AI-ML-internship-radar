@@ -14,6 +14,8 @@ platform   One of: ashby, greenhouse, lever, smartrecruiters, workable,
 token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs``
            URL; for ``amazon`` an ISO-3 country code; for ``html`` it is the
            careers page URL. ``python radar.py --probe <slug>`` guesses tokens.
+location   Optional. Filled into postings from this source that carry no
+           location, for employers that only hire in one place.
 ai_native  True for companies where *every* engineering role is an AI role.
            A generic title like "Software Engineer Intern" at one of these
            still earns an instant ping instead of waiting for the 5pm digest.
@@ -51,6 +53,9 @@ COMPANIES: list[dict] = [
     {"name": "Float", "platform": "ashby", "token": "float", "ai_native": False},
     {"name": "Hootsuite", "platform": "greenhouse", "token": "hootsuite", "ai_native": False},
     {"name": "Ubisoft", "platform": "smartrecruiters", "token": "ubisoft2", "ai_native": False},
+    {"name": "D2L", "platform": "greenhouse", "token": "d2l", "ai_native": False},
+    {"name": "Telus Digital", "platform": "ashby", "token": "telus-digital", "ai_native": False},
+    {"name": "Loblaw Digital", "platform": "smartrecruiters", "token": "LoblawDigital", "ai_native": False},
 
     # -- Global tech with Toronto offices -------------------------------
     {"name": "Instacart", "platform": "greenhouse", "token": "instacart", "ai_native": False},
@@ -133,6 +138,9 @@ COMPANIES: list[dict] = [
     {"name": "Entrust", "platform": "workday",
      "token": "https://entrust.wd1.myworkdayjobs.com/wday/cxs/entrust/entrustcareers/jobs",
      "ai_native": False},
+    {"name": "Magna", "platform": "workday",
+     "token": "https://magna.wd3.myworkdayjobs.com/wday/cxs/magna/Magna/jobs",
+     "ai_native": False},
     # Scotiabank and AMD answer 422 to the standard cxs search; left out until
     # someone captures the request their own site sends.
 
@@ -140,7 +148,9 @@ COMPANIES: list[dict] = [
     # For careers pages with no API. Pages that embed schema.org JobPosting
     # data yield real titles, locations and dates; anything else falls back
     # to the link diff, which flags every new anchor.
-    {"name": "Vector Institute", "platform": "html", "token": "https://vectorinstitute.ai/careers/", "ai_native": True},
+    # ``location`` fills postings that carry none. Without it the classifier,
+    # which requires a Canadian location, would reject every link-diff row.
+    {"name": "Vector Institute", "platform": "html", "token": "https://vectorinstitute.ai/careers/", "ai_native": True, "location": "Toronto, ON"},
 
     # Checked and left out, all covered by the trackers meanwhile:
     #   Clio, Ada      -- Cloudflare 403 to every non-browser request, and no
@@ -197,6 +207,13 @@ TARGET_CYCLE = (2027, 1)
 # Warn me if more than this share of sources fail in one run. A silently
 # broken scraper looks exactly like a quiet hiring week.
 HEALTH_FAIL_THRESHOLD = 0.2
+
+# Automatic discovery. Every run mines Canadian postings (mostly tracker rows)
+# for the employer boards they link to, and scrapes up to this many boards that
+# are not configured above, most Canadian postings first. 0 turns it off.
+# A board drops out after 5 failures in a row or 30 days without a Canadian
+# posting. See them with: python radar.py --discovered
+DISCOVERY_MAX_BOARDS = 60
 
 # Thread pool width for source fetching. Requests to one host are serialised
 # by the politeness gap anyway, so this mostly overlaps different boards.

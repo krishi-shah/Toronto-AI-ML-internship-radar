@@ -299,13 +299,13 @@ Two other things worth knowing about scheduled workflows:
 
 1. Push this to a **public** GitHub repo.
 2. Actions → **radar** → *Run workflow* with mode **`seed`**. Seeding marks
-   the ~20,000 currently-live postings as already seen. **Skip this and the
+   the ~30,000 currently-live postings as already seen. **Skip this and the
    first real run treats the entire backlog as new.**
 3. Run it once more with mode **`run`** to render the feed immediately, then
    leave the schedule to it.
 
 Do the same seed-then-run whenever the cache prefix in the workflow is bumped
-(currently `radar-db-v3-`). Stored rows keep the tier they were classified
+(currently `radar-db-v4-`). Stored rows keep the tier they were classified
 into, so a classifier change only reaches old postings through a fresh DB.
 
 No secrets to configure. The workflow commits with the built-in `GITHUB_TOKEN`
@@ -350,6 +350,7 @@ python radar.py --sniff <url>    detect the ATS behind a careers page
 python radar.py --probe <slug>…  guess a board token on Ashby, Greenhouse, Lever, …
 python radar.py --test           fire one fake alert through the channels
 python radar.py --health         per-source last success, last error, counts
+python radar.py --discovered     boards found from Canadian postings, with status
 ```
 
 ## Alert channels
@@ -450,7 +451,21 @@ Workday is the awkward one: its search is keyword-driven, so a single query
 never surfaces everything. Each board is queried for `intern`, `co-op`,
 `student` and `new grad`, paginated by offset, and merged on the provider's own
 requisition id. Amazon's search is keyword-driven the same way and is handled
-identically.
+identically. Workday rows that say only "2 Locations" are resolved with one
+detail request each (student titles only, capped per board), so a TD co-op in
+Toronto and Montreal is read as the Toronto role it is.
+
+**Discovered boards.** Every Canadian posting the trackers carry links to the
+employer's own board, so each run mines those links (Ashby, Greenhouse, Lever,
+SmartRecruiters, Workable and both Workday URL forms) for boards not already
+in `companies.py`. They are remembered in a `discovered` table, ranked by how
+many Canadian postings pointed at them, and the top `DISCOVERY_MAX_BOARDS`
+(60) are scraped as a second wave. That wave surfaces roles no tracker lists.
+A board that fails five runs in a row, or has had no Canadian posting in 30
+days, drops out. Discovered boards stay out of the Sources table and the
+failure warning, since they are opportunistic, and get one summary line under
+it instead. `python radar.py --discovered` lists them; promote a good one by
+copying it into `companies.py`.
 
 **Layer 2 — careers pages.** For careers pages with no API. If the page embeds
 schema.org `JobPosting` data (what Google for Jobs indexes), those records are
@@ -484,8 +499,8 @@ Two tiers, because a wide net plus one channel equals noise.
 - no cycle token pointing exclusively at a season other than Winter 2027
 
 **loose** — everything else student-level in Ontario, including opaque titles
-like "Technology Analyst, Rotational", plus anything whose location cannot be
-read at all. Ambiguous goes to loose, never to the bin. Full-time early-career
+like "Technology Analyst, Rotational", plus roles that say only "Canada" with
+no province. Ambiguous titles go to loose, never to the bin. Full-time early-career
 roles (new grad, entry level, early talent) are capped here even with an AI
 title: they are a different race from a Winter 2027 co-op.
 
@@ -508,13 +523,18 @@ Ontario is checked first, so a req open in both Toronto and Vancouver is kept
 as the Toronto role it is. Then:
 
 - **Remote in Canada is kept.** It names no province, and it is workable from
-  Toronto. Bare "Remote" is not enough — it says nothing about the country, so
-  it lands in loose rather than strict.
+  Toronto. Bare "Remote" is rejected: it says nothing about the country, and
+  in practice it is almost always a US role.
+- **Bare "Canada" is capped at loose.** No province named, so it cannot be
+  confirmed as Ontario, but it is plausibly workable.
 - **The rest of Canada is rejected**, not demoted. Vancouver, Montreal,
   Calgary and Halifax are all noise for someone who needs to be in Ontario.
-- **An unreadable location is kept.** The HTML link-diff layer carries no
-  location at all, and placeholders like "Multiple Locations" might well be
-  Toronto, so those stay in loose.
+- **No Canadian location means rejected**, in every tier. An empty location,
+  "Multiple Locations" or "Remote" alone is not evidence of Canada, and
+  keeping them let US roles into loose. Careers pages scraped through the
+  link-diff layer carry no location, so their entries in `companies.py` state
+  one (`"location": "Toronto, ON"`), and Workday "N Locations" rows are
+  resolved as described above.
 
 The province abbreviation is matched as `,\s*ON(?![\w-])`. Without the
 lookahead, a case-insensitive `, ON` matches the "on" in "Hybrid, on-site" and
@@ -539,13 +559,11 @@ link-diff layer, which has no dates by nature — but a link that just appeared
 rather than stale: silently dropping a whole source would be the expensive
 mistake.
 
-Three deliberate calls, all favouring recall:
+Two deliberate calls, both favouring recall:
 
 - **Secondary locations count.** Ashby routinely lists a US primary with
   Toronto buried in `secondaryLocations`. Every location field is searched,
   nested ones included.
-- **Blank location goes to loose, never the bin.** Boards with sparse location
-  data would otherwise vanish.
 - **Future cycles are demoted, not dropped.** Only cycles *earlier* than the
   target are rejected, since reqs get mislabelled and often span terms.
 
@@ -585,7 +603,7 @@ matter for a local file:
 
 ### Engineering
 
-- All sources fetched concurrently, 12 workers, with per-host politeness.
+- All sources fetched concurrently, 16 workers, with per-host politeness.
 - Every adapter wrapped: an exception is recorded against its source and the
   run continues. One dead board never fails a run.
 - Retry with exponential backoff on 429 and 5xx, honouring `Retry-After`.
@@ -602,9 +620,9 @@ matter for a local file:
 python -m unittest discover -s tests
 ```
 
-174 tests over the places a bug silently costs a job: the tier classifier, the
-dedupe fingerprint, cycle parsing, the freshness window, tracker and careers-page
-parsing, and the escaping and change-detection in the published feed. Fixtures are real title and location
+206 tests over the places a bug silently costs a job: the tier classifier and
+its location gate, the dedupe fingerprint, cycle parsing, the freshness window,
+tracker and careers-page parsing, board discovery, and the escaping and change-detection in the published feed. Fixtures are real title and location
 shapes taken from live boards. The workflow runs them before every scrape, so
 a classifier bug cannot publish a garbled feed.
 
@@ -615,8 +633,12 @@ a classifier bug cannot publish a garbled feed.
 Verified against real boards, most recent `--check`:
 
 ```
-69/69 sources ok · 20053 postings · 3 strict · 529 loose · 88 other fields
+73/73 sources ok · 31021 postings · 5 strict · 533 loose · 136 other fields
 ```
+
+Plus 60 discovered boards, all ok, in about 200 seconds for the whole run.
+Of the 743 roles kept in a fresh database, every one names Ontario or
+Canada; none was kept on an unreadable location.
 
 Strict is small on purpose: it counts only roles posted in the last seven days
 that are Winter 2027 (or undated) AI/ML internships in Ontario.
@@ -637,6 +659,8 @@ Corrections found along the way:
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are hidden rather than shown as new |
 | The state DB can just be committed | ~5 MB of SQLite every run is gigabytes of binary history a year; it lives in `actions/cache` instead |
+| A missing location is harmless in loose | "Remote", blank and "Multiple Locations" rows were overwhelmingly US roles; now a Canadian signal is required in every tier |
+| Workday posting URLs all look like `tenant.wdN.myworkdayjobs.com` | Magna, Sysco and others link as `wdN.myworkdaysite.com/recruiting/tenant/Site`; the same tenant answers on the usual host, so discovery maps one to the other |
 | Rejecting known foreign places is enough | It knew "united kingdom" but not "UK", and ", NY" but not "Texas", so London and San Francisco roles were read as having no location and kept. Requiring a positive Ontario signal fixes the whole class |
 
 ## Known gaps
@@ -646,7 +670,14 @@ Corrections found along the way:
   the price of the laptop being closed.
 - **Ontario is judged from the posting text.** A company that writes only
   "Canada" with no province, and no remote wording, is not confirmable as
-  Ontario and lands in loose rather than strict.
+  Ontario and lands in loose rather than strict. A posting with no location
+  at all is dropped, even if it really is in Toronto.
+- **Discovered boards include some noise.** A tracker row can point a
+  Canadian posting at a global board (an agency, a UK subsidiary), which is
+  then scraped for a month. The location gate keeps its foreign roles out of
+  the feed; the cost is only fetch time.
+- **Rogers, Bell, OpenText, Celestica and Shopify** have no public board API
+  that `--probe` finds; their roles arrive via the trackers.
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.
@@ -655,8 +686,9 @@ Corrections found along the way:
   iCIMS answering 405. The trackers cover them.
 - **Scotiabank and AMD** answer 422 to the standard Workday search; they need
   the exact request their own site sends, captured from DevTools.
-- **Workday "N Locations"** rows name no city, so they land in loose as
-  location unknown rather than strict.
+- **Workday "N Locations"** rows are resolved only for student and new-grad
+  titles, up to 40 per board per run; any beyond that are dropped as having
+  no Canadian location.
 - **Datacenter IPs get blocked more often** than a home connection, so a
   source can pass locally and fail on the runner. The Sources table in the feed
   is where that shows up.

@@ -11,6 +11,7 @@ Windows notifications plus a local HTML dashboard.
     python radar.py --digest         release the queued loose digest
     python radar.py --sniff <url>    detect ATS and print a config line
     python radar.py --probe <slug>   guess a board token on the common ATSes
+    python radar.py --discovered     list boards found automatically
     python radar.py --open           rebuild and open the dashboard
     python radar.py --test           fire one fake alert
 """
@@ -19,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sqlite3
 import sys
 import time
 import traceback
@@ -29,7 +31,9 @@ from typing import Callable, Optional
 import companies as cfg
 import notify
 import sources
-from core import LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, toronto_now
+from core import (
+    LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, in_canada, toronto_now,
+)
 
 # Tracker READMEs and job titles carry emoji and arrows; the Windows console
 # defaults to cp1252 and would crash on the first one.
@@ -43,6 +47,26 @@ DB_PATH = os.environ.get("RADAR_DB", "radar.db")
 # --------------------------------------------------------------------------
 # Source planning
 # --------------------------------------------------------------------------
+
+
+def _with_default_location(
+    thunk: Callable[[], list[Posting]], location: str
+) -> Callable[[], list[Posting]]:
+    """Fill ``location`` into postings that come back without one.
+
+    The classifier rejects anything with no Canadian location, and the HTML
+    link-diff layer never carries one, so a Toronto-only employer's careers
+    page needs its location stated in config.
+    """
+
+    def run() -> list[Posting]:
+        found = thunk()
+        for post in found:
+            if not (post.location or "").strip():
+                post.location = location
+        return found
+
+    return run
 
 
 def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting]], bool]]:
@@ -64,27 +88,17 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
         labels.add(label)
 
         if platform == "html":
-            tasks.append(
-                (label, lambda n=name, t=token: sources.html_links(http, n, t), ai_native)
+            thunk = lambda n=name, t=token: sources.html_links(http, n, t)  # noqa: E731
+        elif platform in sources.ADAPTERS:
+            thunk = lambda a=sources.ADAPTERS[platform], n=name, t=token: a(http, n, t)  # noqa: E731
+        else:
+            thunk = lambda p=platform: (_ for _ in ()).throw(  # noqa: E731
+                ValueError(f"unknown platform '{p}'")
             )
-            continue
 
-        adapter = sources.ADAPTERS.get(platform)
-        if adapter is None:
-            tasks.append(
-                (
-                    label,
-                    lambda p=platform: (_ for _ in ()).throw(
-                        ValueError(f"unknown platform '{p}'")
-                    ),
-                    ai_native,
-                )
-            )
-            continue
-
-        tasks.append(
-            (label, lambda a=adapter, n=name, t=token: a(http, n, t), ai_native)
-        )
+        if entry.get("location"):
+            thunk = _with_default_location(thunk, entry["location"])
+        tasks.append((label, thunk, ai_native))
 
     for entry in cfg.TRACKERS:
         label = f"{entry['name']} [tracker]"
@@ -104,10 +118,31 @@ def fetch_all(
 ) -> tuple[list[Posting], dict[str, str]]:
     """Fetch every source concurrently. Returns postings and per-source errors.
 
-    An adapter raising is recorded against its source in the health table and
-    the run continues -- one dead board must never fail the run.
+    Configured sources run first. Their Canadian postings are then mined for
+    boards nobody configured, and those run as a second wave. An adapter
+    raising is recorded against its source and the run continues -- one dead
+    board must never fail the run.
+
+    Only configured sources are reported in ``errors`` and the health table.
+    Discovered boards are speculative, so their failures are tracked in the
+    ``discovered`` table instead and never trip the health warning.
     """
-    tasks = build_tasks(http)
+    postings, errors = _run_wave(build_tasks(http), store, quiet)
+    store.commit()
+
+    if cfg.DISCOVERY_MAX_BOARDS > 0:
+        found = _run_discovered(http, store, postings, quiet)
+        postings.extend(found)
+        store.commit()
+    return postings, errors
+
+
+def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
+    """Run ``(label, thunk, ai_native)`` tasks on the pool.
+
+    ``on_result(label, found_or_None, error_or_None)`` replaces the default
+    health-table bookkeeping when given.
+    """
     postings: list[Posting] = []
     errors: dict[str, str] = {}
 
@@ -121,8 +156,11 @@ def fetch_all(
                 found = future.result()
             except Exception as exc:  # noqa: BLE001 - every failure is per-source
                 msg = f"{type(exc).__name__}: {exc}"
-                errors[label] = msg
-                store.health_fail(label, msg)
+                if on_result:
+                    on_result(label, None, msg)
+                else:
+                    errors[label] = msg
+                    store.health_fail(label, msg)
                 if not quiet:
                     print(f"  FAIL  {label:<48} {msg[:90]}")
                 continue
@@ -131,12 +169,60 @@ def fetch_all(
                 post.source = post.source or label
                 post.ai_native = post.ai_native or ai_native
             postings.extend(found)
-            store.health_ok(label, len(found))
+            if on_result:
+                on_result(label, found, None)
+            else:
+                store.health_ok(label, len(found))
             if not quiet:
                 print(f"  ok    {label:<48} {len(found):>5} postings")
 
-    store.commit()
     return postings, errors
+
+
+def configured_boards() -> set[tuple[str, str]]:
+    return {
+        sources.board_key(c["platform"], c["token"])
+        for c in cfg.COMPANIES
+        if c["platform"] in sources.ADAPTERS
+    }
+
+
+def _run_discovered(
+    http: sources.Http, store: Store, postings: list[Posting], quiet: bool
+) -> list[Posting]:
+    """Mine ``postings`` for new boards, then scrape the best known ones."""
+    for board in sources.discover_boards(postings, configured_boards()):
+        store.discovered_add(board["platform"], board["token"], board["name"], board["hits"])
+    store.commit()
+
+    picked = store.discovered_pick(cfg.DISCOVERY_MAX_BOARDS)
+    if not picked:
+        return []
+    if not quiet:
+        print(f"\n  -- {len(picked)} discovered boards --")
+
+    by_label: dict[str, sqlite3.Row] = {}
+    tasks = []
+    for row in picked:
+        label = f"{row['name']} [{row['platform']}, discovered]"
+        if label in by_label:
+            label = f"{row['name']} [{row['platform']}:{row['token'][-24:]}, discovered]"
+        by_label[label] = row
+        adapter = sources.ADAPTERS[row["platform"]]
+        tasks.append(
+            (label, lambda a=adapter, n=row["name"], t=row["token"]: a(http, n, t), False)
+        )
+
+    def record(label: str, found: Optional[list[Posting]], error: Optional[str]) -> None:
+        row = by_label[label]
+        if error is not None:
+            store.discovered_fail(row["platform"], row["token"], error)
+            return
+        canada = sum(1 for p in found if in_canada(p))
+        store.discovered_ok(row["platform"], row["token"], len(found), canada)
+
+    found, _ = _run_wave(tasks, store, quiet, on_result=record)
+    return found
 
 
 # --------------------------------------------------------------------------
@@ -387,6 +473,22 @@ def cmd_sniff(url: str) -> int:
     return 0
 
 
+def cmd_discovered(store: Store) -> int:
+    """List discovered boards, so good ones can be promoted into companies.py."""
+    rows = store.discovered_rows()
+    if not rows:
+        print("No discovered boards yet. They appear after a run or --check.")
+        return 0
+    print(f"{'board':<44} {'canada':>6} {'jobs':>5} {'fails':>5}  token")
+    for row in rows:
+        label = f"{row['name']} [{row['platform']}]"
+        print(f"{label[:44]:<44} {row['canada_hits']:>6} {row['job_count']:>5}"
+              f" {row['fails']:>5}  {row['token']}")
+        if row["fails"] and row["last_error"]:
+            print(f"    {row['last_error'][:140]}")
+    return 0
+
+
 def cmd_probe(slugs: list[str]) -> int:
     http = sources.Http()
     for slug in slugs:
@@ -458,6 +560,8 @@ def main(argv: Optional[list[str]] = None) -> int:
                         help="guess a board token on Ashby/Greenhouse/Lever/...")
     parser.add_argument("--test", action="store_true", help="fire one fake alert")
     parser.add_argument("--health", action="store_true", help="print the health table")
+    parser.add_argument("--discovered", action="store_true",
+                        help="list automatically discovered boards")
     parser.add_argument("--open", action="store_true", help="rebuild and open the dashboard")
     parser.add_argument("--db", default=DB_PATH, help=f"SQLite path (default {DB_PATH})")
     args = parser.parse_args(argv)
@@ -477,6 +581,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             return cmd_check(store)
         if args.health:
             return cmd_health(store)
+        if args.discovered:
+            return cmd_discovered(store)
         if args.digest:
             send_digest(store, notify.build_notifiers(cfg.NOTIFIERS, store))
             return 0

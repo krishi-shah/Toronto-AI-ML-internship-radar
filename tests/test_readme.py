@@ -56,10 +56,14 @@ def health(source="Cohere [ashby]", ok=1, job_count=143, last_error=None):
 
 
 class FakeStore:
-    def __init__(self, strict=(), loose=(), other=(), health_rows=()):
+    def __init__(self, strict=(), loose=(), other=(), health_rows=(), discovered=None):
         self._rows = {"strict": list(strict), "loose": list(loose),
                       "other": list(other)}
         self._health = list(health_rows)
+        self._discovered = discovered or {"ok": 0, "failing": 0, "total": 0}
+
+    def discovered_summary(self):
+        return self._discovered
 
     def recent_jobs(self, tier, limit=60, max_age_hours=None):
         return self._rows[tier][:limit]
@@ -197,6 +201,24 @@ class TestRendering(ReadmeCase):
     def test_no_other_fields_section_when_empty(self):
         self.render(loose=[job()])
         self.assertNotIn("<details>", self.read())
+
+    def test_discovered_boards_are_one_summary_line(self):
+        self.render(health_rows=[health()],
+                    discovered={"ok": 41, "failing": 3, "total": 44})
+        body = self.read()
+        self.assertIn("_Plus 44 boards discovered from Canadian postings:"
+                      " 41 ok, 3 failing._", body)
+        self.assertLess(body.index("| Cohere "), body.index("_Plus 44"))
+
+    def test_unscraped_boards_are_counted_as_waiting(self):
+        self.render(health_rows=[health()],
+                    discovered={"ok": 60, "failing": 0, "total": 78})
+        self.assertIn("_Plus 60 boards discovered from Canadian postings:"
+                      " 60 ok (18 more waiting for a slot)._", self.read())
+
+    def test_no_summary_line_without_discovered_boards(self):
+        self.render(health_rows=[health()])
+        self.assertNotIn("discovered", self.read())
 
     def test_missing_file_is_not_fatal(self):
         writer = ReadmeWriter(FakeStore(), path=os.path.join(self.dir.name, "nope.md"))

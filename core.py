@@ -486,6 +486,45 @@ def _flatten(val: Any, depth: int = 0) -> list[str]:
     return []
 
 
+def _location_scope(loc_blob: str) -> str:
+    """Where a location string puts a posting.
+
+    ``ontario``   Ontario named, or remote within Canada.
+    ``canada``    Canada named with no province, nothing foreign alongside.
+    ``elsewhere`` another province or another country.
+    ``unknown``   nothing recognisable at all.
+    """
+    ontario = bool(ONTARIO_RE.search(loc_blob))
+    elsewhere_in_canada = bool(NON_ONTARIO_CA_RE.search(loc_blob))
+    remote = bool(REMOTE_RE.search(loc_blob))
+    canada = bool(CANADA_RE.search(loc_blob))
+    foreign = bool(_FOREIGN_RE.search(loc_blob)) or bool(
+        _FOREIGN_ABBR_RE.search(loc_blob)
+    )
+
+    # Ontario named anywhere wins, checked first on purpose: Ashby routinely
+    # lists a US primary location with Toronto in secondaryLocations, and a
+    # req open in both Toronto and Vancouver is still a Toronto req.
+    #
+    # "Remote in Canada" names no province at all, so it is taken on trust --
+    # it is workable from Toronto. Bare "Remote" is not: it says nothing about
+    # the country.
+    if ontario or (remote and canada and not elsewhere_in_canada):
+        return "ontario"
+    # "Canada" with no province is in Canada but not confirmably Ontario, so
+    # it may reach loose and never strict.
+    if canada and not elsewhere_in_canada and not foreign:
+        return "canada"
+    if elsewhere_in_canada or foreign:
+        return "elsewhere"
+    return "unknown"
+
+
+def in_canada(posting: Posting) -> bool:
+    """Would the classifier's location gate let this posting through?"""
+    return _location_scope(_location_blob(posting)) in ("ontario", "canada")
+
+
 def classify(posting: Posting) -> Verdict:
     """Route a posting to the instant tier, the 5pm digest, or the bin.
 
@@ -516,34 +555,22 @@ def classify(posting: Posting) -> Verdict:
     if not (internship or new_grad):
         return Verdict(REJECTED, "not student level", student=False)
 
-    ontario = bool(ONTARIO_RE.search(loc_blob))
-    elsewhere_in_canada = bool(NON_ONTARIO_CA_RE.search(loc_blob))
-    remote = bool(REMOTE_RE.search(loc_blob))
-    foreign = bool(_FOREIGN_RE.search(loc_blob)) or bool(
-        _FOREIGN_ABBR_RE.search(loc_blob)
-    )
+    scope = _location_scope(loc_blob)
+    in_scope = scope == "ontario"
+    canada_only = scope == "canada"
     location_known = bool(loc_blob.strip())
 
-    # Ontario named anywhere wins, checked first on purpose: Ashby routinely
-    # lists a US primary location with Toronto in secondaryLocations, and a
-    # req open in both Toronto and Vancouver is still a Toronto req.
-    #
-    # "Remote in Canada" names no province at all, so it is taken on trust --
-    # it is workable from Toronto. Bare "Remote" is not: it says nothing about
-    # the country.
-    in_scope = ontario or (
-        remote and bool(CANADA_RE.search(loc_blob)) and not elsewhere_in_canada
-    )
-
-    if not in_scope:
-        if elsewhere_in_canada or foreign:
+    if not (in_scope or canada_only):
+        if scope == "elsewhere":
             return Verdict(
                 REJECTED, "outside Ontario", student=True, location_known=True,
             )
-        # Nothing recognisable in the location. It might be Toronto, and the
-        # HTML link-diff layer never carries a location at all, so keep it.
+        # A positive Canadian signal is required. Unreadable locations used to
+        # be kept in case they were Toronto, and in practice they were almost
+        # all foreign: Bengaluru, "London, GBR", "FL JAX 347", "Remote in US".
         return Verdict(
-            LOOSE, "location unknown", student=True, location_known=location_known,
+            REJECTED, "no Canadian location", student=True,
+            location_known=location_known,
         )
 
     cycle = _cycle_verdict(f"{haystack} | {_cycle_blob(posting)}")
@@ -553,6 +580,13 @@ def classify(posting: Posting) -> Verdict:
         )
 
     ai = bool(AI_RE.search(title)) or posting.ai_native
+
+    if canada_only:
+        if not ai and OFF_FIELD_RE.search(title):
+            return Verdict(OTHER, "off-field", student=True, cycle=cycle)
+        return Verdict(
+            LOOSE, "Canada, province not named", ai=ai, student=True, cycle=cycle,
+        )
 
     if not ai:
         if OFF_FIELD_RE.search(title):
@@ -730,6 +764,20 @@ CREATE TABLE IF NOT EXISTS links (
     url    TEXT NOT NULL,
     seen   INTEGER NOT NULL,
     PRIMARY KEY (source, url)
+);
+
+CREATE TABLE IF NOT EXISTS discovered (
+    platform     TEXT NOT NULL,
+    token        TEXT NOT NULL,
+    name         TEXT NOT NULL,
+    first_seen   INTEGER NOT NULL,
+    last_canada  INTEGER NOT NULL,
+    last_ok      INTEGER,
+    last_error   TEXT,
+    fails        INTEGER NOT NULL DEFAULT 0,
+    canada_hits  INTEGER NOT NULL DEFAULT 0,
+    job_count    INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (platform, token)
 );
 
 CREATE TABLE IF NOT EXISTS cache (
@@ -951,6 +999,71 @@ class Store:
             ((source, u, now) for u in urls),
         )
         return fresh
+
+    # -- discovered boards -----------------------------------------------
+
+    # A board is dropped from the rotation after this many failures in a row,
+    # or after this long without evidence of a Canadian posting.
+    DISCOVERY_MAX_FAILS = 5
+    DISCOVERY_STALE_DAYS = 30
+
+    def discovered_add(self, platform: str, token: str, name: str, hits: int) -> None:
+        """Remember a board seen in this run's Canadian postings.
+
+        Being named by a Canadian posting again counts as fresh evidence, so
+        it renews ``last_canada``. It never resets ``fails``: a board that is
+        down stays out however often trackers link to it.
+        """
+        now = int(time.time())
+        self.conn.execute(
+            "INSERT INTO discovered (platform, token, name, first_seen, last_canada,"
+            " canada_hits) VALUES (?,?,?,?,?,?)"
+            " ON CONFLICT(platform, token) DO UPDATE SET last_canada=excluded.last_canada,"
+            " canada_hits=MAX(discovered.canada_hits, excluded.canada_hits)",
+            (platform, token, name, now, now, hits),
+        )
+
+    def discovered_pick(self, limit: int) -> list[sqlite3.Row]:
+        """The boards to scrape this run: healthy, recent, most Canadian first."""
+        cutoff = int(time.time()) - self.DISCOVERY_STALE_DAYS * 86400
+        return self.conn.execute(
+            "SELECT * FROM discovered WHERE fails < ? AND last_canada >= ?"
+            " ORDER BY canada_hits DESC, first_seen ASC LIMIT ?",
+            (self.DISCOVERY_MAX_FAILS, cutoff, limit),
+        ).fetchall()
+
+    def discovered_ok(self, platform: str, token: str, jobs: int, canada: int) -> None:
+        now = int(time.time())
+        self.conn.execute(
+            "UPDATE discovered SET last_ok=?, fails=0, last_error=NULL, job_count=?,"
+            " canada_hits=CASE WHEN ? > 0 THEN ? ELSE canada_hits END,"
+            " last_canada=CASE WHEN ? > 0 THEN ? ELSE last_canada END"
+            " WHERE platform=? AND token=?",
+            (now, jobs, canada, canada, canada, now, platform, token),
+        )
+
+    def discovered_fail(self, platform: str, token: str, error: str) -> None:
+        self.conn.execute(
+            "UPDATE discovered SET fails=fails+1, last_error=? WHERE platform=? AND token=?",
+            (error[:500], platform, token),
+        )
+
+    def discovered_rows(self) -> list[sqlite3.Row]:
+        return self.conn.execute(
+            "SELECT * FROM discovered ORDER BY canada_hits DESC, name"
+        ).fetchall()
+
+    def discovered_summary(self) -> dict:
+        """Counts for the one-line Sources summary: active boards by state."""
+        cutoff = int(time.time()) - self.DISCOVERY_STALE_DAYS * 86400
+        row = self.conn.execute(
+            "SELECT SUM(fails = 0 AND last_ok IS NOT NULL) ok,"
+            " SUM(fails > 0) failing, COUNT(*) total"
+            " FROM discovered WHERE fails < ? AND last_canada >= ?",
+            (self.DISCOVERY_MAX_FAILS, cutoff),
+        ).fetchone()
+        return {"ok": row["ok"] or 0, "failing": row["failing"] or 0,
+                "total": row["total"] or 0}
 
     # -- conditional-request cache ---------------------------------------
 

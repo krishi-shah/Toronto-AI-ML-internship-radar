@@ -231,6 +231,18 @@ def _day_label(ts: int) -> tuple[str, int]:
     return (f"{days} days ago", days)
 
 
+def _discovered_label(store: Any) -> str:
+    """One line for every discovered board, instead of a table row each."""
+    s = store.discovered_summary()
+    if not s["total"]:
+        return ""
+    failing = f", {s['failing']} failing" if s["failing"] else ""
+    queued = s["total"] - s["ok"] - s["failing"]
+    waiting = f" ({queued} more waiting for a slot)" if queued > 0 else ""
+    return (f"Plus {s['ok'] + s['failing']} boards discovered from Canadian"
+            f" postings: {s['ok']} ok{failing}{waiting}.")
+
+
 def _e(text: Any) -> str:
     return html.escape(str(text or ""), quote=True)
 
@@ -343,7 +355,11 @@ class DashboardWriter:
                 f'<tr><td>{_e(h["source"])}</td><td class="n">{h["job_count"] or "-"}</td>'
                 f"<td>{state}</td></tr>"
             )
-        body.append("</table></div></div>")
+        body.append("</table></div>")
+        found = _discovered_label(self.store)
+        if found:
+            body.append(f'<div class="sub">{_e(found)}</div>')
+        body.append("</div>")
 
         page = (
             "<!doctype html><html lang='en'><head><meta charset='utf-8'>"
@@ -501,6 +517,9 @@ class ReadmeWriter:
             lines.append(
                 f"| {_md(row['source'])} | {row['job_count'] or '-'} | {state} |"
             )
+        found = _discovered_label(self.store)
+        if found:
+            lines += ["", f"_{found}_"]
 
         return "\n".join(lines)
 

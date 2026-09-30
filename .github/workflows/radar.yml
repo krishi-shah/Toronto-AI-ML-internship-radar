@@ -74,7 +74,9 @@ jobs:
       # postings recorded before the Ontario-only rule would keep showing.
       # v3 does the same for the "other fields" tier and the new-grad cap:
       # older rows would keep analog-design roles in loose and new-grad roles
-      # in strict. After a prefix bump, dispatch `seed` once, then `run`.
+      # in strict. v4 drops rows kept with no Canadian location, which the
+      # stricter location gate now rejects. After a prefix bump, dispatch
+      # `seed` once, then `run`.
       #
       # A cache miss is survivable: every run re-fetches every source, and
       # publish dates come from the sources themselves. The only visible
@@ -84,9 +86,9 @@ jobs:
         uses: actions/cache@v6
         with:
           path: radar.db
-          key: radar-db-v3-${{ github.run_id }}
+          key: radar-db-v4-${{ github.run_id }}
           restore-keys: |
-            radar-db-v3-
+            radar-db-v4-
 
       - name: Run radar
         env:

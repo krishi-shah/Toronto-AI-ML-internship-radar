@@ -546,7 +546,44 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
             offset += WORKDAY_PAGE
             if len(posts) < WORKDAY_PAGE or offset >= total:
                 break
+
+    _resolve_workday_locations(http, base, found.values())
     return list(found.values())
+
+
+_WORKDAY_MULTI_RE = re.compile(r"^\d+\s+Locations?$", re.IGNORECASE)
+WORKDAY_DETAIL_CAP = 40
+
+
+def _resolve_workday_locations(http: Http, base: str, posts: Iterable[Posting]) -> None:
+    """Replace "3 Locations" with the real list, for student-level roles.
+
+    Workday's search summarises multi-site reqs as "N Locations", which names
+    no city, so the classifier cannot place them. Real Toronto co-ops hide
+    behind it (TD's Winter 2027 SWE co-op lists Toronto, Mississauga and
+    London). One detail request per posting, capped per board.
+    """
+    from core import NEWGRAD_RE, STUDENT_RE
+
+    detail_base = base[: -len("/jobs")]
+    budget = WORKDAY_DETAIL_CAP
+    for post in posts:
+        if budget <= 0:
+            break
+        if not _WORKDAY_MULTI_RE.match(post.location or ""):
+            continue
+        if not (STUDENT_RE.search(post.title) or NEWGRAD_RE.search(post.title)):
+            continue
+        budget -= 1
+        try:
+            detail = http.json(detail_base + _s(post.raw.get("externalPath")))
+        except Exception:  # noqa: BLE001 - keep the summary; classifier rejects it
+            continue
+        info = (detail or {}).get("jobPostingInfo") or {}
+        places = _join(info.get("location"), *(info.get("additionalLocations") or []),
+                       (info.get("country") or {}).get("descriptor"))
+        if places:
+            post.location = places
 
 
 def _workday_url(cxs_url: str, external_path: str) -> str:
@@ -1206,6 +1243,100 @@ def probe(http: Http, slug: str) -> list[str]:
             f'"token": "{slug}", "ai_native": False}},'
         )
     return lines
+
+
+# --------------------------------------------------------------------------
+# Board discovery
+#
+# Tracker rows link straight to the employer's own board. Every Canadian row
+# therefore names a board worth scraping directly, which surfaces roles the
+# trackers never list.
+# --------------------------------------------------------------------------
+
+# Posting URLs, not careers-page URLs, so these are stricter than the sniffer:
+# each requires the path shape of an actual job link.
+_BOARD_URL_PATTERNS: list[tuple[str, re.Pattern]] = [
+    ("ashby", re.compile(r"jobs\.ashbyhq\.com/([A-Za-z0-9_.\-]+)/[0-9a-f\-]{8,}", re.I)),
+    ("greenhouse", re.compile(
+        r"(?:boards|job-boards)(?:\.eu)?\.greenhouse\.io/([A-Za-z0-9_\-]+)/jobs/\d+", re.I)),
+    ("greenhouse", re.compile(r"greenhouse\.io/embed/job_app\?(?:[^#]*&)?for=([A-Za-z0-9_\-]+)", re.I)),
+    ("lever", re.compile(r"jobs\.lever\.co/([A-Za-z0-9_\-]+)/[0-9a-f\-]{8,}", re.I)),
+    ("smartrecruiters", re.compile(r"jobs\.smartrecruiters\.com/([A-Za-z0-9_\-]+)/\d+", re.I)),
+    ("workable", re.compile(r"apply\.workable\.com/([A-Za-z0-9_\-]+)/j/", re.I)),
+]
+
+# tenant.wdN.myworkdayjobs.com/[en-US/]Site/job/... -- the "/job/" anchor is
+# what separates the site slug from a locale prefix.
+_WORKDAY_POSTING_RE = re.compile(
+    r"https?://([a-z0-9\-]+)\.(wd\d+)\.myworkdayjobs\.com/(?:[a-z]{2}-[A-Z]{2}/)?"
+    r"([A-Za-z0-9_\-]+)/job/"
+)
+# wdN.myworkdaysite.com/[en-US/]recruiting/tenant/Site/job/... is the same
+# tenant, and its search answers on the tenant.wdN.myworkdayjobs.com host.
+_WORKDAY_SITE_RE = re.compile(
+    r"https?://(wd\d+)\.myworkdaysite\.com/(?:[a-z]{2}-[A-Z]{2}/)?recruiting/"
+    r"([a-z0-9\-]+)/([A-Za-z0-9_\-]+)/job/"
+)
+
+
+def board_from_url(url: str) -> Optional[tuple[str, str]]:
+    """The ``(platform, token)`` of the board a posting URL belongs to."""
+    url = url or ""
+    m = _WORKDAY_POSTING_RE.search(url)
+    if m:
+        tenant, wd, site = m.groups()
+        return "workday", f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    m = _WORKDAY_SITE_RE.search(url)
+    if m:
+        wd, tenant, site = m.groups()
+        return "workday", f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    for platform, pattern in _BOARD_URL_PATTERNS:
+        m = pattern.search(url)
+        if m and m.group(1).lower() not in _TOKEN_NOISE:
+            return platform, m.group(1)
+    return None
+
+
+def board_key(platform: str, token: str) -> tuple[str, str]:
+    """Case-insensitive identity of a board, for comparing against config."""
+    return platform, token.rstrip("/").lower()
+
+
+def discover_boards(
+    postings: Iterable[Posting], known: set[tuple[str, str]]
+) -> list[dict]:
+    """Boards named by Canadian postings that are not already configured.
+
+    Returns ``{"platform", "token", "name", "hits"}`` per board, where
+    ``hits`` is how many Canadian postings pointed at it. The name is the one
+    the postings used most, so a role later scraped from the board itself
+    fingerprints the same as its tracker copy.
+    """
+    from collections import Counter
+
+    from core import in_canada
+
+    boards: dict[tuple[str, str], dict] = {}
+    for post in postings:
+        found = board_from_url(post.url)
+        if not found or not in_canada(post):
+            continue
+        key = board_key(*found)
+        if key in known:
+            continue
+        board = boards.setdefault(
+            key, {"platform": found[0], "token": found[1], "names": Counter(), "hits": 0}
+        )
+        board["hits"] += 1
+        if post.company:
+            board["names"][post.company] += 1
+
+    out = []
+    for board in boards.values():
+        names = board.pop("names")
+        board["name"] = names.most_common(1)[0][0] if names else board["token"]
+        out.append(board)
+    return sorted(out, key=lambda b: -b["hits"])
 
 
 # Page titles are frequently just "Careers", which makes a useless company

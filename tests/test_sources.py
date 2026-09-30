@@ -181,6 +181,47 @@ class TestBadgeLinks(unittest.TestCase):
         self.assertEqual(sources._cell_url("![x](https://img.shields.io/badge/x)"), "")
 
 
+class TestWorkdayMultiLocation(unittest.TestCase):
+    """Regression: TD's Winter 2027 SWE co-op showed only "2 Locations"."""
+
+    BASE = "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_Bank_Careers/jobs"
+
+    def make(self, title, location, path="/job/Toronto/X_R1"):
+        from core import Posting
+
+        return Posting(company="TD", title=title, location=location, url="u",
+                       uid=f"workday:{path}", raw={"externalPath": path})
+
+    def test_multi_location_student_role_is_resolved(self):
+        http = mock.Mock()
+        http.json.return_value = {"jobPostingInfo": {
+            "location": "Toronto, Ontario",
+            "additionalLocations": ["Mississauga, Ontario"],
+            "country": {"descriptor": "Canada"},
+        }}
+        post = self.make("Software Engineer Intern/Co-op (Winter 2027)", "2 Locations")
+        sources._resolve_workday_locations(http, self.BASE, [post])
+        http.json.assert_called_once_with(
+            "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_Bank_Careers/job/Toronto/X_R1"
+        )
+        self.assertEqual(post.location, "Toronto, Ontario, Mississauga, Ontario, Canada")
+
+    def test_single_location_and_non_student_roles_are_not_fetched(self):
+        http = mock.Mock()
+        posts = [self.make("Software Engineer Intern", "Toronto, Ontario"),
+                 self.make("Senior Engineer", "3 Locations")]
+        sources._resolve_workday_locations(http, self.BASE, posts)
+        http.json.assert_not_called()
+
+    def test_detail_calls_are_capped(self):
+        http = mock.Mock()
+        http.json.return_value = {}
+        posts = [self.make("Intern", "2 Locations", f"/job/{i}")
+                 for i in range(sources.WORKDAY_DETAIL_CAP + 10)]
+        sources._resolve_workday_locations(http, self.BASE, posts)
+        self.assertEqual(http.json.call_count, sources.WORKDAY_DETAIL_CAP)
+
+
 class TestProbe(unittest.TestCase):
     """Only boards that actually carry postings are reported as hits."""
 
