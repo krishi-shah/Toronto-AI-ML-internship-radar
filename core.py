@@ -228,6 +228,7 @@ _ONTARIO_TERMS = [
     r"\bwindsor,?\s*(?:on|ontario)\b",
     r"\bygk\b",
     r",\s*ON(?![\w-])",
+    r",\s*ONT(?![\w-])",  # Oracle Cloud Recruiting: "Toronto, ONT, Canada"
     r"\bON\s*,\s*Canada\b",
 ]
 
@@ -777,7 +778,18 @@ CREATE TABLE IF NOT EXISTS discovered (
     fails        INTEGER NOT NULL DEFAULT 0,
     canada_hits  INTEGER NOT NULL DEFAULT 0,
     job_count    INTEGER NOT NULL DEFAULT 0,
+    last_attempt INTEGER,
     PRIMARY KEY (platform, token)
+);
+
+CREATE TABLE IF NOT EXISTS hosts (
+    host          TEXT PRIMARY KEY,
+    sample_url    TEXT NOT NULL,
+    name          TEXT,
+    hits          INTEGER NOT NULL DEFAULT 0,
+    last_seen     INTEGER NOT NULL,
+    last_sniffed  INTEGER,
+    result        TEXT
 );
 
 CREATE TABLE IF NOT EXISTS cache (
@@ -817,6 +829,9 @@ class Store:
             self.conn.execute(
                 "ALTER TABLE jobs ADD COLUMN seeded INTEGER NOT NULL DEFAULT 0"
             )
+        have = {r["name"] for r in self.conn.execute("PRAGMA table_info(discovered)")}
+        if "last_attempt" not in have:
+            self.conn.execute("ALTER TABLE discovered ADD COLUMN last_attempt INTEGER")
 
     def close(self) -> None:
         self.conn.close()
@@ -1023,30 +1038,72 @@ class Store:
             (platform, token, name, now, now, hits),
         )
 
-    def discovered_pick(self, limit: int) -> list[sqlite3.Row]:
-        """The boards to scrape this run: healthy, recent, most Canadian first."""
+    def discovered_pick(self, limit: int, top: int = 0) -> list[sqlite3.Row]:
+        """The boards to scrape this run, in the order to scrape them.
+
+        Healthy, recent boards only. The ``top`` most Canadian go first every
+        run; the rest follow least-recently-attempted first, so boards a time
+        budget cut off get their turn on the next run instead of starving.
+        """
         cutoff = int(time.time()) - self.DISCOVERY_STALE_DAYS * 86400
-        return self.conn.execute(
+        rows = self.conn.execute(
             "SELECT * FROM discovered WHERE fails < ? AND last_canada >= ?"
-            " ORDER BY canada_hits DESC, first_seen ASC LIMIT ?",
-            (self.DISCOVERY_MAX_FAILS, cutoff, limit),
+            " ORDER BY canada_hits DESC, first_seen ASC",
+            (self.DISCOVERY_MAX_FAILS, cutoff),
         ).fetchall()
+        head, tail = rows[:top], rows[top:]
+        tail.sort(key=lambda r: (r["last_attempt"] or 0, -r["canada_hits"]))
+        return (head + tail)[:limit]
 
     def discovered_ok(self, platform: str, token: str, jobs: int, canada: int) -> None:
         now = int(time.time())
         self.conn.execute(
-            "UPDATE discovered SET last_ok=?, fails=0, last_error=NULL, job_count=?,"
+            "UPDATE discovered SET last_ok=?, last_attempt=?, fails=0, last_error=NULL,"
+            " job_count=?,"
             " canada_hits=CASE WHEN ? > 0 THEN ? ELSE canada_hits END,"
             " last_canada=CASE WHEN ? > 0 THEN ? ELSE last_canada END"
             " WHERE platform=? AND token=?",
-            (now, jobs, canada, canada, canada, now, platform, token),
+            (now, now, jobs, canada, canada, canada, now, platform, token),
         )
 
     def discovered_fail(self, platform: str, token: str, error: str) -> None:
         self.conn.execute(
-            "UPDATE discovered SET fails=fails+1, last_error=? WHERE platform=? AND token=?",
-            (error[:500], platform, token),
+            "UPDATE discovered SET fails=fails+1, last_error=?, last_attempt=?"
+            " WHERE platform=? AND token=?",
+            (error[:500], int(time.time()), platform, token),
         )
+
+    # -- careers-site hosts no pattern recognises -------------------------
+
+    def hosts_add(self, host: str, sample_url: str, name: str, hits: int) -> None:
+        now = int(time.time())
+        self.conn.execute(
+            "INSERT INTO hosts (host, sample_url, name, hits, last_seen) VALUES (?,?,?,?,?)"
+            " ON CONFLICT(host) DO UPDATE SET sample_url=excluded.sample_url,"
+            " name=excluded.name, last_seen=excluded.last_seen,"
+            " hits=MAX(hosts.hits, excluded.hits)",
+            (host, sample_url, name, hits, now),
+        )
+
+    def hosts_due(self, limit: int, every_days: int) -> list[sqlite3.Row]:
+        """Recently linked hosts not sniffed in ``every_days``, most linked first."""
+        now = int(time.time())
+        return self.conn.execute(
+            "SELECT * FROM hosts WHERE (last_sniffed IS NULL OR last_sniffed < ?)"
+            " AND last_seen >= ? ORDER BY hits DESC, host LIMIT ?",
+            (now - every_days * 86400, now - self.DISCOVERY_STALE_DAYS * 86400, limit),
+        ).fetchall()
+
+    def hosts_sniffed(self, host: str, result: str) -> None:
+        self.conn.execute(
+            "UPDATE hosts SET last_sniffed=?, result=? WHERE host=?",
+            (int(time.time()), result[:300], host),
+        )
+
+    def hosts_rows(self) -> list[sqlite3.Row]:
+        return self.conn.execute(
+            "SELECT * FROM hosts WHERE last_sniffed IS NOT NULL ORDER BY hits DESC, host"
+        ).fetchall()
 
     def discovered_rows(self) -> list[sqlite3.Row]:
         return self.conn.execute(

@@ -286,7 +286,7 @@ Two other things worth knowing about scheduled workflows:
 
 1. Push this to a **public** GitHub repo.
 2. Actions → **radar** → *Run workflow* with mode **`seed`**. Seeding marks
-   the ~30,000 currently-live postings as already seen. **Skip this and the
+   the ~40,000 currently-live postings as already seen. **Skip this and the
    first real run treats the entire backlog as new.**
 3. Run it once more with mode **`run`** to render the feed immediately, then
    leave the schedule to it.
@@ -361,6 +361,9 @@ Two other knobs live in the same file:
 |---|---|
 | `MAX_AGE_HOURS = 168` | How fresh a posting must be to appear in loose and other fields, and to trigger an alert. 168 = seven days; drop to 48 for a stricter feed. |
 | `STRICT_MAX_AGE_HOURS = 336` | How long strict (AI/ML) roles stay listed. 336 = two weeks. Never shorter than `MAX_AGE_HOURS`. |
+| `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the fetch begins during which discovered boards keep being scraped. Keep it well under the workflow's 600-second timeout. |
+| `DISCOVERY_MAX_BOARDS = 300` | Hard cap on discovered boards per run; 0 turns discovery off. |
+| `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. |
 | `TARGET_CYCLE = (2027, 1)` | Winter 2027. Anything earlier is rejected; anything later is demoted. Bump it next cycle. |
 
 Backends share one small interface in [notify.py](notify.py) — `strict`,
@@ -432,8 +435,12 @@ Three coverage layers feed one dedupe-and-notify pipeline.
 **Layer 1 — ATS APIs.** Public JSON endpoints, no auth. One adapter per
 platform in [sources.py](sources.py): Ashby, Greenhouse, Lever,
 SmartRecruiters, Workable, Recruitee, Teamtailor, Breezy, Personio (XML),
-Workday, plus Amazon's own careers search (`amazon.jobs/en/search.json`),
-which is where its Toronto ML and robotics internships are posted.
+Workday, Oracle Cloud Recruiting (Nokia, Definity, BGIS), Eightfold
+(Qualcomm), iCIMS's Jibe sites (AMD) and classic iCIMS portals (Kinaxis,
+Mackenzie), plus Amazon's own careers search (`amazon.jobs/en/search.json`),
+which is where its Toronto ML and robotics internships are posted. Classic
+iCIMS has no JSON, so its server-rendered listing is parsed, and its
+`CA-ON-Ottawa` location codes are spelled out for the location gate.
 
 Workday is the awkward one: its search is keyword-driven, so a single query
 never surfaces everything. Each board is queried for `intern`, `co-op`,
@@ -445,15 +452,30 @@ Toronto and Montreal is read as the Toronto role it is.
 
 **Discovered boards.** Every Canadian posting the trackers carry links to the
 employer's own board, so each run mines those links (Ashby, Greenhouse, Lever,
-SmartRecruiters, Workable and both Workday URL forms) for boards not already
-in `companies.py`. They are remembered in a `discovered` table, ranked by how
-many Canadian postings pointed at them, and the top `DISCOVERY_MAX_BOARDS`
-(60) are scraped as a second wave. That wave surfaces roles no tracker lists.
-A board that fails five runs in a row, or has had no Canadian posting in 30
-days, drops out. Discovered boards stay out of the Sources table and the
-failure warning, since they are opportunistic, and get one summary line under
-it instead. `python radar.py --discovered` lists them; promote a good one by
-copying it into `companies.py`.
+SmartRecruiters, Workable, both Workday URL forms, Oracle, Eightfold, Jibe and
+iCIMS) for boards not already in `companies.py`. They are remembered in a
+`discovered` table and scraped as a second wave, which surfaces roles no
+tracker lists.
+
+The wave runs on a time budget rather than a fixed count: boards are scraped
+until `DISCOVERY_TIME_BUDGET_S` (330) seconds after the fetch began, leaving
+headroom under the 10-minute job timeout. The 40 boards with the most Canadian
+postings go first every run; the rest follow least recently scraped first, so
+a board the budget cut off gets its turn next run. A skipped board is not a
+failure. A board that fails five runs in a row, or has had no Canadian
+posting in 30 days, drops out.
+
+Links to careers sites no pattern recognises (`jobs.l3harris.com`,
+`billtrust.com`) are not thrown away either. Each run fetches up to
+`SNIFF_PER_RUN` (8) of them, most linked first, and looks for an ATS
+signature in the page; any supported board found joins the discovered boards.
+Each host is re-checked at most every 14 days, so a JavaScript-only site that
+names no ATS costs one request a fortnight.
+
+Discovered boards stay out of the Sources table and the failure warning,
+since they are opportunistic, and get one summary line under it instead.
+`python radar.py --discovered` lists them and every sniffed host; promote a
+good board by copying it into `companies.py`.
 
 **Layer 2 — careers pages.** For careers pages with no API. If the page embeds
 schema.org `JobPosting` data (what Google for Jobs indexes), those records are
@@ -611,7 +633,7 @@ matter for a local file:
 python -m unittest discover -s tests
 ```
 
-206 tests over the places a bug silently costs a job: the tier classifier and
+228 tests over the places a bug silently costs a job: the tier classifier and
 its location gate, the dedupe fingerprint, cycle parsing, the freshness window,
 tracker and careers-page parsing, board discovery, and the escaping and change-detection in the published feed. Fixtures are real title and location
 shapes taken from live boards. The workflow runs them before every scrape, so
@@ -624,12 +646,13 @@ a classifier bug cannot publish a garbled feed.
 Verified against real boards, most recent `--check`:
 
 ```
-73/73 sources ok · 31021 postings · 5 strict · 533 loose · 136 other fields
+80/80 sources ok · 40100 postings · 8 strict · 619 loose · 154 other fields
 ```
 
-Plus 60 discovered boards, all ok, in about 200 seconds for the whole run.
-Of the 743 roles kept in a fresh database, every one names Ontario or
-Canada; none was kept on an unreadable location.
+Plus 83 discovered boards, all scraped inside the time budget, in about 180
+seconds for the whole run. Of the 863 roles kept in a fresh database, every
+one names Ontario or remote-in-Canada; none was kept on an unreadable
+location.
 
 Strict is small on purpose: in `--check` it counts only roles posted in the
 last seven days (the alert window) that are Winter 2027 (or undated) AI/ML internships in Ontario.
@@ -652,6 +675,9 @@ Corrections found along the way:
 | The state DB can just be committed | ~5 MB of SQLite every run is gigabytes of binary history a year; it lives in `actions/cache` instead |
 | A missing location is harmless in loose | "Remote", blank and "Multiple Locations" rows were overwhelmingly US roles; now a Canadian signal is required in every tier |
 | Workday posting URLs all look like `tenant.wdN.myworkdayjobs.com` | Magna, Sysco and others link as `wdN.myworkdaysite.com/recruiting/tenant/Site`; the same tenant answers on the usual host, so discovery maps one to the other |
+| Eightfold's `/api/apply/v2/jobs` is the public search | It answers 403 ("Not authorized for PCSX"); `/api/pcsx/search` works and takes a location filter |
+| iCIMS portals block scrapers | They answer 405 to any User-Agent containing "(KHTML, like Gecko)", which is most browser strings; a shorter Chrome string gets the page |
+| AMD's Jibe search is empty | It filters on the request language, and `Accept-Language: en-CA` matches none of its `en-us` postings |
 | Rejecting known foreign places is enough | It knew "united kingdom" but not "UK", and ", NY" but not "Texas", so London and San Francisco roles were read as having no location and kept. Requiring a positive Ontario signal fixes the whole class |
 
 ## Known gaps
@@ -672,11 +698,14 @@ Corrections found along the way:
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.
-- **Clio, Xanadu, Limina, Untether AI and Kinaxis** are not scraped directly:
-  client-side rendering, a TLS handshake python-requests cannot complete, or
-  iCIMS answering 405. The trackers cover them.
-- **Scotiabank and AMD** answer 422 to the standard Workday search; they need
-  the exact request their own site sends, captured from DevTools.
+- **Clio, Xanadu, Limina and Untether AI** are not scraped directly:
+  client-side rendering, or a TLS handshake python-requests cannot complete.
+  The trackers cover them.
+- **Scotiabank** answers 422 to the standard Workday search; it needs the
+  exact request its own site sends, captured from DevTools.
+- **Host sniffing only sees server-rendered pages.** Okta, Stripe, Elastic
+  and most big-tech careers sites build their listings in JavaScript and name
+  no ATS in the HTML, so sniffing finds nothing there.
 - **Workday "N Locations"** rows are resolved only for student and new-grad
   titles, up to 40 per board per run; any beyond that are dropped as having
   no Canadian location.

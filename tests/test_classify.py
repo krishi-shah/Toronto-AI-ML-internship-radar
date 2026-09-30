@@ -594,6 +594,12 @@ class TestCanadianLocationRequired(unittest.TestCase):
         """Regression guard: ", ON" must not match the "on" in "on-site"."""
         self.assertIsNone(tier("ML Intern", location="Hybrid, on-site"))
 
+    def test_oracle_three_letter_province_is_ontario(self):
+        """Oracle Cloud Recruiting writes "ONT"; Kingston is ambiguous without it."""
+        self.assertEqual(tier("ML Intern", location="Kingston, ONT, Canada"), "strict")
+        self.assertEqual(tier("ML Intern", location="Toronto, ONT, Canada"), "strict")
+        self.assertIsNone(tier("ML Intern", location="Montreal, QUE, Canada"))
+
     def test_live_leaks_are_rejected(self):
         for location in [
             "Bengaluru", "London, GBR", "Doha, Qatar", "FL JAX 347",

@@ -158,6 +158,147 @@ class TestAmazon(unittest.TestCase):
         self.assertEqual(sources._amazon_date("20 days"), 0)
 
 
+class TestOracle(unittest.TestCase):
+    """Shapes from Definity's Oracle Cloud Recruiting search."""
+
+    TOKEN = "https://hdks.fa.ca2.oraclecloud.com|CX_1"
+    REQ = {
+        "Id": "9347", "Title": "Claims Assistant - Winter 2027 Co-op/Intern",
+        "PrimaryLocation": "Waterloo, ONT, Canada", "PostedDate": "2026-09-18",
+        "secondaryLocations": [{"Name": "Toronto, ONT, Canada"}], "WorkplaceType": "",
+    }
+
+    def test_requisition_becomes_a_posting(self):
+        http = mock.Mock()
+        http.json.return_value = {"items": [{"TotalJobsCount": 1, "requisitionList": [self.REQ]}]}
+        [post] = sources.oracle(http, "Definity", self.TOKEN)
+        self.assertEqual(http.json.call_count, len(sources.SEARCH_TERMS))
+        self.assertEqual(post.uid, "oracle:hdks.fa.ca2.oraclecloud.com:9347")
+        self.assertEqual(post.url, "https://hdks.fa.ca2.oraclecloud.com/hcmUI/"
+                                   "CandidateExperience/en/sites/CX_1/job/9347")
+        self.assertEqual(post.location, "Waterloo, ONT, Canada, Toronto, ONT, Canada")
+        self.assertGreater(post.posted_at, 0)
+        finder = http.json.call_args.kwargs["params"]["finder"]
+        self.assertIn("siteNumber=CX_1", finder)
+
+
+class TestJibe(unittest.TestCase):
+    """Shapes from AMD's careers site (iCIMS Jibe)."""
+
+    JOB = {"data": {
+        "req_id": "91368", "title": "Short Term 2027 Software Engineering Intern/Co-Op",
+        "full_location": "MARKHAM, Canada", "city": "MARKHAM", "state": "Ontario",
+        "country": "Canada", "posted_date": "2026-09-01T07:11:00+0000",
+        "canonical_url": "https://careers.amd.com/jobs/91368?lang=en-us",
+        "description": "Offices in Austin, Texas and Toronto.",
+    }}
+
+    def test_job_becomes_a_posting_without_the_description(self):
+        http = mock.Mock()
+        http.json.return_value = {"totalCount": 1, "jobs": [self.JOB]}
+        [post] = sources.jibe(http, "AMD", "https://careers.amd.com/")
+        self.assertEqual(post.uid, "jibe:careers.amd.com:91368")
+        self.assertEqual(post.location, "MARKHAM, Canada, MARKHAM, Ontario, Canada")
+        self.assertNotIn("description", post.raw)
+        self.assertGreater(post.posted_at, 0)
+
+    def test_request_asks_for_english_us(self):
+        http = mock.Mock()
+        http.json.return_value = {}
+        sources.jibe(http, "AMD", "https://careers.amd.com")
+        kwargs = http.json.call_args.kwargs
+        self.assertEqual(kwargs["params"]["location"], "Canada")
+        self.assertTrue(kwargs["headers"]["Accept-Language"].startswith("en-US"))
+
+
+class TestEightfold(unittest.TestCase):
+    """Shapes from Qualcomm's PCSX search."""
+
+    POS = {"id": 446721064018, "name": "FY27 Intern - Machine Learning Compiler Intern",
+           "locations": ["Markham, Ontario, Canada"], "postedTs": 1789603200,
+           "positionUrl": "/careers/job/446721064018", "workLocationOption": "onsite"}
+
+    def test_position_becomes_a_posting(self):
+        http = mock.Mock()
+        http.json.return_value = {"data": {"count": 1, "positions": [self.POS]}}
+        [post] = sources.eightfold(http, "Qualcomm", "qualcomm.eightfold.ai|qualcomm.com")
+        self.assertEqual(post.uid, "eightfold:qualcomm.eightfold.ai:446721064018")
+        self.assertEqual(post.url, "https://qualcomm.eightfold.ai/careers/job/446721064018")
+        self.assertEqual(post.location, "Markham, Ontario, Canada")
+        self.assertEqual(http.json.call_args.kwargs["params"]["domain"], "qualcomm.com")
+
+    def test_domain_defaults_to_tenant_dot_com(self):
+        http = mock.Mock()
+        http.json.return_value = {}
+        sources.eightfold(http, "Qualcomm", "qualcomm.eightfold.ai")
+        self.assertEqual(http.json.call_args.kwargs["params"]["domain"], "qualcomm.com")
+
+
+class TestIcims(unittest.TestCase):
+    """Both card templates seen live: Kinaxis ("Location") and Mackenzie ("Job Locations")."""
+
+    KINAXIS = """
+<li class="iCIMS_JobCardItem"><div class="row">
+<div class="col-xs-6 header left"><span class="sr-only field-label">Location</span>
+<span >
+CA-Remote</span></div>
+<div class="col-xs-12 title">
+<a href="https://careers-kinaxis.icims.com/jobs/35377/co-op-intern-developer%2c-ai/job?in_iframe=1" class="iCIMS_Anchor" title="35377">
+<span class="sr-only field-label">Title</span><h3 >
+Co-op/Intern Developer, AI Innovation</h3></a></div>
+<dl class="iCIMS_JobHeaderGroup"><div class="iCIMS_JobHeaderTag">
+<dt class="iCIMS_JobHeaderField">Posted Date</dt>
+<dd class="iCIMS_JobHeaderData"><span title="9/29/2026 5:30 PM">1 day ago</span></dd></div>
+<div class="iCIMS_JobHeaderTag"><dt class="iCIMS_JobHeaderField">
+<span class="sr-only field-label">Additional Locations</span></dt>
+<dd class="iCIMS_JobHeaderData"><span >
+CA-ON-Ottawa | CA-ON-Toronto</span></dd></div></dl>
+</div></li>
+<link rel="next" href="https://careers-kinaxis.icims.com/jobs/search?pr=1&amp;in_iframe=1" />"""
+
+    MACKENZIE = """
+<li class="iCIMS_JobCardItem"><div class="row">
+<div class="col-xs-6 header left"><span class="sr-only field-label">Job Locations</span>
+<span >
+CA-ON-Greater Toronto Area</span></div>
+<div class="col-xs-6 header right"><span class="sr-only field-label">Posted Date</span>
+<span title="9/30/2026 3:08 PM">
+3 hours ago</span></div>
+<div class="col-xs-12 title">
+<a href="https://careersen-mackenzieinvestments.icims.com/jobs/6014/winter-intern/job?in_iframe=1" class="iCIMS_Anchor" title="6014">
+<span class="sr-only field-label">Job Title</span><h3 >
+Winter Intern 2027 - AI Strategy &amp; Enablement</h3></a></div>
+</div></li>"""
+
+    def test_location_codes_are_spelled_out(self):
+        self.assertEqual(sources._icims_place("CA-ON-Ottawa"), "Ottawa, ON, Canada")
+        self.assertEqual(sources._icims_place("CA-Remote"), "Remote, Canada")
+        self.assertEqual(sources._icims_place("Toronto"), "Toronto")
+
+    def test_first_template(self):
+        [card] = sources._icims_cards(self.KINAXIS)
+        self.assertEqual(card["id"], "35377")
+        self.assertEqual(card["title"], "Co-op/Intern Developer, AI Innovation")
+        self.assertEqual(card["location"],
+                         "Remote, Canada, Ottawa, ON, Canada, Toronto, ON, Canada")
+        self.assertNotIn("in_iframe", card["url"])
+        self.assertGreater(card["posted_at"], 0)
+
+    def test_second_template(self):
+        [card] = sources._icims_cards(self.MACKENZIE)
+        self.assertEqual(card["title"], "Winter Intern 2027 - AI Strategy & Enablement")
+        self.assertEqual(card["location"], "Greater Toronto Area, ON, Canada")
+        self.assertGreater(card["posted_at"], 0)
+
+    def test_pages_until_no_next_link_with_own_user_agent(self):
+        http = mock.Mock()
+        http.text.side_effect = [self.KINAXIS, self.MACKENZIE]
+        posts = sources.icims(http, "Kinaxis", "https://careers-kinaxis.icims.com")
+        self.assertEqual(http.text.call_count, 2)
+        self.assertEqual(len(posts), 2)
+        self.assertNotIn("KHTML", http.text.call_args.kwargs["headers"]["User-Agent"])
+
+
 class TestBadgeLinks(unittest.TestCase):
     """Regression: CIBC's strict hit linked to a shields.io badge, not the job."""
 
@@ -220,6 +361,31 @@ class TestWorkdayMultiLocation(unittest.TestCase):
                  for i in range(sources.WORKDAY_DETAIL_CAP + 10)]
         sources._resolve_workday_locations(http, self.BASE, posts)
         self.assertEqual(http.json.call_count, sources.WORKDAY_DETAIL_CAP)
+
+
+class TestSniffNewPlatforms(unittest.TestCase):
+    def test_signatures_become_adapter_tokens(self):
+        html = """
+        <a href="https://careers-kinaxis.icims.com/jobs/intro">Jobs</a>
+        <script src="https://static.icims.com/x.js"></script>
+        <a href="https://qualcomm.eightfold.ai/careers">Careers</a>
+        <a href="https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions">Apply</a>
+        """
+        hits = sources._sniff_hits("https://www.example.com/careers", html)
+        self.assertIn(("icims", "https://careers-kinaxis.icims.com"), hits)
+        self.assertIn(("eightfold", "qualcomm.eightfold.ai|qualcomm.com"), hits)
+        self.assertIn(("oracle", "https://hdks.fa.ca2.oraclecloud.com|CX_1"), hits)
+        self.assertNotIn(("icims", "https://static.icims.com"), hits)
+
+    def test_jibe_board_is_the_page_host(self):
+        html = '<script src="https://app.jibecdn.com/prod/search.js"></script>'
+        hits = sources._sniff_hits("https://careers.amd.com/careers-home/jobs", html)
+        self.assertEqual(hits, [("jibe", "https://careers.amd.com")])
+
+    def test_sniff_boards_drops_platforms_without_an_adapter(self):
+        http = mock.Mock()
+        http.text.return_value = '<a href="https://acme.successfactors.com/career">x</a>'
+        self.assertEqual(sources.sniff_boards(http, "https://acme.com/careers"), [])
 
 
 class TestProbe(unittest.TestCase):

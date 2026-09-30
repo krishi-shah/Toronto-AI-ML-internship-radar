@@ -5,6 +5,7 @@ boards or, worse, starts scraping boards that have nothing to do with Canada.
 """
 
 import os
+import sqlite3
 import sys
 import tempfile
 import time
@@ -64,8 +65,28 @@ class TestBoardFromUrl(unittest.TestCase):
             with self.subTest(url=url):
                 self.assertEqual(sources.board_from_url(url), ("workday", token))
 
+    def test_composite_platform_urls(self):
+        cases = {
+            "https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9324":
+                ("oracle", "https://hdks.fa.ca2.oraclecloud.com|CX_1"),
+            "https://eedu.fa.em3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1003/job/202601653":
+                ("oracle", "https://eedu.fa.em3.oraclecloud.com|CX_1003"),
+            "https://qualcomm.eightfold.ai/careers/job/446721229661":
+                ("eightfold", "qualcomm.eightfold.ai|qualcomm.com"),
+            "https://careers.amd.com/jobs/91308?icims=1":
+                ("jibe", "https://careers.amd.com"),
+            "https://careers.publicisgroupe.com/jobs/155173?lang=en-us&icims=1":
+                ("jibe", "https://careers.publicisgroupe.com"),
+            "https://careers-kinaxis.icims.com/jobs/35372/job?mobile=true&needsRedirect=false":
+                ("icims", "https://careers-kinaxis.icims.com"),
+        }
+        for url, expected in cases.items():
+            with self.subTest(url=url):
+                self.assertEqual(sources.board_from_url(url), expected)
+
     def test_non_board_urls(self):
         for url in [
+            "https://careers.amd.com/jobs/91308",
             "https://www.amazon.jobs/en/jobs/10535280/sde-intern",
             "https://app.careerpuck.com/job-board/lyft/job/8843341002",
             "https://boards.greenhouse.io/figma",
@@ -156,6 +177,37 @@ class TestDiscoveredStore(StoreCase):
         self.store.conn.execute("UPDATE discovered SET last_canada = ?", (stale,))
         self.assertEqual(self.store.discovered_pick(10), [])
 
+    def test_top_boards_first_then_least_recently_attempted(self):
+        for token, hits in [("big", 50), ("mid", 20), ("old", 5), ("new", 3)]:
+            self.store.discovered_add("lever", token, token, hits)
+        now = int(time.time())
+        self.store.conn.execute("UPDATE discovered SET last_attempt=? WHERE token='mid'", (now,))
+        self.store.conn.execute("UPDATE discovered SET last_attempt=? WHERE token='old'",
+                                (now - 3600,))
+        picked = [r["token"] for r in self.store.discovered_pick(10, top=1)]
+        self.assertEqual(picked, ["big", "new", "old", "mid"])
+
+    def test_outcomes_stamp_the_attempt(self):
+        self.store.discovered_add("lever", "a", "A", 1)
+        self.store.discovered_add("lever", "b", "B", 1)
+        self.store.discovered_ok("lever", "a", jobs=1, canada=1)
+        self.store.discovered_fail("lever", "b", "boom")
+        self.assertTrue(all(r["last_attempt"] for r in self.store.discovered_rows()))
+
+    def test_old_database_gains_last_attempt(self):
+        self.store.close()
+        conn = sqlite3.connect(self.tmp.name)
+        conn.executescript(
+            "DROP TABLE discovered; CREATE TABLE discovered (platform TEXT NOT NULL,"
+            " token TEXT NOT NULL, name TEXT NOT NULL, first_seen INTEGER NOT NULL,"
+            " last_canada INTEGER NOT NULL, last_ok INTEGER, last_error TEXT,"
+            " fails INTEGER NOT NULL DEFAULT 0, canada_hits INTEGER NOT NULL DEFAULT 0,"
+            " job_count INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (platform, token));")
+        conn.close()
+        self.store = Store(self.tmp.name)
+        self.store.discovered_add("lever", "a", "A", 1)
+        self.assertIsNone(self.store.discovered_pick(1)[0]["last_attempt"])
+
     def test_summary_counts_active_boards(self):
         self.store.discovered_add("lever", "a", "A", 1)
         self.store.discovered_add("lever", "b", "B", 1)
@@ -208,6 +260,19 @@ class TestDiscoveryWave(StoreCase):
         self.assertEqual(errors, {})
         self.assertEqual(self.store.discovered_rows()[0]["fails"], 1)
 
+    def test_boards_past_the_deadline_are_skipped_not_failed(self):
+        tracker_row = post("https://jobs.lever.co/kepler/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab")
+        called = []
+        tasks = [("Tracker [tracker]", lambda: [tracker_row], False)]
+        with mock.patch.object(radar, "build_tasks", return_value=tasks), \
+                mock.patch.dict(sources.ADAPTERS, {"lever": lambda *a: called.append(a) or []}), \
+                mock.patch.object(radar.cfg, "COMPANIES", []), \
+                mock.patch.object(radar.cfg, "DISCOVERY_TIME_BUDGET_S", -1):
+            postings, errors = radar.fetch_all(None, self.store, quiet=True)
+        self.assertEqual((called, errors, len(postings)), ([], {}, 1))
+        row = self.store.discovered_rows()[0]
+        self.assertEqual((row["fails"], row["last_attempt"]), (0, None))
+
     def test_discovery_can_be_turned_off(self):
         tracker_row = post("https://jobs.lever.co/kepler/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab")
         tasks = [("Tracker [tracker]", lambda: [tracker_row], False)]
@@ -216,6 +281,46 @@ class TestDiscoveryWave(StoreCase):
             postings, _ = radar.fetch_all(None, self.store, quiet=True)
         self.assertEqual(len(postings), 1)
         self.assertEqual(self.store.discovered_rows(), [])
+
+
+class TestHostSniffing(StoreCase):
+    """Unrecognised careers hosts are sniffed a few at a time into discovery."""
+
+    def test_only_unplaced_canadian_non_aggregator_hosts(self):
+        postings = [
+            post("https://jobs.l3harris.com/job/ottawa/intern/1"),
+            post("https://jobs.l3harris.com/job/ottawa/intern/2"),
+            post("https://www.stripe.com/jobs/listing/intern/1", location="San Francisco, CA"),
+            post("https://zapply.jobs/l/d/workday-magna-x"),
+            post("https://jobs.lever.co/waabi/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab"),
+            post("https://vectorinstitute.ai/careers/1"),
+        ]
+        hosts = sources.unplaced_hosts(postings, skip={"vectorinstitute.ai"})
+        self.assertEqual([(h["host"], h["hits"]) for h in hosts], [("jobs.l3harris.com", 2)])
+
+    def test_found_boards_join_discovery_and_hosts_rest(self):
+        self.store.hosts_add("careers.example.com", "https://careers.example.com/j/1", "Ex", 3)
+        self.store.hosts_add("jobs.nothing.com", "https://jobs.nothing.com/j/1", "No", 1)
+        results = {"https://careers.example.com/j/1": [("greenhouse", "example")],
+                   "https://jobs.nothing.com/j/1": []}
+        with mock.patch.object(sources, "sniff_boards", lambda http, url: results[url]), \
+                mock.patch.object(radar.cfg, "COMPANIES", []):
+            found = radar._sniff_hosts(None, self.store, [], quiet=True)
+        self.assertEqual(found, 1)
+        [board] = self.store.discovered_rows()
+        self.assertEqual((board["platform"], board["token"], board["name"]),
+                         ("greenhouse", "example", "Ex"))
+        self.assertEqual({r["host"]: r["result"] for r in self.store.hosts_rows()},
+                         {"careers.example.com": "greenhouse example",
+                          "jobs.nothing.com": "no supported ATS"})
+
+    def test_hosts_are_not_resniffed_within_the_interval(self):
+        self.store.hosts_add("careers.example.com", "https://careers.example.com/j/1", "Ex", 3)
+        self.store.hosts_sniffed("careers.example.com", "no supported ATS")
+        self.assertEqual(self.store.hosts_due(8, every_days=14), [])
+        old = int(time.time()) - 15 * 86400
+        self.store.conn.execute("UPDATE hosts SET last_sniffed=?", (old,))
+        self.assertEqual(len(self.store.hosts_due(8, every_days=14)), 1)
 
 
 class TestDefaultLocation(unittest.TestCase):

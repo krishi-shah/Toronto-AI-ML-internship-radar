@@ -127,21 +127,36 @@ def fetch_all(
     Discovered boards are speculative, so their failures are tracked in the
     ``discovered`` table instead and never trip the health warning.
     """
+    deadline = time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S
     postings, errors = _run_wave(build_tasks(http), store, quiet)
     store.commit()
 
     if cfg.DISCOVERY_MAX_BOARDS > 0:
-        found = _run_discovered(http, store, postings, quiet)
+        found = _run_discovered(http, store, postings, quiet, deadline)
         postings.extend(found)
         store.commit()
     return postings, errors
 
 
+class OutOfTime(Exception):
+    """A discovered board reached after the time budget ran out. Not a failure."""
+
+
+def _before(deadline: float, thunk: Callable[[], list[Posting]]) -> Callable[[], list[Posting]]:
+    """Run ``thunk`` only if the pool reaches it before ``deadline``."""
+    def run() -> list[Posting]:
+        if time.monotonic() > deadline:
+            raise OutOfTime()
+        return thunk()
+    return run
+
+
 def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
-    """Run ``(label, thunk, ai_native)`` tasks on the pool.
+    """Run ``(label, thunk, ai_native)`` tasks on the pool, in order.
 
     ``on_result(label, found_or_None, error_or_None)`` replaces the default
-    health-table bookkeeping when given.
+    health-table bookkeeping when given. A task raising :class:`OutOfTime`
+    is reported to neither: it simply did not run.
     """
     postings: list[Posting] = []
     errors: dict[str, str] = {}
@@ -154,6 +169,8 @@ def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
             label, ai_native = futures[future]
             try:
                 found = future.result()
+            except OutOfTime:
+                continue
             except Exception as exc:  # noqa: BLE001 - every failure is per-source
                 msg = f"{type(exc).__name__}: {exc}"
                 if on_result:
@@ -187,19 +204,73 @@ def configured_boards() -> set[tuple[str, str]]:
     }
 
 
+def configured_hosts() -> set[str]:
+    """Hosts already scraped through a URL-shaped token, never worth sniffing."""
+    hosts = set()
+    for c in cfg.COMPANIES:
+        token = c["token"].partition("|")[0]
+        if token.startswith("http"):
+            hosts.add(sources._bare_host(token))
+    return hosts
+
+
+def _sniff_hosts(http: sources.Http, store: Store, postings: list[Posting], quiet: bool) -> int:
+    """Sniff a few unrecognised careers hosts; any supported board joins discovery.
+
+    Returns how many new boards were found. Each host is sniffed at most once
+    per ``SNIFF_EVERY_DAYS``, whatever the outcome, so a dead end costs one
+    request a fortnight.
+    """
+    for entry in sources.unplaced_hosts(postings, configured_hosts()):
+        store.hosts_add(entry["host"], entry["url"], entry["name"], entry["hits"])
+    store.commit()
+
+    due = store.hosts_due(cfg.SNIFF_PER_RUN, cfg.SNIFF_EVERY_DAYS)
+    if not due:
+        return 0
+    known = configured_boards()
+
+    def sniff(row: sqlite3.Row) -> list[tuple[str, str]]:
+        return sources.sniff_boards(http, row["sample_url"])
+
+    found = 0
+    with ThreadPoolExecutor(max_workers=min(len(due), cfg.MAX_WORKERS)) as pool:
+        futures = {pool.submit(sniff, row): row for row in due}
+        for future in as_completed(futures):
+            row = futures[future]
+            try:
+                boards = [b for b in future.result() if sources.board_key(*b) not in known]
+            except Exception as exc:  # noqa: BLE001 - a dead host is the common case
+                store.hosts_sniffed(row["host"], f"error: {type(exc).__name__}")
+                continue
+            for platform, token in boards:
+                store.discovered_add(platform, token, row["name"], row["hits"])
+            found += len(boards)
+            store.hosts_sniffed(
+                row["host"], "; ".join(f"{p} {t}" for p, t in boards) or "no supported ATS")
+            if not quiet and boards:
+                print(f"  sniffed {row['host']}: {', '.join(p for p, _ in boards)}")
+    store.commit()
+    return found
+
+
 def _run_discovered(
-    http: sources.Http, store: Store, postings: list[Posting], quiet: bool
+    http: sources.Http, store: Store, postings: list[Posting], quiet: bool,
+    deadline: float,
 ) -> list[Posting]:
-    """Mine ``postings`` for new boards, then scrape the best known ones."""
+    """Mine ``postings`` for new boards, then scrape known ones until ``deadline``."""
     for board in sources.discover_boards(postings, configured_boards()):
         store.discovered_add(board["platform"], board["token"], board["name"], board["hits"])
     store.commit()
+    if cfg.SNIFF_PER_RUN > 0:
+        _sniff_hosts(http, store, postings, quiet)
 
-    picked = store.discovered_pick(cfg.DISCOVERY_MAX_BOARDS)
+    picked = store.discovered_pick(cfg.DISCOVERY_MAX_BOARDS, cfg.DISCOVERY_TOP_BOARDS)
     if not picked:
         return []
     if not quiet:
-        print(f"\n  -- {len(picked)} discovered boards --")
+        print(f"\n  -- up to {len(picked)} discovered boards, "
+              f"{max(0, int(deadline - time.monotonic()))}s left in the budget --")
 
     by_label: dict[str, sqlite3.Row] = {}
     tasks = []
@@ -208,12 +279,17 @@ def _run_discovered(
         if label in by_label:
             label = f"{row['name']} [{row['platform']}:{row['token'][-24:]}, discovered]"
         by_label[label] = row
-        adapter = sources.ADAPTERS[row["platform"]]
-        tasks.append(
-            (label, lambda a=adapter, n=row["name"], t=row["token"]: a(http, n, t), False)
-        )
+        adapter = sources.ADAPTERS.get(row["platform"])
+        if adapter is None:
+            continue
+        thunk = lambda a=adapter, n=row["name"], t=row["token"]: a(http, n, t)  # noqa: E731
+        tasks.append((label, _before(deadline, thunk), False))
+
+    ran = 0
 
     def record(label: str, found: Optional[list[Posting]], error: Optional[str]) -> None:
+        nonlocal ran
+        ran += 1
         row = by_label[label]
         if error is not None:
             store.discovered_fail(row["platform"], row["token"], error)
@@ -222,6 +298,8 @@ def _run_discovered(
         store.discovered_ok(row["platform"], row["token"], len(found), canada)
 
     found, _ = _run_wave(tasks, store, quiet, on_result=record)
+    if not quiet and ran < len(tasks):
+        print(f"  -- time budget reached: {len(tasks) - ran} boards wait for the next run --")
     return found
 
 
@@ -486,6 +564,12 @@ def cmd_discovered(store: Store) -> int:
               f" {row['fails']:>5}  {row['token']}")
         if row["fails"] and row["last_error"]:
             print(f"    {row['last_error'][:140]}")
+
+    hosts = store.hosts_rows()
+    if hosts:
+        print(f"\n{'sniffed careers host':<44} {'links':>6}  result")
+        for row in hosts:
+            print(f"{row['host'][:44]:<44} {row['hits']:>6}  {row['result']}")
     return 0
 
 

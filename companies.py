@@ -10,10 +10,17 @@ name       Display name used in alerts and in the dedupe fingerprint. Match the
            name the trackers use ("Royal Bank of Canada", not "RBC") so a role
            seen on both collapses into one row.
 platform   One of: ashby, greenhouse, lever, smartrecruiters, workable,
-           recruitee, teamtailor, breezy, personio, workday, amazon, html.
+           recruitee, teamtailor, breezy, personio, workday, amazon, oracle,
+           jibe, eightfold, icims, html.
 token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs``
            URL; for ``amazon`` an ISO-3 country code; for ``html`` it is the
            careers page URL. ``python radar.py --probe <slug>`` guesses tokens.
+           ``oracle``     ``https://{host}|{siteNumber}``, from a posting URL
+                          ``{host}/hcmUI/CandidateExperience/en/sites/CX_1/job/N``
+           ``jibe``       the careers site root, e.g. ``https://careers.amd.com``
+                          (posting URLs end ``?icims=1``)
+           ``eightfold``  ``{tenant}.eightfold.ai|{company domain}``
+           ``icims``      the portal root, e.g. ``https://careers-kinaxis.icims.com``
 location   Optional. Filled into postings from this source that carry no
            location, for employers that only hire in one place.
 ai_native  True for companies where *every* engineering role is an AI role.
@@ -141,8 +148,25 @@ COMPANIES: list[dict] = [
     {"name": "Magna", "platform": "workday",
      "token": "https://magna.wd3.myworkdayjobs.com/wday/cxs/magna/Magna/jobs",
      "ai_native": False},
-    # Scotiabank and AMD answer 422 to the standard cxs search; left out until
-    # someone captures the request their own site sends.
+    # Scotiabank answers 422 to the standard cxs search; left out until
+    # someone captures the request its own site sends. AMD's Workday does too,
+    # but its public careers site is Jibe (below).
+
+    # -- Other ATS platforms, verified live 30 Sep 2026 -----------------------
+    # Tokens come straight off a posting URL; see the docstring for each form.
+    {"name": "Qualcomm", "platform": "eightfold",
+     "token": "qualcomm.eightfold.ai|qualcomm.com", "ai_native": False},
+    {"name": "AMD", "platform": "jibe", "token": "https://careers.amd.com", "ai_native": False},
+    {"name": "Nokia", "platform": "oracle",
+     "token": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com|CX_1", "ai_native": False},
+    {"name": "Definity Financial", "platform": "oracle",
+     "token": "https://hdks.fa.ca2.oraclecloud.com|CX_1", "ai_native": False},
+    {"name": "BGIS", "platform": "oracle",
+     "token": "https://fa-evcg-saasfaprod1.fa.ocs.oraclecloud.com|CX_1", "ai_native": False},
+    {"name": "Kinaxis", "platform": "icims",
+     "token": "https://careers-kinaxis.icims.com", "ai_native": False},
+    {"name": "Mackenzie Investments", "platform": "icims",
+     "token": "https://careersen-mackenzieinvestments.icims.com", "ai_native": False},
 
     # -- Careers pages, HTML layer ---------------------------------------
     # For careers pages with no API. Pages that embed schema.org JobPosting
@@ -214,11 +238,23 @@ TARGET_CYCLE = (2027, 1)
 HEALTH_FAIL_THRESHOLD = 0.2
 
 # Automatic discovery. Every run mines Canadian postings (mostly tracker rows)
-# for the employer boards they link to, and scrapes up to this many boards that
-# are not configured above, most Canadian postings first. 0 turns it off.
+# for the employer boards they link to, and scrapes boards that are not
+# configured above until DISCOVERY_TIME_BUDGET_S seconds have passed since the
+# fetch began, or DISCOVERY_MAX_BOARDS boards (0 turns discovery off). The
+# DISCOVERY_TOP_BOARDS with the most Canadian postings go first every run; the
+# rest take turns, least recently scraped first. The budget leaves headroom
+# under the workflow's 10-minute timeout for seeding, rendering and committing.
 # A board drops out after 5 failures in a row or 30 days without a Canadian
 # posting. See them with: python radar.py --discovered
-DISCOVERY_MAX_BOARDS = 60
+DISCOVERY_MAX_BOARDS = 300
+DISCOVERY_TIME_BUDGET_S = 330
+DISCOVERY_TOP_BOARDS = 40
+
+# Unrecognised careers sites that Canadian tracker postings link to are sniffed
+# for a supported ATS, this many per run, each host at most once a fortnight.
+# Anything found joins the discovered boards above.
+SNIFF_PER_RUN = 8
+SNIFF_EVERY_DAYS = 14
 
 # Thread pool width for source fetching. Requests to one host are serialised
 # by the politeness gap anyway, so this mostly overlaps different boards.

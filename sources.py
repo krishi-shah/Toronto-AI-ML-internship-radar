@@ -644,6 +644,234 @@ def amazon(http: Http, company: str, token: str) -> list[Posting]:
     return list(found.values())
 
 
+# The four platforms below are keyword-driven like Workday, so the student
+# terms are searched and merged on the provider's own id. "new grad" is left
+# out: these boards are large and the classifier caps new-grad roles anyway.
+SEARCH_TERMS = ["intern", "co-op", "student"]
+SEARCH_MAX_OFFSET = 200
+
+
+def _split_token(token: str) -> tuple[str, str]:
+    """``"a|b"`` -> ``("a", "b")``, for platforms needing two identifiers."""
+    first, _, second = token.partition("|")
+    return first.strip().rstrip("/"), second.strip()
+
+
+def oracle(http: Http, company: str, token: str) -> list[Posting]:
+    """Oracle Cloud Recruiting (Candidate Experience). Verified against Nokia.
+
+    ``token`` is ``"https://{host}|{siteNumber}"``, both read straight off a
+    posting URL: ``{host}/hcmUI/CandidateExperience/en/sites/CX_1/job/40261``.
+    """
+    host, site = _split_token(token)
+    site = site or "CX_1"
+    api = f"{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+    found: dict[str, Posting] = {}
+    for term in SEARCH_TERMS:
+        offset = 0
+        while offset <= SEARCH_MAX_OFFSET:
+            finder = (f"findReqs;siteNumber={site},keyword={term},"
+                      f"limit=25,offset={offset}")
+            data = http.json(api, params={
+                "onlyData": "true",
+                "expand": "requisitionList.secondaryLocations",
+                "finder": finder,
+            }) or {}
+            items = data.get("items") or [{}]
+            reqs = items[0].get("requisitionList") or []
+            for req in reqs:
+                jid = _s(req.get("Id"))
+                if not jid:
+                    continue
+                secondary = [_s(s.get("Name")) for s in req.get("secondaryLocations") or []]
+                remote = "Remote" if "remote" in _s(req.get("WorkplaceType")).lower() else ""
+                found[jid] = Posting(
+                    company=company,
+                    title=_s(req.get("Title")),
+                    location=_join(req.get("PrimaryLocation"), *secondary, remote),
+                    url=f"{host}/hcmUI/CandidateExperience/en/sites/{site}/job/{jid}",
+                    uid=f"oracle:{urlparse(host).netloc}:{jid}",
+                    raw={"PrimaryLocationCountry": req.get("PrimaryLocationCountry")},
+                    posted_at=_date(req.get("PostedDate")),
+                )
+            offset += 25
+            if len(reqs) < 25 or offset >= int(items[0].get("TotalJobsCount") or 0):
+                break
+    return list(found.values())
+
+
+def jibe(http: Http, company: str, token: str) -> list[Posting]:
+    """iCIMS "Jibe" careers sites, whose posting URLs end ``?icims=1``.
+
+    ``token`` is the careers site root, e.g. ``https://careers.amd.com``. Its
+    ``/api/jobs`` search takes a location filter, so only Canada is fetched.
+    Verified against AMD.
+
+    The search filters on the request language: ``en-CA`` returns nothing,
+    since postings are tagged ``en-us``.
+    """
+    base = token.rstrip("/")
+    found: dict[str, Posting] = {}
+    for term in SEARCH_TERMS:
+        page = 1
+        while (page - 1) * 100 <= SEARCH_MAX_OFFSET:
+            data = http.json(f"{base}/api/jobs", params={
+                "keywords": term, "location": "Canada", "page": page, "limit": 100,
+            }, headers={"Accept-Language": "en-US,en;q=0.9"}) or {}
+            jobs = data.get("jobs") or []
+            for item in jobs:
+                job = item.get("data") or {}
+                jid = _s(job.get("req_id")) or _s(job.get("slug"))
+                if not jid:
+                    continue
+                found[jid] = Posting(
+                    company=company,
+                    title=_s(job.get("title")),
+                    location=_join(job.get("full_location"),
+                                   _join(job.get("city"), job.get("state"), job.get("country"))),
+                    url=_s(job.get("canonical_url")) or f"{base}/jobs/{jid}",
+                    uid=f"jibe:{urlparse(base).netloc}:{jid}",
+                    raw={"location_type": job.get("location_type")},
+                    posted_at=_date(job.get("posted_date"), job.get("create_date")),
+                )
+            if len(jobs) < 100 or page * 100 >= int(data.get("totalCount") or 0):
+                break
+            page += 1
+    return list(found.values())
+
+
+def eightfold(http: Http, company: str, token: str) -> list[Posting]:
+    """Eightfold careers sites through the PCSX search. Verified against Qualcomm.
+
+    ``token`` is ``"{tenant}.eightfold.ai|{domain}"``, e.g.
+    ``"qualcomm.eightfold.ai|qualcomm.com"``. The older
+    ``/api/apply/v2/jobs`` endpoint answers 403 ("Not authorized for PCSX").
+    """
+    host, domain = _split_token(token)
+    host = re.sub(r"^https?://", "", host)
+    domain = domain or host.split(".")[0] + ".com"
+    found: dict[str, Posting] = {}
+    for term in SEARCH_TERMS:
+        start = 0
+        while start <= SEARCH_MAX_OFFSET:
+            data = (http.json(f"https://{host}/api/pcsx/search", params={
+                "domain": domain, "query": term, "location": "Canada", "start": start,
+            }) or {}).get("data") or {}
+            positions = data.get("positions") or []
+            for job in positions:
+                jid = _s(job.get("id"))
+                if not jid:
+                    continue
+                remote = "Remote" if "remote" in _s(job.get("workLocationOption")).lower() else ""
+                found[jid] = Posting(
+                    company=company,
+                    title=_s(job.get("name")),
+                    location=_join(*(job.get("locations") or []), remote),
+                    url=f"https://{host}{_s(job.get('positionUrl')) or '/careers/job/' + jid}",
+                    uid=f"eightfold:{host}:{jid}",
+                    raw={"department": job.get("department")},
+                    posted_at=_date(job.get("postedTs"), job.get("creationTs")),
+                )
+            start += len(positions)
+            if not positions or start >= int(data.get("count") or 0):
+                break
+    return list(found.values())
+
+
+_ICIMS_CARD_RE = re.compile(r'<li class="iCIMS_JobCardItem">(.*?)</li>', re.S)
+_ICIMS_LINK_RE = re.compile(r'<a href="([^"]*/jobs/(\d+)/[^"]*)"[^>]*class="iCIMS_Anchor"'
+                            r'[^>]*>.*?<h3[^>]*>(.*?)</h3>', re.S)
+# Portals use two card templates: "Location" with the date in a <dl>, and
+# "Job Locations" with the date in the card header.
+_ICIMS_LOC_RE = re.compile(
+    r'field-label">(?:Job )?Locations?</span>\s*<span[^>]*>(.*?)</span>', re.S)
+_ICIMS_MORE_RE = re.compile(r'Additional Locations</span>.*?<dd[^>]*><span[^>]*>(.*?)</span>', re.S)
+_ICIMS_DATE_RE = re.compile(
+    r'Posted Date</(?:dt|span)>\s*(?:<dd[^>]*>)?\s*<span title="([^"]+)"', re.S)
+_ICIMS_COUNTRIES = {"CA": "Canada", "US": "United States", "UK": "UK", "GB": "UK",
+                    "IN": "India", "DE": "Germany", "FR": "France", "IE": "Ireland"}
+ICIMS_MAX_PAGES = 10
+ICIMS_USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "Chrome/126.0.0.0 Safari/537.36")
+
+
+def _icims_place(code: str) -> str:
+    """``CA-ON-Ottawa`` -> ``Ottawa, ON, Canada``; ``CA-Remote`` -> ``Remote, Canada``.
+
+    iCIMS writes locations as country-region-city codes, which the location
+    gate cannot read as they stand.
+    """
+    parts = [p.strip() for p in code.strip().split("-", 2)]
+    if len(parts) < 2 or parts[0].upper() not in _ICIMS_COUNTRIES:
+        return code.strip()
+    country = _ICIMS_COUNTRIES[parts[0].upper()]
+    return ", ".join([*reversed(parts[1:]), country])
+
+
+def _icims_date(value: str) -> int:
+    try:
+        dt = datetime.strptime(value.strip(), "%m/%d/%Y %I:%M %p")
+    except ValueError:
+        return 0
+    return int(dt.replace(tzinfo=timezone.utc).timestamp())
+
+
+def _icims_cards(html: str) -> list[dict[str, Any]]:
+    cards = []
+    for block in _ICIMS_CARD_RE.findall(html):
+        link = _ICIMS_LINK_RE.search(block)
+        if not link:
+            continue
+        loc = _ICIMS_LOC_RE.search(block)
+        more = _ICIMS_MORE_RE.search(block)
+        places = [loc.group(1)] if loc else []
+        if more:
+            places += more.group(1).split("|")
+        date = _ICIMS_DATE_RE.search(block)
+        cards.append({
+            "id": link.group(2),
+            "url": re.sub(r"[?&]in_iframe=1", "", unescape(link.group(1))),
+            "title": " ".join(unescape(re.sub(r"<[^>]+>", "", link.group(3))).split()),
+            "location": _join(*(_icims_place(unescape(p)) for p in places if p.strip())),
+            "posted_at": _icims_date(date.group(1)) if date else 0,
+        })
+    return cards
+
+
+def icims(http: Http, company: str, token: str) -> list[Posting]:
+    """Classic iCIMS portals (``careers-{x}.icims.com``). Verified against Kinaxis.
+
+    There is no JSON, so the server-rendered search page is parsed: up to 50
+    cards a page, each carrying title, location codes and a posted date.
+
+    iCIMS answers 405 to any User-Agent containing "(KHTML, like Gecko)",
+    which the shared client sends, so this adapter sends its own. The full
+    listing is paged rather than searched per keyword: a whole portal is
+    usually a few pages.
+    """
+    base = token.rstrip("/")
+    host = urlparse(base).netloc
+    found: dict[str, Posting] = {}
+    for page in range(ICIMS_MAX_PAGES):
+        html = http.text(f"{base}/jobs/search",
+                         params={"ss": "1", "in_iframe": "1", "pr": page},
+                         headers={"User-Agent": ICIMS_USER_AGENT}) or ""
+        cards = _icims_cards(html)
+        for card in cards:
+            found[card["id"]] = Posting(
+                company=company,
+                title=card["title"],
+                location=card["location"],
+                url=card["url"],
+                uid=f"icims:{host}:{card['id']}",
+                raw={},
+                posted_at=card["posted_at"],
+            )
+        if not cards or f"pr={page + 1}" not in html:
+            break
+    return list(found.values())
+
+
 ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
     "ashby": ashby,
     "greenhouse": greenhouse,
@@ -656,6 +884,10 @@ ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
     "personio": personio,
     "workday": workday,
     "amazon": amazon,
+    "oracle": oracle,
+    "jibe": jibe,
+    "eightfold": eightfold,
+    "icims": icims,
 }
 
 
@@ -1135,12 +1367,16 @@ _SNIFF_PATTERNS: list[tuple[str, str]] = [
     ("breezy", r"([A-Za-z0-9_\-]+)\.breezy\.hr"),
     ("personio", r"([A-Za-z0-9_\-]+)\.jobs\.personio\.(?:de|com)"),
     ("workday", r"([a-z0-9\-]+)\.(wd\d+)\.myworkdayjobs\.com/(?:[a-z\-]+/)?([A-Za-z0-9_\-]+)"),
+    ("oracle", r"([a-z0-9\-]+\.fa(?:\.[a-z0-9\-]+)*\.oraclecloud\.com)"
+               r"/hcmUI/CandidateExperience/[A-Za-z\-]+/sites/([A-Za-z0-9_]+)"),
+    ("eightfold", r"([a-z0-9\-]+)\.eightfold\.ai"),
+    # Jibe sites load their app from jibecdn; the board is the page's own host.
+    ("jibe", r"(?:app|assets)\.jibecdn\.com"),
     ("icims", r"([A-Za-z0-9_\-]+)\.icims\.com"),
     ("successfactors", r"([A-Za-z0-9_\-]+)\.(?:successfactors|sapsf)\.(?:com|eu)"),
 ]
 
 _NO_API = {
-    "icims": "iCIMS",
     "successfactors": "SuccessFactors",
 }
 
@@ -1150,6 +1386,48 @@ _TOKEN_NOISE = {
     "static", "assets", "cdn", "js", "css", "images", "img", "en", "en-us",
     "search", "index", "home", "about", "login", "signup", "help", "support",
 }
+
+
+def _sniff_token(platform: str, groups: tuple, page_url: str) -> Optional[str]:
+    """The adapter token a sniff-pattern match names, or None for noise."""
+    if platform == "workday":
+        tenant, wd, site = groups
+        return f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    if platform == "oracle":
+        return f"https://{groups[0].lower()}|{groups[1]}"
+    if platform == "jibe":
+        parsed = urlparse(page_url)
+        return f"{parsed.scheme or 'https'}://{parsed.netloc}" if parsed.netloc else None
+    token = groups[0]
+    if token.lower() in _TOKEN_NOISE or len(token) < 2:
+        return None
+    if platform == "eightfold":
+        return f"{token.lower()}.eightfold.ai|{token.lower()}.com"
+    if platform == "icims":
+        return f"https://{token.lower()}.icims.com"
+    return token
+
+
+def _sniff_hits(url: str, html: str) -> list[tuple[str, str]]:
+    """Every ``(platform, token)`` signature in a page and its URL.
+
+    The URL is scanned as well as the body: a Workday or Ashby careers page is
+    a JS shell whose HTML never mentions the platform, but whose URL does.
+    """
+    hits: list[tuple[str, str]] = []
+    haystack = f"{url}\n{html}"
+    for platform, pattern in _SNIFF_PATTERNS:
+        for match in re.finditer(pattern, haystack, re.IGNORECASE):
+            token = _sniff_token(platform, match.groups(), url)
+            if token and (platform, token) not in hits:
+                hits.append((platform, token))
+    return hits
+
+
+def sniff_boards(http: Http, url: str) -> list[tuple[str, str]]:
+    """Scrapable boards behind ``url``: sniff hits on platforms with an adapter."""
+    html = http.text(url) or ""
+    return [(p, t) for p, t in _sniff_hits(url, html) if p in ADAPTERS]
 
 
 def sniff(http: Http, url: str) -> list[str]:
@@ -1165,24 +1443,7 @@ def sniff(http: Http, url: str) -> list[str]:
         return [f"# could not fetch {url}: {exc}"]
 
     name_guess = _guess_name(url, html)
-    hits: list[tuple[str, str]] = []
-
-    # Scan the URL as well as the body. A Workday or Ashby careers page is a
-    # JS shell whose HTML never mentions the platform, but whose own URL does.
-    haystack = f"{url}\n{html}"
-
-    for platform, pattern in _SNIFF_PATTERNS:
-        for match in re.finditer(pattern, haystack, re.IGNORECASE):
-            groups = match.groups()
-            if platform == "workday":
-                tenant, wd, site = groups[0], groups[1], groups[2]
-                token = f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
-            else:
-                token = groups[0]
-                if token.lower() in _TOKEN_NOISE or len(token) < 2:
-                    continue
-            if (platform, token) not in hits:
-                hits.append((platform, token))
+    hits = _sniff_hits(url, html)
 
     if not hits:
         lines.append(f"# no ATS signature found on {url}")
@@ -1277,6 +1538,20 @@ _WORKDAY_SITE_RE = re.compile(
     r"https?://(wd\d+)\.myworkdaysite\.com/(?:[a-z]{2}-[A-Z]{2}/)?recruiting/"
     r"([a-z0-9\-]+)/([A-Za-z0-9_\-]+)/job/"
 )
+# Platforms whose token is more than a slug, as (platform, pattern, builder).
+_COMPOSITE_POSTING_RES: list[tuple[str, re.Pattern, Callable[..., str]]] = [
+    ("oracle", re.compile(
+        r"https?://([a-z0-9\-]+\.fa(?:\.[a-z0-9\-]+)*\.oraclecloud\.com)"
+        r"/hcmUI/CandidateExperience/[A-Za-z\-]+/sites/([A-Za-z0-9_]+)/job/", re.I),
+     lambda host, site: f"https://{host.lower()}|{site}"),
+    ("eightfold", re.compile(r"https?://([a-z0-9\-]+)\.eightfold\.ai/careers/job/\d+", re.I),
+     lambda t: f"{t.lower()}.eightfold.ai|{t.lower()}.com"),
+    # Jibe posting URLs end "?icims=1" (careers.amd.com/jobs/91308?icims=1).
+    ("jibe", re.compile(r"https?://([a-z0-9.\-]+)/(?:[a-z\-]+/)?jobs/\d+\?(?:[^#]*&)?icims=1", re.I),
+     lambda host: f"https://{host.lower()}"),
+    ("icims", re.compile(r"https?://([a-z0-9\-]+\.icims\.com)/jobs/\d+", re.I),
+     lambda host: f"https://{host.lower()}"),
+]
 
 
 def board_from_url(url: str) -> Optional[tuple[str, str]]:
@@ -1290,6 +1565,10 @@ def board_from_url(url: str) -> Optional[tuple[str, str]]:
     if m:
         wd, tenant, site = m.groups()
         return "workday", f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    for platform, pattern, build in _COMPOSITE_POSTING_RES:
+        m = pattern.search(url)
+        if m:
+            return platform, build(*m.groups())
     for platform, pattern in _BOARD_URL_PATTERNS:
         m = pattern.search(url)
         if m and m.group(1).lower() not in _TOKEN_NOISE:
@@ -1300,6 +1579,55 @@ def board_from_url(url: str) -> Optional[tuple[str, str]]:
 def board_key(platform: str, token: str) -> tuple[str, str]:
     """Case-insensitive identity of a board, for comparing against config."""
     return platform, token.rstrip("/").lower()
+
+
+# Aggregators, redirectors and search pages: linked from trackers constantly,
+# never an employer's own board.
+SNIFF_DENY_HOSTS = (
+    "zapply.jobs", "simplify.jobs", "google.com", "linkedin.com", "indeed.com",
+    "indeed.ca", "glassdoor.com", "glassdoor.ca", "github.com", "careerpuck.com",
+    "wellfound.com", "workatastartup.com", "joinhandshake.com", "amazon.jobs",
+    "bit.ly", "forms.gle", "notion.site", "lnkd.in",
+)
+
+
+def _bare_host(url: str) -> str:
+    host = urlparse(url or "").netloc.lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def unplaced_hosts(postings: Iterable[Posting], skip: set[str]) -> list[dict]:
+    """Hosts of Canadian postings that no board pattern recognises.
+
+    Each is a careers site that may run a supported ATS behind a custom
+    domain (``jobs.l3harris.com``), which only fetching the page can tell.
+    Returns ``{"host", "url", "name", "hits"}`` per host, most linked first.
+    """
+    from collections import Counter
+
+    from core import in_canada
+
+    hosts: dict[str, dict] = {}
+    for post in postings:
+        host = _bare_host(post.url)
+        if not host or host in skip or board_from_url(post.url):
+            continue
+        if any(host == d or host.endswith("." + d) for d in SNIFF_DENY_HOSTS):
+            continue
+        if not in_canada(post):
+            continue
+        entry = hosts.setdefault(host, {"host": host, "url": post.url,
+                                        "names": Counter(), "hits": 0})
+        entry["hits"] += 1
+        if post.company:
+            entry["names"][post.company] += 1
+
+    out = []
+    for entry in hosts.values():
+        names = entry.pop("names")
+        entry["name"] = names.most_common(1)[0][0] if names else entry["host"]
+        out.append(entry)
+    return sorted(out, key=lambda h: -h["hits"])
 
 
 def discover_boards(
