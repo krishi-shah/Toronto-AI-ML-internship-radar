@@ -61,11 +61,13 @@ class FakeStore:
                       "other": list(other)}
         self._health = list(health_rows)
         self._discovered = discovered or {"ok": 0, "failing": 0, "total": 0}
+        self.windows = {}
 
     def discovered_summary(self):
         return self._discovered
 
     def recent_jobs(self, tier, limit=60, max_age_hours=None):
+        self.windows[tier] = max_age_hours
         return self._rows[tier][:limit]
 
     def health_rows(self):
@@ -171,6 +173,13 @@ class TestRendering(ReadmeCase):
     def test_empty_tier_states_the_window(self):
         self.render()
         self.assertIn("_Nothing in the last 7 days._", self.read())
+        self.assertIn("_Nothing in the last 14 days._", self.read())
+
+    def test_ai_ml_roles_stay_listed_for_two_weeks(self):
+        store = FakeStore()
+        ReadmeWriter(store, path=self.path).render()
+        self.assertEqual(store.windows, {"strict": 336, "loose": 168, "other": 168})
+        self.assertIn("AI/ML matches &middot; last 14 days", self.read())
 
     def test_failing_source_is_visible(self):
         self.render(health_rows=[health(ok=0, last_error="HTTPError: 403 Forbidden")])

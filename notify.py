@@ -247,6 +247,18 @@ def _e(text: Any) -> str:
     return html.escape(str(text or ""), quote=True)
 
 
+def _max_ages() -> tuple[int, int]:
+    """(window for loose and other fields, longer window for strict)."""
+    max_age = getattr(cfg, "MAX_AGE_HOURS", 168)
+    return max_age, max(max_age, getattr(cfg, "STRICT_MAX_AGE_HOURS", max_age))
+
+
+def _windows_label(window: str, strict_window: str) -> str:
+    if window == strict_window:
+        return f"last {window}"
+    return f"AI/ML last {strict_window}, others last {window}"
+
+
 def _window_label(max_age_hours: int) -> str:
     """"168" is not a number anyone reads as a week."""
     if max_age_hours >= 48:
@@ -303,9 +315,10 @@ class DashboardWriter:
         return self.render()
 
     def render(self) -> bool:
-        max_age = getattr(cfg, "MAX_AGE_HOURS", 168)
+        max_age, strict_age = _max_ages()
         window = _window_label(max_age)
-        strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, max_age)
+        strict_window = _window_label(strict_age)
+        strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, strict_age)
         loose_rows = self.store.recent_jobs("loose", LOOSE_LIMIT, max_age)
         other_rows = self.store.recent_jobs("other", OTHER_LIMIT, max_age)
         health = self.store.health_rows()
@@ -318,14 +331,15 @@ class DashboardWriter:
             "<h1>Internship radar</h1>",
             f'<div class="sub">Updated {_e(stamp)} Toronto &middot; '
             f"{ok_count}/{len(health)} sources healthy &middot; "
-            f"last {window}, newest first</div>",
-            f"<h2>Strict &middot; {len(strict_rows)} AI/ML matches</h2>",
+            f"{_windows_label(window, strict_window)}, newest first</div>",
+            f"<h2>Strict &middot; {len(strict_rows)} AI/ML matches &middot; "
+            f"last {strict_window}</h2>",
         ]
 
         body.append(
             "".join(_row_html(r, "s") for r in strict_rows)
             if strict_rows
-            else f'<div class="empty">Nothing posted in the last {window}. '
+            else f'<div class="empty">Nothing posted in the last {strict_window}. '
             "New AI/ML roles appear here within the hour of going live.</div>"
         )
 
@@ -472,9 +486,10 @@ class ReadmeWriter:
         return self.render()
 
     def _block(self) -> str:
-        max_age = getattr(cfg, "MAX_AGE_HOURS", 168)
+        max_age, strict_age = _max_ages()
         window = _window_label(max_age)
-        strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, max_age)
+        strict_window = _window_label(strict_age)
+        strict_rows = self.store.recent_jobs("strict", STRICT_LIMIT, strict_age)
         loose_rows = self.store.recent_jobs("loose", LOOSE_LIMIT, max_age)
         other_rows = self.store.recent_jobs("other", OTHER_LIMIT, max_age)
         health = self.store.health_rows()
@@ -495,11 +510,12 @@ class ReadmeWriter:
         lines = [
             f"_Updated {toronto_now():%A %d %B, %H:%M} Toronto"
             f" &middot; {ok_count}/{len(health)} sources healthy"
-            f" &middot; last {window}, newest first._",
+            f" &middot; {_windows_label(window, strict_window)}, newest first._",
             "",
-            f"### Strict &middot; {len(strict_rows)} AI/ML matches",
+            f"### Strict &middot; {len(strict_rows)} AI/ML matches"
+            f" &middot; last {strict_window}",
             "",
-            *_md_table(strict_rows, window),
+            *_md_table(strict_rows, strict_window),
             "",
             f"### Loose &middot; {len(loose_rows)} to review",
             "",

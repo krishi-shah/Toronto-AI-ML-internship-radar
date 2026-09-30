@@ -13,7 +13,8 @@ Three rules shape what you see:
   province, plus roles advertised as remote within Canada. Everywhere else is
   rejected outright — including Vancouver, Montreal and Calgary. A role listed
   for both Toronto and somewhere else is still a Toronto role and is kept.
-- **Only the last seven days**, newest first, each role labelled *Today*,
+- **Only the last two weeks for AI/ML roles, seven days for the rest**,
+  newest first, each role labelled *Today*,
   *Yesterday* or *N days ago* so you can see at a glance what is still worth
   racing for. Older postings stay in the database so dedupe keeps working, but
   never reach the feed.
@@ -372,7 +373,8 @@ Two other knobs live in the same file:
 
 | Setting | Meaning |
 |---|---|
-| `MAX_AGE_HOURS = 168` | How fresh a posting must be to appear. 168 = seven days; drop to 48 for a stricter feed. |
+| `MAX_AGE_HOURS = 168` | How fresh a posting must be to appear in loose and other fields, and to trigger an alert. 168 = seven days; drop to 48 for a stricter feed. |
+| `STRICT_MAX_AGE_HOURS = 336` | How long strict (AI/ML) roles stay listed. 336 = two weeks. Never shorter than `MAX_AGE_HOURS`. |
 | `TARGET_CYCLE = (2027, 1)` | Winter 2027. Anything earlier is rejected; anything later is demoted. Bump it next cycle. |
 
 Backends share one small interface in [notify.py](notify.py) — `strict`,
@@ -545,7 +547,10 @@ Fall 2027"* is a live Winter 2027 opportunity, not a dead 2026 one.
 
 ### Freshness
 
-Everything is filtered to the last `MAX_AGE_HOURS` (168, i.e. seven days) using
+Loose and other fields are filtered to the last `MAX_AGE_HOURS` (168, i.e.
+seven days) and strict AI/ML roles to `STRICT_MAX_AGE_HOURS` (336, two weeks),
+since those are rarer and still worth applying to in their second week. Only a
+role inside the seven-day window triggers an alert. Both use
 the **provider's** publish date, not when the radar happened to notice. Ages
 are counted in calendar days in Toronto rather than 24-hour blocks, so a role
 posted at 11pm last night reads "Yesterday" at 1am, not "2h ago". Dates are
@@ -640,8 +645,8 @@ Plus 60 discovered boards, all ok, in about 200 seconds for the whole run.
 Of the 743 roles kept in a fresh database, every one names Ontario or
 Canada; none was kept on an unreadable location.
 
-Strict is small on purpose: it counts only roles posted in the last seven days
-that are Winter 2027 (or undated) AI/ML internships in Ontario.
+Strict is small on purpose: in `--check` it counts only roles posted in the
+last seven days (the alert window) that are Winter 2027 (or undated) AI/ML internships in Ontario.
 
 Endpoint shapes were confirmed against live companies rather than assumed.
 Corrections found along the way:

@@ -196,6 +196,11 @@ NOTIFIERS = ["dashboard"]
 # noise; the dashboard labels every role with its age either way.
 MAX_AGE_HOURS = 168
 
+# Strict (AI/ML) roles stay listed longer: 336 = two weeks. They are rarer and
+# worth applying to after the first week, even though a role that old no
+# longer triggers an instant alert (that still uses MAX_AGE_HOURS).
+STRICT_MAX_AGE_HOURS = 336
+
 # The cycle being targeted, as (year, month) of its first month.
 # Winter 2027 starts January 2027. Any posting whose cycle label points at a
 # cycle EARLIER than this is rejected outright -- Fall 2026 recruiting is over,
