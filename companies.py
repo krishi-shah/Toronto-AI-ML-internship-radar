@@ -1,5 +1,8 @@
 """Target list for the radar. This is the file you edit constantly.
 
+Promoted boards live in ``auto_companies.py``, which the radar rewrites. Do
+not edit that file; ``all_companies()`` is the list the scraper actually uses.
+
 Add a company by running the sniffer and pasting the line it prints:
 
     python radar.py --sniff https://www.somecompany.com/careers
@@ -27,6 +30,11 @@ ai_native  True for companies where *every* engineering role is an AI role.
            A generic title like "Software Engineer Intern" at one of these
            still earns an instant ping instead of waiting for the 5pm digest.
 """
+
+try:
+    from auto_companies import AUTO_COMPANIES
+except ImportError:  # a checkout without the generated file still runs
+    AUTO_COMPANIES = []
 
 COMPANIES: list[dict] = [
     # -- Toronto AI, verified live --------------------------------------
@@ -185,6 +193,23 @@ COMPANIES: list[dict] = [
     #   Arteria AI     -- Greenhouse board exists but is empty
 ]
 
+
+def all_companies() -> list[dict]:
+    """Curated boards plus boards the radar promoted from discovery evidence.
+
+    A promoted board that is also curated is listed once, as the curated copy.
+    """
+    seen: set[tuple[str, str]] = set()
+    out: list[dict] = []
+    for entry in list(COMPANIES) + list(AUTO_COMPANIES):
+        key = (entry.get("platform", ""), str(entry.get("token", "")).rstrip("/").lower())
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(entry)
+    return out
+
+
 # Community trackers. Branch names differ per repo, so the fetcher tries dev,
 # main and master, and prefers each repo's structured listings.json over the
 # README table -- Simplify's README is an HTML <table>, not markdown pipes.
@@ -249,6 +274,10 @@ HEALTH_FAIL_THRESHOLD = 0.2
 DISCOVERY_MAX_BOARDS = 300
 DISCOVERY_TIME_BUDGET_S = 330
 DISCOVERY_TOP_BOARDS = 40
+
+# How many discovered boards may be promoted into auto_companies.py. Ranked by
+# strict hits, then student hits, then how often Canadian postings linked them.
+PROMOTE_MAX = 40
 
 # Unrecognised careers sites that Canadian tracker postings link to are sniffed
 # for a supported ATS, this many per run, each host at most once a fortnight.

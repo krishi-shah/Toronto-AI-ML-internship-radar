@@ -375,7 +375,8 @@ Two other knobs live in the same file:
 | `STRICT_MAX_AGE_HOURS = 336` | How long strict (AI/ML) roles stay listed. 336 = two weeks. Never shorter than `MAX_AGE_HOURS`. |
 | `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the fetch begins during which discovered boards keep being scraped. Keep it well under the workflow's 600-second timeout. |
 | `DISCOVERY_MAX_BOARDS = 300` | Hard cap on discovered boards per run; 0 turns discovery off. |
-| `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. |
+| `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. A page that names no ATS waits 30 days, one that named a platform waits 7, and a fetch error waits 14. Leftover budget sniffs another batch. |
+| `PROMOTE_MAX = 40` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
 | `TARGET_CYCLE = (2027, 1)` | Winter 2027. Anything earlier is rejected; anything later is demoted. Bump it next cycle. |
 
 Backends share one small interface in [notify.py](notify.py) — `strict`,
@@ -481,13 +482,26 @@ Links to careers sites no pattern recognises (`jobs.l3harris.com`,
 `billtrust.com`) are not thrown away either. Each run fetches up to
 `SNIFF_PER_RUN` (8) of them, most linked first, and looks for an ATS
 signature in the page; any supported board found joins the discovered boards.
-Each host is re-checked at most every 14 days, so a JavaScript-only site that
-names no ATS costs one request a fortnight.
+Each host is re-checked on a backoff: 30 days when the page names no ATS, 7
+days when it named a platform, 14 days after a fetch error.
 
-Discovered boards stay out of the Sources table and the failure warning,
-since they are opportunistic, and get one summary line under it instead.
-`python radar.py --discovered` lists them and every sniffed host; promote a
-good board by copying it into `companies.py`.
+If the time budget is not used up, the run retries each configured source
+that failed, once, and sniffs another batch of hosts.
+
+A discovered board that keeps returning Canadian student roles is promoted
+into [auto_companies.py](auto_companies.py), which `all_companies()` appends
+to the curated list. Promotion needs a strict (AI/ML) hit, or at least two
+student roles on a successful scrape, and the board must not already be
+curated. It is demoted after three failed scrapes, or two successful scrapes
+in a row with no student roles. Noise boards (agencies, huge non-Canadian
+boards) stay in the opportunistic wave. The file is rewritten at the end of
+a normal run or `--seed`, never by `--check`, and the workflow commits it
+with the README. `ai_native` is never set automatically.
+
+Discovered boards stay out of the Sources table and the failure warning
+until they are promoted. They get one summary line under it instead.
+`python radar.py --discovered` lists each board as promoted, waiting, or
+demoted, plus every sniffed host.
 
 **Layer 2 — careers pages.** For careers pages with no API. If the page embeds
 schema.org `JobPosting` data (what Google for Jobs indexes), those records are
@@ -645,9 +659,9 @@ matter for a local file:
 python -m unittest discover -s tests
 ```
 
-228 tests over the places a bug silently costs a job: the tier classifier and
+240 tests over the places a bug silently costs a job: the tier classifier and
 its location gate, the dedupe fingerprint, cycle parsing, the freshness window,
-tracker and careers-page parsing, board discovery, and the escaping and change-detection in the published feed. Fixtures are real title and location
+tracker and careers-page parsing, board discovery and promotion, and the escaping and change-detection in the published feed. Fixtures are real title and location
 shapes taken from live boards. The workflow runs them before every scrape, so
 a classifier bug cannot publish a garbled feed.
 
@@ -658,13 +672,14 @@ a classifier bug cannot publish a garbled feed.
 Verified against real boards, most recent `--check`:
 
 ```
-80/80 sources ok · 40100 postings · 8 strict · 619 loose · 154 other fields
+80/80 sources ok · 39958 postings · 16 strict · 612 loose · 152 other fields
 ```
 
-Plus 83 discovered boards, all scraped inside the time budget, in about 180
-seconds for the whole run. Of the 863 roles kept in a fresh database, every
-one names Ontario or remote-in-Canada; none was kept on an unreadable
-location.
+The run finished in about 4 minutes, inside the discovery time budget, and
+`--check` left `auto_companies.py` untouched. Syncing that same database
+would promote 39 boards that returned Canadian student roles (campus sites
+for RBC, BMO, Sun Life and Autodesk among them) into `auto_companies.py` on
+the next normal run.
 
 Strict is small on purpose: in `--check` it counts only roles posted in the
 last seven days (the alert window) that are Winter 2027 (or undated) AI/ML internships in Ontario.
@@ -717,7 +732,8 @@ Corrections found along the way:
   exact request its own site sends, captured from DevTools.
 - **Host sniffing only sees server-rendered pages.** Okta, Stripe, Elastic
   and most big-tech careers sites build their listings in JavaScript and name
-  no ATS in the HTML, so sniffing finds nothing there.
+  no ATS in the HTML, so sniffing finds nothing there. Those hosts are then
+  left alone for 30 days.
 - **Workday "N Locations"** rows are resolved only for student and new-grad
   titles, up to 40 per board per run; any beyond that are dropped as having
   no Canadian location.
@@ -733,5 +749,6 @@ Corrections found along the way:
 | [sources.py](sources.py) | ATS adapters, careers-page layer, tracker parsers, sniffer, prober |
 | [core.py](core.py) | Tier classifier, fingerprint, SQLite state and health |
 | [notify.py](notify.py) | README feed, HTML dashboard, Windows toasts, backend interface |
-| [companies.py](companies.py) | Target list, notifiers, freshness and cycle settings |
+| [companies.py](companies.py) | Curated target list, notifiers, freshness and cycle settings |
+| [auto_companies.py](auto_companies.py) | Generated list of boards promoted from discovery evidence |
 | [.github/workflows/radar.yml](.github/workflows/radar.yml) | The scheduler: scrape, test, render, commit |

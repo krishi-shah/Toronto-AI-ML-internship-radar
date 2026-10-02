@@ -19,6 +19,7 @@ Windows notifications plus a local HTML dashboard.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sqlite3
 import sys
@@ -74,7 +75,7 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
     tasks: list[tuple[str, Callable[[], list[Posting]], bool]] = []
     labels: set[str] = set()
 
-    for entry in cfg.COMPANIES:
+    for entry in cfg.all_companies():
         name = entry["name"]
         platform = entry["platform"]
         token = entry["token"]
@@ -128,12 +129,38 @@ def fetch_all(
     ``discovered`` table instead and never trip the health warning.
     """
     deadline = time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S
-    postings, errors = _run_wave(build_tasks(http), store, quiet)
+    tasks = build_tasks(http)
+    postings, errors = _run_wave(tasks, store, quiet)
     store.commit()
 
     if cfg.DISCOVERY_MAX_BOARDS > 0:
         found = _run_discovered(http, store, postings, quiet, deadline)
         postings.extend(found)
+        store.commit()
+
+    if time.monotonic() < deadline and errors:
+        retry = [
+            (label, _before(deadline, thunk), ai)
+            for label, thunk, ai in tasks
+            if label in errors
+        ]
+        if retry and not quiet:
+            print(
+                f"\n  -- retrying {len(retry)} failed sources, "
+                f"{max(0, int(deadline - time.monotonic()))}s left --"
+            )
+        more, still_bad = _run_wave(retry, store, quiet)
+        postings.extend(more)
+        healthy = {row["source"] for row in store.health_rows() if row["ok"]}
+        errors = {label: err for label, err in errors.items() if label not in healthy}
+        errors.update(still_bad)
+        store.commit()
+
+    if (time.monotonic() < deadline and cfg.SNIFF_PER_RUN > 0
+            and cfg.DISCOVERY_MAX_BOARDS > 0):
+        if not quiet:
+            print("\n  -- leftover time: sniffing more careers hosts --")
+        _sniff_hosts(http, store, postings, quiet)
         store.commit()
     return postings, errors
 
@@ -199,7 +226,7 @@ def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
 def configured_boards() -> set[tuple[str, str]]:
     return {
         sources.board_key(c["platform"], c["token"])
-        for c in cfg.COMPANIES
+        for c in cfg.all_companies()
         if c["platform"] in sources.ADAPTERS
     }
 
@@ -207,7 +234,7 @@ def configured_boards() -> set[tuple[str, str]]:
 def configured_hosts() -> set[str]:
     """Hosts already scraped through a URL-shaped token, never worth sniffing."""
     hosts = set()
-    for c in cfg.COMPANIES:
+    for c in cfg.all_companies():
         token = c["token"].partition("|")[0]
         if token.startswith("http"):
             hosts.add(sources._bare_host(token))
@@ -295,7 +322,17 @@ def _run_discovered(
             store.discovered_fail(row["platform"], row["token"], error)
             return
         canada = sum(1 for p in found if in_canada(p))
-        store.discovered_ok(row["platform"], row["token"], len(found), canada)
+        student = strict_n = 0
+        for post in found:
+            verdict = classify(post)
+            if verdict.tier in (STRICT, LOOSE, OTHER):
+                student += 1
+            if verdict.tier == STRICT:
+                strict_n += 1
+        store.discovered_ok(
+            row["platform"], row["token"], len(found), canada,
+            student=student, strict=strict_n,
+        )
 
     found, _ = _run_wave(tasks, store, quiet, on_result=record)
     if not quiet and ran < len(tasks):
@@ -420,6 +457,175 @@ def health_warning(errors: dict, total_sources: int, notifiers) -> None:
 # --------------------------------------------------------------------------
 
 
+PROMOTE_DENY = (
+    "prolific", "welo", "general dynamics", "invisible", "internshiplist",
+)
+
+
+def _denied_board(name: str, token: str) -> bool:
+    blob = f"{name} {token}".lower()
+    return any(word in blob for word in PROMOTE_DENY)
+
+
+def _curated_keys() -> set[tuple[str, str]]:
+    return {
+        sources.board_key(c["platform"], c["token"])
+        for c in cfg.COMPANIES
+        if c.get("platform") and c.get("token")
+    }
+
+
+def _should_demote(row: sqlite3.Row) -> bool:
+    return (row["fails"] or 0) >= 3 or (row["ok_streak"] or 0) <= -2
+
+
+def _promotable(row: sqlite3.Row, curated: set[tuple[str, str]]) -> bool:
+    if row["platform"] not in sources.ADAPTERS or (row["fails"] or 0) != 0:
+        return False
+    key = sources.board_key(row["platform"], row["token"])
+    if key in curated or _denied_board(row["name"], row["token"]):
+        return False
+    strict = row["strict_jobs"] or 0
+    student = row["student_jobs"] or 0
+    streak = row["ok_streak"] or 0
+    return strict >= 1 or (student >= 2 and streak >= 1)
+
+
+def _rank_row(row: Optional[sqlite3.Row]) -> tuple:
+    if row is None:
+        return (0, 0, 0, "", "", "")
+    return (
+        -(row["strict_jobs"] or 0),
+        -(row["student_jobs"] or 0),
+        -(row["canada_hits"] or 0),
+        (row["name"] or "").lower(),
+        row["platform"],
+        row["token"].lower(),
+    )
+
+
+def select_auto_companies(store: Store) -> tuple[list[dict], int]:
+    """Boards to write into auto_companies.py, and how many were dropped.
+
+    A board stays once promoted until it fails three scrapes or returns no
+    student roles twice in a row. New boards need a strict hit, or at least
+    two student roles on a successful scrape.
+    """
+    curated = _curated_keys()
+    by_key = {
+        sources.board_key(row["platform"], row["token"]): row
+        for row in store.discovered_rows()
+    }
+    demoted = 0
+    kept: list[dict] = []
+    kept_keys: set[tuple[str, str]] = set()
+    for entry in cfg.AUTO_COMPANIES:
+        key = sources.board_key(entry["platform"], entry["token"])
+        row = by_key.get(key)
+        if key in curated or _denied_board(entry.get("name", ""), entry.get("token", "")):
+            demoted += 1
+            continue
+        if row is not None and _should_demote(row):
+            demoted += 1
+            continue
+        kept.append({
+            "name": row["name"] if row is not None else entry["name"],
+            "platform": entry["platform"],
+            "token": entry["token"],
+            "ai_native": False,
+        })
+        kept_keys.add(key)
+
+    newcomers = [
+        row for row in store.discovered_rows()
+        if sources.board_key(row["platform"], row["token"]) not in kept_keys
+        and _promotable(row, curated)
+    ]
+    scored: list[tuple[tuple, dict]] = []
+    for entry in kept:
+        row = by_key.get(sources.board_key(entry["platform"], entry["token"]))
+        scored.append((_rank_row(row), entry))
+    for row in newcomers:
+        scored.append((_rank_row(row), {
+            "name": row["name"],
+            "platform": row["platform"],
+            "token": row["token"],
+            "ai_native": False,
+        }))
+    scored.sort(key=lambda item: item[0])
+    return [entry for _, entry in scored[: cfg.PROMOTE_MAX]], demoted
+
+
+def render_auto_companies(rows: list[dict]) -> str:
+    ordered = sorted(
+        rows, key=lambda row: (row["name"].lower(), row["platform"], row["token"].lower())
+    )
+    lines = [
+        "# AUTO-GENERATED by radar.py from discovered evidence. Do not edit.",
+        '"""Boards the radar promoted because they returned Canadian student roles.',
+        "",
+        "Curated boards stay in companies.py. This file is rewritten at the end of a",
+        'normal run or ``--seed``, never by ``--check``.',
+        '"""',
+        "",
+        "AUTO_COMPANIES: list[dict] = [",
+    ]
+    for row in ordered:
+        payload = {
+            "name": row["name"],
+            "platform": row["platform"],
+            "token": row["token"],
+            "ai_native": False,
+        }
+        lines.append(f"    {json.dumps(payload, ensure_ascii=True)},")
+    lines.append("]")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def write_auto_companies(path: str, rows: list[dict]) -> bool:
+    """Write ``rows`` if they differ from ``path``. Returns whether it changed."""
+    text = render_auto_companies(rows)
+    try:
+        with open(path, encoding="utf-8") as fh:
+            current = fh.read()
+    except OSError:
+        current = None
+    if current == text:
+        return False
+    temporary = path + ".tmp"
+    with open(temporary, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
+    os.replace(temporary, path)
+    return True
+
+
+def auto_companies_path() -> str:
+    return os.environ.get(
+        "RADAR_AUTO_COMPANIES",
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "auto_companies.py"),
+    )
+
+
+def sync_auto_companies(store: Store) -> bool:
+    """Rewrite the generated source list from this run's evidence."""
+    rows, demoted = select_auto_companies(store)
+    changed = write_auto_companies(auto_companies_path(), rows)
+    if changed:
+        print(f"auto_companies.py: {len(rows)} promoted, {demoted} demoted.")
+    return changed
+
+
+def _reload_companies() -> None:
+    """Pick up a just-written auto_companies.py in this process."""
+    import importlib
+
+    import auto_companies
+
+    importlib.reload(auto_companies)
+    importlib.reload(cfg)
+
+
 def cmd_run(store: Store, seed: bool = False) -> int:
     """Normal run: fetch, triage, alert. With ``seed``, record but never alert.
 
@@ -433,7 +639,9 @@ def cmd_run(store: Store, seed: bool = False) -> int:
     print(f"[{mode}] {toronto_now():%Y-%m-%d %H:%M:%S} Toronto")
 
     postings, errors = fetch_all(http, store)
-    total_sources = len(cfg.COMPANIES) + len(cfg.TRACKERS)
+    if sync_auto_companies(store):
+        _reload_companies()
+    total_sources = len(cfg.all_companies()) + len(cfg.TRACKERS)
 
     if seed:
         recorded = 0
@@ -489,7 +697,7 @@ def cmd_check(store: Store) -> int:
     print(f"[CHECK] {toronto_now():%Y-%m-%d %H:%M:%S} Toronto\n")
 
     postings, errors = fetch_all(http, store)
-    total_sources = len(cfg.COMPANIES) + len(cfg.TRACKERS)
+    total_sources = len(cfg.all_companies()) + len(cfg.TRACKERS)
 
     # Apply the same fingerprint dedupe a real run would, so the counts here
     # reflect what would actually ping rather than raw source rows. RBC alone
@@ -557,11 +765,24 @@ def cmd_discovered(store: Store) -> int:
     if not rows:
         print("No discovered boards yet. They appear after a run or --check.")
         return 0
-    print(f"{'board':<44} {'canada':>6} {'jobs':>5} {'fails':>5}  token")
+    auto = {
+        sources.board_key(entry["platform"], entry["token"])
+        for entry in cfg.AUTO_COMPANIES
+    }
+    print(f"{'board':<44} {'canada':>6} {'jobs':>5} {'fails':>5}  status")
     for row in rows:
+        key = sources.board_key(row["platform"], row["token"])
+        if key in auto:
+            status = "promoted"
+        elif _should_demote(row):
+            status = "demoted"
+        else:
+            status = "waiting"
         label = f"{row['name']} [{row['platform']}]"
         print(f"{label[:44]:<44} {row['canada_hits']:>6} {row['job_count']:>5}"
-              f" {row['fails']:>5}  {row['token']}")
+              f" {row['fails']:>5}  {status}")
+        if status != "promoted":
+            print(f"    {row['token']}")
         if row["fails"] and row["last_error"]:
             print(f"    {row['last_error'][:140]}")
 

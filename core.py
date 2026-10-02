@@ -700,6 +700,8 @@ def normalize_company(company: str) -> str:
     s = s.replace("&", " and ")
     s = _LEGAL_SUFFIX_RE.sub(" ", s)
     s = _NON_ALNUM_RE.sub("", s)
+    if s == "bankofmontreal":
+        return "bmo"
     return s
 
 
@@ -779,6 +781,9 @@ CREATE TABLE IF NOT EXISTS discovered (
     canada_hits  INTEGER NOT NULL DEFAULT 0,
     job_count    INTEGER NOT NULL DEFAULT 0,
     last_attempt INTEGER,
+    student_jobs INTEGER NOT NULL DEFAULT 0,
+    strict_jobs  INTEGER NOT NULL DEFAULT 0,
+    ok_streak    INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (platform, token)
 );
 
@@ -832,6 +837,13 @@ class Store:
         have = {r["name"] for r in self.conn.execute("PRAGMA table_info(discovered)")}
         if "last_attempt" not in have:
             self.conn.execute("ALTER TABLE discovered ADD COLUMN last_attempt INTEGER")
+        for column, decl in (
+            ("student_jobs", "INTEGER NOT NULL DEFAULT 0"),
+            ("strict_jobs", "INTEGER NOT NULL DEFAULT 0"),
+            ("ok_streak", "INTEGER NOT NULL DEFAULT 0"),
+        ):
+            if column not in have:
+                self.conn.execute(f"ALTER TABLE discovered ADD COLUMN {column} {decl}")
 
     def close(self) -> None:
         self.conn.close()
@@ -1055,15 +1067,30 @@ class Store:
         tail.sort(key=lambda r: (r["last_attempt"] or 0, -r["canada_hits"]))
         return (head + tail)[:limit]
 
-    def discovered_ok(self, platform: str, token: str, jobs: int, canada: int) -> None:
+    def discovered_ok(
+        self, platform: str, token: str, jobs: int, canada: int,
+        student: int = 0, strict: int = 0,
+    ) -> None:
+        """Record a successful scrape.
+
+        ``ok_streak`` climbs while the board keeps returning student roles and
+        falls below zero while it does not, so one empty scrape does not undo
+        a promotion and two in a row do.
+        """
         now = int(time.time())
         self.conn.execute(
             "UPDATE discovered SET last_ok=?, last_attempt=?, fails=0, last_error=NULL,"
-            " job_count=?,"
+            " job_count=?, student_jobs=?, strict_jobs=?,"
+            " ok_streak=CASE WHEN ? > 0 THEN"
+            "   CASE WHEN COALESCE(ok_streak, 0) > 0 THEN ok_streak + 1 ELSE 1 END"
+            " ELSE"
+            "   CASE WHEN COALESCE(ok_streak, 0) < 0 THEN ok_streak - 1 ELSE -1 END"
+            " END,"
             " canada_hits=CASE WHEN ? > 0 THEN ? ELSE canada_hits END,"
             " last_canada=CASE WHEN ? > 0 THEN ? ELSE last_canada END"
             " WHERE platform=? AND token=?",
-            (now, now, jobs, canada, canada, canada, now, platform, token),
+            (now, now, jobs, student, strict, student,
+             canada, canada, canada, now, platform, token),
         )
 
     def discovered_fail(self, platform: str, token: str, error: str) -> None:
@@ -1085,13 +1112,27 @@ class Store:
             (host, sample_url, name, hits, now),
         )
 
-    def hosts_due(self, limit: int, every_days: int) -> list[sqlite3.Row]:
-        """Recently linked hosts not sniffed in ``every_days``, most linked first."""
+    def hosts_due(self, limit: int, every_days: int = 14) -> list[sqlite3.Row]:
+        """Recently linked hosts whose backoff has elapsed, most linked first.
+
+        A page that names no ATS waits 30 days. One that named a platform
+        waits 7. A fetch error waits ``every_days`` (14). Never sniffed is due.
+        """
         now = int(time.time())
         return self.conn.execute(
-            "SELECT * FROM hosts WHERE (last_sniffed IS NULL OR last_sniffed < ?)"
-            " AND last_seen >= ? ORDER BY hits DESC, host LIMIT ?",
-            (now - every_days * 86400, now - self.DISCOVERY_STALE_DAYS * 86400, limit),
+            "SELECT * FROM hosts WHERE last_seen >= ? AND ("
+            " last_sniffed IS NULL"
+            " OR (result = 'no supported ATS' AND last_sniffed < ?)"
+            " OR (result LIKE 'error:%' AND last_sniffed < ?)"
+            " OR (COALESCE(result, '') != 'no supported ATS'"
+            "     AND COALESCE(result, '') NOT LIKE 'error:%'"
+            "     AND last_sniffed IS NOT NULL AND last_sniffed < ?)"
+            ") ORDER BY hits DESC, host LIMIT ?",
+            (now - self.DISCOVERY_STALE_DAYS * 86400,
+             now - 30 * 86400,
+             now - every_days * 86400,
+             now - 7 * 86400,
+             limit),
         ).fetchall()
 
     def hosts_sniffed(self, host: str, result: str) -> None:
@@ -1119,8 +1160,23 @@ class Store:
             " FROM discovered WHERE fails < ? AND last_canada >= ?",
             (self.DISCOVERY_MAX_FAILS, cutoff),
         ).fetchone()
+        promoted = demoted = 0
+        try:
+            import companies as companies_cfg
+            auto = {
+                (c["platform"], str(c["token"]).rstrip("/").lower())
+                for c in companies_cfg.AUTO_COMPANIES
+            }
+        except Exception:  # noqa: BLE001 - summary must survive a missing file
+            auto = set()
+        for board in self.conn.execute("SELECT platform, token, fails, ok_streak FROM discovered"):
+            key = (board["platform"], str(board["token"]).rstrip("/").lower())
+            if key in auto:
+                promoted += 1
+            elif (board["fails"] or 0) >= 3 or (board["ok_streak"] or 0) <= -2:
+                demoted += 1
         return {"ok": row["ok"] or 0, "failing": row["failing"] or 0,
-                "total": row["total"] or 0}
+                "total": row["total"] or 0, "promoted": promoted, "demoted": demoted}
 
     # -- conditional-request cache ---------------------------------------
 

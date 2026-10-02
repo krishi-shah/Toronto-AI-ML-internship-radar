@@ -237,10 +237,14 @@ def _discovered_label(store: Any) -> str:
     if not s["total"]:
         return ""
     failing = f", {s['failing']} failing" if s["failing"] else ""
+    promoted = s.get("promoted") or 0
+    demoted = s.get("demoted") or 0
+    promoted_label = f", {promoted} promoted" if promoted else ""
+    demoted_label = f", {demoted} demoted" if demoted else ""
     queued = s["total"] - s["ok"] - s["failing"]
     waiting = f" ({queued} more waiting for a slot)" if queued > 0 else ""
     return (f"Plus {s['ok'] + s['failing']} boards discovered from Canadian"
-            f" postings: {s['ok']} ok{failing}{waiting}.")
+            f" postings: {s['ok']} ok{failing}{promoted_label}{demoted_label}{waiting}.")
 
 
 def _e(text: Any) -> str:

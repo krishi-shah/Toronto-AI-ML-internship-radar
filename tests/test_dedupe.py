@@ -113,6 +113,12 @@ class TestFingerprint(unittest.TestCase):
         from_tracker = fingerprint("Cohere Inc.", "Machine Learning Internship (W27)")
         self.assertEqual(from_ats, from_tracker)
 
+    def test_bank_of_montreal_matches_bmo(self):
+        self.assertEqual(
+            fingerprint("Bank of Montreal", "AI Engineer Intern"),
+            fingerprint("BMO", "AI Engineer Intern"),
+        )
+
     def test_different_titles_at_same_company_differ(self):
         self.assertNotEqual(
             fingerprint("Cohere", "Machine Learning Intern"),

@@ -214,7 +214,7 @@ class TestDiscoveredStore(StoreCase):
         self.store.discovered_ok("lever", "a", jobs=5, canada=1)
         self.store.discovered_fail("lever", "b", "boom")
         self.assertEqual(self.store.discovered_summary(),
-                         {"ok": 1, "failing": 1, "total": 2})
+                         {"ok": 1, "failing": 1, "total": 2, "promoted": 0, "demoted": 0})
 
 
 class TestDiscoveryWave(StoreCase):
@@ -318,9 +318,139 @@ class TestHostSniffing(StoreCase):
         self.store.hosts_add("careers.example.com", "https://careers.example.com/j/1", "Ex", 3)
         self.store.hosts_sniffed("careers.example.com", "no supported ATS")
         self.assertEqual(self.store.hosts_due(8, every_days=14), [])
-        old = int(time.time()) - 15 * 86400
+        old = int(time.time()) - 31 * 86400
         self.store.conn.execute("UPDATE hosts SET last_sniffed=?", (old,))
         self.assertEqual(len(self.store.hosts_due(8, every_days=14)), 1)
+
+    def test_sniff_backoff_depends_on_the_result(self):
+        now = int(time.time())
+        samples = [
+            ("opaque.example", "no supported ATS", 8 * 86400, False),
+            ("oldopaque.example", "no supported ATS", 31 * 86400, True),
+            ("freshhit.example", "greenhouse acme", 3 * 86400, False),
+            ("hit.example", "greenhouse acme", 8 * 86400, True),
+            ("fresher.example", "error: HTTPError", 8 * 86400, False),
+            ("err.example", "error: HTTPError", 15 * 86400, True),
+        ]
+        for host, result, age, due in samples:
+            self.store.hosts_add(host, f"https://{host}/j", host, 1)
+            self.store.hosts_sniffed(host, result)
+            self.store.conn.execute(
+                "UPDATE hosts SET last_sniffed=? WHERE host=?", (now - age, host)
+            )
+        due_hosts = {row["host"] for row in self.store.hosts_due(20, every_days=14)}
+        for host, _result, _age, due in samples:
+            self.assertEqual(host in due_hosts, due, host)
+
+
+class TestPromotion(StoreCase):
+    def _ok(self, token, name, **counts):
+        self.store.discovered_add("lever", token, name, counts.get("canada", 1))
+        self.store.discovered_ok(
+            "lever", token, jobs=counts.get("jobs", 2), canada=counts.get("canada", 1),
+            student=counts.get("student", 0), strict=counts.get("strict", 0),
+        )
+
+    def test_strict_hit_is_promoted(self):
+        self._ok("kepler", "Kepler", strict=1, student=1)
+        rows, demoted = radar.select_auto_companies(self.store)
+        self.assertEqual([(r["token"], r["ai_native"]) for r in rows], [("kepler", False)])
+        self.assertEqual(demoted, 0)
+
+    def test_no_student_roles_are_not_promoted(self):
+        self._ok("empty", "Empty", student=0, strict=0)
+        self.assertEqual(radar.select_auto_companies(self.store)[0], [])
+
+    def test_two_student_roles_are_promoted(self):
+        self._ok("d2l", "D2L", student=2, strict=0)
+        self.assertEqual(radar.select_auto_companies(self.store)[0][0]["name"], "D2L")
+
+    def test_denylist_and_curated_boards_are_skipped(self):
+        self._ok("prolific", "Prolific", strict=4, student=4)
+        self._ok("kepler", "Kepler", strict=1, student=1)
+        with mock.patch.object(radar.cfg, "COMPANIES",
+                                [{"name": "Kepler", "platform": "lever", "token": "kepler"}]):
+            rows, _ = radar.select_auto_companies(self.store)
+        self.assertEqual(rows, [])
+
+    def test_three_failures_demote_a_promoted_board(self):
+        self._ok("kepler", "Kepler", strict=1, student=1)
+        for _ in range(3):
+            self.store.discovered_fail("lever", "kepler", "HTTPError: 404")
+        with mock.patch.object(radar.cfg, "AUTO_COMPANIES",
+                                [{"name": "Kepler", "platform": "lever", "token": "kepler",
+                                  "ai_native": False}]):
+            rows, demoted = radar.select_auto_companies(self.store)
+        self.assertEqual(rows, [])
+        self.assertEqual(demoted, 1)
+
+    def test_one_empty_scrape_keeps_a_promotion_and_two_drop_it(self):
+        entry = {"name": "Kepler", "platform": "lever", "token": "kepler", "ai_native": False}
+        self._ok("kepler", "Kepler", strict=1, student=2)
+        self.store.discovered_ok("lever", "kepler", jobs=3, canada=0, student=0, strict=0)
+        with mock.patch.object(radar.cfg, "AUTO_COMPANIES", [entry]):
+            rows, demoted = radar.select_auto_companies(self.store)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(demoted, 0)
+        self.store.discovered_ok("lever", "kepler", jobs=3, canada=0, student=0, strict=0)
+        with mock.patch.object(radar.cfg, "AUTO_COMPANIES", [entry]):
+            rows, demoted = radar.select_auto_companies(self.store)
+        self.assertEqual((rows, demoted), ([], 1))
+
+    def test_generated_file_is_stable(self):
+        self._ok("kepler", "Kepler", strict=1, student=1)
+        path = os.path.join(os.path.dirname(self.tmp.name), "auto_companies.py")
+        rows, _ = radar.select_auto_companies(self.store)
+        self.assertTrue(radar.write_auto_companies(path, rows))
+        first = open(path, encoding="utf-8").read()
+        self.assertFalse(radar.write_auto_companies(path, rows))
+        self.assertEqual(open(path, encoding="utf-8").read(), first)
+        self.assertIn('"ai_native": false', first)
+
+    def test_check_does_not_rewrite_auto_companies(self):
+        with mock.patch.object(radar, "fetch_all", return_value=([], {})), \
+                mock.patch.object(radar, "sync_auto_companies") as sync:
+            radar.cmd_check(self.store)
+        sync.assert_not_called()
+
+
+class TestSlack(StoreCase):
+    def test_a_failed_source_is_retried_while_time_remains(self):
+        calls = {"n": 0}
+
+        def flaky(http, name, token):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                raise RuntimeError("boom")
+            return []
+
+        company = {"name": "Acme", "platform": "lever", "token": "acme", "ai_native": False}
+        with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
+                mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
+                mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "DISCOVERY_MAX_BOARDS", 0), \
+                mock.patch.dict(sources.ADAPTERS, {"lever": flaky}):
+            _postings, errors = radar.fetch_all(None, self.store, quiet=True)
+        self.assertEqual(calls["n"], 2)
+        self.assertEqual(errors, {})
+
+    def test_no_retry_after_the_deadline(self):
+        calls = {"n": 0}
+
+        def broken(http, name, token):
+            calls["n"] += 1
+            raise RuntimeError("boom")
+
+        company = {"name": "Acme", "platform": "lever", "token": "acme", "ai_native": False}
+        with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
+                mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
+                mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "DISCOVERY_MAX_BOARDS", 0), \
+                mock.patch.object(radar.cfg, "DISCOVERY_TIME_BUDGET_S", -1), \
+                mock.patch.dict(sources.ADAPTERS, {"lever": broken}):
+            _postings, errors = radar.fetch_all(None, self.store, quiet=True)
+        self.assertEqual(calls["n"], 1)
+        self.assertEqual(len(errors), 1)
 
 
 class TestDefaultLocation(unittest.TestCase):
