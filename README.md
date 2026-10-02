@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Friday 02 October, 01:43 Toronto &middot; 80/80 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Friday 02 October, 08:42 Toronto &middot; 80/80 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 23 AI/ML matches &middot; last 14 days
 
@@ -191,49 +191,49 @@ _Updated Friday 02 October, 01:43 Toronto &middot; 80/80 sources healthy &middot
 | Affirm \[greenhouse\] | 189 | ok |
 | Airbnb \[greenhouse\] | 149 | ok |
 | Amazon \[amazon\] | 6 | ok |
-| Anthropic \[greenhouse\] | 638 | ok |
+| Anthropic \[greenhouse\] | 637 | ok |
 | Autodesk \[workday\] | 105 | ok |
 | BGIS \[oracle\] | 225 | ok |
 | BMO \[workday\] | 108 | ok |
 | BenchSci \[lever\] | - | ok |
-| CIBC \[workday:campus\] | 41 | ok |
+| CIBC \[workday:campus\] | 39 | ok |
 | CIBC \[workday\] | 107 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 253 | ok |
 | Cerebras \[ashby\] | 115 | ok |
 | Ciena \[workday\] | 64 | ok |
 | Clearco \[ashby\] | 3 | ok |
-| Cohere \[ashby\] | 132 | ok |
+| Cohere \[ashby\] | 133 | ok |
 | Coinbase \[greenhouse\] | 222 | ok |
 | Confluent \[ashby\] | 17 | ok |
 | D2L \[greenhouse\] | 17 | ok |
 | Databricks \[greenhouse\] | 872 | ok |
 | Deep Genomics \[lever\] | 3 | ok |
 | Definity Financial \[oracle\] | 56 | ok |
-| Dropbox \[greenhouse\] | 41 | ok |
+| Dropbox \[greenhouse\] | 40 | ok |
 | Elastic \[greenhouse\] | 393 | ok |
 | Entrust \[workday\] | 61 | ok |
 | Faire \[greenhouse\] | 79 | ok |
 | Float \[ashby\] | 19 | ok |
-| Geotab \[greenhouse\] | 73 | ok |
-| GitLab \[greenhouse\] | 205 | ok |
-| Hootsuite \[greenhouse\] | 10 | ok |
+| Geotab \[greenhouse\] | 70 | ok |
+| GitLab \[greenhouse\] | 199 | ok |
+| Hootsuite \[greenhouse\] | 11 | ok |
 | Hopper \[ashby\] | 19 | ok |
 | Instacart \[greenhouse\] | 127 | ok |
-| Intel \[workday\] | 107 | ok |
+| Intel \[workday\] | 108 | ok |
 | Jobber \[ashby\] | 43 | ok |
 | Kinaxis \[icims\] | 109 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
-| Lyft \[greenhouse\] | 189 | ok |
+| Lyft \[greenhouse\] | 190 | ok |
 | Mackenzie Investments \[icims\] | 26 | ok |
 | Magna \[workday\] | 131 | ok |
-| Manulife Financial \[workday\] | 124 | ok |
-| MongoDB \[greenhouse\] | 392 | ok |
+| Manulife Financial \[workday\] | 125 | ok |
+| MongoDB \[greenhouse\] | 393 | ok |
 | Neo Financial \[ashby\] | 77 | ok |
-| New-Grad-Positions \[tracker\] | 3068 | ok |
+| New-Grad-Positions \[tracker\] | 3047 | ok |
 | Nokia \[oracle\] | 226 | ok |
 | Nvidia \[workday\] | 126 | ok |
-| Okta \[greenhouse\] | 363 | ok |
+| Okta \[greenhouse\] | 368 | ok |
 | OpenAI \[ashby\] | 833 | ok |
 | PagerDuty \[greenhouse\] | 52 | ok |
 | Pinterest \[greenhouse\] | 171 | ok |
@@ -243,21 +243,21 @@ _Updated Friday 02 October, 01:43 Toronto &middot; 80/80 sources healthy &middot
 | Robinhood \[greenhouse\] | 161 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 115 | ok |
 | Royal Bank of Canada \[workday\] | 43 | ok |
-| Samsara \[greenhouse\] | 245 | ok |
+| Samsara \[greenhouse\] | 243 | ok |
 | Scale AI \[greenhouse\] | 194 | ok |
-| ServiceNow \[smartrecruiters\] | 712 | ok |
+| ServiceNow \[smartrecruiters\] | 711 | ok |
 | Shakepay \[greenhouse\] | 9 | ok |
-| Snowflake \[ashby\] | 346 | ok |
+| Snowflake \[ashby\] | 345 | ok |
 | StackAdapt \[greenhouse\] | 72 | ok |
-| Stripe \[greenhouse\] | 714 | ok |
-| Summer2027-Internships \[tracker\] | 4476 | ok |
+| Stripe \[greenhouse\] | 711 | ok |
+| Summer2027-Internships \[tracker\] | 4435 | ok |
 | Sun Life \[workday\] | 104 | ok |
 | TD \[workday\] | 77 | ok |
 | Tailscale \[greenhouse\] | 52 | ok |
 | Telus Digital \[ashby\] | 69 | ok |
 | Tenstorrent \[greenhouse\] | 127 | ok |
 | Twilio \[greenhouse\] | 126 | ok |
-| Ubisoft \[smartrecruiters\] | 325 | ok |
+| Ubisoft \[smartrecruiters\] | 332 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | Waabi \[lever\] | 91 | ok |
 | Wattpad \[lever\] | 17 | ok |
@@ -267,7 +267,7 @@ _Updated Friday 02 October, 01:43 Toronto &middot; 80/80 sources healthy &middot
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 96 boards discovered from Canadian postings: 95 ok, 1 failing._
+_Plus 96 boards discovered from Canadian postings: 96 ok._
 
 <!-- radar:listings:end -->
 
