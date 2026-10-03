@@ -19,7 +19,6 @@ Windows notifications plus a local HTML dashboard.
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import sqlite3
 import sys
@@ -577,15 +576,20 @@ def render_auto_companies(rows: list[dict]) -> str:
             "token": row["token"],
             "ai_native": False,
         }
-        lines.append(f"    {json.dumps(payload, ensure_ascii=True)},")
+        lines.append(f"    {payload!r},")
     lines.append("]")
     lines.append("")
     return "\n".join(lines)
 
 
 def write_auto_companies(path: str, rows: list[dict]) -> bool:
-    """Write ``rows`` if they differ from ``path``. Returns whether it changed."""
+    """Write ``rows`` if they differ from ``path``. Returns whether it changed.
+
+    Refuses to replace the file unless the text is valid Python. A JSON
+    ``false`` here used to crash the next import and skip the README commit.
+    """
     text = render_auto_companies(rows)
+    compile(text, path, "exec")
     try:
         with open(path, encoding="utf-8") as fh:
             current = fh.read()
@@ -608,22 +612,20 @@ def auto_companies_path() -> str:
 
 
 def sync_auto_companies(store: Store) -> bool:
-    """Rewrite the generated source list from this run's evidence."""
+    """Rewrite the generated source list from this run's evidence.
+
+    Promotions are read on the next process start. This run already scraped
+    those boards as discovered, so a bad write must not stop the feed.
+    """
     rows, demoted = select_auto_companies(store)
-    changed = write_auto_companies(auto_companies_path(), rows)
+    try:
+        changed = write_auto_companies(auto_companies_path(), rows)
+    except SyntaxError as exc:
+        print(f"auto_companies.py: refused to write invalid Python: {exc}")
+        return False
     if changed:
         print(f"auto_companies.py: {len(rows)} promoted, {demoted} demoted.")
     return changed
-
-
-def _reload_companies() -> None:
-    """Pick up a just-written auto_companies.py in this process."""
-    import importlib
-
-    import auto_companies
-
-    importlib.reload(auto_companies)
-    importlib.reload(cfg)
 
 
 def cmd_run(store: Store, seed: bool = False) -> int:
@@ -639,8 +641,7 @@ def cmd_run(store: Store, seed: bool = False) -> int:
     print(f"[{mode}] {toronto_now():%Y-%m-%d %H:%M:%S} Toronto")
 
     postings, errors = fetch_all(http, store)
-    if sync_auto_companies(store):
-        _reload_companies()
+    sync_auto_companies(store)
     total_sources = len(cfg.all_companies()) + len(cfg.TRACKERS)
 
     if seed:

@@ -405,7 +405,10 @@ class TestPromotion(StoreCase):
         first = open(path, encoding="utf-8").read()
         self.assertFalse(radar.write_auto_companies(path, rows))
         self.assertEqual(open(path, encoding="utf-8").read(), first)
-        self.assertIn('"ai_native": false', first)
+        namespace: dict = {}
+        exec(first, namespace)
+        self.assertIs(namespace["AUTO_COMPANIES"][0]["ai_native"], False)
+        self.assertNotIn("false", first)
 
     def test_check_does_not_rewrite_auto_companies(self):
         with mock.patch.object(radar, "fetch_all", return_value=([], {})), \
