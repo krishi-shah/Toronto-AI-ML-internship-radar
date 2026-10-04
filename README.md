@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 25 AI/ML matches &middot; last 14 days
 
@@ -213,7 +213,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Autodesk \[workday\] | 106 | ok |
 | BDO Canada \[workday\] | 79 | ok |
 | BGIS \[oracle\] | 225 | ok |
-| BMO \[workday\] | 93 | ok |
+| BMO \[workday\] | 91 | ok |
 | Bank of Montreal \[workday\] | 54 | ok |
 | BenchSci \[lever\] | - | ok |
 | Bird Construction \[workday\] | 57 | ok |
@@ -232,7 +232,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Confluent \[ashby\] | 17 | ok |
 | Cresta \[greenhouse\] | 88 | ok |
 | D2L \[greenhouse\] | 16 | ok |
-| Databricks \[greenhouse\] | 886 | ok |
+| Databricks \[greenhouse\] | 887 | ok |
 | Deep Genomics \[lever\] | 3 | ok |
 | Definity Financial \[oracle\] | 56 | ok |
 | DoorDash \[greenhouse\] | 35 | ok |
@@ -244,7 +244,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Farm Credit Canada \[workday\] | 41 | ok |
 | Float \[ashby\] | 20 | ok |
 | Foresters Financial \[workday\] | 26 | ok |
-| General Motors \[workday\] | 121 | ok |
+| General Motors \[workday\] | 122 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 70 | ok |
 | GitLab \[greenhouse\] | 211 | ok |
@@ -254,7 +254,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Human Computer Lab \[ashby\] | 12 | ok |
 | Instacart \[greenhouse\] | 131 | ok |
 | Intact \[workday\] | 96 | ok |
-| Intel \[workday\] | 108 | ok |
+| Intel \[workday\] | 106 | ok |
 | Jobber \[ashby\] | 43 | ok |
 | Kinaxis \[icims\] | 113 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
@@ -269,8 +269,8 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Marvell \[workday\] | 89 | ok |
 | MongoDB \[greenhouse\] | 390 | ok |
 | Neo Financial \[ashby\] | 77 | ok |
-| New-Grad-Positions \[tracker\] | 3041 | ok |
-| Nokia \[oracle\] | 226 | ok |
+| New-Grad-Positions \[tracker\] | 3025 | ok |
+| Nokia \[oracle\] | 225 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 126 | ok |
 | Okta \[greenhouse\] | 368 | ok |
@@ -285,11 +285,11 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Rocket Lab USA \[greenhouse\] | 569 | ok |
 | Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 79 | ok |
 | Rockwell Automation \[workday\] | 28 | ok |
-| Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 16 | ok |
+| Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 15 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 115 | ok |
 | Royal Bank of Canada \[workday\] | 43 | ok |
 | SOTI \[workday\] | 3 | ok |
-| Samsara \[greenhouse\] | 246 | ok |
+| Samsara \[greenhouse\] | 247 | ok |
 | Scale AI \[greenhouse\] | 192 | ok |
 | Semtech \[workday\] | 53 | ok |
 | ServiceNow \[smartrecruiters\] | 706 | ok |
@@ -298,7 +298,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | Snowflake \[ashby\] | 348 | ok |
 | StackAdapt \[greenhouse\] | 71 | ok |
 | Stripe \[greenhouse\] | 716 | ok |
-| Summer2027-Internships \[tracker\] | 4454 | ok |
+| Summer2027-Internships \[tracker\] | 4086 | ok |
 | Sun Life \[workday:Campus\] | 14 | ok |
 | Sun Life \[workday\] | 104 | ok |
 | TD \[workday\] | 83 | ok |
@@ -321,7 +321,7 @@ _Updated Sunday 04 October, 03:01 Toronto &middot; 120/120 sources healthy &midd
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 103 boards discovered from Canadian postings: 102 ok, 1 failing, 40 promoted, 42 demoted._
+_Plus 104 boards discovered from Canadian postings: 103 ok, 1 failing, 40 promoted, 43 demoted._
 
 <!-- radar:listings:end -->
 
