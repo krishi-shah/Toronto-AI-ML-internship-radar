@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 04 October, 13:39 Toronto &middot; 120/120 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 25 AI/ML matches &middot; last 14 days
 
@@ -208,7 +208,7 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | Alexion \[workday\] | 96 | ok |
 | Altera \[workday\] | 189 | ok |
 | Amazon \[amazon\] | 6 | ok |
-| Anthropic \[greenhouse\] | 639 | ok |
+| Anthropic \[greenhouse\] | 638 | ok |
 | Autodesk \[workday:uni\] | 36 | ok |
 | Autodesk \[workday\] | 106 | ok |
 | BDO Canada \[workday\] | 79 | ok |
@@ -223,7 +223,7 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | CIBC \[workday\] | 106 | ok |
 | Canadian Tire \[workday\] | 50 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 253 | ok |
-| Capital One \[workday\] | 401 | ok |
+| Capital One \[workday\] | 400 | ok |
 | Cerebras \[ashby\] | 117 | ok |
 | Ciena \[workday\] | 62 | ok |
 | Clearco \[ashby\] | 4 | ok |
@@ -234,7 +234,7 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | D2L \[greenhouse\] | 16 | ok |
 | Databricks \[greenhouse\] | 887 | ok |
 | Deep Genomics \[lever\] | 3 | ok |
-| Definity Financial \[oracle\] | 56 | ok |
+| Definity Financial \[oracle\] | 51 | ok |
 | DoorDash \[greenhouse\] | 35 | ok |
 | Dropbox \[greenhouse\] | 39 | ok |
 | Elastic \[greenhouse\] | 392 | ok |
@@ -254,7 +254,7 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | Human Computer Lab \[ashby\] | 12 | ok |
 | Instacart \[greenhouse\] | 131 | ok |
 | Intact \[workday\] | 96 | ok |
-| Intel \[workday\] | 106 | ok |
+| Intel \[workday\] | 109 | ok |
 | Jobber \[ashby\] | 43 | ok |
 | Kinaxis \[icims\] | 113 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
@@ -267,10 +267,10 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | Marsh \[workday\] | 155 | ok |
 | Marvell \[workday:MarvellCareers2\] | 46 | ok |
 | Marvell \[workday\] | 89 | ok |
-| MongoDB \[greenhouse\] | 390 | ok |
+| MongoDB \[greenhouse\] | 389 | ok |
 | Neo Financial \[ashby\] | 77 | ok |
-| New-Grad-Positions \[tracker\] | 3025 | ok |
-| Nokia \[oracle\] | 225 | ok |
+| New-Grad-Positions \[tracker\] | 3028 | ok |
+| Nokia \[oracle\] | 226 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 126 | ok |
 | Okta \[greenhouse\] | 368 | ok |
@@ -279,7 +279,7 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | Pinterest \[greenhouse\] | 168 | ok |
 | Procter &amp; Gamble \[workday\] | 143 | ok |
 | Qualcomm \[eightfold\] | 23 | ok |
-| Ramp \[ashby\] | 157 | ok |
+| Ramp \[ashby\] | 158 | ok |
 | Reddit \[greenhouse\] | 152 | ok |
 | Robinhood \[greenhouse\] | 162 | ok |
 | Rocket Lab USA \[greenhouse\] | 569 | ok |
@@ -295,17 +295,17 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | ServiceNow \[smartrecruiters\] | 706 | ok |
 | Shakepay \[greenhouse\] | 9 | ok |
 | ShyftLabs \[lever\] | 22 | ok |
-| Snowflake \[ashby\] | 348 | ok |
+| Snowflake \[ashby\] | 347 | ok |
 | StackAdapt \[greenhouse\] | 71 | ok |
 | Stripe \[greenhouse\] | 716 | ok |
-| Summer2027-Internships \[tracker\] | 4086 | ok |
+| Summer2027-Internships \[tracker\] | 4427 | ok |
 | Sun Life \[workday:Campus\] | 14 | ok |
 | Sun Life \[workday\] | 104 | ok |
 | TD \[workday\] | 83 | ok |
 | Tailscale \[greenhouse\] | 54 | ok |
 | Telus Digital \[ashby\] | 68 | ok |
 | Tenstorrent \[greenhouse:tenstorrentuniversity\] | 2 | ok |
-| Tenstorrent \[greenhouse\] | 129 | ok |
+| Tenstorrent \[greenhouse\] | 130 | ok |
 | The Home Depot \[workday\] | 86 | ok |
 | Twilio \[greenhouse\] | 125 | ok |
 | Ubisoft \[smartrecruiters\] | 332 | ok |
@@ -316,12 +316,12 @@ _Updated Sunday 04 October, 09:15 Toronto &middot; 120/120 sources healthy &midd
 | Wealthsimple \[ashby\] | 45 | ok |
 | Yotta Labs \[ashby\] | 4 | ok |
 | Zip \[ashby\] | 124 | ok |
-| speedyapply-AI-2027 \[tracker\] | 602 | ok |
-| speedyapply-SWE-2027 \[tracker\] | 757 | ok |
+| speedyapply-AI-2027 \[tracker\] | 607 | ok |
+| speedyapply-SWE-2027 \[tracker\] | 763 | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 104 boards discovered from Canadian postings: 103 ok, 1 failing, 40 promoted, 43 demoted._
+_Plus 104 boards discovered from Canadian postings: 103 ok, 1 failing, 40 promoted, 46 demoted._
 
 <!-- radar:listings:end -->
 
