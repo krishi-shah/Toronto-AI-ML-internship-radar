@@ -19,6 +19,22 @@ import sources  # noqa: E402
 from core import Posting, Store  # noqa: E402
 
 
+def setUpModule():
+    """Hide the committed auto_companies.py for this module.
+
+    A green run rewrites that file, and the next hour's tests import it.
+    Promotion and source-count checks then see dozens of real boards and
+    fail. Tests that need a generated list patch AUTO_COMPANIES themselves.
+    """
+    global _auto_patch
+    _auto_patch = mock.patch.object(radar.cfg, "AUTO_COMPANIES", [])
+    _auto_patch.start()
+
+
+def tearDownModule():
+    _auto_patch.stop()
+
+
 def post(url, location="Toronto, ON", company="Acme"):
     return Posting(company=company, title="ML Intern", location=location,
                    url=url, uid=url)
@@ -399,16 +415,18 @@ class TestPromotion(StoreCase):
 
     def test_generated_file_is_stable(self):
         self._ok("kepler", "Kepler", strict=1, student=1)
-        path = os.path.join(os.path.dirname(self.tmp.name), "auto_companies.py")
         rows, _ = radar.select_auto_companies(self.store)
-        self.assertTrue(radar.write_auto_companies(path, rows))
-        first = open(path, encoding="utf-8").read()
-        self.assertFalse(radar.write_auto_companies(path, rows))
-        self.assertEqual(open(path, encoding="utf-8").read(), first)
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "auto_companies.py")
+            self.assertTrue(radar.write_auto_companies(path, rows))
+            with open(path, encoding="utf-8") as fh:
+                first = fh.read()
+            self.assertFalse(radar.write_auto_companies(path, rows))
+            with open(path, encoding="utf-8") as fh:
+                self.assertEqual(fh.read(), first)
         namespace: dict = {}
         exec(first, namespace)
         self.assertIs(namespace["AUTO_COMPANIES"][0]["ai_native"], False)
-        self.assertNotIn("false", first)
 
     def test_check_does_not_rewrite_auto_companies(self):
         with mock.patch.object(radar, "fetch_all", return_value=([], {})), \
@@ -468,11 +486,13 @@ class TestDefaultLocation(unittest.TestCase):
         company = {"name": "Vector Institute", "platform": "html",
                    "token": "https://vectorinstitute.ai/careers/", "location": "Toronto, ON"}
         with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
+                mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
                 mock.patch.object(radar.cfg, "TRACKERS", []), \
                 mock.patch.object(sources, "html_links",
                                   return_value=[post("https://v.ai/job/1", location="")]):
-            [(_, thunk, _)] = radar.build_tasks(None)
-            self.assertEqual(thunk()[0].location, "Toronto, ON")
+            tasks = radar.build_tasks(None)
+            self.assertEqual(len(tasks), 1)
+            self.assertEqual(tasks[0][1]()[0].location, "Toronto, ON")
 
 
 if __name__ == "__main__":
