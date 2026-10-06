@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 06 October, 06:24 Toronto &middot; 122/122 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Tuesday 06 October, 13:15 Toronto &middot; 124/124 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 31 AI/ML matches &middot; last 14 days
 
@@ -74,16 +74,23 @@ _Updated Tuesday 06 October, 06:24 Toronto &middot; 122/122 sources healthy &mid
 | [Winter Intern 2027 - AI Strategy &amp; Enablement](https://careersen-mackenzieinvestments.icims.com/jobs/6017/winter-intern-2027---ai-strategy-%26-enablement/job) | Mackenzie Investments | Greater Toronto Area, ON, Canada | 12 days ago |
 | [Data Engineer Co-op](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/XMLNAME-2027-CFO--Winter-Data-Engineer--8-months-_R-0000188584) | Royal Bank of Canada | Toronto, ON, Canada | 14 days ago |
 
-### Loose &middot; 109 to review
+### Loose &middot; 115 to review
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Associate Consultant Intern, Summer 2027 - Toronto, Canada](https://mastercard.wd1.myworkdayjobs.com/en-US/Campus/job/Toronto-Canada/Associate-Consultant-Intern--Summer-2027---Toronto--Canada_R-287615) | Mastercard | Toronto, Canada | **Today** |
+| [Embedded Software Engineer Co-op/Intern](https://lumentum.wd5.myworkdayjobs.com/en-US/LITE/job/Canada---Ottawa-Bill-Leathem/Embedded-Software-Engineer-Co-op-Intern_20261370) | Lumentum | Canada - Ottawa (Bill Leathem) | **Today** |
+| [2027 Winter Co-op Vehicle Experience Software Developer](https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Markham-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Vehicle-Experience-Software-Developer_JR-202621872) | General Motors | Markham, Ontario, Canada | **Today** |
+| [Co-op or Intern, Assurance (Fall 2027) GTA Offices](https://bdo.wd3.myworkdayjobs.com/en-US/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Assurance--GTA-Offices--Fall-2027_JR5960) | BDO Canada | Toronto - Bay St, Oakville, Canada | **Today** |
+| [Business Intelligence Enterprise Anti-Money Laundering Winter 2027 Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Intelligence--Enterprise-Anti-Money-Laundering-Winter-2027-Co-op_2620595) | CIBC | Toronto, ON | **Today** |
 | [Software Engineer Backend Intern, Winter 2027](https://job-boards.greenhouse.io/stackadapt-confidential/jobs/4386552009) | StackAdapt | Remote in Canada | **Today** |
 | [Software Engineer Intern, Winter 2027](https://job-boards.greenhouse.io/stackadapt-confidential/jobs/4386549009) | StackAdapt | Remote in Canada | **Today** |
 | [Physical Design Engineer Intern](https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731401005) | Astera Labs | Toronto, ON, Canada | **Today** |
 | [Design-for-Test Engineer Intern](https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4728387005) | Astera Labs | Toronto, ON, Canada, San Jose, CA | **Today** |
 | [Digital Design Engineer Intern](https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731399005) | Astera Labs | Toronto, ON, Canada | **Today** |
 | [Design Verification Engineer Intern](https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731392005) | Astera Labs | Toronto, ON, Canada | **Today** |
+| [Vehicle Experience Software Developer Co-op, Winter 2027](https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Markham-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Vehicle-Experience-Software-Developer_JR-202621872) | General Motors | Markham, ON, Canada | Yesterday |
+| [Early Careers: Corporate Risk and Broking, Broking Placement internship - Canada - 2027](https://eedu.fa.em3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1003/job/202606475) | WTW | Toronto, ON, Canada, Calgary, AB, Canada, Vancouver, BC, Canada | Yesterday |
 | [Software Engineer Intern, Summer 2027](https://job-boards.greenhouse.io/khanacademy/jobs/8250259) | Khan Academy | Remote in USA, Remote in Canada | Yesterday |
 | [Contacts Intern](https://goto.wd5.myworkdayjobs.com/en-US/GoToCareers/job/Remote-Canada/Contacts-Intern_R26-2249) | GoTo Group | Remote (Canada) | Yesterday |
 | [2027 Winter - GRM, Local Market Risk Intern (4 Months)](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter---GRM--Local-Market-Risk-Intern--4-Months-_R-0000185685-3) | Royal Bank of Canada | TORONTO, Ontario, Canada | Yesterday |
@@ -186,7 +193,6 @@ _Updated Tuesday 06 October, 06:24 Toronto &middot; 122/122 sources healthy &mid
 | [System Simulation Engineering CO-OP](https://intel.wd1.myworkdayjobs.com/en-US/External/job/Virtual-Canada/System-Simulation-Engineering-CO-OP_JR0287122) | Intel | Virtual Canada | 7 days ago |
 | [Summer Intern 2027 - Change Management](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Summer-Intern-2027---Change-Management_JR26080429) | Manulife Financial | Toronto, Ontario | 7 days ago |
 | [Engineering Intern – Tunnelling &amp; Underground Infrastructure](https://jobs.smartrecruiters.com/AECOM2/744000152519710) | AECOM | Markham, ON, ca | 7 days ago |
-| [Relationship Manager, Commercial Financial Services Intern - Agriculture](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/WOODSTOCK-Ontario-Canada/Relationship-Manager--Commercial-Financial-Services-Intern----Agriculture_R-0000189109-1) | Royal Bank of Canada | WOODSTOCK, Ontario, Canada | 7 days ago |
 
 <details><summary>Other fields &middot; 19 outside AI/ML</summary>
 
@@ -218,122 +224,124 @@ _Updated Tuesday 06 October, 06:24 Toronto &middot; 122/122 sources healthy &mid
 
 | Source | Postings | Status |
 |---|---|---|
-| 1Password \[ashby\] | 67 | ok |
+| 1Password \[ashby\] | 69 | ok |
 | AECOM \[smartrecruiters\] | 1100 | ok |
-| AMD \[jibe\] | 33 | ok |
+| AMD \[jibe\] | 32 | ok |
 | Acceldata \[lever\] | 38 | ok |
-| Affirm \[greenhouse\] | 184 | ok |
-| Airbnb \[greenhouse\] | 151 | ok |
+| Affirm \[greenhouse\] | 186 | ok |
+| Airbnb \[greenhouse\] | 155 | ok |
 | Alexion \[workday\] | 96 | ok |
 | Altera \[workday\] | 185 | ok |
 | Amazon \[amazon\] | 6 | ok |
-| Anthropic \[greenhouse\] | 643 | ok |
-| Autodesk \[workday:uni\] | 39 | ok |
+| Anthropic \[greenhouse\] | 639 | ok |
+| Astera Labs \[greenhouse\] | 82 | ok |
+| Autodesk \[workday:uni\] | 40 | ok |
 | Autodesk \[workday\] | 105 | ok |
-| BDO Canada \[workday\] | 79 | ok |
+| BDO Canada \[workday\] | 73 | ok |
 | BGIS \[oracle\] | 225 | ok |
-| BMO \[workday\] | 95 | ok |
+| BMO \[workday\] | 99 | ok |
 | Bank of Montreal \[workday\] | 49 | ok |
 | BenchSci \[lever\] | - | ok |
 | Bird Construction \[workday\] | 54 | ok |
 | Bree \[ashby\] | 13 | ok |
-| Brookfield \[workday\] | 28 | ok |
-| CIBC \[workday:campus\] | 38 | ok |
+| Brookfield \[workday\] | 27 | ok |
+| CIBC \[workday:campus\] | 39 | ok |
 | CIBC \[workday\] | 107 | ok |
-| Canadian Tire \[workday\] | 55 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 232 | ok |
-| Capital One \[workday\] | 403 | ok |
+| Canadian Tire \[workday\] | 56 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 229 | ok |
+| Capital One \[workday\] | 404 | ok |
 | Cerebras \[ashby\] | 117 | ok |
 | Ciena \[workday\] | 62 | ok |
 | Clearco \[ashby\] | 4 | ok |
-| Cohere \[ashby\] | 135 | ok |
+| Cohere \[ashby\] | 130 | ok |
 | Coinbase \[greenhouse\] | 226 | ok |
 | Confluent \[ashby\] | 17 | ok |
 | Cresta \[greenhouse\] | 87 | ok |
-| D2L \[greenhouse\] | 10 | ok |
-| Databricks \[greenhouse\] | 886 | ok |
+| D2L \[greenhouse\] | 11 | ok |
+| Databricks \[greenhouse\] | 888 | ok |
 | Deep Genomics \[lever\] | 3 | ok |
-| Definity Financial \[oracle\] | 45 | ok |
+| Definity Financial \[oracle\] | 46 | ok |
 | DoorDash \[greenhouse\] | 36 | ok |
-| Dropbox \[greenhouse\] | 40 | ok |
-| Elastic \[greenhouse\] | 399 | ok |
+| Dropbox \[greenhouse\] | 38 | ok |
+| Elastic \[greenhouse\] | 405 | ok |
 | Entrust \[workday\] | 61 | ok |
-| Equitable Bank \[lever\] | 94 | ok |
-| Faire \[greenhouse\] | 75 | ok |
-| Farm Credit Canada \[workday\] | 41 | ok |
-| Float \[ashby\] | 20 | ok |
+| Equitable Bank \[lever\] | 90 | ok |
+| Faire \[greenhouse\] | 77 | ok |
+| Farm Credit Canada \[workday\] | 42 | ok |
+| Float \[ashby\] | 21 | ok |
 | Foresters Financial \[workday\] | 26 | ok |
-| General Motors \[workday\] | 120 | ok |
+| General Motors \[workday\] | 119 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 66 | ok |
 | GitLab \[greenhouse\] | 210 | ok |
 | Hitachi Energy \[workday\] | 153 | ok |
-| Hootsuite \[greenhouse\] | 10 | ok |
+| Hootsuite \[greenhouse\] | 9 | ok |
 | Hopper \[ashby\] | 19 | ok |
 | Human Computer Lab \[ashby\] | 12 | ok |
 | Instacart \[greenhouse\] | 122 | ok |
-| Intact \[workday\] | 95 | ok |
-| Intel \[workday\] | 107 | ok |
+| Intact \[workday\] | 97 | ok |
+| Intel \[workday\] | 108 | ok |
 | Jobber \[ashby\] | 43 | ok |
-| Kinaxis \[icims\] | 110 | ok |
+| Kinaxis \[icims\] | 108 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
 | Lumentum \[workday\] | 72 | ok |
-| Lyft \[greenhouse\] | 189 | ok |
+| Lyft \[greenhouse\] | 192 | ok |
 | Mackenzie Investments \[icims\] | 23 | ok |
 | Magna \[workday\] | 127 | ok |
-| Manulife Financial \[workday\] | 81 | ok |
+| Manulife Financial \[workday\] | 80 | ok |
 | Marsh \[workday\] | 154 | ok |
-| Marvell \[workday:MarvellCareers2\] | 46 | ok |
-| Marvell \[workday\] | 90 | ok |
+| Marvell \[workday:MarvellCareers2\] | 47 | ok |
+| Marvell \[workday\] | 89 | ok |
 | MongoDB \[greenhouse\] | 393 | ok |
-| Neo Financial \[ashby\] | 72 | ok |
+| Neo Financial \[ashby\] | 73 | ok |
 | New-Grad-Positions \[tracker\] | 3104 | ok |
-| Nokia \[oracle\] | 219 | ok |
+| Nokia \[oracle\] | 222 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
-| Nvidia \[workday\] | 129 | ok |
-| Okta \[greenhouse\] | 368 | ok |
-| OpenAI \[ashby\] | 823 | ok |
-| PagerDuty \[greenhouse\] | 52 | ok |
-| Pinterest \[greenhouse\] | 174 | ok |
+| Nvidia \[workday\] | 128 | ok |
+| Okta \[greenhouse\] | 377 | ok |
+| OpenAI \[ashby\] | 819 | ok |
+| PagerDuty \[greenhouse\] | 53 | ok |
+| Pinterest \[greenhouse\] | 175 | ok |
 | Procter &amp; Gamble \[workday\] | 143 | ok |
 | Qualcomm \[eightfold\] | 23 | ok |
-| Ramp \[ashby\] | 159 | ok |
+| Ramp \[ashby\] | 160 | ok |
 | Reddit \[greenhouse\] | 151 | ok |
-| Robinhood \[greenhouse\] | 156 | ok |
-| Rocket Lab USA \[greenhouse\] | 559 | ok |
+| Robinhood \[greenhouse\] | 159 | ok |
+| Rocket Lab USA \[greenhouse\] | 558 | ok |
 | Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 79 | ok |
-| Rockwell Automation \[workday\] | 25 | ok |
-| Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 16 | ok |
+| Rockwell Automation \[workday\] | 28 | ok |
+| Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 15 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 111 | ok |
-| Royal Bank of Canada \[workday\] | 34 | ok |
+| Royal Bank of Canada \[workday\] | 35 | ok |
 | SOTI \[workday\] | 3 | ok |
-| Samsara \[greenhouse\] | 243 | ok |
+| Samsara \[greenhouse\] | 240 | ok |
 | Scale AI \[greenhouse\] | 188 | ok |
-| Semtech \[workday\] | 48 | ok |
-| ServiceNow \[smartrecruiters\] | 715 | ok |
+| Semtech \[workday\] | 51 | ok |
+| ServiceNow \[smartrecruiters\] | 709 | ok |
 | Shakepay \[greenhouse\] | 10 | ok |
 | ShyftLabs \[lever\] | 23 | ok |
-| Snowflake \[ashby\] | 351 | ok |
+| Snowflake \[ashby\] | 356 | ok |
 | Solink \[ashby\] | 27 | ok |
+| StackAdapt \[greenhouse:stackadapt-confidential\] | 3 | ok |
 | StackAdapt \[greenhouse\] | 73 | ok |
-| Stripe \[greenhouse\] | 717 | ok |
-| Summer2027-Internships \[tracker\] | 4535 | ok |
+| Stripe \[greenhouse\] | 721 | ok |
+| Summer2027-Internships \[tracker\] | 4557 | ok |
 | Sun Life \[workday:Campus\] | 14 | ok |
-| Sun Life \[workday\] | 103 | ok |
+| Sun Life \[workday\] | 104 | ok |
 | TD \[workday\] | 80 | ok |
 | Tailscale \[greenhouse\] | 55 | ok |
 | Telus Digital \[ashby\] | 70 | ok |
 | Tenstorrent \[greenhouse:tenstorrentuniversity\] | 3 | ok |
 | Tenstorrent \[greenhouse\] | 131 | ok |
-| The Home Depot \[workday\] | 88 | ok |
-| Twilio \[greenhouse\] | 132 | ok |
+| The Home Depot \[workday\] | 90 | ok |
+| Twilio \[greenhouse\] | 131 | ok |
 | Ubisoft \[smartrecruiters\] | 332 | ok |
 | Vector Institute \[html\] | 32 | ok |
 | WTW \[oracle\] | 242 | ok |
-| Waabi \[lever\] | 92 | ok |
+| Waabi \[lever\] | 91 | ok |
 | Wattpad \[lever\] | 17 | ok |
-| Wealthsimple \[ashby\] | 47 | ok |
+| Wealthsimple \[ashby\] | 45 | ok |
 | Yotta Labs \[ashby\] | 4 | ok |
 | Zip \[ashby\] | 124 | ok |
 | speedyapply-AI-2027 \[tracker\] | 600 | ok |
@@ -341,7 +349,7 @@ _Updated Tuesday 06 October, 06:24 Toronto &middot; 122/122 sources healthy &mid
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 107 boards discovered from Canadian postings: 107 ok, 40 promoted, 47 demoted._
+_Plus 108 boards discovered from Canadian postings: 108 ok, 40 promoted, 46 demoted._
 
 <!-- radar:listings:end -->
 
