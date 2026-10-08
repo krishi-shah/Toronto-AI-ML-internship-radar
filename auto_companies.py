@@ -7,7 +7,6 @@ normal run or ``--seed``, never by ``--check``.
 
 AUTO_COMPANIES: list[dict] = [
     {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
-    {'name': 'AECOM', 'platform': 'smartrecruiters', 'token': 'AECOM2', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'Autodesk', 'platform': 'workday', 'token': 'https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/uni/jobs', 'ai_native': False},
     {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Campus/jobs', 'ai_native': False},
@@ -44,6 +43,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs', 'ai_native': False},
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'The Home Depot', 'platform': 'workday', 'token': 'https://homedepot.wd5.myworkdayjobs.com/wday/cxs/homedepot/CareerDepotCanada/jobs', 'ai_native': False},
+    {'name': 'WTW', 'platform': 'oracle', 'token': 'https://eedu.fa.em3.oraclecloud.com|CX_1003', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
     {'name': 'Zip', 'platform': 'ashby', 'token': 'zip', 'ai_native': False},
 ]
