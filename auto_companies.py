@@ -27,7 +27,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
     {'name': 'Intact', 'platform': 'workday', 'token': 'https://intactfc.wd3.myworkdayjobs.com/wday/cxs/intactfc/intactfc/jobs', 'ai_native': False},
     {'name': 'Lumentum', 'platform': 'workday', 'token': 'https://lumentum.wd5.myworkdayjobs.com/wday/cxs/lumentum/LITE/jobs', 'ai_native': False},
-    {'name': 'Marsh', 'platform': 'workday', 'token': 'https://mmc.wd1.myworkdayjobs.com/wday/cxs/mmc/MMC/jobs', 'ai_native': False},
+    {'name': 'Manulife Financial', 'platform': 'workday', 'token': 'https://manulife.wd3.myworkdayjobs.com/wday/cxs/manulife/MFCJH_adminJobs/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers2/jobs', 'ai_native': False},
     {'name': 'Nuclear Promise X', 'platform': 'ashby', 'token': 'NPX', 'ai_native': False},
