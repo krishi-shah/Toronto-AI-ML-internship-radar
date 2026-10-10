@@ -344,7 +344,7 @@ class DashboardWriter:
             "".join(_row_html(r, "s") for r in strict_rows)
             if strict_rows
             else f'<div class="empty">Nothing posted in the last {strict_window}. '
-            "New AI/ML roles appear here within the hour of going live.</div>"
+            "New AI/ML roles appear here on the next scheduled run.</div>"
         )
 
         body.append(f"<h2>Loose &middot; {len(loose_rows)} to review</h2>")
@@ -549,7 +549,7 @@ class ReadmeWriter:
 
         The stamp moves every run whether or not anything was found. Comparing
         without it is what keeps a quiet radar from committing an identical
-        README every hour.
+        README on every run.
         """
         return "\n".join(
             line for line in block.splitlines() if not line.startswith("_Updated ")
@@ -578,7 +578,7 @@ class ReadmeWriter:
         old_block = current[start + len(LISTINGS_START) : end]
 
         # An unchanged feed must not produce a diff, or the scheduled job
-        # commits every hour forever.
+        # commits on every run forever.
         if self._without_stamp(old_block) == self._without_stamp(block):
             return True
 

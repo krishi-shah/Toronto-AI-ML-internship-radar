@@ -901,17 +901,77 @@ _ANCHOR_RE = re.compile(
 )
 _TAG_RE = re.compile(r"<[^>]+>")
 _WS_RE = re.compile(r"\s+")
+_MORE_RE = re.compile(r"show more|load more|see more|view more", re.IGNORECASE)
 
 
-def html_links(http: Http, company: str, url: str) -> list[Posting]:
+def render_portal(url: str) -> str:
+    """Open a careers page in Chromium and return the HTML after JavaScript.
+
+    Playwright is imported here, not at module load, so unit tests never
+    download or launch a browser. A timeout or a blocked launch raises; the
+    orchestrator records that against the source and keeps going.
+    """
+    try:
+        from playwright.sync_api import TimeoutError as PlaywrightTimeout
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:  # pragma: no cover - dependency is in requirements
+        raise RuntimeError(
+            "playwright is not installed (pip install playwright, "
+            "then python -m playwright install chromium)"
+        ) from exc
+
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(user_agent=USER_AGENT)
+            page.goto(url, wait_until="domcontentloaded", timeout=30_000)
+            # Nav links such as "Careers" match too early. Wait until several
+            # anchors look like role titles, or until 20 seconds pass.
+            try:
+                page.wait_for_function(
+                    """() => [...document.querySelectorAll('a')].filter((a) => {
+                        const text = (a.innerText || '').replace(/\\s+/g, ' ').trim();
+                        return text.length > 20 &&
+                            /intern|co-?op|engineer|analyst|developer|scientist|manager|designer|student/i
+                            .test(text);
+                    }).length >= 3""",
+                    timeout=20_000,
+                )
+            except PlaywrightTimeout:
+                pass
+            for _ in range(3):
+                button = page.get_by_role("button", name=_MORE_RE)
+                link = page.get_by_role("link", name=_MORE_RE)
+                target = button if button.count() else link if link.count() else None
+                if target is None:
+                    break
+                try:
+                    target.first.click(timeout=3_000)
+                    page.wait_for_timeout(800)
+                except PlaywrightTimeout:
+                    break
+            return page.content()
+        finally:
+            browser.close()
+
+
+def html_links(http: Http, company: str, url: str, browser: bool = False) -> list[Posting]:
     """Crude by design: every anchor on a careers page becomes a candidate.
 
     Filters to same-domain links or anything whose href/text mentions a job.
     It cannot miss a link appearing, which is the whole point -- the dedupe
     layer absorbs the noise.
+
+    ``browser`` opens the page in Chromium first. Careers sites that draw the
+    list with JavaScript otherwise come back as an empty shell. Link text is
+    also stored as the location, because these pages put the city in the
+    anchor and the classifier drops a posting with no Canadian location.
     """
-    text = http.text(url)
-    if text is None:
+    if browser:
+        text = render_portal(url)
+    else:
+        text = http.text(url)
+    if not text:
         return []
     structured = _jsonld_postings(company, url, text)
     if structured:
@@ -942,7 +1002,7 @@ def html_links(http: Http, company: str, url: str) -> list[Posting]:
             Posting(
                 company=company,
                 title=label,
-                location="",
+                location=label if browser else "",
                 url=absolute,
                 uid=f"html:{company}:{absolute}",
                 raw={"anchor_text": label, "page": url},

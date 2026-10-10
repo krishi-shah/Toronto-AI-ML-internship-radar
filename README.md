@@ -3,7 +3,7 @@
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
 A live feed of Winter 2027 AI/ML internships and co-ops in **Ontario**. GitHub
-Actions re-scrapes every source once an hour and rewrites the listings below,
+Actions re-scrapes every source six times a day and rewrites the listings below,
 so the feed stays current with my laptop closed. Zero cost: no paid APIs, no
 scraping services, no proxies, no LLM calls, no accounts.
 
@@ -327,10 +327,15 @@ _Plus 115 boards discovered from Canadian postings: 115 ok, 40 promoted, 53 demo
 
 ---
 
-## What "hourly" actually means
+## What the schedule actually means
+
+GitHub Actions runs the radar six times a day, at 01:17, 04:17, 13:17, 16:17,
+19:17 and 22:17 UTC. Those slots stay between about 8am and midnight in
+Toronto both before and after daylight saving, because the cron is UTC and
+does not follow the clock change.
 
 GitHub cron is best-effort, not a real-time scheduler. Runs are queued and can
-start well after their slot under load, which is why the schedule sits at `:17`
+start well after their slot under load, which is why each slot sits at `:17`
 rather than on the hour, where the queue is most congested.
 
 Nothing is lost to a late run. Every run re-fetches every source, and the
@@ -340,8 +345,7 @@ the same feed a punctual one would.
 Two other things worth knowing about scheduled workflows:
 
 - **The repo must be public.** Actions minutes are unlimited on public repos.
-  On a private repo this schedule is ~720 runs a month and would eat most of
-  the free tier.
+  On a private repo this schedule is ~180 runs a month.
 - **GitHub disables schedules after 60 days of repository inactivity.** The
   radar's own README commits count as activity, so an active feed keeps itself
   alive. If it ever does go idle, one `workflow_dispatch` re-enables it.
@@ -377,6 +381,7 @@ Useful for adding companies and checking sources; not required for the feed.
 ```powershell
 cd internship-radar
 pip install -r requirements.txt
+python -m playwright install chromium
 
 python radar.py --check    # every source ok/FAIL, plus recent strict matches
 python radar.py --open     # build radar.html and open it
@@ -427,7 +432,7 @@ Two other knobs live in the same file:
 |---|---|
 | `MAX_AGE_HOURS = 168` | How fresh a posting must be to appear in loose and other fields, and to trigger an alert. 168 = seven days; drop to 48 for a stricter feed. |
 | `STRICT_MAX_AGE_HOURS = 336` | How long strict (AI/ML) roles stay listed. 336 = two weeks. Never shorter than `MAX_AGE_HOURS`. |
-| `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the fetch begins during which discovered boards keep being scraped. Keep it well under the workflow's 600-second timeout. |
+| `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the fetch begins during which discovered boards keep being scraped. Keep it well under the workflow's 25-minute timeout. |
 | `DISCOVERY_MAX_BOARDS = 300` | Hard cap on discovered boards per run; 0 turns discovery off. |
 | `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. A page that names no ATS waits 30 days, one that named a platform waits 7, and a fetch error waits 14. Leftover budget sniffs another batch. |
 | `PROMOTE_MAX = 40` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
@@ -458,6 +463,15 @@ role. A generic title like "Software Engineer Intern" at an `ai_native`
 company earns an instant alert instead of waiting for the 5pm digest.
 
 Then confirm before trusting it: `python radar.py --check`.
+
+A careers page that draws its list in the browser gets `browser: True` and
+the page URL as `token`. The radar opens it in Chromium, then reads the same
+`JobPosting` data or job links as any other HTML source. Point `token` at the
+search results (internships, or Ontario), not the marketing homepage.
+
+```
+    {"name": "Some Portal", "platform": "html", "token": "https://jobs.example.com/search?q=intern", "ai_native": False, "browser": True},
+```
 
 For iCIMS and SuccessFactors the sniffer says so explicitly and prints an
 HTML-fallback line instead — neither exposes a clean public API.
@@ -562,7 +576,9 @@ schema.org `JobPosting` data (what Google for Jobs indexes), those records are
 used: real titles, locations, remote scope and publish dates. Otherwise it
 falls back to the link diff: extract every anchor, filter to same-domain or
 job-ish links, and treat any new link as a candidate. Crude by design: it
-cannot miss a link appearing.
+cannot miss a link appearing. Pages flagged `browser` are opened in Chromium
+first, two at a time, because their job list is not in the first HTML
+response.
 
 **Layer 3 — community trackers.** Seven tracker repos, including
 speedyapply's AI/ML-only list. Branch names differ (`dev` vs `main`), so each
@@ -690,8 +706,8 @@ matter for a local file:
   is not `http(s)` is dropped rather than published as a clickable link.
 - **An unchanged feed produces no commit.** The "Updated …" stamp moves every
   run, so the writer compares the listings *without* it and leaves the file
-  untouched when nothing changed. Otherwise the schedule would push 144
-  identical READMEs a day. The badge above, not the stamp, is what proves the
+  untouched when nothing changed. Otherwise the schedule would push 6
+identical READMEs a day. The badge above, not the stamp, is what proves the
   radar is alive.
 
 ### Engineering
@@ -763,9 +779,10 @@ Corrections found along the way:
 
 ## Known gaps
 
-- **Timing is best-effort.** GitHub queues scheduled runs, so the real gap
-  between runs drifts past the hour. A local scheduler was punctual; this is
-  the price of the laptop being closed.
+- **Timing is best-effort.** GitHub queues scheduled runs, so a slot can
+  start well after its time. The six daily runs are already a few hours
+  apart. A local scheduler was punctual; this is the price of the laptop
+  being closed.
 - **Ontario is judged from the posting text.** A company that writes only
   "Canada" with no province, and no remote wording, is not confirmable as
   Ontario and lands in loose rather than strict. A posting with no location
@@ -774,8 +791,10 @@ Corrections found along the way:
   Canadian posting at a global board (an agency, a UK subsidiary), which is
   then scraped for a month. The location gate keeps its foreign roles out of
   the feed; the cost is only fetch time.
-- **Rogers, Bell, OpenText, Celestica and Shopify** have no public board API
-  that `--probe` finds; their roles arrive via the trackers.
+- **Bell, OpenText and Celestica** have no public board API that `--probe`
+  finds, and a browser load of Bell's careers page does not draw job links.
+  Their roles arrive via the trackers. Shopify and Rogers are opened in
+  Chromium instead.
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.

@@ -26,6 +26,10 @@ token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs`
            ``icims``      the portal root, e.g. ``https://careers-kinaxis.icims.com``
 location   Optional. Filled into postings from this source that carry no
            location, for employers that only hire in one place.
+browser    Optional, and only meaningful for ``html``. True opens the careers
+           page in Chromium because the job list is drawn by JavaScript.
+           Leave it off when the listings are already in the downloaded HTML.
+           Needs ``python -m playwright install chromium`` once, locally.
 ai_native  True for companies where *every* engineering role is an AI role.
            A generic title like "Software Engineer Intern" at one of these
            still earns an instant ping instead of waiting for the 5pm digest.
@@ -184,6 +188,26 @@ COMPANIES: list[dict] = [
     # which requires a Canadian location, would reject every link-diff row.
     {"name": "Vector Institute", "platform": "html", "token": "https://vectorinstitute.ai/careers/", "ai_native": True, "location": "Toronto, ON"},
 
+    # JavaScript careers pages. Fetched in a browser, never via an ATS API.
+    # Each URL is a search already limited to internships or Ontario.
+    # Qualcomm stays on Eightfold above; a second browser scrape would
+    # duplicate it. Google, Bell, IBM and BlackBerry were opened and dropped:
+    # the rendered page had no job-title links.
+    {"name": "Shopify", "platform": "html",
+     "token": "https://www.shopify.com/careers", "ai_native": False, "browser": True},
+    {"name": "Microsoft", "platform": "html",
+     "token": "https://jobs.careers.microsoft.com/global/en/search?q=intern&lc=Toronto%2C%20Ontario%2C%20Canada",
+     "ai_native": False, "browser": True},
+    {"name": "TELUS", "platform": "html",
+     "token": "https://careers.telus.com/search/?q=intern&locationsearch=Ontario",
+     "ai_native": False, "browser": True},
+    {"name": "Rogers", "platform": "html",
+     "token": "https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario",
+     "ai_native": False, "browser": True},
+    {"name": "Thomson Reuters", "platform": "html",
+     "token": "https://careers.thomsonreuters.com/us/en/search-results?keywords=intern",
+     "ai_native": False, "browser": True},
+
     # Checked and left out, all covered by the trackers meanwhile:
     #   Clio, Ada      -- Cloudflare 403 to every non-browser request, and no
     #                     Ashby/Greenhouse/Lever/SmartRecruiters/Workable board
@@ -268,7 +292,7 @@ HEALTH_FAIL_THRESHOLD = 0.2
 # fetch began, or DISCOVERY_MAX_BOARDS boards (0 turns discovery off). The
 # DISCOVERY_TOP_BOARDS with the most Canadian postings go first every run; the
 # rest take turns, least recently scraped first. The budget leaves headroom
-# under the workflow's 10-minute timeout for seeding, rendering and committing.
+# under the workflow's 25-minute timeout for seeding, rendering and committing.
 # A board drops out after 5 failures in a row or 30 days without a Canadian
 # posting. See them with: python radar.py --discovered
 DISCOVERY_MAX_BOARDS = 300

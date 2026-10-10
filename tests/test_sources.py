@@ -132,6 +132,101 @@ class TestCareersPageJsonLd(unittest.TestCase):
         self.assertEqual(sources._jsonld_postings("Acme", "https://a.ai/", page), [])
 
 
+class TestBrowserPortals(unittest.TestCase):
+    """JavaScript careers pages are parsed from rendered HTML, never launched."""
+
+    def test_rendered_html_uses_the_jobposting_parser(self):
+        http = mock.Mock()
+        with mock.patch.object(sources, "render_portal", return_value=TestCareersPageJsonLd.PAGE):
+            posts = sources.html_links(
+                http, "Acme", "https://acme.ai/careers/", browser=True
+            )
+        http.text.assert_not_called()
+        self.assertEqual(
+            [p.title for p in posts],
+            ["Machine Learning Intern", "Research Intern"],
+        )
+
+    def test_rendered_page_without_jsonld_keeps_the_link_text_as_location(self):
+        http = mock.Mock()
+        page = '<a href="https://acme.ai/careers/job/1">ML Intern, Toronto, ON</a>'
+        with mock.patch.object(sources, "render_portal", return_value=page):
+            posts = sources.html_links(
+                http, "Acme", "https://acme.ai/careers/", browser=True
+            )
+        self.assertEqual(posts[0].title, "ML Intern, Toronto, ON")
+        self.assertEqual(posts[0].location, "ML Intern, Toronto, ON")
+
+    def test_failed_render_propagates(self):
+        http = mock.Mock()
+        with mock.patch.object(
+            sources, "render_portal", side_effect=RuntimeError("blocked")
+        ):
+            with self.assertRaisesRegex(RuntimeError, "blocked"):
+                sources.html_links(http, "Acme", "https://acme.ai/careers/", browser=True)
+        http.text.assert_not_called()
+
+    def test_plain_html_does_not_open_a_browser(self):
+        http = mock.Mock()
+        http.text.return_value = TestCareersPageJsonLd.PAGE
+        with mock.patch.object(sources, "render_portal") as render:
+            sources.html_links(http, "Acme", "https://acme.ai/careers/")
+        render.assert_not_called()
+
+    def test_browser_flag_reaches_the_fetcher(self):
+        import radar
+
+        entries = [
+            {
+                "name": "Shopify",
+                "platform": "html",
+                "token": "https://shop.example/careers",
+                "browser": True,
+                "ai_native": False,
+            },
+            {
+                "name": "Vector Institute",
+                "platform": "html",
+                "token": "https://vector.example/",
+                "ai_native": True,
+            },
+        ]
+        with mock.patch.object(radar.cfg, "COMPANIES", entries), mock.patch.object(
+            radar.cfg, "AUTO_COMPANIES", []
+        ), mock.patch.object(radar.cfg, "TRACKERS", []):
+            tasks = radar.build_tasks(mock.Mock())
+        flags = {label: getattr(thunk, "browser", False) for label, thunk, _ai in tasks}
+        self.assertEqual(flags["Shopify [html]"], True)
+        self.assertEqual(flags["Vector Institute [html]"], False)
+
+        shop = next(task for task in tasks if task[0] == "Shopify [html]")
+        with mock.patch.object(sources, "html_links", return_value=[]) as links:
+            shop[1]()
+        self.assertEqual(links.call_args.kwargs["browser"], True)
+
+    def test_failed_portal_is_recorded_as_a_source_error(self):
+        import tempfile
+
+        import radar
+        from core import Store
+
+        store = Store(os.path.join(tempfile.mkdtemp(), "radar.db"))
+        try:
+            def boom():
+                raise RuntimeError("blocked")
+
+            boom.browser = True
+            with mock.patch.object(
+                radar, "build_tasks",
+                return_value=[("Shopify [html]", boom, False)],
+            ), mock.patch.object(radar.cfg, "DISCOVERY_MAX_BOARDS", 0):
+                posts, errors = radar.fetch_all(mock.Mock(), store, quiet=True)
+        finally:
+            store.close()
+        self.assertEqual(posts, [])
+        self.assertIn("blocked", errors["Shopify [html]"])
+
+
 class TestAmazon(unittest.TestCase):
     JOB = {
         "id_icims": "10535280",

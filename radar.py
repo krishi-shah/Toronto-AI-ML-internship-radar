@@ -43,6 +43,10 @@ if hasattr(sys.stdout, "reconfigure"):
 
 DB_PATH = os.environ.get("RADAR_DB", "radar.db")
 
+# Careers pages opened in Chromium. Kept off the HTTP pool so sixteen workers
+# cannot start sixteen browsers.
+PORTAL_WORKERS = 2
+
 
 # --------------------------------------------------------------------------
 # Source planning
@@ -66,6 +70,7 @@ def _with_default_location(
                 post.location = location
         return found
 
+    run.browser = getattr(thunk, "browser", False)
     return run
 
 
@@ -88,7 +93,11 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
         labels.add(label)
 
         if platform == "html":
-            thunk = lambda n=name, t=token: sources.html_links(http, n, t)  # noqa: E731
+            browser = bool(entry.get("browser"))
+            thunk = lambda n=name, t=token, b=browser: sources.html_links(  # noqa: E731
+                http, n, t, browser=b
+            )
+            thunk.browser = browser
         elif platform in sources.ADAPTERS:
             thunk = lambda a=sources.ADAPTERS[platform], n=name, t=token: a(http, n, t)  # noqa: E731
         else:
@@ -129,7 +138,15 @@ def fetch_all(
     """
     deadline = time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S
     tasks = build_tasks(http)
-    postings, errors = _run_wave(tasks, store, quiet)
+    http_tasks = [task for task in tasks if not getattr(task[1], "browser", False)]
+    portal_tasks = [task for task in tasks if getattr(task[1], "browser", False)]
+    postings, errors = _run_wave(http_tasks, store, quiet)
+    if portal_tasks:
+        found, portal_errors = _run_wave(
+            portal_tasks, store, quiet, workers=PORTAL_WORKERS
+        )
+        postings.extend(found)
+        errors.update(portal_errors)
     store.commit()
 
     if cfg.DISCOVERY_MAX_BOARDS > 0:
@@ -148,7 +165,15 @@ def fetch_all(
                 f"\n  -- retrying {len(retry)} failed sources, "
                 f"{max(0, int(deadline - time.monotonic()))}s left --"
             )
-        more, still_bad = _run_wave(retry, store, quiet)
+        retry_http = [task for task in retry if not getattr(task[1], "browser", False)]
+        retry_portal = [task for task in retry if getattr(task[1], "browser", False)]
+        more, still_bad = _run_wave(retry_http, store, quiet)
+        if retry_portal:
+            more_portal, still_portal = _run_wave(
+                retry_portal, store, quiet, workers=PORTAL_WORKERS
+            )
+            more.extend(more_portal)
+            still_bad.update(still_portal)
         postings.extend(more)
         healthy = {row["source"] for row in store.health_rows() if row["ok"]}
         errors = {label: err for label, err in errors.items() if label not in healthy}
@@ -174,10 +199,12 @@ def _before(deadline: float, thunk: Callable[[], list[Posting]]) -> Callable[[],
         if time.monotonic() > deadline:
             raise OutOfTime()
         return thunk()
+
+    run.browser = getattr(thunk, "browser", False)
     return run
 
 
-def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
+def _run_wave(tasks, store: Store, quiet: bool, on_result=None, workers: int | None = None):
     """Run ``(label, thunk, ai_native)`` tasks on the pool, in order.
 
     ``on_result(label, found_or_None, error_or_None)`` replaces the default
@@ -187,7 +214,7 @@ def _run_wave(tasks, store: Store, quiet: bool, on_result=None):
     postings: list[Posting] = []
     errors: dict[str, str] = {}
 
-    with ThreadPoolExecutor(max_workers=cfg.MAX_WORKERS) as pool:
+    with ThreadPoolExecutor(max_workers=workers or cfg.MAX_WORKERS) as pool:
         futures = {
             pool.submit(thunk): (label, ai_native) for label, thunk, ai_native in tasks
         }
