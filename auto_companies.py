@@ -43,7 +43,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs', 'ai_native': False},
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'The Home Depot', 'platform': 'workday', 'token': 'https://homedepot.wd5.myworkdayjobs.com/wday/cxs/homedepot/CareerDepotCanada/jobs', 'ai_native': False},
-    {'name': 'WTW', 'platform': 'oracle', 'token': 'https://eedu.fa.em3.oraclecloud.com|CX_1003', 'ai_native': False},
+    {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
     {'name': 'Zip', 'platform': 'ashby', 'token': 'zip', 'ai_native': False},
 ]

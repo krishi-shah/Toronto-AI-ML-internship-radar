@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 10 October, 03:11 Toronto &middot; 89/127 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 10 October, 09:47 Toronto &middot; 127/128 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 30 AI/ML matches &middot; last 14 days
 
@@ -192,61 +192,35 @@ _Updated Saturday 10 October, 03:11 Toronto &middot; 89/127 sources healthy &mid
 
 | Source | Postings | Status |
 |---|---|---|
-| Autodesk \[workday:uni\] | 42 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Autodesk \[workday\] | 104 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| BDO Canada \[workday\] | 71 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| BMO \[workday\] | 110 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Bank of Montreal \[workday\] | 47 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Bird Construction \[workday\] | 54 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Brookfield \[workday\] | 27 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| CIBC \[workday:campus\] | 45 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| CIBC \[workday\] | 107 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Canadian Tire \[workday\] | 62 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Ciena \[workday\] | 62 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Entrust \[workday\] | 60 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Farm Credit Canada \[workday\] | 51 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Foresters Financial \[workday\] | 26 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| General Motors \[workday\] | 119 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Hitachi Energy \[workday\] | 154 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Intact \[workday\] | 99 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Intel \[workday\] | 112 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Lumentum \[workday\] | 73 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Magna \[workday\] | 127 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Manulife Financial \[workday:MFCJH\_adminJobs\] | 48 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Manulife Financial \[workday\] | 81 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Marvell \[workday:MarvellCareers2\] | 45 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Marvell \[workday\] | 87 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Nvidia \[workday\] | 129 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| OLG \[workday\] | 3 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Procter &amp; Gamble \[workday\] | 143 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 78 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Rockwell Automation \[workday\] | 25 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
 | Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 12 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Royal Bank of Canada \[workday:rbcglobal1\] | 110 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Royal Bank of Canada \[workday\] | 39 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| SOTI \[workday\] | 5 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Semtech \[workday\] | 51 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Sun Life \[workday:Campus\] | 15 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| Sun Life \[workday\] | 103 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| TD \[workday\] | 80 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
-| The Home Depot \[workday\] | 91 | **FAIL** JSONDecodeError: Expecting value: line 1 column 1 (char 0) |
 | 1Password \[ashby\] | 71 | ok |
 | AECOM \[smartrecruiters\] | 1100 | ok |
 | AMD \[jibe\] | 33 | ok |
 | Acceldata \[lever\] | 37 | ok |
 | Affirm \[greenhouse\] | 203 | ok |
-| Airbnb \[greenhouse\] | 161 | ok |
+| Airbnb \[greenhouse\] | 160 | ok |
 | Alexion \[workday\] | 96 | ok |
 | Altera \[workday\] | 185 | ok |
 | Amazon \[amazon\] | 8 | ok |
 | Anthropic \[greenhouse\] | 645 | ok |
 | Astera Labs \[greenhouse\] | 82 | ok |
+| Autodesk \[workday:uni\] | 42 | ok |
+| Autodesk \[workday\] | 104 | ok |
+| BDO Canada \[workday\] | 71 | ok |
 | BGIS \[oracle\] | 225 | ok |
+| BMO \[workday\] | 108 | ok |
+| Bank of Montreal \[workday\] | 24 | ok |
 | BenchSci \[lever\] | - | ok |
+| Bird Construction \[workday\] | 54 | ok |
 | Bree \[ashby\] | 13 | ok |
+| Brookfield \[workday\] | 27 | ok |
+| CIBC \[workday:campus\] | 45 | ok |
+| CIBC \[workday\] | 107 | ok |
+| Canadian Tire \[workday\] | 62 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 229 | ok |
 | Capital One \[workday\] | 393 | ok |
 | Cerebras \[ashby\] | 123 | ok |
+| Ciena \[workday\] | 62 | ok |
 | Clearco \[ashby\] | 4 | ok |
 | Cohere \[ashby\] | 119 | ok |
 | Coinbase \[greenhouse\] | 222 | ok |
@@ -259,40 +233,63 @@ _Updated Saturday 10 October, 03:11 Toronto &middot; 89/127 sources healthy &mid
 | DoorDash \[greenhouse\] | 35 | ok |
 | Dropbox \[greenhouse\] | 32 | ok |
 | Elastic \[greenhouse\] | 409 | ok |
+| Entrust \[workday\] | 60 | ok |
 | Equitable Bank \[lever\] | 84 | ok |
 | Faire \[greenhouse\] | 81 | ok |
+| Farm Credit Canada \[workday\] | 47 | ok |
 | Float \[ashby\] | 22 | ok |
+| Foresters Financial \[workday\] | 26 | ok |
+| General Motors \[workday\] | 118 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 64 | ok |
 | GitLab \[greenhouse\] | 221 | ok |
+| Hitachi Energy \[workday\] | 154 | ok |
 | Hootsuite \[greenhouse\] | 4 | ok |
 | Hopper \[ashby\] | 19 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Instacart \[greenhouse\] | 119 | ok |
-| Jobber \[ashby\] | 40 | ok |
+| Intact \[workday\] | 97 | ok |
+| Intel \[workday\] | 111 | ok |
+| Jobber \[ashby\] | 41 | ok |
 | Kinaxis \[icims\] | 110 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
-| Lyft \[greenhouse\] | 188 | ok |
+| Lumentum \[workday\] | 73 | ok |
+| Lyft \[greenhouse\] | 187 | ok |
 | Mackenzie Investments \[icims\] | 29 | ok |
+| Magna \[workday\] | 129 | ok |
+| Magnet Forensics \[lever\] | 41 | ok |
+| Manulife Financial \[workday:MFCJH\_adminJobs\] | 47 | ok |
+| Manulife Financial \[workday\] | 80 | ok |
 | Marsh \[workday\] | 154 | ok |
+| Marvell \[workday:MarvellCareers2\] | 45 | ok |
+| Marvell \[workday\] | 88 | ok |
 | MongoDB \[greenhouse\] | 392 | ok |
 | Neo Financial \[ashby\] | 70 | ok |
-| New-Grad-Positions \[tracker\] | 3131 | ok |
-| Nokia \[oracle\] | 227 | ok |
+| New-Grad-Positions \[tracker\] | 3132 | ok |
+| Nokia \[oracle\] | 225 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
+| Nvidia \[workday\] | 129 | ok |
+| OLG \[workday\] | 3 | ok |
 | Okta \[greenhouse\] | 378 | ok |
 | OpenAI \[ashby\] | 815 | ok |
 | PagerDuty \[greenhouse\] | 51 | ok |
 | Pinterest \[greenhouse\] | 180 | ok |
+| Procter &amp; Gamble \[workday\] | 143 | ok |
 | Qualcomm \[eightfold\] | 24 | ok |
 | RTX \[workday\] | 562 | ok |
 | Ramp \[ashby\] | 165 | ok |
 | Reddit \[greenhouse\] | 147 | ok |
 | Robinhood \[greenhouse\] | 182 | ok |
 | Rocket Lab USA \[greenhouse\] | 571 | ok |
-| Samsara \[greenhouse\] | 236 | ok |
+| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 77 | ok |
+| Rockwell Automation \[workday\] | 25 | ok |
+| Royal Bank of Canada \[workday:rbcglobal1\] | 110 | ok |
+| Royal Bank of Canada \[workday\] | 39 | ok |
+| SOTI \[workday\] | 5 | ok |
+| Samsara \[greenhouse\] | 237 | ok |
 | Scale AI \[greenhouse\] | 183 | ok |
+| Semtech \[workday\] | 51 | ok |
 | ServiceNow \[smartrecruiters\] | 697 | ok |
 | Shakepay \[greenhouse\] | 9 | ok |
 | ShyftLabs \[lever\] | 23 | ok |
@@ -300,12 +297,16 @@ _Updated Saturday 10 October, 03:11 Toronto &middot; 89/127 sources healthy &mid
 | Solink \[ashby\] | 25 | ok |
 | StackAdapt \[greenhouse:stackadapt-confidential\] | 2 | ok |
 | StackAdapt \[greenhouse\] | 72 | ok |
-| Stripe \[greenhouse\] | 729 | ok |
-| Summer2027-Internships \[tracker\] | 4689 | ok |
+| Stripe \[greenhouse\] | 728 | ok |
+| Summer2027-Internships \[tracker\] | 4681 | ok |
+| Sun Life \[workday:Campus\] | 11 | ok |
+| Sun Life \[workday\] | 102 | ok |
+| TD \[workday\] | 79 | ok |
 | Tailscale \[greenhouse\] | 61 | ok |
 | Telus Digital \[ashby\] | 61 | ok |
 | Tenstorrent \[greenhouse:tenstorrentuniversity\] | 10 | ok |
 | Tenstorrent \[greenhouse\] | 131 | ok |
+| The Home Depot \[workday\] | 90 | ok |
 | Twilio \[greenhouse\] | 144 | ok |
 | Ubisoft \[smartrecruiters\] | 339 | ok |
 | Vector Institute \[html\] | 32 | ok |
@@ -320,7 +321,7 @@ _Updated Saturday 10 October, 03:11 Toronto &middot; 89/127 sources healthy &mid
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 115 boards discovered from Canadian postings: 65 ok, 50 failing, 40 promoted, 53 demoted._
+_Plus 115 boards discovered from Canadian postings: 115 ok, 40 promoted, 53 demoted._
 
 <!-- radar:listings:end -->
 
