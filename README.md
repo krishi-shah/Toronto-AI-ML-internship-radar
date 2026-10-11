@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 30 AI/ML matches &middot; last 14 days
 
@@ -197,7 +197,7 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | AMD \[jibe\] | 33 | ok |
 | Acceldata \[lever\] | 37 | ok |
 | Affirm \[greenhouse\] | 203 | ok |
-| Airbnb \[greenhouse\] | 160 | ok |
+| Airbnb \[greenhouse\] | 161 | ok |
 | Alexion \[workday\] | 96 | ok |
 | Altera \[workday\] | 185 | ok |
 | Amazon \[amazon\] | 8 | ok |
@@ -248,7 +248,7 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Instacart \[greenhouse\] | 119 | ok |
 | Intact \[workday\] | 97 | ok |
-| Intel \[workday\] | 111 | ok |
+| Intel \[workday\] | 110 | ok |
 | Jobber \[ashby\] | 41 | ok |
 | Kinaxis \[icims\] | 110 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
@@ -261,13 +261,13 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | Manulife Financial \[workday:MFCJH\_adminJobs\] | 47 | ok |
 | Manulife Financial \[workday\] | 79 | ok |
 | Marsh \[workday\] | 154 | ok |
-| Marvell \[workday:MarvellCareers2\] | 46 | ok |
-| Marvell \[workday\] | 87 | ok |
+| Marvell \[workday:MarvellCareers2\] | 45 | ok |
+| Marvell \[workday\] | 88 | ok |
 | Microsoft \[html\] | 29 | ok |
-| MongoDB \[greenhouse\] | 392 | ok |
+| MongoDB \[greenhouse\] | 391 | ok |
 | Neo Financial \[ashby\] | 70 | ok |
-| New-Grad-Positions \[tracker\] | 3124 | ok |
-| Nokia \[oracle\] | 227 | ok |
+| New-Grad-Positions \[tracker\] | 3120 | ok |
+| Nokia \[oracle\] | 225 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 129 | ok |
 | OLG \[workday\] | 3 | ok |
@@ -281,17 +281,17 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | Ramp \[ashby\] | 165 | ok |
 | Reddit \[greenhouse\] | 147 | ok |
 | Robinhood \[greenhouse\] | 182 | ok |
-| Rocket Lab USA \[greenhouse\] | 570 | ok |
-| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 78 | ok |
-| Rockwell Automation \[workday\] | 25 | ok |
+| Rocket Lab USA \[greenhouse\] | 572 | ok |
+| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 77 | ok |
+| Rockwell Automation \[workday\] | 24 | ok |
 | Rogers \[html\] | 42 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 110 | ok |
-| Royal Bank of Canada \[workday\] | 38 | ok |
+| Royal Bank of Canada \[workday\] | 37 | ok |
 | SOTI \[workday\] | 5 | ok |
 | Samsara \[greenhouse\] | 240 | ok |
 | Scale AI \[greenhouse\] | 182 | ok |
 | Semtech \[workday\] | 51 | ok |
-| ServiceNow \[smartrecruiters\] | 697 | ok |
+| ServiceNow \[smartrecruiters\] | 696 | ok |
 | Shakepay \[greenhouse\] | 9 | ok |
 | Shopify \[html\] | 34 | ok |
 | ShyftLabs \[lever\] | 23 | ok |
@@ -299,8 +299,8 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | Solink \[ashby\] | 25 | ok |
 | StackAdapt \[greenhouse:stackadapt-confidential\] | 2 | ok |
 | StackAdapt \[greenhouse\] | 72 | ok |
-| Stripe \[greenhouse\] | 729 | ok |
-| Summer2027-Internships \[tracker\] | 4660 | ok |
+| Stripe \[greenhouse\] | 728 | ok |
+| Summer2027-Internships \[tracker\] | 4659 | ok |
 | Sun Life \[workday:Campus\] | 11 | ok |
 | Sun Life \[workday\] | 101 | ok |
 | TD \[workday\] | 89 | ok |
@@ -321,8 +321,8 @@ _Updated Sunday 11 October, 03:20 Toronto &middot; 133/134 sources healthy &midd
 | Workday \[workday\] | 11 | ok |
 | Yotta Labs \[ashby\] | 4 | ok |
 | Zip \[ashby\] | 123 | ok |
-| speedyapply-AI-2027 \[tracker\] | 638 | ok |
-| speedyapply-SWE-2027 \[tracker\] | 769 | ok |
+| speedyapply-AI-2027 \[tracker\] | 633 | ok |
+| speedyapply-SWE-2027 \[tracker\] | 765 | ok |
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
