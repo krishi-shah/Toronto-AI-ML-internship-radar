@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 11 October, 19:01 Toronto &middot; 133/134 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 30 AI/ML matches &middot; last 14 days
 
@@ -77,6 +77,7 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 
 | Role | Company | Location | Posted |
 |---|---|---|---|
+| [Energy Engineering Intern, Winter 2027](https://apply.workable.com/resource-innovations/j/4CAAA40639/apply) | Resource Innovations | Toronto, ON, Canada | **Today** |
 | [Software Developer Co-op, Winter 2027](https://jobs.lever.co/magnetforensics/6eba87dc-f110-47b2-8015-31311ca60f52/apply) | Magnet Forensics | Ontario, Canada, Waterloo, ON, Canada, Ottawa, ON, Canada | 2 days ago |
 | [Winter Co-op 2027 - Strategy Intern](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Strategy-Intern_JR26091773) | Manulife Financial | Toronto, Ontario | 2 days ago |
 | [2027 Winter - CLAO, EPMO Business Analyst Intern (4 Months)](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter---CLAO--EPMO-Business-Analyst-Intern--4-Months-_R-0000187474) | Royal Bank of Canada | TORONTO, Ontario, Canada | 2 days ago |
@@ -167,7 +168,6 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | [Data Analyst Co-op - Personal Banking, Winter 2027](https://rbc.wd3.myworkdayjobs.com/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Winter-2027-Co-op-Student---Data-Analyst--Personal-Banking---8-months-_R-0000189535) | Royal Bank of Canada | Toronto, ON, Canada | 7 days ago |
 | [Data Analyst Intern, Winter 2027](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Analyst---Winter-2027-_JR00128365) | Sun Life | Toronto, ON, Canada, Waterloo, ON, Canada | 7 days ago |
 | [Software Developer Intern - Contacts](https://goto.wd5.myworkdayjobs.com/GoToCareers/job/Remote-Canada/Contacts-Intern_R26-2249) | GoTo Group | Remote in Canada | 7 days ago |
-| [Winter Co-op 2027 - Product Designer](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---Product-Designer_JR26080163) | Manulife Financial | Toronto, Ontario, Waterloo, Ontario, Canada | 7 days ago |
 
 <details><summary>Other fields &middot; 11 outside AI/ML</summary>
 
@@ -217,7 +217,7 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | CIBC \[workday\] | 107 | ok |
 | Canadian Tire \[workday\] | 62 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 237 | ok |
-| Capital One \[workday\] | 393 | ok |
+| Capital One \[workday\] | 392 | ok |
 | Cerebras \[ashby\] | 123 | ok |
 | Ciena \[workday\] | 62 | ok |
 | Clearco \[ashby\] | 4 | ok |
@@ -226,7 +226,7 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | Confluent \[ashby\] | 17 | ok |
 | Cresta \[greenhouse\] | 85 | ok |
 | D2L \[greenhouse\] | 12 | ok |
-| Databricks \[greenhouse\] | 892 | ok |
+| Databricks \[greenhouse\] | 891 | ok |
 | Deep Genomics \[lever\] | 4 | ok |
 | Definity Financial \[oracle\] | 49 | ok |
 | DoorDash \[greenhouse\] | 35 | ok |
@@ -238,7 +238,7 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | Farm Credit Canada \[workday\] | 47 | ok |
 | Float \[ashby\] | 22 | ok |
 | Foresters Financial \[workday\] | 26 | ok |
-| General Motors \[workday\] | 118 | ok |
+| General Motors \[workday\] | 117 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 64 | ok |
 | GitLab \[greenhouse\] | 221 | ok |
@@ -259,20 +259,20 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | Magna \[workday\] | 129 | ok |
 | Magnet Forensics \[lever\] | 41 | ok |
 | Manulife Financial \[workday:MFCJH\_adminJobs\] | 47 | ok |
-| Manulife Financial \[workday\] | 79 | ok |
+| Manulife Financial \[workday\] | 80 | ok |
 | Marsh \[workday\] | 154 | ok |
 | Marvell \[workday:MarvellCareers2\] | 45 | ok |
 | Marvell \[workday\] | 88 | ok |
 | Microsoft \[html\] | 29 | ok |
 | MongoDB \[greenhouse\] | 391 | ok |
 | Neo Financial \[ashby\] | 70 | ok |
-| New-Grad-Positions \[tracker\] | 3120 | ok |
-| Nokia \[oracle\] | 225 | ok |
+| New-Grad-Positions \[tracker\] | 3118 | ok |
+| Nokia \[oracle\] | 226 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 129 | ok |
 | OLG \[workday\] | 3 | ok |
 | Okta \[greenhouse\] | 378 | ok |
-| OpenAI \[ashby\] | 815 | ok |
+| OpenAI \[ashby\] | 812 | ok |
 | PagerDuty \[greenhouse\] | 51 | ok |
 | Pinterest \[greenhouse\] | 180 | ok |
 | Procter &amp; Gamble \[workday\] | 143 | ok |
@@ -280,15 +280,15 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | RTX \[workday\] | 562 | ok |
 | Ramp \[ashby\] | 165 | ok |
 | Reddit \[greenhouse\] | 147 | ok |
-| Robinhood \[greenhouse\] | 182 | ok |
-| Rocket Lab USA \[greenhouse\] | 572 | ok |
+| Robinhood \[greenhouse\] | 181 | ok |
+| Rocket Lab USA \[greenhouse\] | 575 | ok |
 | Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 77 | ok |
 | Rockwell Automation \[workday\] | 24 | ok |
 | Rogers \[html\] | 42 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 110 | ok |
 | Royal Bank of Canada \[workday\] | 37 | ok |
 | SOTI \[workday\] | 5 | ok |
-| Samsara \[greenhouse\] | 240 | ok |
+| Samsara \[greenhouse\] | 238 | ok |
 | Scale AI \[greenhouse\] | 182 | ok |
 | Semtech \[workday\] | 51 | ok |
 | ServiceNow \[smartrecruiters\] | 696 | ok |
@@ -299,8 +299,8 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | Solink \[ashby\] | 25 | ok |
 | StackAdapt \[greenhouse:stackadapt-confidential\] | 2 | ok |
 | StackAdapt \[greenhouse\] | 72 | ok |
-| Stripe \[greenhouse\] | 728 | ok |
-| Summer2027-Internships \[tracker\] | 4659 | ok |
+| Stripe \[greenhouse\] | 727 | ok |
+| Summer2027-Internships \[tracker\] | 4651 | ok |
 | Sun Life \[workday:Campus\] | 11 | ok |
 | Sun Life \[workday\] | 101 | ok |
 | TD \[workday\] | 89 | ok |
@@ -326,7 +326,7 @@ _Updated Sunday 11 October, 14:11 Toronto &middot; 133/134 sources healthy &midd
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 115 boards discovered from Canadian postings: 115 ok, 40 promoted, 54 demoted._
+_Plus 116 boards discovered from Canadian postings: 116 ok, 40 promoted, 54 demoted._
 
 <!-- radar:listings:end -->
 
