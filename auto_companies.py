@@ -10,6 +10,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Aptiv', 'platform': 'workday', 'token': 'https://aptiv.wd5.myworkdayjobs.com/wday/cxs/aptiv/aptiv_careers/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Campus/jobs', 'ai_native': False},
+    {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Privileged/jobs', 'ai_native': False},
     {'name': 'BDO Canada', 'platform': 'workday', 'token': 'https://bdo.wd3.myworkdayjobs.com/wday/cxs/bdo/BDO/jobs', 'ai_native': False},
     {'name': 'Bird Construction', 'platform': 'workday', 'token': 'https://bird.wd3.myworkdayjobs.com/wday/cxs/bird/BirdConstructionCareers/jobs', 'ai_native': False},
     {'name': 'Bree', 'platform': 'ashby', 'token': 'bree', 'ai_native': False},
@@ -44,6 +45,5 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'The Home Depot', 'platform': 'workday', 'token': 'https://homedepot.wd5.myworkdayjobs.com/wday/cxs/homedepot/CareerDepotCanada/jobs', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
-    {'name': 'WTW', 'platform': 'oracle', 'token': 'https://eedu.fa.em3.oraclecloud.com|CX_1003', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
 ]
