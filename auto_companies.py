@@ -32,7 +32,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers2/jobs', 'ai_native': False},
     {'name': 'Nuclear Promise X', 'platform': 'ashby', 'token': 'NPX', 'ai_native': False},
-    {'name': 'OLG', 'platform': 'workday', 'token': 'https://olg.wd3.myworkdayjobs.com/wday/cxs/olg/Careers-Students/jobs', 'ai_native': False},
     {'name': 'Procter & Gamble', 'platform': 'workday', 'token': 'https://pg.wd5.myworkdayjobs.com/wday/cxs/pg/1000/jobs', 'ai_native': False},
     {'name': 'Rocket Lab USA', 'platform': 'greenhouse', 'token': 'rocketlab', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External-Rockwell-Automation-Early-Careers/jobs', 'ai_native': False},
@@ -45,5 +44,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'The Home Depot', 'platform': 'workday', 'token': 'https://homedepot.wd5.myworkdayjobs.com/wday/cxs/homedepot/CareerDepotCanada/jobs', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
+    {'name': 'WTW', 'platform': 'oracle', 'token': 'https://eedu.fa.em3.oraclecloud.com|CX_1003', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
 ]
