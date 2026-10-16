@@ -7,6 +7,7 @@ normal run or ``--seed``, never by ``--check``.
 
 AUTO_COMPANIES: list[dict] = [
     {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
+    {'name': 'Alexion', 'platform': 'workday', 'token': 'https://astrazeneca.wd3.myworkdayjobs.com/wday/cxs/astrazeneca/alexion/jobs', 'ai_native': False},
     {'name': 'Aptiv', 'platform': 'workday', 'token': 'https://aptiv.wd5.myworkdayjobs.com/wday/cxs/aptiv/aptiv_careers/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Campus/jobs', 'ai_native': False},
@@ -17,7 +18,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Brookfield', 'platform': 'workday', 'token': 'https://brookfield.wd5.myworkdayjobs.com/wday/cxs/brookfield/brookfieldprivate/jobs', 'ai_native': False},
     {'name': 'Canadian Tire', 'platform': 'workday', 'token': 'https://canadiantirecorporation.wd3.myworkdayjobs.com/wday/cxs/canadiantirecorporation/Enterprise_External_Careers_Site/jobs', 'ai_native': False},
     {'name': 'Cresta', 'platform': 'greenhouse', 'token': 'cresta', 'ai_native': False},
-    {'name': 'DoorDash', 'platform': 'greenhouse', 'token': 'doordashcanada', 'ai_native': False},
     {'name': 'Equitable Bank', 'platform': 'lever', 'token': 'eqbank', 'ai_native': False},
     {'name': 'Farm Credit Canada', 'platform': 'workday', 'token': 'https://fccfac.wd3.myworkdayjobs.com/wday/cxs/fccfac/careers-carrieres/jobs', 'ai_native': False},
     {'name': 'Foresters Financial', 'platform': 'workday', 'token': 'https://foresters.wd3.myworkdayjobs.com/wday/cxs/foresters/ForestersFinancialCareers/jobs', 'ai_native': False},
@@ -26,6 +26,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
     {'name': 'Interac', 'platform': 'workday', 'token': 'https://interac.wd3.myworkdayjobs.com/wday/cxs/interac/Interac/jobs', 'ai_native': False},
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
+    {'name': 'Kepler Communications', 'platform': 'lever', 'token': 'kepler', 'ai_native': False},
     {'name': 'Loblaw Companies', 'platform': 'workday', 'token': 'https://myview.wd3.myworkdayjobs.com/wday/cxs/myview/paradox_careers/jobs', 'ai_native': False},
     {'name': 'Lumentum', 'platform': 'workday', 'token': 'https://lumentum.wd5.myworkdayjobs.com/wday/cxs/lumentum/LITE/jobs', 'ai_native': False},
     {'name': 'Manulife Financial', 'platform': 'workday', 'token': 'https://manulife.wd3.myworkdayjobs.com/wday/cxs/manulife/MFCJH_adminJobs/jobs', 'ai_native': False},
@@ -43,7 +44,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Stantec', 'platform': 'oracle', 'token': 'https://hdhl.fa.us6.oraclecloud.com|CX_1', 'ai_native': False},
     {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs', 'ai_native': False},
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
-    {'name': 'The Home Depot', 'platform': 'workday', 'token': 'https://homedepot.wd5.myworkdayjobs.com/wday/cxs/homedepot/CareerDepotCanada/jobs', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
 ]
