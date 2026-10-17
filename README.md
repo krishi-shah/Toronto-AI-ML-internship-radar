@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 17 October, 12:32 Toronto &middot; 141/142 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 22 AI/ML matches &middot; last 14 days
 
@@ -245,16 +245,16 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | Alexion \[workday\] | 114 | ok |
 | Altera \[workday\] | 172 | ok |
 | Amazon \[amazon\] | 8 | ok |
-| Anthropic \[greenhouse\] | 656 | ok |
+| Anthropic \[greenhouse\] | 655 | ok |
 | Aptiv \[workday\] | 117 | ok |
 | Astera Labs \[greenhouse\] | 93 | ok |
 | Autodesk \[workday:uni\] | 41 | ok |
 | Autodesk \[workday\] | 104 | ok |
 | BDO Canada \[workday\] | 70 | ok |
 | BGIS \[oracle\] | 225 | ok |
-| BMO \[workday\] | 102 | ok |
+| BMO \[workday\] | 98 | ok |
 | Bank of Montreal \[workday:Privileged\] | 24 | ok |
-| Bank of Montreal \[workday\] | 24 | ok |
+| Bank of Montreal \[workday\] | 20 | ok |
 | BenchSci \[lever\] | - | ok |
 | Bird Construction \[workday\] | 52 | ok |
 | Bree \[ashby\] | 13 | ok |
@@ -262,7 +262,7 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | CIBC \[workday:campus\] | 37 | ok |
 | CIBC \[workday\] | 103 | ok |
 | Canadian Tire \[workday\] | 58 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 271 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 264 | ok |
 | Capital One \[workday\] | 392 | ok |
 | Cerebras \[ashby\] | 122 | ok |
 | Ciena \[workday\] | 63 | ok |
@@ -276,19 +276,19 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | Deep Genomics \[lever\] | 4 | ok |
 | Definity Financial \[oracle\] | 38 | ok |
 | DoorDash \[greenhouse\] | 39 | ok |
-| Dropbox \[greenhouse\] | 20 | ok |
+| Dropbox \[greenhouse\] | 18 | ok |
 | Elastic \[greenhouse\] | 380 | ok |
 | Entrust \[workday\] | 63 | ok |
 | Equitable Bank \[lever\] | 85 | ok |
 | Faire \[greenhouse\] | 79 | ok |
-| Farm Credit Canada \[workday\] | 46 | ok |
+| Farm Credit Canada \[workday\] | 43 | ok |
 | Float \[ashby\] | 21 | ok |
 | Foresters Financial \[workday\] | 26 | ok |
 | General Motors \[workday\] | 122 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 59 | ok |
 | GitLab \[greenhouse\] | 232 | ok |
-| Hitachi Energy \[workday\] | 152 | ok |
+| Hitachi Energy \[workday\] | 153 | ok |
 | Hootsuite \[greenhouse\] | 3 | ok |
 | Hopper \[ashby\] | 20 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
@@ -301,7 +301,7 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | Kensington \[greenhouse\] | 25 | ok |
 | Kepler Communications \[lever\] | 21 | ok |
 | Kinaxis \[icims\] | 118 | ok |
-| Loblaw Companies \[workday\] | 627 | ok |
+| Loblaw Companies \[workday\] | 629 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 13 | ok |
 | Lumentum \[workday\] | 73 | ok |
@@ -314,18 +314,18 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | Marsh \[workday\] | 154 | ok |
 | Marvell \[workday:MarvellCareers2\] | 49 | ok |
 | Marvell \[workday\] | 99 | ok |
-| Microsoft \[html\] | 29 | ok |
+| Microsoft \[html\] | 42 | ok |
 | MongoDB \[greenhouse\] | 401 | ok |
 | Neo Financial \[ashby\] | 56 | ok |
-| New-Grad-Positions \[tracker\] | 3026 | ok |
+| New-Grad-Positions \[tracker\] | 3024 | ok |
 | Nokia \[oracle\] | 227 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 132 | ok |
 | OLG \[workday\] | 2 | ok |
 | Okta \[greenhouse\] | 393 | ok |
-| OpenAI \[ashby\] | 815 | ok |
+| OpenAI \[ashby\] | 814 | ok |
 | PagerDuty \[greenhouse\] | 61 | ok |
-| Pinterest \[greenhouse\] | 157 | ok |
+| Pinterest \[greenhouse\] | 156 | ok |
 | Procter &amp; Gamble \[workday\] | 145 | ok |
 | Qualcomm \[eightfold\] | 24 | ok |
 | RTX \[workday\] | 587 | ok |
@@ -333,16 +333,16 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | Reddit \[greenhouse\] | 146 | ok |
 | Robinhood \[greenhouse\] | 153 | ok |
 | Rocket Lab USA \[greenhouse\] | 585 | ok |
-| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 82 | ok |
+| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 83 | ok |
 | Rockwell Automation \[workday\] | 29 | ok |
 | Rogers \[html\] | 43 | ok |
 | Royal Bank of Canada \[workday:rbcglobal1\] | 111 | ok |
 | Royal Bank of Canada \[workday\] | 25 | ok |
 | SOTI \[workday\] | 8 | ok |
-| Samsara \[greenhouse\] | 261 | ok |
+| Samsara \[greenhouse\] | 259 | ok |
 | Scale AI \[greenhouse\] | 182 | ok |
 | Semtech \[workday\] | 54 | ok |
-| ServiceNow \[smartrecruiters\] | 697 | ok |
+| ServiceNow \[smartrecruiters\] | 700 | ok |
 | Shakepay \[greenhouse\] | 10 | ok |
 | Shopify \[html\] | 37 | ok |
 | ShyftLabs \[lever\] | 23 | ok |
@@ -351,11 +351,11 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | StackAdapt \[greenhouse:stackadapt-confidential\] | 2 | ok |
 | StackAdapt \[greenhouse\] | 75 | ok |
 | Stantec \[oracle\] | 278 | ok |
-| Stripe \[greenhouse\] | 731 | ok |
-| Summer2027-Internships \[tracker\] | 4839 | ok |
+| Stripe \[greenhouse\] | 732 | ok |
+| Summer2027-Internships \[tracker\] | 4834 | ok |
 | Sun Life \[workday:Campus\] | 8 | ok |
-| Sun Life \[workday\] | 102 | ok |
-| TD \[workday\] | 91 | ok |
+| Sun Life \[workday\] | 99 | ok |
+| TD \[workday\] | 92 | ok |
 | TELUS \[html\] | 19 | ok |
 | Tailscale \[greenhouse\] | 62 | ok |
 | Telus Digital \[ashby\] | 65 | ok |
@@ -378,7 +378,7 @@ _Updated Saturday 17 October, 01:42 Toronto &middot; 141/142 sources healthy &mi
 | vansh-Summer2027 \[tracker\] | 371 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 133 boards discovered from Canadian postings: 130 ok, 3 failing, 40 promoted, 63 demoted._
+_Plus 133 boards discovered from Canadian postings: 133 ok, 40 promoted, 66 demoted._
 
 <!-- radar:listings:end -->
 
