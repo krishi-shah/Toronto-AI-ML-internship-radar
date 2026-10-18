@@ -42,6 +42,12 @@ STRICT_LIMIT = 60
 LOOSE_LIMIT = 150
 OTHER_LIMIT = 150
 
+# Status for a source that answers but has never returned a posting. That is
+# what a board looks like after the company moves to another ATS, so it must
+# not read as a plain green "ok". The health table keeps the last non-zero
+# count, so a tracker answering 304 is never mistaken for this.
+_EMPTY = "empty"
+
 
 class Notifier(Protocol):
     """A delivery channel. Every method returns True on success."""
@@ -364,11 +370,12 @@ class DashboardWriter:
 
         body.append("<h2>Sources</h2><div class=\"scroll\"><table>")
         for h in health:
-            state = (
-                '<span class="ok">ok</span>'
-                if h["ok"]
-                else f'<span class="bad">FAIL</span> {_e((h["last_error"] or "")[:90])}'
-            )
+            if not h["ok"]:
+                state = f'<span class="bad">FAIL</span> {_e((h["last_error"] or "")[:90])}'
+            elif not h["job_count"]:
+                state = f'<span class="bad">{_EMPTY}</span>'
+            else:
+                state = '<span class="ok">ok</span>'
             body.append(
                 f'<tr><td>{_e(h["source"])}</td><td class="n">{h["job_count"] or "-"}</td>'
                 f"<td>{state}</td></tr>"
@@ -435,7 +442,7 @@ def _md_url(url: Any) -> str:
         return ""
     for char, encoded in (
         (" ", "%20"), ("(", "%28"), (")", "%29"),
-        ("<", "%3C"), (">", "%3E"), ('"', "%22"),
+        ("<", "%3C"), (">", "%3E"), ('"', "%22"), ("|", "%7C"),
     ):
         raw = raw.replace(char, encoded)
     return raw
@@ -533,7 +540,12 @@ class ReadmeWriter:
         ]
 
         for row in health:
-            state = "ok" if row["ok"] else f"**FAIL** {_md((row['last_error'] or '')[:90])}"
+            if not row["ok"]:
+                state = f"**FAIL** {_md((row['last_error'] or '')[:90])}"
+            elif not row["job_count"]:
+                state = f"**{_EMPTY}**"
+            else:
+                state = "ok"
             lines.append(
                 f"| {_md(row['source'])} | {row['job_count'] or '-'} | {state} |"
             )

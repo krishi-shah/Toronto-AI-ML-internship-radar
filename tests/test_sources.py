@@ -127,6 +127,17 @@ class TestCareersPageJsonLd(unittest.TestCase):
         posts = sources.html_links(http, "Acme", "https://acme.ai/careers/")
         self.assertEqual([p.title for p in posts], ["ML Intern"])
 
+    def test_link_diff_keeps_subdomains_and_drops_lookalikes(self):
+        http = mock.Mock()
+        http.text.return_value = (
+            '<a href="https://www.acme.ai/team/1">ML Intern</a>'
+            '<a href="https://notacme.ai/team/2">Lookalike</a>'
+        )
+        posts = sources.html_links(http, "Acme", "https://careers.acme.ai/")
+        self.assertEqual([p.title for p in posts], ["ML Intern"])
+        posts = sources.html_links(http, "Acme", "https://acme.ai/")
+        self.assertEqual([p.title for p in posts], ["ML Intern"])
+
     def test_malformed_jsonld_is_ignored(self):
         page = '<script type="application/ld+json">{not json</script>'
         self.assertEqual(sources._jsonld_postings("Acme", "https://a.ai/", page), [])
@@ -402,6 +413,34 @@ Winter Intern 2027 - AI Strategy &amp; Enablement</h3></a></div>
         self.assertEqual(http.text.call_count, 2)
         self.assertEqual(len(posts), 2)
         self.assertNotIn("KHTML", http.text.call_args.kwargs["headers"]["User-Agent"])
+
+
+class TestWorkdayPagination(unittest.TestCase):
+    def test_pages_past_the_second_are_fetched(self):
+        """Regression: Workday sends ``total`` on the first page only and 0
+        after it, so every search stopped at 40 results."""
+        pages = iter(range(1000))
+
+        def page(*_args, json, **_kwargs):
+            resp = mock.Mock()
+            jobs = [
+                {"title": "ML Intern", "bulletFields": [f"R{next(pages)}"],
+                 "externalPath": "/job/x"}
+                for _ in range(sources.WORKDAY_PAGE)
+            ]
+            resp.json.return_value = {
+                "total": 100 if json["offset"] == 0 else 0, "jobPostings": jobs,
+            }
+            return resp
+
+        http = mock.Mock()
+        http.request.side_effect = page
+        with mock.patch.object(sources, "WORKDAY_TERMS", ["intern"]):
+            posts = sources.workday(
+                http, "Acme", "https://acme.wd3.myworkdayjobs.com/wday/cxs/acme/Ext/jobs"
+            )
+        self.assertEqual(http.request.call_count, 5)
+        self.assertEqual(len(posts), 100)
 
 
 class TestBadgeLinks(unittest.TestCase):

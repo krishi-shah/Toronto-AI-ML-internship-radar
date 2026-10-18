@@ -241,7 +241,7 @@ class TestStoreDedupe(unittest.TestCase):
         other = self._post("tracker:SimplifyJobs:xyz", "Cohere Inc.",
                            "Machine Learning Internship (W27)")
         self.assertFalse(self.store.seen_uid(other.uid))
-        self.assertTrue(self.store.seen_fingerprint(other.fingerprint()))
+        self.assertTrue(self.store.fingerprint_delivered(other.fingerprint(), LOOSE))
 
     def test_re_recording_does_not_reset_notified_flag(self):
         post = self._post("ashby:cohere:abc")
@@ -253,14 +253,6 @@ class TestStoreDedupe(unittest.TestCase):
             "SELECT notified, first_seen FROM jobs WHERE uid = ?", (post.uid,)
         ).fetchone()
         self.assertEqual(row["notified"], 1)
-
-    def test_html_layer_only_reports_new_links(self):
-        first = self.store.new_links("Ada", ["/a", "/b"])
-        self.store.commit()
-        self.assertEqual(sorted(first), ["/a", "/b"])
-        second = self.store.new_links("Ada", ["/a", "/b", "/c"])
-        self.store.commit()
-        self.assertEqual(second, ["/c"])
 
     def test_loose_sighting_never_suppresses_a_strict_hit(self):
         """Regression: the expensive one.
@@ -305,6 +297,17 @@ class TestStoreDedupe(unittest.TestCase):
         self.store.commit()
         twin = self._post("u2", "Cohere Inc.", "Machine Learning Internship")
         self.assertTrue(self.store.fingerprint_delivered(twin.fingerprint(), LOOSE))
+
+    def test_rejected_sighting_never_suppresses_a_loose_hit(self):
+        """Regression: the Vancouver copy of a role was rejected, and its row
+        then silenced the same role posted in Toronto."""
+        vancouver = self._post("u1", "Acme", "Data Analyst Intern")
+        self.store.record(vancouver, None, "outside Ontario")
+        self.store.commit()
+        toronto = self._post("u2", "Acme", "Data Analyst Intern")
+        self.assertFalse(
+            self.store.fingerprint_delivered(toronto.fingerprint(), LOOSE)
+        )
 
     def test_unnotified_strict_row_does_not_suppress(self):
         """A strict row recorded but never actually delivered must not block."""

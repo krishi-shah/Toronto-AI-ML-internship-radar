@@ -274,8 +274,9 @@ _REJECT_TERMS = [
 # Ontario is the whole market. The radar exists for roles reachable from
 # Toronto, so a Vancouver or Montreal posting is noise however good it looks.
 #
-# The province abbreviation needs the lookahead: with IGNORECASE, a bare
-# ",\s*ON\b" happily matches the "on" in "Hybrid, on-site".
+# The province abbreviation is matched case-sensitively and needs the
+# lookahead: with IGNORECASE, a bare ",\s*ON\b" happily matches the "on" in
+# "Hybrid, on-site" -- and "London, on site" would read as London, Ontario.
 _ONTARIO_TERMS = [
     # Ontario, California and Ontario, Oregon are US cities. ", CA" is not
     # guarded: Workday writes "Brampton, Ontario, CA" for Canada.
@@ -300,16 +301,16 @@ _ONTARIO_TERMS = [
     r"\bbrantford\b",
     r"\bsarnia\b",
     r"\bthunder[\s\-]?bay\b",
-    r"\bcambridge,?\s*(?:on|ontario)\b",
-    r"\bburlington,?\s*(?:on|ontario)\b",
-    r"\bmilton,?\s*(?:on|ontario)\b",
-    r"\blondon,?\s*(?:on|ontario)\b",
-    r"\bkingston,?\s*(?:on|ontario)\b",
-    r"\bwindsor,?\s*(?:on|ontario)\b",
+    r"\bcambridge,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
+    r"\bburlington,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
+    r"\bmilton,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
+    r"\blondon,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
+    r"\bkingston,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
+    r"\bwindsor,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
     r"\bygk\b",
-    r",\s*ON(?![\w-])",
+    r",\s*(?-i:ON)(?![\w-])",
     r",\s*ONT(?![\w-])",  # Oracle Cloud Recruiting: "Toronto, ONT, Canada"
-    r"\bON\s*,\s*Canada\b",
+    r"\b(?-i:ON)\s*,\s*Canada\b",
 ]
 
 # Ontario city names that exist elsewhere too: Waterloo IA, Hamilton OH,
@@ -386,7 +387,8 @@ _NON_ONTARIO_CA_TERMS = [
     r"\byukon\b",
     r"\bnunavut\b",
     r"northwest[\s\-]?territories",
-    r",\s*(?:QC|BC|AB|MB|SK|NS|NB|NL|PE|YT|NT|NU)(?![\w-])",
+    # Case-sensitive like ", ON": lowercase prose is not a province code.
+    r",\s*(?-i:QC|BC|AB|MB|SK|NS|NB|NL|PE|YT|NT|NU)(?![\w-])",
 ]
 
 # Country-level only. This exists so "Remote in Canada" -- which names no
@@ -497,7 +499,9 @@ _FOREIGN_RE = re.compile(
     r"czech|hungary|greece|turkey|finland|estonia|lithuania|ukraine|"
     r"costa\s+rica|colombia|chile|peru|malaysia|indonesia|thailand|pakistan|"
     r"bangladesh|sri\s+lanka)\b"
-    r"|,\s*(?:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|MA|MD|ME|"
+    # State codes are case-sensitive: under IGNORECASE, ", or remote" read as
+    # Oregon and ", in the US" as Indiana.
+    r"|,\s*(?-i:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|MA|MD|ME|"
     r"MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|"
     r"VA|VT|WA|WI|WV|WY|DC)\b"
     # Workday site codes: "US-CT-WINDSOR LOCKS-B2".
@@ -869,13 +873,6 @@ CREATE TABLE IF NOT EXISTS health (
     ok           INTEGER DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS links (
-    source TEXT NOT NULL,
-    url    TEXT NOT NULL,
-    seen   INTEGER NOT NULL,
-    PRIMARY KEY (source, url)
-);
-
 CREATE TABLE IF NOT EXISTS discovered (
     platform     TEXT NOT NULL,
     token        TEXT NOT NULL,
@@ -961,10 +958,6 @@ class Store:
         cur = self.conn.execute("SELECT 1 FROM jobs WHERE uid = ?", (uid,))
         return cur.fetchone() is not None
 
-    def seen_fingerprint(self, fp: str) -> bool:
-        cur = self.conn.execute("SELECT 1 FROM jobs WHERE fingerprint = ?", (fp,))
-        return cur.fetchone() is not None
-
     def fingerprint_delivered(self, fp: str, tier: Optional[str]) -> bool:
         """Has this role already been delivered at ``tier`` or better?
 
@@ -975,7 +968,9 @@ class Store:
         real Winter 2027 posting arriving later would never ping.
 
         So a strict candidate is only suppressed by a strict hit that was
-        actually notified. A loose candidate is suppressed by any sighting.
+        actually notified. A loose candidate is suppressed by any sighting
+        that was kept: a rejected copy (the Vancouver listing, a past cycle)
+        must not silence the same role arriving later in Ontario.
         """
         if tier == STRICT:
             cur = self.conn.execute(
@@ -985,7 +980,8 @@ class Store:
             )
         else:
             cur = self.conn.execute(
-                "SELECT 1 FROM jobs WHERE fingerprint = ?", (fp,)
+                "SELECT 1 FROM jobs WHERE fingerprint = ? AND tier IS NOT NULL",
+                (fp,),
             )
         return cur.fetchone() is not None
 
@@ -1112,27 +1108,6 @@ class Store:
         return self.conn.execute(
             "SELECT * FROM health ORDER BY ok, source"
         ).fetchall()
-
-    # -- HTML fallback link state ----------------------------------------
-
-    def new_links(self, source: str, urls: Iterable[str]) -> list[str]:
-        """Return links never seen for this source, and remember them."""
-        urls = list(dict.fromkeys(urls))
-        if not urls:
-            return []
-        known = {
-            r["url"]
-            for r in self.conn.execute(
-                "SELECT url FROM links WHERE source = ?", (source,)
-            )
-        }
-        fresh = [u for u in urls if u not in known]
-        now = int(time.time())
-        self.conn.executemany(
-            "INSERT OR IGNORE INTO links (source, url, seen) VALUES (?,?,?)",
-            ((source, u, now) for u in urls),
-        )
-        return fresh
 
     # -- discovered boards -----------------------------------------------
 

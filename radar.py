@@ -847,10 +847,13 @@ def cmd_test(store: Store) -> int:
     )
     notifiers = notify.build_notifiers(cfg.NOTIFIERS, store)
     ok = notify.dispatch(notifiers, "strict", [(sample, classify(sample))])
+    channels = ", ".join(n.name for n in notifiers) or "none"
+    # Only the toast channel shows the sample itself; the dashboard and README
+    # render from the database, so for them this just proves they still work.
     print(
-        "Test alert fired. You should see a Windows notification."
+        f"Test alert sent through: {channels}."
         if ok
-        else "Test alert FAILED, see above."
+        else f"Test alert FAILED through: {channels}. See above."
     )
     return 0 if ok else 1
 
@@ -874,7 +877,7 @@ def cmd_health(store: Store) -> int:
             if row["last_success"]
             else "never"
         )
-        flag = "ok" if row["ok"] else "FAIL"
+        flag = "FAIL" if not row["ok"] else "empty" if not row["job_count"] else "ok"
         print(f"{row['source']:<52} {flag:<6} {row['job_count']:>6}  {stamp}")
         if not row["ok"] and row["last_error"]:
             print(f"    {row['last_error'][:150]}")

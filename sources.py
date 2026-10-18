@@ -512,6 +512,9 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
     found: dict[str, Posting] = {}
     for term in WORKDAY_TERMS:
         offset = 0
+        # Workday reports ``total`` on the first page only; every later page
+        # says 0. Reading it per page stopped every search after 40 results.
+        total = 0
         while offset <= 200:
             payload = {
                 "appliedFacets": {},
@@ -542,7 +545,8 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
                     raw=job,
                     posted_at=_date(job.get("postedOn"), job.get("startDate")),
                 )
-            total = data.get("total", 0)
+            if offset == 0:
+                total = int(data.get("total") or 0)
             offset += WORKDAY_PAGE
             if len(posts) < WORKDAY_PAGE or offset >= total:
                 break
@@ -985,7 +989,9 @@ def html_links(http: Http, company: str, url: str, browser: bool = False) -> lis
     structured = _jsonld_postings(company, url, text)
     if structured:
         return structured
-    host = urlparse(url).netloc
+    # Same site means the page's own domain or a subdomain of it, so
+    # careers.example.com and jobs.example.com both count for example.com.
+    site = ".".join((urlparse(url).hostname or "").split(".")[-2:])
     out: list[Posting] = []
     seen: set[str] = set()
 
@@ -996,7 +1002,8 @@ def html_links(http: Http, company: str, url: str, browser: bool = False) -> lis
         absolute = urljoin(url, unescape(href.strip()))
         if not absolute.startswith("http"):
             continue
-        same_domain = urlparse(absolute).netloc.endswith(host.split(":")[0][-15:])
+        link_host = urlparse(absolute).hostname or ""
+        same_domain = bool(site) and (link_host == site or link_host.endswith("." + site))
         looks_like_job = re.search(
             r"job|career|position|opening|posting|apply|vacanc|req",
             absolute + " " + label,

@@ -139,6 +139,9 @@ class TestUrlSafety(unittest.TestCase):
     def test_newline_refused(self):
         self.assertEqual(_md_url("https://example.com/\nx"), "")
 
+    def test_pipe_encoded_so_the_row_keeps_its_columns(self):
+        self.assertEqual(_md_url("https://example.com/a|b"), "https://example.com/a%7Cb")
+
 
 class TestRendering(ReadmeCase):
     def test_hand_written_sections_survive(self):
@@ -184,6 +187,11 @@ class TestRendering(ReadmeCase):
     def test_failing_source_is_visible(self):
         self.render(health_rows=[health(ok=0, last_error="HTTPError: 403 Forbidden")])
         self.assertIn("**FAIL** HTTPError: 403 Forbidden", self.read())
+
+    def test_board_that_never_had_a_posting_is_flagged_empty(self):
+        """A company that moved ATS leaves a board answering 200 with nothing."""
+        self.render(health_rows=[health(source="Confluent [ashby]", job_count=0)])
+        self.assertIn("| Confluent \\[ashby\\] | - | **empty** |", self.read())
 
     def test_missing_markers_leave_the_file_alone(self):
         self.write("# Radar\n\nNo markers here.\n")
