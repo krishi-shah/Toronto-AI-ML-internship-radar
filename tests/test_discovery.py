@@ -449,6 +449,7 @@ class TestSlack(StoreCase):
         with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
                 mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
                 mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "PORTFOLIO_BOARDS", []), \
                 mock.patch.object(radar.cfg, "DISCOVERY_MAX_BOARDS", 0), \
                 mock.patch.dict(sources.ADAPTERS, {"lever": flaky}):
             _postings, errors = radar.fetch_all(None, self.store, quiet=True)
@@ -466,6 +467,7 @@ class TestSlack(StoreCase):
         with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
                 mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
                 mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "PORTFOLIO_BOARDS", []), \
                 mock.patch.object(radar.cfg, "DISCOVERY_MAX_BOARDS", 0), \
                 mock.patch.object(radar.cfg, "DISCOVERY_TIME_BUDGET_S", -1), \
                 mock.patch.dict(sources.ADAPTERS, {"lever": broken}):
@@ -499,6 +501,7 @@ class TestDefaultLocation(unittest.TestCase):
         with mock.patch.object(radar.cfg, "COMPANIES", [company]), \
                 mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
                 mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "PORTFOLIO_BOARDS", []), \
                 mock.patch.object(sources, "html_links",
                                   return_value=[post("https://v.ai/job/1", location="")]):
             tasks = radar.build_tasks(None)

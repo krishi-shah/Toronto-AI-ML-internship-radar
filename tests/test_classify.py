@@ -176,14 +176,14 @@ class TestOtherFields(unittest.TestCase):
 
     def test_off_field_titles_go_to_other(self):
         for title, location in [
-            ("Analog Design Intern, Summer 2027", "Ottawa, ON, Canada"),
+            ("Analog Design Intern, Summer 2027", "Toronto, ON, Canada"),
             ("Hardware Design and Verification Intern - PCBA, Winter 2027",
-             "Ottawa, ON, Canada"),
+             "Markham, ON, Canada"),
             ("Analog and Mixed Signal Layout Engineer Intern Co-op, Summer 2027",
              "Toronto, ON, Canada"),
             ("Capital Markets Analyst Intern, Winter 2027", "Toronto, ON, Canada"),
-            ("Firmware Intern, Summer 2027", "Ottawa, ON, Canada"),
-            ("Validation Engineering Intern, Summer 2027", "Ottawa, ON, Canada"),
+            ("Firmware Intern, Summer 2027", "Waterloo, ON, Canada"),
+            ("Validation Engineering Intern, Summer 2027", "Mississauga, ON, Canada"),
             ("Email Marketing Intern", "Toronto, ON, Canada"),
         ]:
             with self.subTest(title=title):
@@ -552,27 +552,28 @@ class TestUsLocationLeaks(unittest.TestCase):
 
     def test_real_ontario_cities_still_count(self):
         for loc in ("Hamilton, ON", "Hamilton", "Brampton, Ontario, CA",
-                    "Toronto, Ontario, Canada", "Ottawa"):
+                    "Toronto, Ontario, Canada", "Guelph"):
             with self.subTest(loc=loc):
                 self.assertEqual(tier("Software Developer Intern", location=loc), LOOSE)
 
 
 class TestOntarioCities(unittest.TestCase):
-    """Ontario is the whole market: the radar exists for roles reachable
-    from Toronto, so the rest of Canada is noise however good it looks."""
+    """The commute area is the whole market: the radar exists for roles
+    reachable from Toronto, so the rest of Canada is noise however good it
+    looks."""
 
     def test_ontario_locations_reach_strict(self):
         for location in [
             "Toronto, ON",
             "Toronto, Ontario",
             "Waterloo, ON, Canada",
-            "Ottawa, Canada",
             "Mississauga, ON",
             "Oakville, ON, Canada",
             "Markham, ON, Canada",
-            "Welland, ON, Canada",
             "Kitchener, Ontario",
-            "London, ON",
+            "Hamilton, ON",
+            "Guelph, Ontario, Canada",
+            "Burlington, ON",
             "Greater Toronto Area",
         ]:
             with self.subTest(location=location):
@@ -675,12 +676,12 @@ class TestCanadianLocationRequired(unittest.TestCase):
         self.assertEqual(tier("ML Intern", location="Canada, in office 3 days"), LOOSE)
 
     def test_qualified_ontario_city_still_matches(self):
-        self.assertEqual(tier("ML Intern", location="London, ON"), STRICT)
-        self.assertEqual(tier("ML Intern", location="Kingston, Ontario"), STRICT)
+        self.assertEqual(tier("ML Intern", location="Burlington, ON"), STRICT)
+        self.assertEqual(tier("ML Intern", location="Milton, Ontario"), STRICT)
 
     def test_oracle_three_letter_province_is_ontario(self):
         """Oracle Cloud Recruiting writes "ONT"; Kingston is ambiguous without it."""
-        self.assertEqual(tier("ML Intern", location="Kingston, ONT, Canada"), "strict")
+        self.assertIsNone(tier("ML Intern", location="Kingston, ONT, Canada"))
         self.assertEqual(tier("ML Intern", location="Toronto, ONT, Canada"), "strict")
         self.assertIsNone(tier("ML Intern", location="Montreal, QUE, Canada"))
 
@@ -737,11 +738,46 @@ class TestOntarioNameCollisions(unittest.TestCase):
             "Waterloo, Canada",
             "Waterloo",
             "Hamilton, ON, Canada",
-            "Ottawa, ON, Canada",
             "Scarborough, Ontario",
         ]:
             with self.subTest(location=location):
                 self.assertEqual(tier("ML Intern", location=location), STRICT)
+
+
+class TestCommuteArea(unittest.TestCase):
+    """Ontario outside the GTA, Hamilton, Waterloo Region and Guelph is too
+    far to commute from Toronto, so it is rejected like another province."""
+
+    def verdict(self, location):
+        return classify(p("ML Intern", location=location))
+
+    def test_far_ontario_is_rejected(self):
+        for location in [
+            "Ottawa, ON", "Ottawa, Canada", "Kanata, Ontario, Canada", "London, ON",
+            "Kingston, Ontario", "Windsor, ON", "Welland, ON, Canada", "Barrie, ON",
+            "Sudbury, Ontario", "Peterborough, ON",
+        ]:
+            with self.subTest(location=location):
+                verdict = self.verdict(location)
+                self.assertIsNone(verdict.tier)
+                self.assertEqual(verdict.reason, "outside commute area")
+
+    def test_a_commutable_city_alongside_wins(self):
+        """A req open in Ottawa and Toronto is still a Toronto req."""
+        for location in ["Ottawa; Toronto, ON", "Ottawa, ON | Waterloo, ON",
+                         "Kanata, ON, Canada, Mississauga, ON, Canada"]:
+            with self.subTest(location=location):
+                self.assertEqual(self.verdict(location).tier, STRICT)
+
+    def test_province_only_is_kept(self):
+        """Usually the Toronto head office; dropping it would lose real roles."""
+        for location in ["Ontario, Canada", "ON, Canada", "Ontario"]:
+            with self.subTest(location=location):
+                self.assertEqual(self.verdict(location).tier, STRICT)
+
+    def test_remote_from_far_ontario_is_kept(self):
+        self.assertEqual(self.verdict("Remote - Ottawa, ON, Canada").tier, STRICT)
+        self.assertEqual(self.verdict("Remote, Canada").tier, STRICT)
 
 
 if __name__ == "__main__":

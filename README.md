@@ -2,17 +2,19 @@
 
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
-A live feed of Winter 2027 AI/ML internships and co-ops in **Ontario**. GitHub
+A live feed of Winter 2027 AI/ML internships and co-ops **in and around
+Toronto**. GitHub
 Actions re-scrapes every source six times a day and rewrites the listings below,
 so the feed stays current with my laptop closed. Zero cost: no paid APIs, no
 scraping services, no proxies, no LLM calls, no accounts.
 
 Three rules shape what you see:
 
-- **Only Ontario.** Toronto, Waterloo, Ottawa, Mississauga and the rest of the
-  province, plus roles advertised as remote within Canada. Everywhere else is
-  rejected outright — including Vancouver, Montreal and Calgary. A role listed
-  for both Toronto and somewhere else is still a Toronto role and is kept.
+- **Only commuting distance from Toronto.** The GTA, Hamilton, Waterloo
+  Region and Guelph, plus roles advertised as remote within Canada. Everywhere
+  else is rejected outright — Ottawa, London and Kingston as much as Vancouver,
+  Montreal and Calgary. A role listed for both Toronto and somewhere else is
+  still a Toronto role and is kept.
 - **Only the last two weeks for AI/ML roles, seven days for the rest**,
   newest first, each role labelled *Today*,
   *Yesterday* or *N days ago* so you can see at a glance what is still worth
@@ -21,6 +23,9 @@ Three rules shape what you see:
 - **Only live cycles.** Winter 2027 is the target. Fall 2026 and earlier are
   rejected outright — that recruiting is over. Summer 2027 and later are kept
   but demoted below the strict tier.
+- **One row per role.** The same posting reached through its own board, a
+  second careers site and a tracker that retitled it is listed once, and a
+  posting its board stops listing drops out of the feed.
 - **Internships first, tech only.** Full-time new-grad roles are kept but
   never strict. Loose holds only tech-relevant student roles; student roles in
   fields with no AI or tech angle (analog design, capital markets, strategy,
@@ -509,6 +514,10 @@ Two other knobs live in the same file:
 | `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. A page that names no ATS waits 30 days, one that named a platform waits 7, and a fetch error waits 14. Leftover budget sniffs another batch. |
 | `PROMOTE_MAX = 40` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
 | `TARGET_CYCLE = (2027, 1)` | Winter 2027. Anything earlier is rejected; anything later is demoted. Bump it next cycle. |
+| `PORTFOLIO_BOARDS` | VC job boards on Getro or Consider (Inovia, Real Ventures, Golden Ventures), each listing roles at many portfolio startups. |
+| `CLOSED_AFTER_MISSES = 2` | A posting leaves the feed once its source has returned a complete listing without it this many runs in a row. |
+| `AI_DESC_MIN_TERMS = 3` | Distinct ML terms (PyTorch, LLMs, model training, …) a job description needs to make a tech role strict. |
+| `DESC_PER_RUN = 80`, `DESC_TIME_BUDGET_S = 120` | Cap on job descriptions read per run. Each posting is read once; the backlog drains over later runs. |
 
 Backends share one small interface in [notify.py](notify.py) — `strict`,
 `digest`, `health`. Adding a phone channel later (email, ntfy, a Discord
@@ -545,8 +554,10 @@ search results (internships, or Ontario), not the marketing homepage.
     {"name": "Some Portal", "platform": "html", "token": "https://jobs.example.com/search?q=intern", "ai_native": False, "browser": True},
 ```
 
-For iCIMS and SuccessFactors the sniffer says so explicitly and prints an
-HTML-fallback line instead — neither exposes a clean public API.
+Company-hosted SuccessFactors career sites (`/search/?q=...`) are read
+directly: the token is the site's own search URL, narrowed to Ontario. Only
+the older `careerN.successfactors.com` hosted sites get an HTML-fallback line
+from the sniffer.
 
 When the careers page is rendered client-side or sits behind Cloudflare, the
 sniffer sees nothing. Guess the token instead — the ATS APIs are usually still
@@ -556,8 +567,8 @@ reachable even when the company's own site is not:
 python radar.py --probe deepgenomics deep-genomics
 ```
 
-It tries each slug on Ashby, Greenhouse, Lever, SmartRecruiters and Workable,
-and prints a paste-ready line for every board that has postings. An empty board
+It tries each slug on Ashby, Greenhouse, Lever, SmartRecruiters, Workable,
+BambooHR and JazzHR, and prints a paste-ready line for every board that has postings. An empty board
 counts as a miss: SmartRecruiters answers 200 with an empty list for any slug.
 
 ### Workday
@@ -589,8 +600,10 @@ Three coverage layers feed one dedupe-and-notify pipeline.
 platform in [sources.py](sources.py): Ashby, Greenhouse, Lever,
 SmartRecruiters, Workable, Recruitee, Teamtailor, Breezy, Personio (XML),
 Workday, Oracle Cloud Recruiting (Nokia, Definity, BGIS), Eightfold
-(Qualcomm), iCIMS's Jibe sites (AMD) and classic iCIMS portals (Kinaxis,
-Mackenzie), plus Amazon's own careers search (`amazon.jobs/en/search.json`),
+(Qualcomm, Microsoft, Ericsson), iCIMS's Jibe sites (AMD), classic iCIMS
+portals (Kinaxis, Mackenzie), SuccessFactors career sites (TELUS, Rogers,
+Scotiabank), and the startup ATSes BambooHR (Signal 1), Rippling and JazzHR,
+plus Amazon's own careers search (`amazon.jobs/en/search.json`),
 which is where its Toronto ML and robotics internships are posted. Classic
 iCIMS has no JSON, so its server-rendered listing is parsed, and its
 `CA-ON-Ottawa` location codes are spelled out for the location gate.
@@ -603,10 +616,17 @@ identically. Workday rows that say only "2 Locations" are resolved with one
 detail request each (student titles only, capped per board), so a TD co-op in
 Toronto and Montreal is read as the Toronto role it is.
 
-**Discovered boards.** Every Canadian posting the trackers carry links to the
-employer's own board, so each run mines those links (Ashby, Greenhouse, Lever,
-SmartRecruiters, Workable, both Workday URL forms, Oracle, Eightfold, Jibe and
-iCIMS) for boards not already in `companies.py`. They are remembered in a
+**Portfolio job boards.** VC funds publish one job board listing every open
+role across their portfolio — the Toronto AI startups no tracker covers.
+Inovia and Real Ventures run on Getro, Golden Ventures on Consider; each run
+pages through every Canadian posting on them, and each posting keeps its own
+startup's name. Their links point at the startups' own ATS boards, which
+feeds discovery below.
+
+**Discovered boards.** Every Canadian posting the trackers and portfolio
+boards carry links to the employer's own board, so each run mines those links
+(Ashby, Greenhouse, Lever, SmartRecruiters, Workable, both Workday URL forms,
+Oracle, Eightfold, Jibe, iCIMS, BambooHR, Rippling and JazzHR) for boards not already in `companies.py`. They are remembered in a
 `discovered` table and scraped as a second wave, which surfaces roles no
 tracker lists.
 
@@ -653,6 +673,19 @@ cannot miss a link appearing. Section menu links ("Student & New Grad",
 first, two at a time, because their job list is not in the first HTML
 response.
 
+**Job descriptions.** A title alone undersells plenty of ML work: a
+"Software Developer Co-op" on a model-training team never says AI. So a tech
+role in the commute area that missed strict only for want of an AI word has
+its description read — through the platform's own API for Greenhouse, Lever,
+Ashby, Workday, SmartRecruiters and Oracle, and otherwise from the posting
+page's schema.org `JobPosting` or its text. When it names at least three
+distinct ML terms (PyTorch, LLMs, model training, NLP, …; a bare "AI" never
+counts) the role is promoted to strict and tagged *AI in description* with the
+terms that matched. Each posting is read once, within `DESC_PER_RUN` and
+`DESC_TIME_BUDGET_S`, and rows left over from earlier runs are read on later
+ones. The same page also gives careers-page links the location and date their
+link text lacks.
+
 **Layer 3 — community trackers.** Seven tracker repos, including
 speedyapply's AI/ML-only list. Branch names differ (`dev` vs `main`), so each
 is tried rather than hardcoded. Apply buttons that are a badge image wrapped
@@ -672,12 +705,16 @@ Two tiers, because a wide net plus one channel equals noise.
 
 **strict** — instant notification. Requires all of:
 
-- an AI/ML signal in the title, **or** an `ai_native` company
+- an AI/ML signal in the title, **or** an `ai_native` company, **or** a tech
+  title whose job description names enough ML terms (tagged *AI in
+  description*)
 - an internship-level signal (intern, co-op, student, placement, work term, …)
-- an Ontario location signal, **or** remote within Canada
+- a location in the commute area, Ontario with no city named, **or** remote
+  within Canada
 - no cycle token pointing exclusively at a season other than Winter 2027
 
-**loose** — tech-relevant student roles in Ontario that miss strict, plus
+**loose** — tech-relevant student roles in the commute area that miss
+strict, plus
 roles that say only "Canada" with no province. Without an AI signal, the title
 needs a tech term (software, developer, engineering, data, analytics, cloud,
 security, QA, IT, product, R&D, …) to land here. Full-time early-career
@@ -695,7 +732,7 @@ alerted on, and shown collapsed below loose. An AI signal always wins, so
 
 **Rejected** — unpaid, volunteer, high school, PhD-*only*, retail and shift
 work ("Student Part Time", "Franchise", store departments), **anywhere outside
-Ontario**, and **postings for a cycle earlier than the target**. A bare "PhD"
+the commute area**, and **postings for a cycle earlier than the target**. A bare "PhD"
 mention does not reject: plenty of ML internships prefer a PhD but accept
 master's students. A bare year with no season ("2026 Intern") does not reject
 either — too ambiguous.
@@ -705,6 +742,14 @@ either — too ambiguous.
 Ontario is checked first, so a req open in both Toronto and Vancouver is kept
 as the Toronto role it is. Then:
 
+- **Ontario outside the commute area is rejected.** The commute area is the
+  GTA (Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville,
+  Burlington, Milton, Pickering, Ajax, Whitby, Oshawa, Newmarket, Aurora, …),
+  Hamilton, Kitchener-Waterloo, Cambridge and Guelph. A posting naming only
+  Ottawa, Kanata, London, Kingston, Windsor, Barrie, Niagara or the north is
+  rejected; one naming Ottawa *and* Toronto is kept. "Ontario, Canada" with no
+  city is kept, since it is nearly always a Toronto head office, and so is
+  remote work from anywhere in Ontario.
 - **Remote in Canada is kept.** It names no province, and it is workable from
   Toronto. Bare "Remote" is rejected: it says nothing about the country, and
   in practice it is almost always a US role.
@@ -773,7 +818,21 @@ SQLite (`radar.db`) with two layers:
 - **fingerprint** — SHA-1 of normalized company + normalized title. Collapses
   legal suffixes, cycle labels, req ids, location suffixes, co-op spellings and
   word order, so one role arriving from both an ATS and a tracker alerts once.
-  RBC alone publishes the same co-op through two Workday sites.
+- **requisition id** — the provider's own id read from the posting URL
+  (`_R-0000188001` on Workday, `/jobs/34407` on iCIMS and Jibe, Greenhouse's
+  `gh_jid`, Lever and Ashby UUIDs). Trackers retitle roles, so RBC's
+  *"2027 Winter – GRM, AI Developer Intern - Innovation & AI Center of
+  Excellence (4 Months)"* reached the feed four times under four titles; the id
+  ties them together. Rows sharing either key form one role, listed once, with
+  the employer's own copy shown over a tracker's.
+
+Each source that returns a complete listing also marks which stored postings
+it still lists. A posting missing from `CLOSED_AFTER_MISSES` (2) complete
+listings in a row is gone and leaves the feed; the employer's board is the
+authority, so a tracker still carrying it does not bring it back. Capped
+searches (Workday past its page limit), careers-page scrapes and 304s say
+nothing about what closed, so they never hide anything — those postings
+simply age out.
 
 A `health` table records each source's last success, last error and job count.
 If more than 20% of sources fail in a run you get a warning — a silently broken
@@ -813,9 +872,12 @@ identical READMEs a day. The badge above, not the stamp, is what proves the
 python -m unittest discover -s tests
 ```
 
-240 tests over the places a bug silently costs a job: the tier classifier and
-its location gate, the dedupe fingerprint, cycle parsing, the freshness window,
-tracker and careers-page parsing, board discovery and promotion, and the escaping and change-detection in the published feed. Fixtures are real title and location
+320+ tests over the places a bug silently costs a job: the tier classifier and
+its commute-area gate, the dedupe fingerprint and requisition-id grouping,
+closed-posting tracking, description scoring, cycle parsing, the freshness
+window, every adapter's parsing, tracker and careers-page parsing, board
+discovery and promotion, and the escaping and change-detection in the
+published feed. Fixtures are real title and location
 shapes taken from live boards. The workflow runs them before every scrape, so
 a classifier bug cannot publish a garbled feed.
 
@@ -867,9 +929,10 @@ Corrections found along the way:
   start well after its time. The six daily runs are already a few hours
   apart. A local scheduler was punctual; this is the price of the laptop
   being closed.
-- **Ontario is judged from the posting text.** A company that writes only
-  "Canada" with no province, and no remote wording, is not confirmable as
-  Ontario and lands in loose rather than strict. A posting with no location
+- **The commute area is judged from the posting text.** A company that
+  writes only "Canada" with no province, and no remote wording, is not
+  confirmable as Toronto and lands in loose rather than strict. "Ontario"
+  with no city is kept as Toronto, which is occasionally wrong. A posting with no location
   at all is dropped, even if it really is in Toronto.
 - **Discovered boards include some noise.** A tracker row can point a
   Canadian posting at a global board (an agency, a UK subsidiary), which is
@@ -877,8 +940,8 @@ Corrections found along the way:
   the feed; the cost is only fetch time.
 - **Bell, OpenText and Celestica** have no public board API that `--probe`
   finds, and a browser load of Bell's careers page does not draw job links.
-  Their roles arrive via the trackers. Shopify and Rogers are opened in
-  Chromium instead.
+  Their roles arrive via the trackers. Shopify is opened in Chromium
+  instead.
 - **Ada** is disabled: `www.ada.cx` returns Cloudflare 403 to every non-browser
   request, full browser headers included. Ada postings still arrive via the
   trackers.
@@ -886,8 +949,12 @@ Corrections found along the way:
   client-side rendering, or a TLS handshake python-requests cannot complete.
   The trackers cover them.
 - **Scotiabank** answers 422 to the standard Workday search, so its public
-  careers search (internships in Ontario) is scraped as a careers page
-  instead.
+  SuccessFactors careers search (internships in Ontario) is read instead.
+- **Description reading is budgeted.** At most `DESC_PER_RUN` descriptions a
+  run, so after a reseed the backlog takes a few runs to drain, and a page
+  with no `JobPosting` is scored on its visible text, boilerplate included.
+- **Cisco** runs Phenom, which has no adapter; on 17 Oct 2026 it had no intern
+  role in Canada, so its careers page stays a browser scrape.
 - **Careers pages that only link onward** are not scraped: Borealis AI, CPP
   Investments, OMERS, Ontario Teachers', Hydro One, Intact, Meta, GM and
   SickKids show menu links only, and Layer 6, Private AI, Ross Video,

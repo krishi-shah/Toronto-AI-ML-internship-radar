@@ -32,8 +32,9 @@ import companies as cfg
 import notify
 import sources
 from core import (
-    LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, in_canada,
-    names_a_place, toronto_now,
+    AI_IN_DESCRIPTION, LOOSE, OTHER, STRICT, Posting, Store, Verdict,
+    ai_description_score, classify, in_canada, names_a_place, normalize_company,
+    role_keys, toronto_now,
 )
 
 # Tracker READMEs and job titles carry emoji and arrows; the Windows console
@@ -122,11 +123,36 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
             )
         )
 
+    # VC and ecosystem job boards list many companies' roles at once, so each
+    # posting carries its own company name rather than the board's.
+    for entry in cfg.PORTFOLIO_BOARDS:
+        adapter = sources.ADAPTERS.get(entry["platform"])
+        label = f"{entry['name']} [{entry['platform']}]"
+        if adapter is None:
+            thunk = lambda p=entry["platform"]: (_ for _ in ()).throw(  # noqa: E731
+                ValueError(f"unknown platform '{p}'")
+            )
+        else:
+            thunk = lambda a=adapter, n=entry["name"], t=entry["token"]: a(http, n, t)  # noqa: E731
+        tasks.append((label, thunk, False))
+
     return tasks
 
 
+def ai_native_companies() -> set[str]:
+    """Normalised names of every company configured ``ai_native``."""
+    return {
+        normalize_company(c["name"]) for c in cfg.all_companies() if c.get("ai_native")
+    }
+
+
+def source_count() -> int:
+    """Configured sources: company boards, trackers and portfolio job boards."""
+    return len(cfg.all_companies()) + len(cfg.TRACKERS) + len(cfg.PORTFOLIO_BOARDS)
+
+
 def fetch_all(
-    http: sources.Http, store: Store, quiet: bool = False
+    http: sources.Http, store: Store, quiet: bool = False, track: bool = True,
 ) -> tuple[list[Posting], dict[str, str]]:
     """Fetch every source concurrently. Returns postings and per-source errors.
 
@@ -138,22 +164,27 @@ def fetch_all(
     Only configured sources are reported in ``errors`` and the health table.
     Discovered boards are speculative, so their failures are tracked in the
     ``discovered`` table instead and never trip the health warning.
+
+    With ``track``, every complete listing also updates which stored postings
+    its source still lists (see Store.mark_present). ``--check`` passes False
+    because it records nothing.
     """
     deadline = time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S
+    stamp = int(time.time()) if track else None
     tasks = build_tasks(http)
     http_tasks = [task for task in tasks if not getattr(task[1], "browser", False)]
     portal_tasks = [task for task in tasks if getattr(task[1], "browser", False)]
-    postings, errors = _run_wave(http_tasks, store, quiet)
+    postings, errors = _run_wave(http_tasks, store, quiet, stamp=stamp)
     if portal_tasks:
         found, portal_errors = _run_wave(
-            portal_tasks, store, quiet, workers=PORTAL_WORKERS
+            portal_tasks, store, quiet, workers=PORTAL_WORKERS, stamp=stamp,
         )
         postings.extend(found)
         errors.update(portal_errors)
     store.commit()
 
     if cfg.DISCOVERY_MAX_BOARDS > 0:
-        found = _run_discovered(http, store, postings, quiet, deadline)
+        found = _run_discovered(http, store, postings, quiet, deadline, stamp)
         postings.extend(found)
         store.commit()
 
@@ -170,10 +201,10 @@ def fetch_all(
             )
         retry_http = [task for task in retry if not getattr(task[1], "browser", False)]
         retry_portal = [task for task in retry if getattr(task[1], "browser", False)]
-        more, still_bad = _run_wave(retry_http, store, quiet)
+        more, still_bad = _run_wave(retry_http, store, quiet, stamp=stamp)
         if retry_portal:
             more_portal, still_portal = _run_wave(
-                retry_portal, store, quiet, workers=PORTAL_WORKERS
+                retry_portal, store, quiet, workers=PORTAL_WORKERS, stamp=stamp,
             )
             more.extend(more_portal)
             still_bad.update(still_portal)
@@ -207,12 +238,19 @@ def _before(deadline: float, thunk: Callable[[], list[Posting]]) -> Callable[[],
     return run
 
 
-def _run_wave(tasks, store: Store, quiet: bool, on_result=None, workers: int | None = None):
+def _run_wave(
+    tasks, store: Store, quiet: bool, on_result=None, workers: int | None = None,
+    stamp: Optional[int] = None,
+):
     """Run ``(label, thunk, ai_native)`` tasks on the pool, in order.
 
     ``on_result(label, found_or_None, error_or_None)`` replaces the default
     health-table bookkeeping when given. A task raising :class:`OutOfTime`
     is reported to neither: it simply did not run.
+
+    With ``stamp``, each complete listing marks which stored postings its
+    source still lists. A capped search (:class:`sources.Partial`) or an empty
+    answer -- a 304, or a board briefly returning nothing -- marks nothing.
     """
     postings: list[Posting] = []
     errors: dict[str, str] = {}
@@ -238,10 +276,20 @@ def _run_wave(tasks, store: Store, quiet: bool, on_result=None, workers: int | N
                     print(f"  FAIL  {label:<48} {msg[:90]}")
                 continue
 
+            native = ai_native_companies()
             for post in found:
                 post.source = post.source or label
-                post.ai_native = post.ai_native or ai_native
+                # A tracker or portfolio-board row for Cohere is as AI as one
+                # from Cohere's own board.
+                post.ai_native = (post.ai_native or ai_native
+                                  or normalize_company(post.company) in native)
             postings.extend(found)
+            if stamp is not None and found and not isinstance(found, sources.Partial):
+                by_source: dict[str, list[str]] = {}
+                for post in found:
+                    by_source.setdefault(post.source, []).append(post.uid)
+                for source, uids in by_source.items():
+                    store.mark_present(source, uids, stamp)
             if on_result:
                 on_result(label, found, None)
             else:
@@ -312,7 +360,7 @@ def _sniff_hosts(http: sources.Http, store: Store, postings: list[Posting], quie
 
 def _run_discovered(
     http: sources.Http, store: Store, postings: list[Posting], quiet: bool,
-    deadline: float,
+    deadline: float, stamp: Optional[int] = None,
 ) -> list[Posting]:
     """Mine ``postings`` for new boards, then scrape known ones until ``deadline``."""
     for board in sources.discover_boards(postings, configured_boards()):
@@ -363,10 +411,104 @@ def _run_discovered(
             student=student, strict=strict_n,
         )
 
-    found, _ = _run_wave(tasks, store, quiet, on_result=record)
+    found, _ = _run_wave(tasks, store, quiet, on_result=record, stamp=stamp)
     if not quiet and ran < len(tasks):
         print(f"  -- time budget reached: {len(tasks) - ran} boards wait for the next run --")
     return found
+
+
+# --------------------------------------------------------------------------
+# Job descriptions
+# --------------------------------------------------------------------------
+
+
+def _wants_description(verdict: Verdict) -> bool:
+    """Could reading the posting change this verdict?
+
+    A tech role in the commute area that missed strict only for want of an AI
+    word in its title, or a careers-page link the classifier could not place
+    because the link text named no city.
+    """
+    if verdict.tier == LOOSE and verdict.reason == "no AI signal":
+        return True
+    return verdict.tier is None and verdict.student and verdict.reason == "no Canadian location"
+
+
+class Describer:
+    """Reads job descriptions within a per-run request and time budget.
+
+    Each posting is read at most once ever (the ``descriptions`` table), so
+    the budget goes to new postings first and the backlog drains over runs.
+    With ``record`` False (``--check``) nothing is written.
+    """
+
+    def __init__(
+        self, http: sources.Http, store: Store, limit: int, budget_s: float,
+        record: bool = True,
+    ) -> None:
+        self.http = http
+        self.store = store
+        self.record = record
+        self.left = max(0, limit)
+        self.deadline = time.monotonic() + budget_s
+        self.read = 0
+        self.upgraded = 0
+
+    def _budget_left(self) -> bool:
+        return self.left > 0 and time.monotonic() < self.deadline
+
+    def _read(self, post: Posting) -> Optional[sources.Description]:
+        """Fetch one description and remember that it was read."""
+        self.left -= 1
+        self.read += 1
+        try:
+            desc = sources.describe(self.http, post.url, post.raw)
+        except Exception as exc:  # noqa: BLE001 - one dead page is not a failed run
+            if self.record:
+                self.store.record_description(post.uid, 0, [], f"{type(exc).__name__}: {exc}")
+            return None
+        if self.record:
+            score, terms = ai_description_score(desc.text if desc else "")
+            self.store.record_description(post.uid, score, terms)
+        return desc
+
+    def reclassify(self, post: Posting, verdict: Verdict) -> Verdict:
+        """``verdict``, revised by what the posting's own page says."""
+        if not self._budget_left():
+            return verdict
+        if self.record and self.store.description_checked(post.uid):
+            return verdict
+        desc = self._read(post)
+        if desc is None:
+            return verdict
+        # Careers-page links carry no place of their own; the posting page does.
+        if desc.location and not names_a_place(post.location):
+            post.location = desc.location
+        if desc.posted_at and not post.posted_at:
+            post.posted_at = desc.posted_at
+        revised = classify(post, desc.text)
+        if revised.tier == STRICT and verdict.tier != STRICT:
+            self.upgraded += 1
+        return revised
+
+    def backfill(self, max_age_hours: int) -> int:
+        """Read stored loose rows from earlier runs; return how many turned strict."""
+        before = self.upgraded
+        for row in self.store.description_backlog(self.left, max_age_hours):
+            if not self._budget_left():
+                break
+            post = Posting(
+                company=row["company"], title=row["title"], location=row["location"] or "",
+                url=row["url"] or "", uid=row["uid"], source=row["source"] or "",
+                posted_at=row["posted_at"] or 0,
+            )
+            revised = self.reclassify(post, Verdict(LOOSE, row["reason"]))
+            if revised.tier != LOOSE or revised.reason != row["reason"]:
+                self.store.update_verdict(post.uid, revised.tier, revised.reason, revised.ai_terms)
+            if post.location != (row["location"] or ""):
+                self.store.update_place(post.uid, post.location, post.posted_at)
+        self.store.commit()
+        return self.upgraded - before
 
 
 # --------------------------------------------------------------------------
@@ -375,22 +517,24 @@ def _run_discovered(
 
 
 def triage(
-    postings: list[Posting], store: Store
+    postings: list[Posting], store: Store, describer: Optional["Describer"] = None,
 ) -> tuple[list[tuple[Posting, Verdict]], list[tuple[Posting, Verdict]], int]:
     """Classify and dedupe. Returns new strict hits, new loose hits, skip count.
 
     Two dedupe layers: the per-source uid catches the same posting on a later
-    run, and the company+title fingerprint catches the same role arriving from
-    an ATS and a tracker at once.
+    run, and the role group -- company+title fingerprint or the requisition id
+    in the URL -- catches the same role arriving from an ATS and a tracker.
+
+    ``describer`` (see :class:`Describer`) reads the description of a role
+    that missed strict only for want of an AI word in its title.
     """
     new_strict: list[tuple[Posting, Verdict]] = []
     new_loose: list[tuple[Posting, Verdict]] = []
     skipped = 0
-    # Tracked separately by tier: a strict hit must never be suppressed by a
-    # role that was only ever seen at the loose tier. See
-    # Store.fingerprint_delivered.
-    strict_fps: set[str] = set()
-    any_fps: set[str] = set()
+    # A strict hit must never be suppressed by a role only ever seen at the
+    # loose tier (see Store.delivered), and strict rows from this run are not
+    # marked notified yet, so this run's strict groups are tracked here.
+    strict_groups: set[str] = set()
 
     for post in postings:
         if not post.uid or not post.title:
@@ -400,7 +544,8 @@ def triage(
             continue
 
         verdict = classify(post)
-        fp = post.fingerprint()
+        if describer is not None and _wants_description(verdict):
+            verdict = describer.reclassify(post, verdict)
 
         if verdict.tier is None:
             store.record(post, None, verdict.reason)
@@ -408,23 +553,22 @@ def triage(
 
         # Same role already delivered under another uid: keep the row so uid
         # dedupe still works, but do not notify a second time.
-        if verdict.tier == STRICT:
-            duplicate = fp in strict_fps
-        else:
-            duplicate = fp in any_fps
-        duplicate = duplicate or store.fingerprint_delivered(fp, verdict.tier)
+        group = store.group_for(post)
+        duplicate = store.delivered(post, verdict.tier) or (
+            verdict.tier == STRICT and group is not None and group in strict_groups
+        )
 
         if duplicate:
-            store.record(post, verdict.tier, verdict.reason, notified=True, digested=True)
+            store.record(post, verdict.tier, verdict.reason, notified=True,
+                         digested=True, ai_terms=verdict.ai_terms)
             skipped += 1
             continue
 
-        any_fps.add(fp)
-        if verdict.tier == STRICT:
-            strict_fps.add(fp)
         # Other-fields rows are only ever shown in the feed, never alerted on
         # or digested, so they are recorded and go no further.
-        store.record(post, verdict.tier, verdict.reason)
+        store.record(post, verdict.tier, verdict.reason, ai_terms=verdict.ai_terms)
+        if verdict.tier == STRICT:
+            strict_groups.add(store.group_for(post))
         if verdict.tier == STRICT:
             new_strict.append((post, verdict))
         elif verdict.tier == LOOSE:
@@ -672,26 +816,35 @@ def cmd_run(store: Store, seed: bool = False) -> int:
 
     postings, errors = fetch_all(http, store)
     sync_auto_companies(store)
-    total_sources = len(cfg.all_companies()) + len(cfg.TRACKERS)
+    total_sources = source_count()
+    describer = Describer(http, store, cfg.DESC_PER_RUN, cfg.DESC_TIME_BUDGET_S)
 
     if seed:
         recorded = 0
         for post in postings:
             if post.uid and post.title and not store.seen_uid(post.uid):
                 verdict = classify(post)
+                if _wants_description(verdict):
+                    verdict = describer.reclassify(post, verdict)
                 store.record(
                     post, verdict.tier, verdict.reason,
-                    notified=True, digested=True, seeded=True,
+                    notified=True, digested=True, seeded=True, ai_terms=verdict.ai_terms,
                 )
                 recorded += 1
         store.commit()
         print(f"\nSeeded {recorded} postings as already-seen. No alerts sent.")
+        print(f"Descriptions: {describer.read} read, {describer.upgraded} promoted to strict.")
         return 0
 
-    new_strict, new_loose, skipped = triage(postings, store)
+    new_strict, new_loose, skipped = triage(postings, store, describer)
+    backfilled = describer.backfill(cfg.MAX_AGE_HOURS)
     print(
         f"\n{len(postings)} fetched · {skipped} already seen · "
         f"{len(new_strict)} strict · {len(new_loose)} queued for digest"
+    )
+    print(
+        f"Descriptions: {describer.read} read, {describer.upgraded} promoted to strict"
+        f" ({backfilled} from earlier runs)."
     )
 
     notifiers = notify.build_notifiers(cfg.NOTIFIERS, store)
@@ -727,26 +880,32 @@ def cmd_check(store: Store) -> int:
     http = sources.Http(None)
     print(f"[CHECK] {toronto_now():%Y-%m-%d %H:%M:%S} Toronto\n")
 
-    postings, errors = fetch_all(http, store)
-    total_sources = len(cfg.all_companies()) + len(cfg.TRACKERS)
+    postings, errors = fetch_all(http, store, track=False)
+    total_sources = source_count()
 
-    # Apply the same fingerprint dedupe a real run would, so the counts here
-    # reflect what would actually ping rather than raw source rows. RBC alone
-    # publishes the same co-op through two Workday sites.
+    # Apply the same role grouping a real run would -- fingerprint or
+    # requisition id -- so the counts here reflect what would actually ping
+    # rather than raw source rows. RBC alone publishes the same co-op through
+    # two Workday sites, and trackers retitle it again.
+    describer = Describer(http, store, cfg.DESC_PER_RUN, cfg.DESC_TIME_BUDGET_S,
+                          record=False)
     strict: list[tuple[Posting, Verdict]] = []
-    seen_fp: set[str] = set()
-    raw_strict = 0
+    seen_keys: set[str] = set()
+    dupes = 0
     loose = 0
     other = 0
     stale = 0
     for post in postings:
         verdict = classify(post)
+        if _wants_description(verdict) and is_fresh(post.posted_at):
+            verdict = describer.reclassify(post, verdict)
         if verdict.tier == STRICT:
-            raw_strict += 1
-            fp = post.fingerprint()
-            if fp in seen_fp:
+            keys = role_keys(post.company, post.title, post.url)
+            if seen_keys.intersection(keys):
+                dupes += 1
+                seen_keys.update(keys)
                 continue
-            seen_fp.add(fp)
+            seen_keys.update(keys)
             if is_fresh(post.posted_at):
                 strict.append((post, verdict))
             else:
@@ -756,8 +915,10 @@ def cmd_check(store: Store) -> int:
         elif verdict.tier == OTHER:
             other += 1
 
-    dupes = raw_strict - len(seen_fp)
     notes = []
+    if describer.read:
+        notes.append(f"{describer.read} descriptions read, "
+                     f"{describer.upgraded} promoted to strict")
     if dupes:
         notes.append(f"{dupes} duplicates collapsed")
     if stale:
@@ -773,6 +934,8 @@ def cmd_check(store: Store) -> int:
         print(f"\nStrict matches posted in the last {cfg.MAX_AGE_HOURS}h:")
         for post, verdict in strict[:40]:
             print(f"  · {post.company} — {post.title}")
+            if verdict.reason == AI_IN_DESCRIPTION:
+                print(f"      {AI_IN_DESCRIPTION}: {', '.join(verdict.ai_terms)}")
             print(f"      {post.location or '(no location listed)'}")
             print(f"      {post.url}")
     if errors:

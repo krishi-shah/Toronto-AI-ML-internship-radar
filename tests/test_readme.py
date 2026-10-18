@@ -188,6 +188,26 @@ class TestRendering(ReadmeCase):
         self.render(health_rows=[health(ok=0, last_error="HTTPError: 403 Forbidden")])
         self.assertIn("**FAIL** HTTPError: 403 Forbidden", self.read())
 
+    def test_term_column_is_filled(self):
+        self.render(strict=[dict(job(), term="Winter 2027")])
+        self.assertIn("| Toronto, Ontario, Canada | Winter 2027 | **Today** |", self.read())
+
+    def test_unknown_term_shows_a_dash(self):
+        self.render(strict=[job()])
+        self.assertIn("| Toronto, Ontario, Canada | - | **Today** |", self.read())
+
+    def test_description_promotion_says_why(self):
+        row = dict(job(title="Software Developer Co-op"), reason=notify.AI_IN_DESCRIPTION,
+                   ai_terms="PyTorch, LLMs")
+        self.render(strict=[row])
+        self.assertIn("<br><sub>AI in description: PyTorch, LLMs</sub>", self.read())
+
+    def test_truncated_tier_says_how_many_more(self):
+        store = FakeStore(loose=[job()])
+        store.count_jobs = lambda tier, max_age=None: 412 if tier == "loose" else 0
+        ReadmeWriter(store, path=self.path).render()
+        self.assertIn("### Loose &middot; 1 of 412 to review", self.read())
+
     def test_board_that_never_had_a_posting_is_flagged_empty(self):
         """A company that moved ATS leaves a board answering 200 with nothing."""
         self.render(health_rows=[health(source="Confluent [ashby]", job_count=0)])
@@ -207,7 +227,7 @@ class TestRendering(ReadmeCase):
         body = self.read()
         self.assertIn(
             "<details><summary>Other fields &middot; 1 outside AI/ML</summary>\n\n"
-            "| Role | Company | Location | Posted |",
+            "| Role | Company | Location | Term | Posted |",
             body,
         )
         self.assertIn("[Analog Design Intern](https://e.com/analog)", body)

@@ -24,7 +24,7 @@ from typing import Any, Iterable, Optional, Protocol, Sequence
 import companies as cfg
 from datetime import datetime
 
-from core import Posting, Verdict, toronto_now
+from core import AI_IN_DESCRIPTION, Posting, Verdict, toronto_now
 
 DASHBOARD_PATH = os.environ.get("RADAR_DASHBOARD", "radar.html")
 README_PATH = os.environ.get("RADAR_README", "README.md")
@@ -38,8 +38,8 @@ LISTINGS_END = "<!-- radar:listings:end -->"
 MAX_TOASTS_PER_RUN = 5
 
 # How many rows each tier contributes to a rendered feed.
-STRICT_LIMIT = 60
-LOOSE_LIMIT = 150
+STRICT_LIMIT = 100
+LOOSE_LIMIT = 400
 OTHER_LIMIT = 150
 
 # Status for a source that answers but has never returned a posting. That is
@@ -156,7 +156,7 @@ class ToastNotifier:
             return True
         return _raise_toast(
             f"Daily digest: {len(rows)} maybe-relevant roles",
-                "Student-level roles in Ontario that missed the strict filter.",
+            "Student-level roles near Toronto that missed the strict filter.",
             _dashboard_uri(),
         )
 
@@ -206,6 +206,8 @@ h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;
 .tag.s{color:var(--strict);background:var(--strict-bg)}
 .tag.l{color:var(--loose);background:var(--loose-bg)}
 .tag.o{color:var(--muted);background:var(--bg);border:1px solid var(--line)}
+.tag.ai{color:var(--accent);background:var(--bg);border:1px solid var(--line);
+  text-transform:none;letter-spacing:0;font-weight:600}
 details>summary{cursor:pointer;list-style:none}
 details>summary h2{display:inline-block}
 .empty{color:var(--muted);font-style:italic;padding:.85rem 0}
@@ -289,18 +291,44 @@ def _when_label(row: Any) -> tuple[str, bool]:
     return when, days == 0
 
 
+def _col(row: Any, name: str) -> str:
+    """A column that older rows and test fixtures may not have."""
+    try:
+        return row[name] or ""
+    except (IndexError, KeyError):
+        return ""
+
+
+def _ai_note(row: Any) -> str:
+    """"AI in description: PyTorch, LLMs" for a row its description promoted."""
+    if _col(row, "reason") != AI_IN_DESCRIPTION or not _col(row, "ai_terms"):
+        return ""
+    return f"{AI_IN_DESCRIPTION}: {_col(row, 'ai_terms')}"
+
+
+def _heading_count(store: Any, tier: str, shown: int, max_age: int) -> str:
+    """"150" or, when the list was cut at its limit, "150 of 412"."""
+    count = getattr(store, "count_jobs", None)
+    total = count(tier, max_age) if count else shown
+    return f"{shown} of {total}" if total > shown else f"{shown}"
+
+
 def _row_html(row: Any, tag: str) -> str:
     label = {"s": "strict", "l": "loose", "o": "other"}[tag]
     when, today = _when_label(row)
     hot = " hot" if today else ""
+    term = _col(row, "term")
+    note = _ai_note(row)
 
     return (
         f'<div class="card"><span class="tag {tag}">{label}</span>'
         f'<a class="title" href="{_e(row["url"])}" target="_blank" rel="noopener">'
         f'{_e(row["title"])}</a>'
-        f'<span class="meta">{_e(row["company"])}'
-        f' &middot; {_e(row["location"] or "location not listed")}</span>'
-        f'<span class="when{hot}">{_e(when)}</span></div>'
+        + (f'<span class="tag ai">{_e(note)}</span>' if note else "")
+        + f'<span class="meta">{_e(row["company"])}'
+        f' &middot; {_e(row["location"] or "location not listed")}'
+        + (f" &middot; {_e(term)}" if term else "")
+        + f'</span><span class="when{hot}">{_e(when)}</span></div>'
     )
 
 
@@ -342,8 +370,9 @@ class DashboardWriter:
             f'<div class="sub">Updated {_e(stamp)} Toronto &middot; '
             f"{ok_count}/{len(health)} sources healthy &middot; "
             f"{_windows_label(window, strict_window)}, newest first</div>",
-            f"<h2>Strict &middot; {len(strict_rows)} AI/ML matches &middot; "
-            f"last {strict_window}</h2>",
+            f"<h2>Strict &middot; "
+            f"{_heading_count(self.store, 'strict', len(strict_rows), strict_age)}"
+            f" AI/ML matches &middot; last {strict_window}</h2>",
         ]
 
         body.append(
@@ -353,7 +382,10 @@ class DashboardWriter:
             "New AI/ML roles appear here on the next scheduled run.</div>"
         )
 
-        body.append(f"<h2>Loose &middot; {len(loose_rows)} to review</h2>")
+        body.append(
+            f"<h2>Loose &middot; "
+            f"{_heading_count(self.store, 'loose', len(loose_rows), max_age)} to review</h2>"
+        )
         body.append(
             "".join(_row_html(r, "l") for r in loose_rows)
             if loose_rows
@@ -452,11 +484,15 @@ def _md_row(row: Any) -> str:
     when, today = _when_label(row)
     title = _md(row["title"])
     url = _md_url(row["url"])
+    note = _ai_note(row)
     return (
         f"| [{title}]({url}) " if url else f"| {title} "
     ) + (
+        f"<br><sub>{_md(note)}</sub> " if note else ""
+    ) + (
         f"| {_md(row['company'])} "
         f"| {_md(row['location'] or 'not listed')} "
+        f"| {_md(_col(row, 'term')) or '-'} "
         f"| {'**' + _md(when) + '**' if today else _md(when)} |"
     )
 
@@ -465,8 +501,8 @@ def _md_table(rows: Sequence[Any], window: str) -> list[str]:
     if not rows:
         return [f"_Nothing in the last {window}._"]
     return [
-        "| Role | Company | Location | Posted |",
-        "|---|---|---|---|",
+        "| Role | Company | Location | Term | Posted |",
+        "|---|---|---|---|---|",
         *(_md_row(r) for r in rows),
     ]
 
@@ -523,12 +559,14 @@ class ReadmeWriter:
             f" &middot; {ok_count}/{len(health)} sources healthy"
             f" &middot; {_windows_label(window, strict_window)}, newest first._",
             "",
-            f"### Strict &middot; {len(strict_rows)} AI/ML matches"
-            f" &middot; last {strict_window}",
+            f"### Strict &middot; "
+            f"{_heading_count(self.store, 'strict', len(strict_rows), strict_age)}"
+            f" AI/ML matches &middot; last {strict_window}",
             "",
             *_md_table(strict_rows, strict_window),
             "",
-            f"### Loose &middot; {len(loose_rows)} to review",
+            f"### Loose &middot; "
+            f"{_heading_count(self.store, 'loose', len(loose_rows), max_age)} to review",
             "",
             *_md_table(loose_rows, window),
             "",

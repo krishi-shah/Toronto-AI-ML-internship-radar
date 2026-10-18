@@ -56,6 +56,18 @@ COMPANIES: list[dict] = [
     {"name": "OpenAI", "platform": "ashby", "token": "openai", "ai_native": True},
     {"name": "Scale AI", "platform": "greenhouse", "token": "scaleai", "ai_native": False},
 
+    # -- Found by --probe, verified live 17 Oct 2026 ----------------------
+    # Each had postings in the commute area or remote within Canada.
+    {"name": "Ada", "platform": "greenhouse", "token": "ada18", "ai_native": True},
+    {"name": "Kindred AI", "platform": "ashby", "token": "kindred", "ai_native": True},
+    {"name": "Ideogram", "platform": "ashby", "token": "ideogram", "ai_native": True},
+    {"name": "Lightmatter", "platform": "greenhouse", "token": "lightmatter", "ai_native": False},
+    {"name": "Xanadu", "platform": "jazzhr", "token": "xanadu", "ai_native": False},
+    {"name": "PointClickCare", "platform": "lever", "token": "pointclickcare", "ai_native": False},
+    {"name": "Miovision", "platform": "ashby", "token": "miovision", "ai_native": False},
+    {"name": "Klue", "platform": "ashby", "token": "klue", "ai_native": False},
+    {"name": "Thinkific", "platform": "ashby", "token": "thinkific", "ai_native": False},
+
     # -- Toronto / Waterloo / Ottawa tech, verified live 29 Sep 2026 ------
     # Each carries Canadian postings on its board. Not ai_native: their AI roles
     # still need an AI signal in the title to reach strict.
@@ -157,6 +169,12 @@ COMPANIES: list[dict] = [
     {"name": "Entrust", "platform": "workday",
      "token": "https://entrust.wd1.myworkdayjobs.com/wday/cxs/entrust/entrustcareers/jobs",
      "ai_native": False},
+    # careers.thomsonreuters.com now redirects here.
+    {"name": "Thomson Reuters", "platform": "workday",
+     "token": "https://thomsonreuters.wd5.myworkdayjobs.com/wday/cxs/thomsonreuters/External_Career_Site/jobs",
+     "ai_native": False},
+    # Ciena, Entrust and Kinaxis hire mostly in Ottawa, outside the commute
+    # area; kept because they occasionally post Toronto roles.
     {"name": "Magna", "platform": "workday",
      "token": "https://magna.wd3.myworkdayjobs.com/wday/cxs/magna/Magna/jobs",
      "ai_native": False},
@@ -168,6 +186,11 @@ COMPANIES: list[dict] = [
     # Tokens come straight off a posting URL; see the docstring for each form.
     {"name": "Qualcomm", "platform": "eightfold",
      "token": "qualcomm.eightfold.ai|qualcomm.com", "ai_native": False},
+    # Eightfold also answers on a company's own careers host.
+    {"name": "Microsoft", "platform": "eightfold",
+     "token": "apply.careers.microsoft.com|microsoft.com", "ai_native": False},
+    {"name": "Ericsson", "platform": "eightfold",
+     "token": "jobs.ericsson.com|ericsson.com", "ai_native": False},
     {"name": "AMD", "platform": "jibe", "token": "https://careers.amd.com", "ai_native": False},
     {"name": "Nokia", "platform": "oracle",
      "token": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com|CX_1", "ai_native": False},
@@ -179,6 +202,21 @@ COMPANIES: list[dict] = [
      "token": "https://careers-kinaxis.icims.com", "ai_native": False},
     {"name": "Mackenzie Investments", "platform": "icims",
      "token": "https://careersen-mackenzieinvestments.icims.com", "ai_native": False},
+
+    # -- SuccessFactors career sites, verified live 17 Oct 2026 ----------------
+    # Server-rendered result rows, so no browser: real title, place and date.
+    # The token is the site's own search URL, already narrowed to Ontario.
+    # OPG runs the same software but draws its rows with JavaScript, so it
+    # stays a browser scrape below.
+    {"name": "TELUS", "platform": "successfactors",
+     "token": "https://careers.telus.com/search/?q=intern&locationsearch=Ontario",
+     "ai_native": False},
+    {"name": "Rogers", "platform": "successfactors",
+     "token": "https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario",
+     "ai_native": False},
+    {"name": "Scotiabank", "platform": "successfactors",
+     "token": "https://jobs.scotiabank.com/search/?q=internship&locationsearch=Ontario",
+     "ai_native": False},
 
     # -- Careers pages, HTML layer ---------------------------------------
     # For careers pages with no API. Pages that embed schema.org JobPosting
@@ -195,18 +233,9 @@ COMPANIES: list[dict] = [
     # the rendered page had no job-title links.
     {"name": "Shopify", "platform": "html",
      "token": "https://www.shopify.com/careers", "ai_native": False, "browser": True},
-    {"name": "Microsoft", "platform": "html",
-     "token": "https://jobs.careers.microsoft.com/global/en/search?q=intern&lc=Toronto%2C%20Ontario%2C%20Canada",
-     "ai_native": False, "browser": True},
-    {"name": "TELUS", "platform": "html",
-     "token": "https://careers.telus.com/search/?q=intern&locationsearch=Ontario",
-     "ai_native": False, "browser": True},
-    {"name": "Rogers", "platform": "html",
-     "token": "https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario",
-     "ai_native": False, "browser": True},
-    {"name": "Thomson Reuters", "platform": "html",
-     "token": "https://careers.thomsonreuters.com/us/en/search-results?keywords=intern",
-     "ai_native": False, "browser": True},
+    # Microsoft, Ericsson and Thomson Reuters used to be browser scrapes here.
+    # Microsoft and Ericsson moved to Eightfold and Thomson Reuters to Workday,
+    # so they now run on those adapters above, with real places and dates.
 
     # Ontario employers whose postings reached no API board, tracker or
     # discovery. Each was opened and kept only if it returned role links.
@@ -214,26 +243,27 @@ COMPANIES: list[dict] = [
     {"name": "ecobee", "platform": "html",
      "token": "https://www.ecobee.com/en-ca/careers/",
      "ai_native": False, "location": "Toronto, ON"},
-    {"name": "Scotiabank", "platform": "html",
-     "token": "https://jobs.scotiabank.com/search/?q=internship&locationsearch=Ontario",
-     "ai_native": False, "location": "Ontario, Canada"},
-    {"name": "Ericsson", "platform": "html",
-     "token": "https://jobs.ericsson.com/careers?query=intern&location=Canada",
-     "ai_native": False, "browser": True},
     {"name": "Ontario Power Generation", "platform": "html",
      "token": "https://jobs.opg.com/search/?q=&locationsearch=",
      "ai_native": False, "browser": True, "location": "Ontario, Canada"},
-    {"name": "Signal 1", "platform": "html",
-     "token": "https://www.signal1.ai/careers",
-     "ai_native": True, "browser": True, "location": "Toronto, ON"},
+    # Signal 1 lists its roles on BambooHR, which has real places; no browser.
+    {"name": "Signal 1", "platform": "bamboohr", "token": "signal1", "ai_native": True},
+    # Cisco is a Phenom site. On 17 Oct 2026 its search had no intern role in
+    # Canada at all, so a Phenom adapter was not worth writing yet.
     {"name": "Cisco", "platform": "html",
      "token": "https://careers.cisco.com/global/en/search-results?keywords=intern",
      "ai_native": False, "browser": True},
 
     # Checked and left out, all covered by the trackers meanwhile:
-    #   Clio, Ada      -- Cloudflare 403 to every non-browser request, and no
+    #   Clio           -- Cloudflare 403 to every non-browser request, and no
     #                     Ashby/Greenhouse/Lever/SmartRecruiters/Workable board
-    #   Xanadu, Limina -- listings rendered client-side, no board found
+    #                     (Ada and Xanadu were here too; --probe has since
+    #                     found their Greenhouse and JazzHR boards, above)
+    #   Limina         -- listings rendered client-side, no board found
+    #   Groq, Untether AI, Private AI, Layer 6, Borealis AI, Samsung, Huawei,
+    #   D2L, ApplyBoard, FreshBooks, Top Hat, Tealbook, Vidyard, LG AI
+    #   Research -- --probe on 17 Oct 2026 found no board with a posting in
+    #                     the commute area
     #   Untether AI    -- TLS handshake fails from python-requests
     #   Kinaxis        -- iCIMS, which answers 405 to non-browser requests
     #   Arteria AI     -- Greenhouse board exists but is empty
@@ -279,6 +309,20 @@ TRACKERS: list[dict] = [
     {"name": "speedyapply-AI-2027", "repo": "speedyapply/2027-AI-College-Jobs"},
     {"name": "speedyapply-SWE-2027", "repo": "speedyapply/2027-SWE-College-Jobs"},
     {"name": "zapply-Internships-2027", "repo": "zapplyjobs/Internships-2027"},
+]
+
+# VC, accelerator and ecosystem job boards. Each lists roles at many
+# portfolio companies -- the Toronto AI startups no tracker covers -- and each
+# posting links the startup's own ATS board, which discovery then picks up.
+#   platform  ``getro`` or ``consider``, the two platforms these boards run on
+#   token     the board's host
+# Verified live 17 Oct 2026. Checked and not found: Radical Ventures, Georgian,
+# OMERS Ventures, MaRS, Communitech, BDC, Vector's Talent Hub (no public
+# board on either platform).
+PORTFOLIO_BOARDS: list[dict] = [
+    {"name": "Inovia", "platform": "getro", "token": "careers.inovia.vc"},
+    {"name": "Real Ventures", "platform": "getro", "token": "jobs.realventures.com"},
+    {"name": "Golden Ventures", "platform": "consider", "token": "jobs.golden.ventures"},
 ]
 
 # Where alerts go.
@@ -339,6 +383,20 @@ PROMOTE_MAX = 40
 # Anything found joins the discovered boards above.
 SNIFF_PER_RUN = 8
 SNIFF_EVERY_DAYS = 14
+
+# A posting is hidden from the feed once its source has returned a complete
+# listing without it this many runs in a row. Capped searches and careers-page
+# scrapes never count as complete, so their postings simply age out.
+CLOSED_AFTER_MISSES = 2
+
+# Job descriptions. A tech role in the commute area with no AI word in its
+# title has its description read, and is promoted to strict when it names at
+# least AI_DESC_MIN_TERMS distinct ML terms (PyTorch, LLMs, model training,
+# ...). Each posting is read once; DESC_PER_RUN and DESC_TIME_BUDGET_S cap one
+# run, and whatever is left over is read on the next.
+AI_DESC_MIN_TERMS = 3
+DESC_PER_RUN = 80
+DESC_TIME_BUDGET_S = 120
 
 # Thread pool width for source fetching. Requests to one host are serialised
 # by the politeness gap anyway, so this mostly overlaps different boards.

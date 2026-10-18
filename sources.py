@@ -14,11 +14,12 @@ import json
 import re
 import threading
 import time
+from dataclasses import dataclass
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 from html import unescape
 from typing import Any, Callable, Iterable, Optional
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 
 import requests
 
@@ -219,6 +220,19 @@ def _s(val: Any) -> str:
     return str(val).strip()
 
 
+class Partial(list):
+    """Postings from a listing known to be incomplete.
+
+    Returned when a search stopped at its page cap. Such a listing says what
+    is open but not what has closed, so it must never mark a posting gone.
+    """
+
+
+def _result(found: dict[str, Posting], capped: bool) -> list[Posting]:
+    """A search adapter's merged postings, marked partial if any term was capped."""
+    return Partial(found.values()) if capped else list(found.values())
+
+
 def _join(*parts: Any) -> str:
     seen: list[str] = []
     for p in parts:
@@ -321,6 +335,7 @@ def smartrecruiters(http: Http, company: str, token: str) -> list[Posting]:
     """
     out: list[Posting] = []
     offset = 0
+    capped = False
     while True:
         data = http.json(
             "https://api.smartrecruiters.com/v1/companies/"
@@ -348,9 +363,12 @@ def smartrecruiters(http: Http, company: str, token: str) -> list[Posting]:
             )
         total = (data or {}).get("totalFound", 0)
         offset += 100
-        if not items or offset >= total or offset > 1000:
+        if not items or offset >= total:
             break
-    return out
+        if offset > 1000:
+            capped = True
+            break
+    return Partial(out) if capped else out
 
 
 def workable(http: Http, company: str, token: str) -> list[Posting]:
@@ -510,6 +528,7 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
         base = base + "/jobs"
 
     found: dict[str, Posting] = {}
+    capped = False
     for term in WORKDAY_TERMS:
         offset = 0
         # Workday reports ``total`` on the first page only; every later page
@@ -550,9 +569,11 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
             offset += WORKDAY_PAGE
             if len(posts) < WORKDAY_PAGE or offset >= total:
                 break
+        else:
+            capped = True
 
     _resolve_workday_locations(http, base, found.values())
-    return list(found.values())
+    return _result(found, capped)
 
 
 _WORKDAY_MULTI_RE = re.compile(r"^\d+\s+Locations?$", re.IGNORECASE)
@@ -619,6 +640,7 @@ def amazon(http: Http, company: str, token: str) -> list[Posting]:
     keyword-driven, so the same student terms are searched and merged.
     """
     found: dict[str, Posting] = {}
+    capped = False
     for term in WORKDAY_TERMS:
         offset = 0
         while offset <= 500:
@@ -645,7 +667,9 @@ def amazon(http: Http, company: str, token: str) -> list[Posting]:
             offset += AMAZON_PAGE
             if len(jobs) < AMAZON_PAGE or offset >= int(data.get("hits") or 0):
                 break
-    return list(found.values())
+        else:
+            capped = True
+    return _result(found, capped)
 
 
 # The four platforms below are keyword-driven like Workday, so the student
@@ -671,6 +695,7 @@ def oracle(http: Http, company: str, token: str) -> list[Posting]:
     site = site or "CX_1"
     api = f"{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
     found: dict[str, Posting] = {}
+    capped = False
     for term in SEARCH_TERMS:
         offset = 0
         while offset <= SEARCH_MAX_OFFSET:
@@ -701,7 +726,9 @@ def oracle(http: Http, company: str, token: str) -> list[Posting]:
             offset += 25
             if len(reqs) < 25 or offset >= int(items[0].get("TotalJobsCount") or 0):
                 break
-    return list(found.values())
+        else:
+            capped = True
+    return _result(found, capped)
 
 
 def jibe(http: Http, company: str, token: str) -> list[Posting]:
@@ -716,6 +743,7 @@ def jibe(http: Http, company: str, token: str) -> list[Posting]:
     """
     base = token.rstrip("/")
     found: dict[str, Posting] = {}
+    capped = False
     for term in SEARCH_TERMS:
         page = 1
         while (page - 1) * 100 <= SEARCH_MAX_OFFSET:
@@ -741,7 +769,9 @@ def jibe(http: Http, company: str, token: str) -> list[Posting]:
             if len(jobs) < 100 or page * 100 >= int(data.get("totalCount") or 0):
                 break
             page += 1
-    return list(found.values())
+        else:
+            capped = True
+    return _result(found, capped)
 
 
 def eightfold(http: Http, company: str, token: str) -> list[Posting]:
@@ -755,6 +785,7 @@ def eightfold(http: Http, company: str, token: str) -> list[Posting]:
     host = re.sub(r"^https?://", "", host)
     domain = domain or host.split(".")[0] + ".com"
     found: dict[str, Posting] = {}
+    capped = False
     for term in SEARCH_TERMS:
         start = 0
         while start <= SEARCH_MAX_OFFSET:
@@ -779,7 +810,9 @@ def eightfold(http: Http, company: str, token: str) -> list[Posting]:
             start += len(positions)
             if not positions or start >= int(data.get("count") or 0):
                 break
-    return list(found.values())
+        else:
+            capped = True
+    return _result(found, capped)
 
 
 _ICIMS_CARD_RE = re.compile(r'<li class="iCIMS_JobCardItem">(.*?)</li>', re.S)
@@ -873,7 +906,292 @@ def icims(http: Http, company: str, token: str) -> list[Posting]:
             )
         if not cards or f"pr={page + 1}" not in html:
             break
+    else:
+        return Partial(found.values())
     return list(found.values())
+
+
+# SAP SuccessFactors career sites ("/search/?q=...&locationsearch=..."), which
+# render their result rows on the server -- no browser needed. TELUS, Rogers
+# and Scotiabank run on it.
+_SF_ROW_RE = re.compile(r'<tr class="data-row"(.*?)</tr>', re.S)
+_SF_LINK_RE = re.compile(r'<a[^>]*href="([^"]*/job/[^"]*?/(\d+)/?)"[^>]*>(.*?)</a>', re.S)
+_SF_LINK_ALT_RE = re.compile(r'<a[^>]*class="jobTitle-link"[^>]*href="([^"]*/(\d+)/?)"[^>]*>(.*?)</a>', re.S)
+_SF_LOC_RE = re.compile(r'<span class="jobLocation">\s*([^<]*?)\s*</span>')
+_SF_DATE_RE = re.compile(r'class="jobDate[^"]*">\s*([A-Z][a-z]{2,8}\.? \d{1,2}, \d{4})')
+_SF_TOTAL_RE = re.compile(r'of\s*<b>\s*([\d,]+)\s*</b>')
+SF_PAGE = 25
+SF_MAX_PAGES = 12
+
+
+def _sf_date(text: str) -> int:
+    for fmt in ("%b %d, %Y", "%B %d, %Y"):
+        try:
+            return int(datetime.strptime(text.replace(".", ""), fmt)
+                       .replace(tzinfo=timezone.utc).timestamp())
+        except ValueError:
+            continue
+    return 0
+
+
+_SF_SLUG_RE = re.compile(r"/job/([^/]+)/\d+")
+_SF_PROVINCE_RE = re.compile(r"-([A-Z]{2})(?:-[A-Z0-9]{3}-?[A-Z0-9]{3})?$")
+
+
+def _sf_slug_place(path: str) -> str:
+    """The place in a posting path, for rows that leave the location cell empty.
+
+    Paths read ``/job/Toronto-Logistics-Representative-ON-M5J-2V5/606550317/``:
+    city first, province code (and sometimes a postal code) last.
+    """
+    m = _SF_SLUG_RE.search(path)
+    if not m:
+        return ""
+    slug = unquote(m.group(1))
+    city = slug.split("-", 1)[0]
+    province = _SF_PROVINCE_RE.search(slug)
+    return _join(city, province.group(1) if province else "")
+
+
+def _sf_rows(page: str) -> list[dict[str, Any]]:
+    rows = []
+    for block in _SF_ROW_RE.findall(page):
+        link = _SF_LINK_RE.search(block) or _SF_LINK_ALT_RE.search(block)
+        if not link:
+            continue
+        loc = _SF_LOC_RE.search(block)
+        date = _SF_DATE_RE.search(block)
+        place = _WS_RE.sub(" ", unescape(loc.group(1))).strip() if loc else ""
+        rows.append({
+            "path": unescape(link.group(1)),
+            "id": link.group(2),
+            "title": _WS_RE.sub(" ", unescape(_TAG_RE.sub(" ", link.group(3)))).strip(),
+            "location": place or _sf_slug_place(link.group(1)),
+            "posted_at": _sf_date(date.group(1)) if date else 0,
+        })
+    return rows
+
+
+def successfactors(http: Http, company: str, token: str) -> list[Posting]:
+    """A SuccessFactors career site search. ``token`` is the search URL itself,
+    already narrowed by keyword and place, e.g.
+    ``https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario``.
+
+    Pages through ``startrow`` 25 rows at a time. Verified against TELUS,
+    Rogers and Scotiabank.
+    """
+    parsed = urlparse(token)
+    site = f"{parsed.scheme}://{parsed.netloc}"
+    joiner = "&" if parsed.query else "?"
+    found: dict[str, Posting] = {}
+    for number in range(SF_MAX_PAGES):
+        page = http.text(f"{token}{joiner}startrow={number * SF_PAGE}") or ""
+        rows = _sf_rows(page)
+        for row in rows:
+            found[row["id"]] = Posting(
+                company=company,
+                title=row["title"],
+                location=row["location"],
+                url=urljoin(site, row["path"]),
+                uid=f"successfactors:{parsed.netloc}:{row['id']}",
+                raw={},
+                posted_at=row["posted_at"],
+            )
+        total = _SF_TOTAL_RE.search(page)
+        if not rows or not total or (number + 1) * SF_PAGE >= int(total.group(1).replace(",", "")):
+            return list(found.values())
+    return Partial(found.values())
+
+
+# --------------------------------------------------------------------------
+# Startup ATSes
+#
+# Found linked from Canadian tracker postings that no other adapter could
+# read: Signal 1 and Profound Medical on BambooHR, TechInsights on JazzHR,
+# Fluid AI on Rippling.
+# --------------------------------------------------------------------------
+
+
+def bamboohr(http: Http, company: str, token: str) -> list[Posting]:
+    """BambooHR careers JSON. ``token`` is the subdomain. Verified against Signal 1."""
+    data = http.json(f"https://{token}.bamboohr.com/careers/list") or {}
+    out = []
+    for job in data.get("result") or []:
+        jid = _s(job.get("id"))
+        loc = job.get("location") or {}
+        ats = job.get("atsLocation") or {}
+        out.append(Posting(
+            company=company,
+            title=_s(job.get("jobOpeningName")),
+            location=_join(loc.get("city"), loc.get("state"), ats.get("city"),
+                           ats.get("province") or ats.get("state"), ats.get("country"),
+                           "Remote" if job.get("isRemote") else ""),
+            url=f"https://{token}.bamboohr.com/careers/{jid}",
+            uid=f"bamboohr:{token}:{jid}",
+            raw={"employmentType": _s(job.get("employmentStatusLabel"))},
+        ))
+    return out
+
+
+def rippling(http: Http, company: str, token: str) -> list[Posting]:
+    """Rippling ATS board. ``token`` is the board slug from
+    ``ats.rippling.com/{slug}/jobs``. Verified against Fluid AI."""
+    out: list[Posting] = []
+    for page in range(20):
+        data = http.json(f"https://ats.rippling.com/api/v2/board/{token}/jobs",
+                         params={"page": page, "pageSize": 50}) or {}
+        items = data.get("items") or []
+        for job in items:
+            jid = _s(job.get("id"))
+            places = job.get("locations") or []
+            remote = any("REMOTE" in _s(p.get("workplaceType")).upper()
+                         for p in places if isinstance(p, dict))
+            out.append(Posting(
+                company=company,
+                title=_s(job.get("name")),
+                location=_join(*(_join(p.get("city"), p.get("stateCode"), p.get("country"))
+                                 for p in places if isinstance(p, dict)),
+                               "Remote" if remote else ""),
+                url=_s(job.get("url")) or f"https://ats.rippling.com/{token}/jobs/{jid}",
+                uid=f"rippling:{token}:{jid}",
+                raw={},
+            ))
+        if not items or page + 1 >= int(data.get("totalPages") or 1):
+            return out
+    return Partial(out)
+
+
+_JAZZ_ITEM_RE = re.compile(r'<li class="list-group-item">(.*?)</li>\s*(?=<li class="list-group-item">|</ul>)', re.S)
+_JAZZ_LINK_RE = re.compile(r'<a href="([^"]*/apply/([A-Za-z0-9]+)/[^"]*)"[^>]*>(.*?)</a>', re.S)
+_JAZZ_PLACE_RE = re.compile(r"fa-map-marker'?\"?></i>\s*([^<]+)")
+
+
+def jazzhr(http: Http, company: str, token: str) -> list[Posting]:
+    """JazzHR careers page (``{token}.applytojob.com``). Server-rendered, no
+    dates. Verified against TechInsights."""
+    page = http.text(f"https://{token}.applytojob.com/apply") or ""
+    out = []
+    for block in _JAZZ_ITEM_RE.findall(page):
+        link = _JAZZ_LINK_RE.search(block)
+        if not link:
+            continue
+        place = _JAZZ_PLACE_RE.search(block)
+        out.append(Posting(
+            company=company,
+            title=_WS_RE.sub(" ", unescape(_TAG_RE.sub(" ", link.group(3)))).strip(),
+            location=_WS_RE.sub(" ", unescape(place.group(1))).strip() if place else "",
+            url=unescape(link.group(1)),
+            uid=f"jazzhr:{token}:{link.group(2)}",
+            raw={},
+        ))
+    return out
+
+
+# --------------------------------------------------------------------------
+# Portfolio job boards
+#
+# VC and accelerator job boards list every open role at their portfolio
+# companies -- the Toronto AI startups no tracker covers. Each posting carries
+# its own company name and links the startup's own ATS posting.
+# --------------------------------------------------------------------------
+
+_NEXT_DATA_RE = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
+PORTFOLIO_PAGE = 100
+PORTFOLIO_MAX_PAGES = 15
+# Getro serves at most 20 hits a page whatever is asked for.
+GETRO_PAGE = 20
+GETRO_MAX_PAGES = 50
+
+
+def getro(http: Http, board: str, token: str) -> list[Posting]:
+    """A Getro job board. ``token`` is its host, e.g. ``careers.inovia.vc``.
+
+    The board page embeds its network id; the public search API then pages
+    through every Canadian posting. Verified against Inovia and Real Ventures.
+    """
+    host = re.sub(r"^https?://", "", token).strip("/")
+    page = http.text(f"https://{host}/jobs") or ""
+    match = _NEXT_DATA_RE.search(page)
+    if not match:
+        raise RuntimeError(f"no Getro board data on {host}")
+    network = json.loads(match.group(1))["props"]["pageProps"]["network"]["id"]
+    api = f"https://api.getro.com/api/v2/collections/{network}/search/jobs"
+    out: list[Posting] = []
+    for number in range(GETRO_MAX_PAGES):
+        resp = http.request("POST", api, json={
+            "hitsPerPage": GETRO_PAGE, "page": number, "query": "",
+            "filters": {"searchable_locations": ["Canada"]},
+        }, headers={"Content-Type": "application/json", "Accept": "application/json"})
+        results = (resp.json() if resp is not None else {}).get("results") or {}
+        jobs = results.get("jobs") or []
+        for job in jobs:
+            org = job.get("organization") or {}
+            remote = "Remote" if _s(job.get("work_mode")) == "remote" else ""
+            out.append(Posting(
+                company=_s(org.get("name")) or board,
+                title=_s(job.get("title")),
+                location=_join(*(job.get("locations") or []), remote),
+                url=_s(job.get("url")) or f"https://{host}/companies/{_s(org.get('slug'))}"
+                                         f"/jobs/{_s(job.get('slug'))}",
+                uid=f"getro:{host}:{_s(job.get('id'))}",
+                source=f"{board} [getro]",
+                # Getro's own seniority ("internship") is a level signal for
+                # titles that leave it out.
+                raw={"employmentType": _s(job.get("seniority"))},
+                posted_at=_date(job.get("created_at")),
+            ))
+        if not jobs or (number + 1) * GETRO_PAGE >= int(results.get("count") or 0):
+            return out
+    return Partial(out)
+
+
+_CONSIDER_TOKEN_RE = re.compile(r'"csrfToken":"([^"]+)"')
+_CONSIDER_BOARD_RE = re.compile(r'"board":(\{[^{}]*\})')
+
+
+def consider(http: Http, board: str, token: str) -> list[Posting]:
+    """A Consider job board. ``token`` is its host, e.g. ``jobs.golden.ventures``.
+
+    The search API wants the CSRF token and session cookie its own page sets,
+    so the page is fetched first on the shared session. Verified against
+    Golden Ventures.
+    """
+    host = re.sub(r"^https?://", "", token).strip("/")
+    page = http.text(f"https://{host}/jobs") or ""
+    csrf = _CONSIDER_TOKEN_RE.search(page)
+    board_ref = _CONSIDER_BOARD_RE.search(page)
+    if not (csrf and board_ref):
+        raise RuntimeError(f"no Consider board data on {host}")
+    headers = {"x-csrf-token": csrf.group(1), "Content-Type": "application/json",
+               "Accept": "application/json", "Origin": f"https://{host}",
+               "Referer": f"https://{host}/jobs"}
+    meta: dict[str, Any] = {"size": PORTFOLIO_PAGE}
+    out: list[Posting] = []
+    for _ in range(PORTFOLIO_MAX_PAGES):
+        resp = http.request("POST", f"https://{host}/api-boards/search-jobs", json={
+            "meta": meta, "board": json.loads(board_ref.group(1)),
+            "query": {"promoteFeatured": True}, "grouped": False,
+        }, headers=headers)
+        data = resp.json() if resp is not None else {}
+        jobs = data.get("jobs") or []
+        for job in jobs:
+            out.append(Posting(
+                company=_s(job.get("companyName")) or board,
+                title=_s(job.get("title")),
+                location=_join(*(job.get("locations") or []),
+                               "Remote" if job.get("remote") else ""),
+                url=_s(job.get("url")) or _s(job.get("applyUrl")),
+                uid=f"consider:{host}:{_s(job.get('jobId'))}",
+                source=f"{board} [consider]",
+                raw={"employmentType": _join(*(level.get("label") for level in
+                                               job.get("jobSeniorities") or []
+                                               if isinstance(level, dict)))},
+                posted_at=_date(job.get("timeStamp")),
+            ))
+        meta = {"size": PORTFOLIO_PAGE, "sequence": (data.get("meta") or {}).get("sequence")}
+        if len(jobs) < PORTFOLIO_PAGE or len(out) >= int(data.get("total") or 0):
+            return out
+    return Partial(out)
 
 
 ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
@@ -892,6 +1210,12 @@ ADAPTERS: dict[str, Callable[..., list[Posting]]] = {
     "jibe": jibe,
     "eightfold": eightfold,
     "icims": icims,
+    "getro": getro,
+    "consider": consider,
+    "successfactors": successfactors,
+    "bamboohr": bamboohr,
+    "rippling": rippling,
+    "jazzhr": jazzhr,
 }
 
 
@@ -986,9 +1310,11 @@ def html_links(http: Http, company: str, url: str, browser: bool = False) -> lis
         text = http.text(url)
     if not text:
         return []
+    # One page of a careers site is never known to be the whole listing, so
+    # nothing it lacks is taken as closed.
     structured = _jsonld_postings(company, url, text)
     if structured:
-        return structured
+        return Partial(structured)
     # Same site means the page's own domain or a subdomain of it, so
     # careers.example.com and jobs.example.com both count for example.com.
     site = ".".join((urlparse(url).hostname or "").split(".")[-2:])
@@ -1024,7 +1350,7 @@ def html_links(http: Http, company: str, url: str, browser: bool = False) -> lis
                 raw={"anchor_text": label, "page": url},
             )
         )
-    return out
+    return Partial(out)
 
 
 _JSONLD_RE = re.compile(
@@ -1449,11 +1775,18 @@ _SNIFF_PATTERNS: list[tuple[str, str]] = [
     # Jibe sites load their app from jibecdn; the board is the page's own host.
     ("jibe", r"(?:app|assets)\.jibecdn\.com"),
     ("icims", r"([A-Za-z0-9_\-]+)\.icims\.com"),
-    ("successfactors", r"([A-Za-z0-9_\-]+)\.(?:successfactors|sapsf)\.(?:com|eu)"),
+    # A SuccessFactors career site on the company's own host loads its assets
+    # from rmkcdn; the board is the page's own host. The older career-N
+    # hosted sites have no readable listing.
+    ("successfactors", r"rmkcdn\.successfactors\.com"),
+    ("sapsf", r"(?<![\w\-])(?!rmkcdn\.)([A-Za-z0-9_\-]+)\.(?:successfactors|sapsf)\.(?:com|eu)"),
+    ("bamboohr", r"([A-Za-z0-9_\-]+)\.bamboohr\.com"),
+    ("jazzhr", r"([A-Za-z0-9_\-]+)\.applytojob\.com"),
+    ("rippling", r"ats\.rippling\.com/(?:api/v2/board/)?([A-Za-z0-9_\-]+)"),
 ]
 
 _NO_API = {
-    "successfactors": "SuccessFactors",
+    "sapsf": "SuccessFactors (hosted)",
 }
 
 # Words that show up in these URL slots but are never a real board token.
@@ -1474,6 +1807,11 @@ def _sniff_token(platform: str, groups: tuple, page_url: str) -> Optional[str]:
     if platform == "jibe":
         parsed = urlparse(page_url)
         return f"{parsed.scheme or 'https'}://{parsed.netloc}" if parsed.netloc else None
+    if platform == "successfactors":
+        parsed = urlparse(page_url)
+        if not parsed.netloc:
+            return None
+        return f"{parsed.scheme or 'https'}://{parsed.netloc}/search/?q=&locationsearch=Ontario"
     token = groups[0]
     if token.lower() in _TOKEN_NOISE or len(token) < 2:
         return None
@@ -1551,7 +1889,8 @@ def sniff(http: Http, url: str) -> list[str]:
 
 # Platforms whose board token is usually just the company slug, so it can be
 # guessed. Workday, iCIMS and SuccessFactors cannot be.
-PROBE_PLATFORMS = ("ashby", "greenhouse", "lever", "smartrecruiters", "workable")
+PROBE_PLATFORMS = ("ashby", "greenhouse", "lever", "smartrecruiters", "workable",
+                   "bamboohr", "jazzhr")
 
 
 def probe(http: Http, slug: str) -> list[str]:
@@ -1600,6 +1939,9 @@ _BOARD_URL_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("lever", re.compile(r"jobs\.lever\.co/([A-Za-z0-9_\-]+)/[0-9a-f\-]{8,}", re.I)),
     ("smartrecruiters", re.compile(r"jobs\.smartrecruiters\.com/([A-Za-z0-9_\-]+)/\d+", re.I)),
     ("workable", re.compile(r"apply\.workable\.com/([A-Za-z0-9_\-]+)/j/", re.I)),
+    ("bamboohr", re.compile(r"([A-Za-z0-9\-]+)\.bamboohr\.com/careers/\d+", re.I)),
+    ("jazzhr", re.compile(r"([A-Za-z0-9\-]+)\.applytojob\.com/apply/", re.I)),
+    ("rippling", re.compile(r"ats\.rippling\.com/([A-Za-z0-9_\-]+)/jobs/", re.I)),
 ]
 
 # tenant.wdN.myworkdayjobs.com/[en-US/]Site/job/... -- the "/job/" anchor is
@@ -1765,3 +2107,124 @@ def _guess_name(url: str, html: str) -> str:
             if 1 < len(part) < 40 and not _GENERIC_TITLE_RE.match(part):
                 return part
     return fallback
+
+
+# --------------------------------------------------------------------------
+# Job descriptions
+#
+# Read for roles whose title is tech but names no AI: the description decides
+# whether "Software Developer Co-op" is ML work. Dispatched on the posting URL
+# rather than the source, so a tracker row linking an employer's Greenhouse or
+# Workday posting is read through that platform's API.
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class Description:
+    """What a posting's own page says: its text, and a place and date if given."""
+
+    text: str
+    location: str = ""
+    posted_at: int = 0
+
+
+_GREENHOUSE_JOB_RE = re.compile(
+    r"https?://(?:job-boards|boards)(?:\.eu)?\.greenhouse\.io/([A-Za-z0-9_\-]+)/jobs/(\d+)", re.I)
+_LEVER_JOB_RE = re.compile(r"https?://jobs\.lever\.co/([A-Za-z0-9_.\-]+)/([0-9a-f\-]{36})", re.I)
+_SMARTRECRUITERS_JOB_RE = re.compile(
+    r"https?://(?:jobs|careers)\.smartrecruiters\.com/([A-Za-z0-9_\-]+)/(\d+)", re.I)
+_WORKDAY_JOB_RE = re.compile(
+    r"https?://(([a-z0-9\-]+)\.wd\d+\.myworkdayjobs\.com)/(?:[a-z]{2}-[A-Z]{2}/)?"
+    r"([A-Za-z0-9_\-]+)(/job/[^?#]+)")
+_ORACLE_JOB_RE = re.compile(
+    r"(https?://[a-z0-9\-]+\.fa(?:\.[a-z0-9\-]+)*\.oraclecloud\.com)"
+    r"/hcmUI/CandidateExperience/[A-Za-z\-]+/sites/([A-Za-z0-9_]+)/job/(\d+)", re.I)
+_SCRIPT_RE = re.compile(r"<(script|style|noscript)\b[^>]*>.*?</\1>", re.I | re.S)
+DESCRIPTION_MAX_CHARS = 30_000
+
+
+def _plain(html_text: Any) -> str:
+    """Text of an HTML fragment, entity-decoded twice (Greenhouse double-encodes)."""
+    text = unescape(unescape(_s(html_text)))
+    return _WS_RE.sub(" ", _TAG_RE.sub(" ", _SCRIPT_RE.sub(" ", text))).strip()
+
+
+def describe(http: Http, url: str, raw: Optional[dict] = None) -> Optional[Description]:
+    """The description of the posting at ``url``, or None if nothing readable.
+
+    ``raw`` is the source's own record. Lever and Ashby already carry the
+    description there, so those cost no request.
+    """
+    raw = raw or {}
+    inline = _join(raw.get("descriptionPlain"), raw.get("additionalPlain"),
+                   *(_plain(item.get("content")) for item in raw.get("lists") or []
+                     if isinstance(item, dict)))
+    if len(inline) > 200:
+        return Description(inline[:DESCRIPTION_MAX_CHARS])
+
+    m = _GREENHOUSE_JOB_RE.search(url or "")
+    if m:
+        job = http.json(f"https://boards-api.greenhouse.io/v1/boards/{m.group(1)}/jobs/{m.group(2)}") or {}
+        return Description(_plain(job.get("content"))[:DESCRIPTION_MAX_CHARS],
+                           _s(job.get("location")),
+                           _date(job.get("first_published"), job.get("updated_at")))
+    m = _LEVER_JOB_RE.search(url or "")
+    if m:
+        job = http.json(f"https://api.lever.co/v0/postings/{m.group(1)}/{m.group(2)}") or {}
+        return describe(http, "", job) or Description("")
+    m = _SMARTRECRUITERS_JOB_RE.search(url or "")
+    if m:
+        job = http.json(
+            f"https://api.smartrecruiters.com/v1/companies/{m.group(1)}/postings/{m.group(2)}") or {}
+        sections = ((job.get("jobAd") or {}).get("sections")) or {}
+        text = " ".join(_plain((sections.get(key) or {}).get("text"))
+                        for key in ("jobDescription", "qualifications", "additionalInformation"))
+        return Description(text.strip()[:DESCRIPTION_MAX_CHARS])
+    m = _WORKDAY_JOB_RE.search(url or "")
+    if m:
+        host, tenant, site, path = m.groups()
+        detail = http.json(f"https://{host}/wday/cxs/{tenant}/{site}{path}") or {}
+        info = detail.get("jobPostingInfo") or {}
+        return Description(
+            _plain(info.get("jobDescription"))[:DESCRIPTION_MAX_CHARS],
+            _join(info.get("location"), *(info.get("additionalLocations") or [])),
+            _date(info.get("startDate"), info.get("postedOn")),
+        )
+    m = _ORACLE_JOB_RE.search(url or "")
+    if m:
+        host, site, jid = m.groups()
+        data = http.json(
+            f"{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails",
+            params={"onlyData": "true", "expand": "all",
+                    "finder": f'ById;Id="{jid}",siteNumber={site}'},
+        ) or {}
+        item = (data.get("items") or [{}])[0]
+        text = " ".join(_plain(item.get(key)) for key in (
+            "ExternalDescriptionStr", "ExternalResponsibilitiesStr", "ExternalQualificationsStr"))
+        return Description(text.strip()[:DESCRIPTION_MAX_CHARS], _s(item.get("PrimaryLocation")))
+    return _describe_page(http, url)
+
+
+def _describe_page(http: Http, url: str) -> Optional[Description]:
+    """Any other posting page: its schema.org JobPosting, else its visible text.
+
+    The JobPosting also carries a location and date, which careers-page link
+    rows otherwise never have.
+    """
+    if not (url or "").startswith("http"):
+        return None
+    page = http.text(url) or ""
+    for blob in _JSONLD_RE.findall(page):
+        try:
+            doc = json.loads(unescape(blob.strip()))
+        except ValueError:
+            continue
+        for node in _jsonld_nodes(doc):
+            if "JobPosting" in _as_list(node.get("@type")):
+                return Description(
+                    _plain(node.get("description"))[:DESCRIPTION_MAX_CHARS],
+                    _jsonld_location(node),
+                    _date(node.get("datePosted")),
+                )
+    text = _plain(page)
+    return Description(text[:DESCRIPTION_MAX_CHARS]) if text else None

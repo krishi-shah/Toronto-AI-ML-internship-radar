@@ -214,7 +214,8 @@ class TestBrowserPortals(unittest.TestCase):
         ]
         with mock.patch.object(radar.cfg, "COMPANIES", entries), mock.patch.object(
             radar.cfg, "AUTO_COMPANIES", []
-        ), mock.patch.object(radar.cfg, "TRACKERS", []):
+        ), mock.patch.object(radar.cfg, "TRACKERS", []), \
+                mock.patch.object(radar.cfg, "PORTFOLIO_BOARDS", []):
             tasks = radar.build_tasks(mock.Mock())
         flags = {label: getattr(thunk, "browser", False) for label, thunk, _ai in tasks}
         self.assertEqual(flags["Shopify [html]"], True)

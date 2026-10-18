@@ -20,6 +20,7 @@ import time
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Any, Iterable, Optional
+from urllib.parse import urlsplit
 
 # --------------------------------------------------------------------------
 # Toronto time
@@ -352,6 +353,58 @@ _ONTARIO_TERMS += [
     city + _NOT_STREET + _ELSEWHERE for city in _AMBIGUOUS_ONTARIO_CITIES
 ]
 
+# The commute area: the GTA plus Hamilton, Waterloo Region and Guelph. The
+# radar is for roles reachable from Toronto day to day, so an Ontario posting
+# that names only places outside this (Ottawa, London, Kingston, ...) is
+# rejected. A posting naming any commutable place stays, so "Ottawa; Toronto"
+# is a Toronto role.
+_COMMUTE_TERMS = [
+    r"\btoronto\b",
+    r"\bgta\b",
+    r"greater[\s\-]?toronto",
+    r"\bmississauga\b",
+    r"\bbrampton\b",
+    r"\bvaughan\b",
+    r"\bnorth[\s\-]?york\b",
+    r"\betobicoke\b",
+    r"\bthornhill\b",
+    r"\boshawa\b",
+    r"\bajax\b",
+    r"\bkitchener\b",
+    r"\bguelph\b",
+    r"\bygk\b",
+] + [
+    city + _NOT_STREET + _ELSEWHERE
+    for city in (
+        r"\bwaterloo\b", r"\bhamilton\b", r"\bmarkham\b", r"\boakville\b",
+        r"\bwoodbridge\b", r"\brichmond[\s\-]?hill\b", r"\bscarborough\b",
+        r"\bwhitby\b", r"\bpickering\b", r"\bnewmarket\b", r"\baurora\b",
+        r"\bconcord\b", r"\bburlington\b", r"\bmilton\b", r"\bcambridge\b",
+    )
+]
+
+# Ontario, but too far to commute from Toronto.
+_FAR_ONTARIO_TERMS = [
+    r"\bkanata\b",
+    r"\bnepean\b",
+    r"\bbarrie\b",
+    r"\bbrantford\b",
+    r"\bwelland\b",
+    r"\bst\.?\s*catharines\b",
+    r"\bsarnia\b",
+    r"\bthunder[\s\-]?bay\b",
+    r"\bbelleville\b",
+    r"\bnorth[\s\-]?bay\b",
+    r"\bsault\s+ste\.?\s*marie\b",
+    # "ONT" is Oracle Cloud Recruiting's spelling of the province.
+    r"\blondon,?\s*(?:(?-i:ONT?)(?![\w-])|ontario\b)",
+    r"\bkingston,?\s*(?:(?-i:ONT?)(?![\w-])|ontario\b)",
+    r"\bwindsor,?\s*(?:(?-i:ONT?)(?![\w-])|ontario\b)",
+] + [
+    city + _NOT_STREET + _ELSEWHERE
+    for city in (r"\bottawa\b", r"\bpeterborough\b", r"\bsudbury\b", r"\bniagara\b")
+]
+
 # Canadian, but not Ontario. Naming one of these rules a posting out unless
 # Ontario is named alongside it -- a role listed for both Toronto and
 # Vancouver is still a Toronto role.
@@ -430,6 +483,10 @@ _CYCLE_LONG_RE = re.compile(
     r"\b(winter|spring|summer|fall|autumn)\b[\s\-,]*'?(\d{4}|\d{2})\b",
     re.IGNORECASE,
 )
+# "2027 Winter" -- RBC and others put the year first.
+_CYCLE_YEAR_FIRST_RE = re.compile(
+    r"\b(20\d{2})[\s\-–]*(winter|spring|summer|fall|autumn)\b", re.IGNORECASE
+)
 # "W27", "S2027", "F26" -- but not a bare word starting with those letters.
 _CYCLE_SHORT_RE = re.compile(r"\b([wsf])'?(\d{2}|\d{4})\b", re.IGNORECASE)
 
@@ -447,6 +504,10 @@ def parse_cycles(text: str) -> list[tuple[int, int]]:
     """
     found: set[tuple[int, int]] = set()
     for season, year in _CYCLE_LONG_RE.findall(text or ""):
+        found.add((_norm_year(year), _SEASON_MONTH[season.lower()]))
+    # Only text the season-first form did not claim, or "Summer 2026, Winter
+    # 2027" would also read as "2026 Winter".
+    for year, season in _CYCLE_YEAR_FIRST_RE.findall(_CYCLE_LONG_RE.sub(" ", text or "")):
         found.add((_norm_year(year), _SEASON_MONTH[season.lower()]))
     for letter, year in _CYCLE_SHORT_RE.findall(text or ""):
         found.add((_norm_year(year), _SEASON_MONTH[letter.lower()]))
@@ -467,6 +528,8 @@ TECH_IT_RE = re.compile(r"\bIT\b")
 RETAIL_RE = _compile(_RETAIL_TERMS)
 REJECT_RE = _compile(_REJECT_TERMS)
 ONTARIO_RE = _compile(_ONTARIO_TERMS)
+COMMUTE_RE = _compile(_COMMUTE_TERMS)
+FAR_ONTARIO_RE = _compile(_FAR_ONTARIO_TERMS)
 NON_ONTARIO_CA_RE = _compile(_NON_ONTARIO_CA_TERMS)
 CANADA_RE = _compile(_CANADA_TERMS)
 REMOTE_RE = _compile(_REMOTE_TERMS)
@@ -536,6 +599,8 @@ class Verdict:
     ontario: bool = False
     location_known: bool = True
     cycle: str = "unknown"
+    # The ML terms a description matched, when that is what made it AI.
+    ai_terms: list[str] = field(default_factory=list)
 
     def __bool__(self) -> bool:
         return self.tier is not None
@@ -585,7 +650,9 @@ def _flatten(val: Any, depth: int = 0) -> list[str]:
 def _location_scope(loc_blob: str) -> str:
     """Where a location string puts a posting.
 
-    ``ontario``   Ontario named, or remote within Canada.
+    ``ontario``   the commute area named, Ontario with no city, or remote
+                  within Canada.
+    ``far``       Ontario, but only places outside the commute area.
     ``canada``    Canada named with no province, nothing foreign alongside.
     ``elsewhere`` another province or another country.
     ``unknown``   nothing recognisable at all.
@@ -606,6 +673,12 @@ def _location_scope(loc_blob: str) -> str:
     # it is workable from Toronto. Bare "Remote" is not: it says nothing about
     # the country.
     if ontario or (remote and canada and not elsewhere_in_canada):
+        # A province-only location ("Ontario, Canada", ", ON") is kept: it is
+        # almost always the Toronto head office. Remote work is workable from
+        # Toronto wherever the team sits.
+        if (FAR_ONTARIO_RE.search(loc_blob) and not COMMUTE_RE.search(loc_blob)
+                and not remote):
+            return "far"
         return "ontario"
     # "Canada" with no province is in Canada but not confirmably Ontario, so
     # it may reach loose and never strict.
@@ -626,22 +699,24 @@ def in_canada(posting: Posting) -> bool:
     return _location_scope(_location_blob(posting)) in ("ontario", "canada")
 
 
-def classify(posting: Posting) -> Verdict:
+def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
     """Route a posting to the instant tier, the 5pm digest, or the bin.
 
     Strict requires all of:
-      * an AI/ML signal in the title, or a company flagged ``ai_native``
+      * an AI/ML signal in the title, or a company flagged ``ai_native``, or
+        -- for a tech title -- a ``description`` naming enough ML terms
       * an internship-level signal (new-grad-only roles cap at loose)
-      * an Ontario location signal, or remote within Canada
+      * a location in the commute area (the GTA, Hamilton, Waterloo Region,
+        Guelph), Ontario with no city named, or remote within Canada
       * no cycle token pointing exclusively at a season other than Winter 2027
 
-    Anything else student-level in Ontario (or in Canada with no province)
-    falls through to loose only when the title is tech-relevant. A title
-    naming a discipline with no AI angle (analog design, capital markets,
-    branch advisor, ...) or no tech term at all goes to ``other``.
+    Anything else student-level in the commute area (or in Canada with no
+    province) falls through to loose only when the title is tech-relevant. A
+    title naming a discipline with no AI angle (analog design, capital
+    markets, branch advisor, ...) or no tech term at all goes to ``other``.
     Dropped outright: unpaid, volunteer, high-school and PhD-only postings,
-    retail and shift work, past cycles, and anywhere outside Ontario --
-    including the rest of Canada.
+    retail and shift work, past cycles, Ontario outside the commute area
+    (Ottawa, London, Kingston, ...), and the rest of Canada.
     """
     title = posting.title or ""
     loc_blob = _location_blob(posting)
@@ -663,6 +738,10 @@ def classify(posting: Posting) -> Verdict:
     location_known = bool(loc_blob.strip())
 
     if not (in_scope or canada_only):
+        if scope == "far":
+            return Verdict(
+                REJECTED, "outside commute area", student=True, location_known=True,
+            )
         if scope == "elsewhere":
             return Verdict(
                 REJECTED, "outside Ontario", student=True, location_known=True,
@@ -697,6 +776,16 @@ def classify(posting: Posting) -> Verdict:
                 OTHER, "not tech", student=True, ontario=in_scope, cycle=cycle,
             )
 
+    # A tech title with no AI word can still be ML work: "Software Developer
+    # Co-op" on a model-training team. The description settles it when given.
+    ai_terms: list[str] = []
+    if not ai and description:
+        score, ai_terms = ai_description_score(description)
+        if score >= _desc_min_terms():
+            ai = True
+        else:
+            ai_terms = []
+
     if canada_only:
         return Verdict(
             LOOSE, "Canada, province not named", ai=ai, student=True, cycle=cycle,
@@ -707,13 +796,17 @@ def classify(posting: Posting) -> Verdict:
     if new_grad:
         return Verdict(
             LOOSE, "new grad, not internship", ai=True, student=True,
-            ontario=True, cycle=cycle,
+            ontario=True, cycle=cycle, ai_terms=ai_terms,
         )
     if cycle == "later":
         return Verdict(
-            LOOSE, "later cycle", ai=True, student=True, ontario=True, cycle=cycle
+            LOOSE, "later cycle", ai=True, student=True, ontario=True, cycle=cycle,
+            ai_terms=ai_terms,
         )
 
+    if ai_terms:
+        return Verdict(STRICT, AI_IN_DESCRIPTION, ai=True, student=True,
+                       ontario=True, cycle=cycle, ai_terms=ai_terms)
     return Verdict(STRICT, "ai + student + ontario", ai=True, student=True,
                    ontario=True, cycle=cycle)
 
@@ -768,6 +861,86 @@ def _target_cycle() -> tuple[int, int]:
         return int(year), int(month)
     except Exception:  # noqa: BLE001 - config is optional for library use
         return (2027, 1)
+
+
+_SEASON_NAME = {1: "Winter", 4: "Spring", 5: "Summer", 9: "Fall"}
+
+
+def term_label(posting: Posting) -> str:
+    """The work term(s) a posting names, for the feed: "Winter 2027".
+
+    Cycles before the targeted one are left out when a current one is also
+    named, so "Summer 2026, Winter 2027" shows as "Winter 2027".
+    """
+    cycles = parse_cycles(f"{posting.title} | {_cycle_blob(posting)}")
+    current = [c for c in cycles if c >= _target_cycle()] or cycles
+    return ", ".join(f"{_SEASON_NAME[month]} {year}" for year, month in current)
+
+
+# --------------------------------------------------------------------------
+# Description scoring
+#
+# Only for tech titles with no AI word in them. Each entry is (label, regex),
+# and the score is the number of distinct labels found. A bare "AI" never
+# counts: company boilerplate says "AI-powered" on every posting.
+# --------------------------------------------------------------------------
+
+AI_IN_DESCRIPTION = "AI in description"
+
+_AI_DESC_TERMS = [
+    ("machine learning", r"machine[\s\-]?learning"),
+    ("deep learning", r"deep[\s\-]?learning"),
+    ("LLMs", r"\bllms?\b|large[\s\-]?language[\s\-]?models?"),
+    ("PyTorch", r"\bpytorch\b"),
+    ("TensorFlow", r"\btensorflow\b"),
+    ("JAX", r"\bjax\b"),
+    ("scikit-learn", r"scikit[\s\-]?learn|\bsklearn\b"),
+    ("model training", r"\btrain(?:ing|ed)?\s+(?:ml\s+|ai\s+|the\s+)?models?\b|model\s+training"),
+    ("fine-tuning", r"fine[\s\-]?tun(?:e|ing)"),
+    ("NLP", r"\bnlp\b|natural[\s\-]?language[\s\-]?processing"),
+    ("computer vision", r"computer[\s\-]?vision"),
+    ("MLOps", r"\bmlops\b"),
+    ("RAG", r"\brag\b|retrieval[\s\-]?augmented"),
+    ("embeddings", r"\bembeddings?\b|vector[\s\-]?(?:database|search|store)"),
+    ("reinforcement learning", r"reinforcement[\s\-]?learning"),
+    ("data science", r"data[\s\-]?scien(?:ce|tist)"),
+    ("feature engineering", r"feature[\s\-]?engineering"),
+    ("neural networks", r"neural[\s\-]?net(?:work)?s?"),
+    ("transformers", r"\btransformers?\b(?!\s+(?:station|substation))"),
+    ("CUDA", r"\bcuda\b"),
+    ("generative AI", r"generative[\s\-]?ai|\bgenai\b|gen[\s\-]ai\b"),
+    ("ML engineering", r"\bml\s+(?:engineer|pipeline|model|system|infrastructure|platform)"),
+    ("AI agents", r"\b(?:ai|llm)[\s\-]?agents?\b|agentic"),
+]
+_AI_DESC_RES = [(label, re.compile(rx, re.IGNORECASE)) for label, rx in _AI_DESC_TERMS]
+_HTML_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def ai_description_score(text: str) -> tuple[int, list[str]]:
+    """Distinct ML terms in a job description, as ``(count, labels)``."""
+    plain = _HTML_TAG_RE.sub(" ", text or "")
+    terms = [label for label, rx in _AI_DESC_RES if rx.search(plain)]
+    return len(terms), terms
+
+
+def _config_int(name: str, default: int) -> int:
+    """An integer setting from companies.py, or ``default`` without one."""
+    try:
+        import companies
+
+        return int(getattr(companies, name, default))
+    except Exception:  # noqa: BLE001 - config is optional for library use
+        return default
+
+
+def _desc_min_terms() -> int:
+    """How many distinct ML terms a description needs to make a role AI."""
+    return _config_int("AI_DESC_MIN_TERMS", 3)
+
+
+def closed_after_misses() -> int:
+    """Complete fetches a posting may be missing from before it counts as closed."""
+    return max(1, _config_int("CLOSED_AFTER_MISSES", 2))
 
 
 # --------------------------------------------------------------------------
@@ -840,6 +1013,61 @@ def fingerprint(company: str, title: str) -> str:
     return hashlib.sha1(key.encode("utf-8")).hexdigest()
 
 
+# Provider requisition ids in posting URLs. Trackers retitle roles ("AI
+# Developer Intern (Winter 2027)" for RBC's "2027 Winter – GRM, AI Developer
+# Intern - Innovation & AI Center of Excellence (4 Months)") but keep linking
+# the same posting, so the id in the URL is what ties the copies together.
+_UUID_RE = re.compile(
+    r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.IGNORECASE
+)
+# Workday: the last path piece ends "_R-0000188001", "_JR00128581-1",
+# "_R10571" or "_REQ-2393". The "-1" suffix marks the same req re-posted on a
+# second site, so it is dropped.
+_WORKDAY_REQ_RE = re.compile(r"_([A-Z]{1,4}-?\d{3,})(?:-\d{1,2})?/?$")
+# Greenhouse "gh_jid=", and "/jobs/123456" on Greenhouse, iCIMS, Jibe, Amazon,
+# Oracle ("/job/123") and SmartRecruiters.
+_GH_JID_RE = re.compile(r"[?&]gh_jid=(\d+)")
+_PATH_ID_RE = re.compile(r"/(?:jobs?|postings?|positions?)/(\d{4,})(?=[/?#\-]|$)")
+
+
+def requisition_id(url: str) -> str:
+    """The provider's own id for a posting, read from its URL, or "" if none."""
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+    match = _GH_JID_RE.search(raw)
+    if match:
+        return match.group(1)
+    path = urlsplit(raw).path
+    match = _WORKDAY_REQ_RE.search(path)
+    if match:
+        return match.group(1).replace("-", "").upper()
+    match = _UUID_RE.search(path)
+    if match:
+        return match.group(0).lower()
+    match = _PATH_ID_RE.search(path)
+    if match:
+        return match.group(1)
+    return ""
+
+
+def role_keys(company: str, title: str, url: str) -> list[str]:
+    """Every key under which two stored rows count as the same role.
+
+    The company+title fingerprint, plus the requisition id scoped both to the
+    company and to the URL's site -- a tracker may spell the company
+    differently ("RBC") while linking the employer's own posting.
+    """
+    keys = [f"fp:{fingerprint(company, title)}"]
+    req = requisition_id(url)
+    if req:
+        keys.append(f"req:{normalize_company(company)}:{req}")
+        host = (urlsplit(url).hostname or "").lower().removeprefix("www.")
+        if host:
+            keys.append(f"req@{host}:{req}")
+    return keys
+
+
 # --------------------------------------------------------------------------
 # SQLite state
 # --------------------------------------------------------------------------
@@ -859,10 +1087,32 @@ CREATE TABLE IF NOT EXISTS jobs (
     posted_at    INTEGER NOT NULL DEFAULT 0,
     seeded       INTEGER NOT NULL DEFAULT 0,
     notified     INTEGER NOT NULL DEFAULT 0,
-    digested     INTEGER NOT NULL DEFAULT 0
+    digested     INTEGER NOT NULL DEFAULT 0,
+    group_id     TEXT,
+    last_seen    INTEGER NOT NULL DEFAULT 0,
+    misses       INTEGER NOT NULL DEFAULT 0,
+    term         TEXT NOT NULL DEFAULT '',
+    ai_terms     TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS jobs_fingerprint ON jobs(fingerprint);
 CREATE INDEX IF NOT EXISTS jobs_pending ON jobs(tier, notified, digested);
+CREATE INDEX IF NOT EXISTS jobs_source ON jobs(source);
+
+-- Every key a row is known by (fingerprint, requisition id), mapped to the
+-- group of rows that are one role. See core.role_keys.
+CREATE TABLE IF NOT EXISTS role_keys (
+    key      TEXT PRIMARY KEY,
+    group_id TEXT NOT NULL
+);
+
+-- Descriptions already read, so each posting is fetched once.
+CREATE TABLE IF NOT EXISTS descriptions (
+    uid        TEXT PRIMARY KEY,
+    checked_at INTEGER NOT NULL,
+    score      INTEGER NOT NULL DEFAULT 0,
+    terms      TEXT NOT NULL DEFAULT '',
+    error      TEXT
+);
 
 CREATE TABLE IF NOT EXISTS health (
     source       TEXT PRIMARY KEY,
@@ -938,6 +1188,18 @@ class Store:
             self.conn.execute(
                 "ALTER TABLE jobs ADD COLUMN seeded INTEGER NOT NULL DEFAULT 0"
             )
+        for column, decl in (
+            ("last_seen", "INTEGER NOT NULL DEFAULT 0"),
+            ("misses", "INTEGER NOT NULL DEFAULT 0"),
+            ("term", "TEXT NOT NULL DEFAULT ''"),
+            ("ai_terms", "TEXT NOT NULL DEFAULT ''"),
+        ):
+            if column not in have:
+                self.conn.execute(f"ALTER TABLE jobs ADD COLUMN {column} {decl}")
+        if "group_id" not in have:
+            self.conn.execute("ALTER TABLE jobs ADD COLUMN group_id TEXT")
+            self._backfill_groups()
+        self.conn.execute("CREATE INDEX IF NOT EXISTS jobs_group ON jobs(group_id)")
         have = {r["name"] for r in self.conn.execute("PRAGMA table_info(discovered)")}
         if "last_attempt" not in have:
             self.conn.execute("ALTER TABLE discovered ADD COLUMN last_attempt INTEGER")
@@ -949,8 +1211,66 @@ class Store:
             if column not in have:
                 self.conn.execute(f"ALTER TABLE discovered ADD COLUMN {column} {decl}")
 
+    def _backfill_groups(self) -> None:
+        """Group rows stored before role grouping existed, oldest first."""
+        rows = self.conn.execute(
+            "SELECT uid, company, title, url FROM jobs ORDER BY first_seen, uid"
+        ).fetchall()
+        for row in rows:
+            group = self._assign_group(
+                row["uid"], role_keys(row["company"], row["title"], row["url"] or "")
+            )
+            self.conn.execute(
+                "UPDATE jobs SET group_id = ? WHERE uid = ?", (group, row["uid"])
+            )
+
     def close(self) -> None:
         self.conn.close()
+
+    # -- role groups ------------------------------------------------------
+
+    def _group_of(self, keys: list[str]) -> Optional[str]:
+        """The group already holding any of ``keys``, or None."""
+        for key in keys:
+            row = self.conn.execute(
+                "SELECT group_id FROM role_keys WHERE key = ?", (key,)
+            ).fetchone()
+            if row:
+                return row["group_id"]
+        return None
+
+    def _assign_group(self, uid: str, keys: list[str]) -> str:
+        """Put ``keys`` in the group of any row sharing one, else a new group."""
+        group = self._group_of(keys) or uid
+        self.conn.executemany(
+            "INSERT OR IGNORE INTO role_keys (key, group_id) VALUES (?,?)",
+            ((key, group) for key in keys),
+        )
+        return group
+
+    def group_for(self, posting: Posting) -> Optional[str]:
+        """The stored group this posting belongs to, if any copy is stored."""
+        return self._group_of(role_keys(posting.company, posting.title, posting.url))
+
+    def delivered(self, posting: Posting, tier: Optional[str]) -> bool:
+        """:meth:`fingerprint_delivered`, but across the posting's whole group.
+
+        Catches the same role under a different title -- a tracker's rewording
+        of the employer's posting -- through the requisition id in its URL.
+        """
+        group = self.group_for(posting)
+        if group is None:
+            return False
+        if tier == STRICT:
+            cur = self.conn.execute(
+                "SELECT 1 FROM jobs WHERE group_id = ? AND tier = ? AND notified = 1",
+                (group, STRICT),
+            )
+        else:
+            cur = self.conn.execute(
+                "SELECT 1 FROM jobs WHERE group_id = ? AND tier IS NOT NULL", (group,)
+            )
+        return cur.fetchone() is not None
 
     # -- postings ---------------------------------------------------------
 
@@ -993,14 +1313,25 @@ class Store:
         notified: bool = False,
         digested: bool = False,
         seeded: bool = False,
+        ai_terms: Iterable[str] = (),
     ) -> None:
         """Insert a posting. Existing uids are left untouched so the
-        ``first_seen`` timestamp and notified flags never reset."""
+        ``first_seen`` timestamp and notified flags never reset.
+
+        The row joins the group of any stored copy of the same role -- same
+        fingerprint or same requisition id -- so the feed lists it once.
+        """
+        if self.seen_uid(posting.uid):
+            return
+        now = int(time.time())
+        group = self._assign_group(
+            posting.uid, role_keys(posting.company, posting.title, posting.url)
+        )
         self.conn.execute(
             "INSERT OR IGNORE INTO jobs (uid, fingerprint, company, title, location,"
             " url, source, tier, reason, first_seen, posted_at, seeded,"
-            " notified, digested)"
-            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            " notified, digested, group_id, last_seen, term, ai_terms)"
+            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (
                 posting.uid,
                 posting.fingerprint(),
@@ -1011,11 +1342,15 @@ class Store:
                 posting.source,
                 tier,
                 reason,
-                int(time.time()),
+                now,
                 int(posting.posted_at or 0),
                 int(seeded),
                 int(notified),
                 int(digested),
+                group,
+                now,
+                term_label(posting),
+                ", ".join(ai_terms),
             ),
         )
 
@@ -1034,18 +1369,16 @@ class Store:
             "UPDATE jobs SET digested = 1 WHERE uid = ?", ((u,) for u in uids)
         )
 
-    def recent_jobs(
-        self, tier: str, limit: int = 60, max_age_hours: Optional[int] = None
-    ) -> list[sqlite3.Row]:
-        """Postings in one tier, freshest first.
+    # Copies restated by an aggregator rather than posted by the employer.
+    # When both exist, the employer's own copy is the one listed, and only the
+    # employer's board closing a role is taken as the role being gone.
+    _AGGREGATOR = "(uid LIKE 'tracker:%' OR uid LIKE 'getro:%' OR uid LIKE 'consider:%')"
 
-        Ordered and filtered by when the *provider* published the role, falling
-        back to when we discovered it for sources that expose no date. A role
-        that has been live for days already has hundreds of applicants, so
-        ``max_age_hours`` keeps the list to things still worth racing for.
-        """
+    def _feed_query(self, tier: str, max_age_hours: Optional[int]) -> tuple[str, list]:
+        """SQL for the feed rows of one tier, one row per role, and its params."""
         age_expr = "COALESCE(NULLIF(posted_at, 0), first_seen)"
-        params: list = [tier]
+        closed_after = closed_after_misses()
+        params: list = [closed_after, tier]
         # A posting with no provider date that was recorded during the seed has
         # an unknown age -- first_seen is just when seeding ran, so it would
         # masquerade as brand new forever. Undated rows only count as fresh
@@ -1054,20 +1387,119 @@ class Store:
         if max_age_hours:
             clause += f" AND {age_expr} >= ?"
             params.append(int(time.time()) - max_age_hours * 3600)
-        params.append(limit)
+        params.append(closed_after)
         # One row per role. A role on both its own board and a tracker is
         # stored twice (dedupe only suppresses the second alert), and listing
-        # both would put every overlap in the feed twice. The copy carrying a
-        # provider date wins, since its age is real rather than discovered.
+        # both would put every overlap in the feed twice. Rows are one role
+        # when they share a fingerprint or a requisition id (``group_id``).
+        # The employer's copy wins, then the one with a provider date.
+        #
+        # A role is gone when its source stopped listing it for
+        # CLOSED_AFTER_MISSES complete fetches in a row (``misses``).
+        sql = (
+            "SELECT * FROM ("
+            " SELECT *, ROW_NUMBER() OVER (PARTITION BY grp"
+            "   ORDER BY aggregator ASC, (posted_at > 0) DESC, first_seen ASC) AS copy"
+            " FROM ("
+            f"  SELECT *, {age_expr} AS shown_at,"
+            "   COALESCE(group_id, fingerprint) AS grp,"
+            f"  {self._AGGREGATOR} AS aggregator,"
+            f"  MAX(CASE WHEN misses >= ? AND NOT {self._AGGREGATOR} THEN 1 ELSE 0 END)"
+            "     OVER (PARTITION BY COALESCE(group_id, fingerprint)) AS group_closed"
+            f"  FROM jobs WHERE tier = ?{clause}"
+            " ) WHERE group_closed = 0 AND misses < ?"
+            ") WHERE copy = 1"
+        )
+        return sql, params
+
+    def recent_jobs(
+        self, tier: str, limit: int = 60, max_age_hours: Optional[int] = None
+    ) -> list[sqlite3.Row]:
+        """Postings in one tier, freshest first, one row per role.
+
+        Ordered and filtered by when the *provider* published the role, falling
+        back to when we discovered it for sources that expose no date. A role
+        that has been live for days already has hundreds of applicants, so
+        ``max_age_hours`` keeps the list to things still worth racing for.
+        Postings their source has stopped listing are left out.
+        """
+        sql, params = self._feed_query(tier, max_age_hours)
         cur = self.conn.execute(
-            f"SELECT * FROM (SELECT *, {age_expr} AS shown_at,"
-            " ROW_NUMBER() OVER (PARTITION BY fingerprint"
-            "   ORDER BY (posted_at > 0) DESC, first_seen ASC) AS copy"
-            f" FROM jobs WHERE tier = ?{clause})"
-            " WHERE copy = 1 ORDER BY shown_at DESC LIMIT ?",
-            params,
+            f"{sql} ORDER BY shown_at DESC LIMIT ?", params + [limit]
         )
         return cur.fetchall()
+
+    def count_jobs(self, tier: str, max_age_hours: Optional[int] = None) -> int:
+        """How many roles :meth:`recent_jobs` would list with no limit."""
+        sql, params = self._feed_query(tier, max_age_hours)
+        return self.conn.execute(f"SELECT COUNT(*) FROM ({sql})", params).fetchone()[0]
+
+    # -- presence: hiding postings their source no longer lists ----------
+
+    def mark_present(self, source: str, uids: Iterable[str], stamp: int) -> None:
+        """``source`` returned a complete listing at ``stamp``.
+
+        Every stored row of it in the listing is reset; every one that was
+        not has missed once more. Only call this for a listing known to be
+        complete -- a capped search or a 304 says nothing about absence.
+        """
+        with self._lock:
+            self.conn.executemany(
+                "UPDATE jobs SET last_seen = ?, misses = 0 WHERE uid = ?",
+                ((stamp, uid) for uid in uids),
+            )
+            self.conn.execute(
+                "UPDATE jobs SET misses = misses + 1 WHERE source = ? AND last_seen < ?",
+                (source, stamp),
+            )
+
+    # -- descriptions -----------------------------------------------------
+
+    def description_checked(self, uid: str) -> bool:
+        return self.conn.execute(
+            "SELECT 1 FROM descriptions WHERE uid = ?", (uid,)
+        ).fetchone() is not None
+
+    def record_description(
+        self, uid: str, score: int, terms: Iterable[str], error: Optional[str] = None
+    ) -> None:
+        self.conn.execute(
+            "INSERT OR REPLACE INTO descriptions (uid, checked_at, score, terms, error)"
+            " VALUES (?,?,?,?,?)",
+            (uid, int(time.time()), score, ", ".join(terms), (error or None) and error[:300]),
+        )
+
+    def description_backlog(self, limit: int, max_age_hours: int) -> list[sqlite3.Row]:
+        """Stored loose rows a description might promote, newest first.
+
+        Only rows that missed strict for want of an AI word in the title, that
+        are still inside the feed window, and whose description was never read.
+        """
+        cutoff = int(time.time()) - max_age_hours * 3600
+        return self.conn.execute(
+            "SELECT * FROM jobs WHERE tier = ? AND reason = 'no AI signal'"
+            " AND COALESCE(NULLIF(posted_at, 0), first_seen) >= ?"
+            " AND uid NOT IN (SELECT uid FROM descriptions)"
+            " ORDER BY COALESCE(NULLIF(posted_at, 0), first_seen) DESC LIMIT ?",
+            (LOOSE, cutoff, limit),
+        ).fetchall()
+
+    def update_verdict(
+        self, uid: str, tier: Optional[str], reason: str, ai_terms: Iterable[str] = ()
+    ) -> None:
+        self.conn.execute(
+            "UPDATE jobs SET tier = ?, reason = ?, ai_terms = ? WHERE uid = ?",
+            (tier, reason, ", ".join(ai_terms), uid),
+        )
+
+    def update_place(self, uid: str, location: str, posted_at: int) -> None:
+        """Fill a location and date read from the posting page itself."""
+        self.conn.execute(
+            "UPDATE jobs SET location = ?,"
+            " posted_at = CASE WHEN posted_at = 0 THEN ? ELSE posted_at END"
+            " WHERE uid = ?",
+            (location, int(posted_at or 0), uid),
+        )
 
     def counts(self) -> dict:
         cur = self.conn.execute(
