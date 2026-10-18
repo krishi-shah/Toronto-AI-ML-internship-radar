@@ -480,10 +480,81 @@ class TestFalsePositiveGuards(unittest.TestCase):
         self.assertEqual(tier("HTML Developer Intern"), LOOSE)
 
     def test_retail_does_not_match_ai(self):
-        self.assertEqual(tier("Retail Operations Intern"), LOOSE)
+        self.assertEqual(tier("Retail Operations Intern"), OTHER)
 
     def test_maintenance_does_not_match_ai(self):
-        self.assertEqual(tier("Maintenance Technician Intern"), LOOSE)
+        self.assertEqual(tier("Maintenance Technician Intern"), OTHER)
+
+
+class TestLooseIsTechOnly(unittest.TestCase):
+    """Titles and locations taken from the live loose tier."""
+
+    def test_loblaw_store_shifts_are_rejected(self):
+        loc = "1059 Plains Rd E, Burlington, ON"
+        for title in (
+            "Pizza Student Part Time Day Greenlight Requisition",
+            "Student, Franchise Part Time Evening",
+            "Carvery Student Part Time Day Greenlight Requisition",
+            "Pharmacy Student",
+        ):
+            with self.subTest(title=title):
+                self.assertIsNone(tier(title, location=loc, company="Loblaw Companies"))
+
+    def test_branch_advisor_roles_go_to_other(self):
+        for title in (
+            "Financial Advisor Intern",
+            "Relationship Manager Commercial Banking - Intern",
+            "Public Relations Intern, Winter 2027 (Co-op/Internship) - 4 Months",
+            "Winter Co-Op 2027 - Treasury Analyst",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(tier(title), OTHER)
+
+    def test_non_tech_roles_go_to_other(self):
+        for title in ("Strategy Intern", "FP&A Intern, T&O",
+                      "Student HSE Coordinator", "Bid Management intern"):
+            with self.subTest(title=title):
+                self.assertEqual(tier(title), OTHER)
+
+    def test_tech_roles_stay_loose(self):
+        for title in (
+            "Cloud Engineer Intern",
+            "Data Intern - Product Analytics - Winter 2027",
+            "Information Security Analyst Winter 2027 Co-op",
+            "Software Tester Intern",
+            "Technology Business Analyst Intern",
+            "IT Support Co-op",
+            "R&D Co-op Student, Winter 2027",
+            "Corporate Applications Intern",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(tier(title), LOOSE)
+
+    def test_canada_without_province_is_also_gated(self):
+        self.assertEqual(tier("Strategy Intern", location="Canada"), OTHER)
+        self.assertEqual(tier("Software Developer Co-op", location="Canada"), LOOSE)
+
+    def test_ai_title_ignores_the_tech_gate(self):
+        self.assertEqual(tier("AI Strategy Intern"), STRICT)
+
+    def test_part_time_ai_role_is_not_a_store_shift(self):
+        self.assertEqual(tier("Part-Time Machine Learning Intern"), STRICT)
+
+
+class TestUsLocationLeaks(unittest.TestCase):
+
+    def test_street_named_hamilton_is_not_hamilton_ontario(self):
+        loc = r"US-CT-WINDSOR LOCKS-B2 \~ 1 Hamilton Rd \~ BLDG 2"
+        self.assertIsNone(tier("Software Engineer Co-Op (Spring/Summer 2027)", location=loc))
+
+    def test_ontario_california_is_rejected(self):
+        self.assertIsNone(tier("Software Intern", location="ONTARIO, California"))
+
+    def test_real_ontario_cities_still_count(self):
+        for loc in ("Hamilton, ON", "Hamilton", "Brampton, Ontario, CA",
+                    "Toronto, Ontario, Canada", "Ottawa"):
+            with self.subTest(loc=loc):
+                self.assertEqual(tier("Software Developer Intern", location=loc), LOOSE)
 
 
 class TestOntarioCities(unittest.TestCase):

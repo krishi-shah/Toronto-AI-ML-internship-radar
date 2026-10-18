@@ -208,6 +208,28 @@ COMPANIES: list[dict] = [
      "token": "https://careers.thomsonreuters.com/us/en/search-results?keywords=intern",
      "ai_native": False, "browser": True},
 
+    # Ontario employers whose postings reached no API board, tracker or
+    # discovery. Each was opened and kept only if it returned role links.
+    # ``location`` also fills browser rows whose link text names no place.
+    {"name": "ecobee", "platform": "html",
+     "token": "https://www.ecobee.com/en-ca/careers/",
+     "ai_native": False, "location": "Toronto, ON"},
+    {"name": "Scotiabank", "platform": "html",
+     "token": "https://jobs.scotiabank.com/search/?q=internship&locationsearch=Ontario",
+     "ai_native": False, "location": "Ontario, Canada"},
+    {"name": "Ericsson", "platform": "html",
+     "token": "https://jobs.ericsson.com/careers?query=intern&location=Canada",
+     "ai_native": False, "browser": True},
+    {"name": "Ontario Power Generation", "platform": "html",
+     "token": "https://jobs.opg.com/search/?q=&locationsearch=",
+     "ai_native": False, "browser": True, "location": "Ontario, Canada"},
+    {"name": "Signal 1", "platform": "html",
+     "token": "https://www.signal1.ai/careers",
+     "ai_native": True, "browser": True, "location": "Toronto, ON"},
+    {"name": "Cisco", "platform": "html",
+     "token": "https://careers.cisco.com/global/en/search-results?keywords=intern",
+     "ai_native": False, "browser": True},
+
     # Checked and left out, all covered by the trackers meanwhile:
     #   Clio, Ada      -- Cloudflare 403 to every non-browser request, and no
     #                     Ashby/Greenhouse/Lever/SmartRecruiters/Workable board
@@ -215,6 +237,15 @@ COMPANIES: list[dict] = [
     #   Untether AI    -- TLS handshake fails from python-requests
     #   Kinaxis        -- iCIMS, which answers 405 to non-browser requests
     #   Arteria AI     -- Greenhouse board exists but is empty
+    #   OpenText       -- rendered links carry no location, and the search is global
+    #   Layer 6, Private AI, Ross Video, eSentire, Huawei, Uber, Miovision,
+    #   Moneris, Descartes -- rendered page has no role links
+    #   Borealis AI, CPP Investments, OMERS, Ontario Teachers', Hydro One,
+    #   Intact, Meta, GM, SickKids -- only menu links; roles sit behind
+    #                     another portal
+    #   League, Questrade -- 403 or no reachable careers host
+    #   Magnet Forensics, Fullscript -- discovery already reaches their Lever
+    #                     boards; a careers-page scrape would list each role twice
 ]
 
 

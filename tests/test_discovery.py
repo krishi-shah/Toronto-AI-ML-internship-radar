@@ -482,6 +482,17 @@ class TestDefaultLocation(unittest.TestCase):
         )
         self.assertEqual([p.location for p in thunk()], ["Toronto, ON", "Ottawa, ON"])
 
+    def test_browser_link_text_without_a_place_gets_the_default(self):
+        thunk = radar._with_default_location(
+            lambda: [post("u1", location="Forward Deployed Engineer"),
+                     post("u2", location="Solutions Engineer (Intern) - United States")],
+            "Toronto, ON",
+        )
+        self.assertEqual(
+            [p.location for p in thunk()],
+            ["Toronto, ON", "Solutions Engineer (Intern) - United States"],
+        )
+
     def test_configured_location_reaches_html_postings(self):
         company = {"name": "Vector Institute", "platform": "html",
                    "token": "https://vectorinstitute.ai/careers/", "location": "Toronto, ON"}

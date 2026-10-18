@@ -157,6 +157,16 @@ class TestBrowserPortals(unittest.TestCase):
         self.assertEqual(posts[0].title, "ML Intern, Toronto, ON")
         self.assertEqual(posts[0].location, "ML Intern, Toronto, ON")
 
+    def test_section_menu_links_are_not_postings(self):
+        http = mock.Mock()
+        http.text.return_value = (
+            '<a href="https://jobs.example.com/go/students">Student &amp; New Grad</a>'
+            '<a href="https://jobs.example.com/early">Early Careers</a>'
+            '<a href="https://jobs.example.com/job/7">Software Developer Co-op (Winter 2027)</a>'
+        )
+        posts = sources.html_links(http, "Acme", "https://jobs.example.com/search")
+        self.assertEqual([p.title for p in posts], ["Software Developer Co-op (Winter 2027)"])
+
     def test_failed_render_propagates(self):
         http = mock.Mock()
         with mock.patch.object(

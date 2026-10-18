@@ -902,6 +902,15 @@ _ANCHOR_RE = re.compile(
 _TAG_RE = re.compile(r"<[^>]+>")
 _WS_RE = re.compile(r"\s+")
 _MORE_RE = re.compile(r"show more|load more|see more|view more", re.IGNORECASE)
+# Careers-site section links ("Student & New Grad", "Early Careers") contain
+# student words but are menus, not postings.
+_NAV_LABEL_RE = re.compile(
+    r"^(?:students?|interns?|internships?|co-?ops?|new\s+grads?|graduates?|"
+    r"early\s+careers?|early\s+talent|university|campus|programs?|"
+    r"opportunities|jobs|careers|recent\s+grads|and|&|[\s,/&-])+"
+    r"(?:jobs|program|programs|opportunities)?$",
+    re.IGNORECASE,
+)
 
 
 def render_portal(url: str) -> str:
@@ -982,7 +991,7 @@ def html_links(http: Http, company: str, url: str, browser: bool = False) -> lis
 
     for href, inner in _ANCHOR_RE.findall(text):
         label = _WS_RE.sub(" ", unescape(_TAG_RE.sub(" ", inner))).strip()
-        if not label or len(label) > 200:
+        if not label or len(label) > 200 or _NAV_LABEL_RE.match(label):
             continue
         absolute = urljoin(url, unescape(href.strip()))
         if not absolute.startswith("http"):

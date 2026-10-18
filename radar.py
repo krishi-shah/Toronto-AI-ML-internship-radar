@@ -32,7 +32,8 @@ import companies as cfg
 import notify
 import sources
 from core import (
-    LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, in_canada, toronto_now,
+    LOOSE, OTHER, STRICT, Posting, Store, Verdict, classify, in_canada,
+    names_a_place, toronto_now,
 )
 
 # Tracker READMEs and job titles carry emoji and arrows; the Windows console
@@ -56,17 +57,19 @@ PORTAL_WORKERS = 2
 def _with_default_location(
     thunk: Callable[[], list[Posting]], location: str
 ) -> Callable[[], list[Posting]]:
-    """Fill ``location`` into postings that come back without one.
+    """Fill ``location`` into postings that come back without a readable one.
 
     The classifier rejects anything with no Canadian location, and the HTML
     link-diff layer never carries one, so a Toronto-only employer's careers
-    page needs its location stated in config.
+    page needs its location stated in config. Browser rows carry the link
+    text as their location; when that names no place at all the default is
+    used too, but a link that names a foreign place is left alone.
     """
 
     def run() -> list[Posting]:
         found = thunk()
         for post in found:
-            if not (post.location or "").strip():
+            if not names_a_place(post.location):
                 post.location = location
         return found
 

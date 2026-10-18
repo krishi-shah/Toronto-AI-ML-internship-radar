@@ -21,12 +21,14 @@ Three rules shape what you see:
 - **Only live cycles.** Winter 2027 is the target. Fall 2026 and earlier are
   rejected outright — that recruiting is over. Summer 2027 and later are kept
   but demoted below the strict tier.
-- **Internships first.** Full-time new-grad roles are kept but never strict,
-  and student roles in fields with no AI angle (analog design, firmware,
-  capital markets, …) are folded into a collapsed *Other fields* section.
+- **Internships first, tech only.** Full-time new-grad roles are kept but
+  never strict. Loose holds only tech-relevant student roles; student roles in
+  fields with no AI or tech angle (analog design, capital markets, strategy,
+  branch advisor, …) are folded into a collapsed *Other fields* section, and
+  retail store shifts are dropped.
 
-Within those bounds it is tuned for recall: ambiguous postings are kept, never
-binned.
+Within those bounds it is tuned for recall: ambiguous tech postings are kept,
+never binned.
 
 ---
 
@@ -646,7 +648,8 @@ schema.org `JobPosting` data (what Google for Jobs indexes), those records are
 used: real titles, locations, remote scope and publish dates. Otherwise it
 falls back to the link diff: extract every anchor, filter to same-domain or
 job-ish links, and treat any new link as a candidate. Crude by design: it
-cannot miss a link appearing. Pages flagged `browser` are opened in Chromium
+cannot miss a link appearing. Section menu links ("Student & New Grad",
+"Early Careers") are skipped. Pages flagged `browser` are opened in Chromium
 first, two at a time, because their job list is not in the first HTML
 response.
 
@@ -674,20 +677,24 @@ Two tiers, because a wide net plus one channel equals noise.
 - an Ontario location signal, **or** remote within Canada
 - no cycle token pointing exclusively at a season other than Winter 2027
 
-**loose** — everything else student-level in Ontario, including opaque titles
-like "Technology Analyst, Rotational", plus roles that say only "Canada" with
-no province. Ambiguous titles go to loose, never to the bin. Full-time early-career
+**loose** — tech-relevant student roles in Ontario that miss strict, plus
+roles that say only "Canada" with no province. Without an AI signal, the title
+needs a tech term (software, developer, engineering, data, analytics, cloud,
+security, QA, IT, product, R&D, …) to land here. Full-time early-career
 roles (new grad, entry level, early talent) are capped here even with an AI
 title: they are a different race from a Winter 2027 co-op.
 
-**other fields** — student roles in Ontario whose title names a discipline
-with no AI angle and carries no AI signal: analog and mixed-signal design,
+**other fields** — student roles in Ontario with no AI signal whose title
+either names a discipline with no AI angle (analog and mixed-signal design,
 PCB, ASIC, firmware, signal integrity, electrical and mechanical engineering,
-capital markets, accounting, audit, marketing, sales, HR. Kept, never alerted
-on, and shown collapsed below loose. An AI signal always wins, so "ML Firmware
-Intern" stays strict.
+capital markets, accounting, audit, marketing, sales, HR, treasury, FP&A,
+underwriting, branch advisor and relationship-manager roles) or carries no
+tech term at all ("Strategy Intern", "Bid Management Intern"). Kept, never
+alerted on, and shown collapsed below loose. An AI signal always wins, so
+"ML Firmware Intern" stays strict.
 
-**Rejected** — unpaid, volunteer, high school, PhD-*only*, **anywhere outside
+**Rejected** — unpaid, volunteer, high school, PhD-*only*, retail and shift
+work ("Student Part Time", "Franchise", store departments), **anywhere outside
 Ontario**, and **postings for a cycle earlier than the target**. A bare "PhD"
 mention does not reject: plenty of ML internships prefer a PhD but accept
 master's students. A bare year with no season ("2026 Intern") does not reject
@@ -709,12 +716,19 @@ as the Toronto role it is. Then:
   "Multiple Locations" or "Remote" alone is not evidence of Canada, and
   keeping them let US roles into loose. Careers pages scraped through the
   link-diff layer carry no location, so their entries in `companies.py` state
-  one (`"location": "Toronto, ON"`), and Workday "N Locations" rows are
-  resolved as described above.
+  one (`"location": "Toronto, ON"`). Browser rows use the link text as their
+  location; when that names no place, the stated location fills it too, but
+  a link that names a foreign place is left alone. Workday "N Locations" rows
+  are resolved as described above.
 
 The province abbreviation is matched as `,\s*ON(?![\w-])`. Without the
 lookahead, a case-insensitive `, ON` matches the "on" in "Hybrid, on-site" and
 quietly reads half the internet as Ontario.
+
+City names shared with other places get two more guards. A street suffix
+after the name means it is an address, not the city, so RTX's
+`US-CT-WINDSOR LOCKS ~ 1 Hamilton Rd` is not Hamilton, Ontario. And
+"Ontario, California" and "Ontario, Oregon" are US cities, not the province.
 
 A posting naming several cycles keeps the best one: *"Summer 2026, Winter 2027,
 Fall 2027"* is a live Winter 2027 opportunity, not a dead 2026 one.
@@ -871,8 +885,15 @@ Corrections found along the way:
 - **Clio, Xanadu, Limina and Untether AI** are not scraped directly:
   client-side rendering, or a TLS handshake python-requests cannot complete.
   The trackers cover them.
-- **Scotiabank** answers 422 to the standard Workday search; it needs the
-  exact request its own site sends, captured from DevTools.
+- **Scotiabank** answers 422 to the standard Workday search, so its public
+  careers search (internships in Ontario) is scraped as a careers page
+  instead.
+- **Careers pages that only link onward** are not scraped: Borealis AI, CPP
+  Investments, OMERS, Ontario Teachers', Hydro One, Intact, Meta, GM and
+  SickKids show menu links only, and Layer 6, Private AI, Ross Video,
+  eSentire, Huawei, Uber, Miovision, Moneris and Descartes rendered no role
+  links at all. OpenText renders roles but names no location, and its search
+  is global.
 - **Host sniffing only sees server-rendered pages.** Okta, Stripe, Elastic
   and most big-tech careers sites build their listings in JavaScript and name
   no ATS in the HTML, so sniffing finds nothing there. Those hosts are then

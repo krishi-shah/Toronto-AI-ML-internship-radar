@@ -178,6 +178,84 @@ _OFF_FIELD_TERMS = [
     r"human[\s\-]?resources",
     r"\bhr\b",
     r"talent[\s\-]?acquisition",
+    r"financial[\s\-]?advisor",
+    r"banking[\s\-]?advisor",
+    r"client[\s\-]?advisor",
+    r"relationship[\s\-]?manager",
+    r"public[\s\-]?relations",
+    r"\bhse\b",
+    r"\btreasury\b",
+    r"\bfp&a\b",
+    r"\bunderwriting\b",
+]
+
+# Loose is for tech-relevant student roles. A student role with no AI signal
+# needs one of these in its title to reach loose; without one it is filed
+# under "Other fields". Off-field terms are checked first, so "Electrical
+# Engineering Intern" still lands in other despite "engineering".
+_TECH_TERMS = [
+    r"\bsoftware\b",
+    r"\bdevelop(?:er|ment)\b",
+    r"\bengineer(?:ing|s)?\b",
+    r"\bprogramm(?:er|ing)\b",
+    r"\bcod(?:er|ing)\b",
+    r"\bdata\b",
+    r"\banalytics?\b",
+    r"\bquant",
+    r"\bresearch",
+    r"\br\s*&(?:amp;)?\s*d\b",
+    r"\bapplications?\b",
+    r"\bcloud\b",
+    r"\b(?:app|dev|devsec|sec|cloud|data|net|git|ml|ai)ops\b",
+    r"\bsre\b",
+    r"\binfrastructure\b",
+    r"\bnetwork",
+    r"\bsystems?\b",
+    r"\bplatform\b",
+    r"\bsecurity\b",
+    r"\bcyber",
+    r"\bqa\b",
+    r"\btest",
+    r"\bautomation\b",
+    r"\bembedded\b",
+    r"\brobotic",
+    r"\bcomputer",
+    r"\btech\b",
+    r"\btechnolog",
+    r"\btechnical\b",
+    r"\bdigital\b",
+    r"\bweb\b",
+    r"\bmobile\b",
+    r"\bdatabase",
+    r"\bbi\b",
+    r"\bproduct\b",
+    r"\bux\b",
+    r"\bui\b",
+    r"\bgame",
+    r"\belectronics\b",
+    r"\btelecom",
+    r"\bgis\b",
+    r"geospatial",
+    r"\bsimulation",
+    r"\binformation\b",
+]
+
+# Retail floor and shift work that Workday tenants file as "Student". Checked
+# against the title alone, so a company name can never trigger it.
+_RETAIL_TERMS = [
+    r"part[\s\-]?time",
+    r"\bfranchise\b",
+    r"greenlight[\s\-]?requisition",
+    r"\bstore\b",
+    r"\bcashier",
+    r"\bcrew\b",
+    r"pharmacy[\s\-]?student",
+    r"\bcarvery\b",
+    r"\bpizza\b",
+    r"\bbakery\b",
+    r"\bdeli\b",
+    r"\bseafood\b",
+    r"\bmeat[\s\-]?(?:cutter|clerk)",
 ]
 
 # Explicit rejects. Deliberately short: anything ambiguous belongs in loose.
@@ -199,7 +277,9 @@ _REJECT_TERMS = [
 # The province abbreviation needs the lookahead: with IGNORECASE, a bare
 # ",\s*ON\b" happily matches the "on" in "Hybrid, on-site".
 _ONTARIO_TERMS = [
-    r"\bontario\b",
+    # Ontario, California and Ontario, Oregon are US cities. ", CA" is not
+    # guarded: Workday writes "Brampton, Ontario, CA" for Canada.
+    r"\bontario\b(?!\s*,\s*(?:california|oregon)\b)",
     r"\btoronto\b",
     r"\bgta\b",
     r"greater[\s\-]?toronto",
@@ -264,7 +344,12 @@ _AMBIGUOUS_ONTARIO_CITIES = [
     r"\bniagara\b",
 ]
 
-_ONTARIO_TERMS += [city + _ELSEWHERE for city in _AMBIGUOUS_ONTARIO_CITIES]
+# A street address is not the city: RTX's "1 Hamilton Rd" is in Connecticut.
+_NOT_STREET = r"(?!\s+(?:rd|road|st|street|ave|avenue|dr|drive|blvd|way|lane|ln)\b)"
+
+_ONTARIO_TERMS += [
+    city + _NOT_STREET + _ELSEWHERE for city in _AMBIGUOUS_ONTARIO_CITIES
+]
 
 # Canadian, but not Ontario. Naming one of these rules a posting out unless
 # Ontario is named alongside it -- a role listed for both Toronto and
@@ -374,6 +459,10 @@ AI_RE = _compile(_AI_TERMS)
 STUDENT_RE = _compile(_STUDENT_TERMS)
 NEWGRAD_RE = _compile(_NEWGRAD_TERMS)
 OFF_FIELD_RE = _compile(_OFF_FIELD_TERMS)
+# "IT" is matched case-sensitively so the pronoun "it" never counts as tech.
+TECH_RE = re.compile("|".join(_TECH_TERMS), re.IGNORECASE)
+TECH_IT_RE = re.compile(r"\bIT\b")
+RETAIL_RE = _compile(_RETAIL_TERMS)
 REJECT_RE = _compile(_REJECT_TERMS)
 ONTARIO_RE = _compile(_ONTARIO_TERMS)
 NON_ONTARIO_CA_RE = _compile(_NON_ONTARIO_CA_TERMS)
@@ -410,7 +499,9 @@ _FOREIGN_RE = re.compile(
     r"bangladesh|sri\s+lanka)\b"
     r"|,\s*(?:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|MA|MD|ME|"
     r"MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|"
-    r"VA|VT|WA|WI|WV|WY|DC)\b",
+    r"VA|VT|WA|WI|WV|WY|DC)\b"
+    # Workday site codes: "US-CT-WINDSOR LOCKS-B2".
+    r"|\bUS-[A-Z]{2}-",
     re.IGNORECASE,
 )
 
@@ -521,6 +612,11 @@ def _location_scope(loc_blob: str) -> str:
     return "unknown"
 
 
+def names_a_place(location: str) -> bool:
+    """Does this location string say anything the classifier can place?"""
+    return _location_scope(location or "") != "unknown"
+
+
 def in_canada(posting: Posting) -> bool:
     """Would the classifier's location gate let this posting through?"""
     return _location_scope(_location_blob(posting)) in ("ontario", "canada")
@@ -535,12 +631,13 @@ def classify(posting: Posting) -> Verdict:
       * an Ontario location signal, or remote within Canada
       * no cycle token pointing exclusively at a season other than Winter 2027
 
-    Anything student-level that is in Ontario, or whose location cannot be
-    read at all, falls through to loose -- or to ``other`` when the title
-    names a discipline with no AI angle (analog design, capital markets, ...).
-    Dropped outright: unpaid, volunteer,
-    high-school and PhD-only postings, past cycles, and anywhere outside
-    Ontario -- including the rest of Canada.
+    Anything else student-level in Ontario (or in Canada with no province)
+    falls through to loose only when the title is tech-relevant. A title
+    naming a discipline with no AI angle (analog design, capital markets,
+    branch advisor, ...) or no tech term at all goes to ``other``.
+    Dropped outright: unpaid, volunteer, high-school and PhD-only postings,
+    retail and shift work, past cycles, and anywhere outside Ontario --
+    including the rest of Canada.
     """
     title = posting.title or ""
     loc_blob = _location_blob(posting)
@@ -582,16 +679,26 @@ def classify(posting: Posting) -> Verdict:
 
     ai = bool(AI_RE.search(title)) or posting.ai_native
 
+    if not ai:
+        if RETAIL_RE.search(title):
+            return Verdict(
+                REJECTED, "store or shift role", student=True, ontario=in_scope,
+            )
+        if OFF_FIELD_RE.search(title):
+            return Verdict(
+                OTHER, "off-field", student=True, ontario=in_scope, cycle=cycle,
+            )
+        if not (TECH_RE.search(title) or TECH_IT_RE.search(title)):
+            return Verdict(
+                OTHER, "not tech", student=True, ontario=in_scope, cycle=cycle,
+            )
+
     if canada_only:
-        if not ai and OFF_FIELD_RE.search(title):
-            return Verdict(OTHER, "off-field", student=True, cycle=cycle)
         return Verdict(
             LOOSE, "Canada, province not named", ai=ai, student=True, cycle=cycle,
         )
 
     if not ai:
-        if OFF_FIELD_RE.search(title):
-            return Verdict(OTHER, "off-field", student=True, ontario=True, cycle=cycle)
         return Verdict(LOOSE, "no AI signal", student=True, ontario=True, cycle=cycle)
     if new_grad:
         return Verdict(
