@@ -36,7 +36,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 17 October, 17:33 Toronto &middot; 141/142 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 17 October, 20:08 Toronto &middot; 141/142 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 22 AI/ML matches &middot; last 14 days
 
@@ -255,7 +255,7 @@ _Updated Saturday 17 October, 17:33 Toronto &middot; 141/142 sources healthy &mi
 | Acceldata \[lever\] | 38 | ok |
 | Affirm \[greenhouse\] | 214 | ok |
 | Airbnb \[greenhouse\] | 173 | ok |
-| Alexion \[workday\] | 114 | ok |
+| Alexion \[workday\] | 112 | ok |
 | Altera \[workday\] | 172 | ok |
 | Amazon \[amazon\] | 8 | ok |
 | Anthropic \[greenhouse\] | 655 | ok |
@@ -314,7 +314,7 @@ _Updated Saturday 17 October, 17:33 Toronto &middot; 141/142 sources healthy &mi
 | Kensington \[greenhouse\] | 25 | ok |
 | Kepler Communications \[lever\] | 21 | ok |
 | Kinaxis \[icims\] | 118 | ok |
-| Loblaw Companies \[workday\] | 633 | ok |
+| Loblaw Companies \[workday\] | 634 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 13 | ok |
 | Lumentum \[workday\] | 73 | ok |
@@ -365,7 +365,7 @@ _Updated Saturday 17 October, 17:33 Toronto &middot; 141/142 sources healthy &mi
 | StackAdapt \[greenhouse\] | 75 | ok |
 | Stantec \[oracle\] | 278 | ok |
 | Stripe \[greenhouse\] | 732 | ok |
-| Summer2027-Internships \[tracker\] | 4812 | ok |
+| Summer2027-Internships \[tracker\] | 4814 | ok |
 | Sun Life \[workday:Campus\] | 8 | ok |
 | Sun Life \[workday\] | 99 | ok |
 | TD \[workday\] | 92 | ok |
