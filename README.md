@@ -35,6 +35,9 @@ Three rules shape what you see:
 Within those bounds it is tuned for recall: ambiguous tech postings are kept,
 never binned.
 
+**Want to help?** Contributions are welcome, from a one-line company
+suggestion to a new job-board adapter. See [Contributing](#contributing).
+
 ---
 
 ## The feed
@@ -983,3 +986,27 @@ Corrections found along the way:
 | [companies.py](companies.py) | Curated target list, notifiers, freshness and cycle settings |
 | [auto_companies.py](auto_companies.py) | Generated list of boards promoted from discovery evidence |
 | [.github/workflows/radar.yml](.github/workflows/radar.yml) | The scheduler: scrape, test, render, commit |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to set up, add a company or adapter, and open a pull request |
+
+## Contributing
+
+This radar is open to contributions, so anyone looking for the same roles can
+make it better. The most useful help is often the smallest:
+
+- **Suggest a company** it misses: open an
+  [Add a company](../../issues/new?template=add_company.yml) issue.
+- **Report a wrong or missing listing**, with the posting link:
+  [Wrong or missing listing](../../issues/new?template=wrong_listing.yml).
+- **Flag a source** showing FAIL or empty in the Sources table:
+  [open an issue](../../issues/new) with its name.
+- **Send a pull request**: a new company, tracker or VC job board, a
+  classifier fix with its test, or a new job-board adapter.
+
+[CONTRIBUTING.md](CONTRIBUTING.md) covers setup, running the tests and a live
+check, adding companies with `--sniff` and `--probe`, and what a new adapter
+needs. Please read the [Code of Conduct](CODE_OF_CONDUCT.md), and report
+security issues privately as described in [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE) © 2026 Krishi Shah

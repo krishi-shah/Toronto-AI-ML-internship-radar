@@ -1,0 +1,42 @@
+name: Add a company
+description: Suggest a Toronto-area employer, tracker or VC job board the radar should read.
+title: "Add: "
+labels: ["new source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! The radar only covers roles in the commute area (the GTA, Hamilton,
+        Kitchener-Waterloo, Cambridge, Guelph) or remote within Canada.
+  - type: input
+    id: company
+    attributes:
+      label: Company or board name
+      placeholder: Example AI
+    validations:
+      required: true
+  - type: input
+    id: careers
+    attributes:
+      label: Careers page URL
+      placeholder: https://www.example.ai/careers
+    validations:
+      required: true
+  - type: input
+    id: posting
+    attributes:
+      label: A Toronto-area posting from them (optional)
+      description: Any current or recent posting helps identify their job board.
+  - type: dropdown
+    id: ai
+    attributes:
+      label: Is every engineering role there an AI/ML role?
+      options:
+        - "Not sure"
+        - "Yes, it's an AI company"
+        - "No, only some roles"
+  - type: textarea
+    id: sniff
+    attributes:
+      label: Output of `python radar.py --sniff <url>` or `--probe <slug>` (optional)
+      render: text

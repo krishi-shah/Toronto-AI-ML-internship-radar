@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security issue privately
+    url: https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/security/advisories/new
+    about: Please don't open a public issue for security problems.

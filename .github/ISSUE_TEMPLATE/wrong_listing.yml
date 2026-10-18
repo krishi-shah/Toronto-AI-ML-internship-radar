@@ -1,0 +1,41 @@
+name: Wrong or missing listing
+description: A role landed in the wrong tier, or a real role never showed up.
+title: "Listing: "
+labels: ["classification"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Posting URL
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Job title, exactly as the posting shows it
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location, exactly as the posting shows it
+    validations:
+      required: true
+  - type: dropdown
+    id: seen
+    attributes:
+      label: Where is it now?
+      options:
+        - Missing from the feed
+        - In Strict but shouldn't be
+        - In Loose but should be Strict
+        - In Other fields but should be Loose or Strict
+        - Listed more than once
+        - Still listed after it closed
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it should be different
+      placeholder: e.g. "It's an ML internship in Waterloo, but the title only says 'Software Co-op'."
