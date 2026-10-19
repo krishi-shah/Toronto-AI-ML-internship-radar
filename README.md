@@ -46,7 +46,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 18 October, 20:19 Toronto &middot; 152/152 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 19 AI/ML matches &middot; last 14 days
 
@@ -204,17 +204,17 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Ada \[greenhouse\] | 8 | ok |
 | Affirm \[greenhouse\] | 212 | ok |
 | Airbnb \[greenhouse\] | 173 | ok |
-| Alexion \[workday\] | 112 | ok |
+| Alexion \[workday\] | 110 | ok |
 | Alliaxis \[workday\] | 226 | ok |
 | Altera \[workday\] | 172 | ok |
 | Amazon \[amazon\] | 8 | ok |
-| Anthropic \[greenhouse\] | 655 | ok |
+| Anthropic \[greenhouse\] | 656 | ok |
 | Aptiv \[workday\] | 362 | ok |
 | Astera Labs \[greenhouse\] | 93 | ok |
-| Autodesk \[workday\] | 300 | ok |
+| Autodesk \[workday\] | 295 | ok |
 | BDO Canada \[workday\] | 237 | ok |
 | BGIS \[oracle\] | 225 | ok |
-| BMO \[workday\] | 363 | ok |
+| BMO \[workday\] | 362 | ok |
 | Bank of Montreal \[workday:Privileged\] | 20 | ok |
 | Bank of Montreal \[workday\] | 20 | ok |
 | BenchSci \[lever\] | - | **empty** |
@@ -222,7 +222,7 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Bree \[ashby\] | 13 | ok |
 | Brookfield \[workday\] | 27 | ok |
 | CIBC \[workday:campus\] | 37 | ok |
-| CIBC \[workday\] | 289 | ok |
+| CIBC \[workday\] | 288 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 269 | ok |
 | Cerebras \[ashby\] | 122 | ok |
 | Ciena \[workday\] | 146 | ok |
@@ -258,8 +258,8 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Ideogram \[ashby\] | 2 | ok |
 | Inovia \[getro\] | 417 | ok |
 | Instacart \[greenhouse\] | 126 | ok |
-| Intel \[workday\] | 453 | ok |
-| Interac \[workday\] | 69 | ok |
+| Intel \[workday\] | 454 | ok |
+| Interac \[workday\] | 70 | ok |
 | Jobber \[ashby\] | 43 | ok |
 | KPMG \[jibe\] | 11 | ok |
 | Kensington \[greenhouse\] | 25 | ok |
@@ -285,11 +285,11 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Miovision \[ashby\] | 21 | ok |
 | MongoDB \[greenhouse\] | 401 | ok |
 | Neo Financial \[ashby\] | 56 | ok |
-| New-Grad-Positions \[tracker\] | 3016 | ok |
+| New-Grad-Positions \[tracker\] | 3017 | ok |
 | Nokia \[oracle\] | 227 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
-| Nvidia \[workday\] | 602 | ok |
-| Okta \[greenhouse\] | 393 | ok |
+| Nvidia \[workday\] | 603 | ok |
+| Okta \[greenhouse\] | 387 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
 | OpenAI \[ashby\] | 813 | ok |
 | PagerDuty \[greenhouse\] | 61 | ok |
@@ -300,7 +300,7 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Quora \[ashby\] | 8 | ok |
 | Ramp \[ashby\] | 167 | ok |
 | Real Ventures \[getro\] | 433 | ok |
-| Reddit \[greenhouse\] | 145 | ok |
+| Reddit \[greenhouse\] | 146 | ok |
 | Robinhood \[greenhouse\] | 153 | ok |
 | Rocket Lab USA \[greenhouse\] | 585 | ok |
 | Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 307 | ok |
@@ -310,7 +310,7 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | Royal Bank of Canada \[workday:rbcglobal1\] | 424 | ok |
 | Royal Bank of Canada \[workday\] | 22 | ok |
 | SOTI \[workday\] | 8 | ok |
-| Samsara \[greenhouse\] | 263 | ok |
+| Samsara \[greenhouse\] | 262 | ok |
 | Scale AI \[greenhouse\] | 182 | ok |
 | Scotiabank \[successfactors\] | 7 | ok |
 | Semtech \[workday\] | 101 | ok |
@@ -323,7 +323,7 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | StackAdapt \[greenhouse\] | 75 | ok |
 | Stantec \[oracle\] | 278 | ok |
 | Stripe \[greenhouse\] | 731 | ok |
-| Summer2027-Internships \[tracker\] | 4791 | ok |
+| Summer2027-Internships \[tracker\] | 4796 | ok |
 | Sun Life \[workday:Campus\] | 8 | ok |
 | Sun Life \[workday\] | 244 | ok |
 | TD \[workday\] | 525 | ok |
@@ -351,7 +351,7 @@ _Updated Sunday 18 October, 17:38 Toronto &middot; 152/152 sources healthy &midd
 | vansh-Summer2027 \[tracker\] | 508 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 122 boards discovered from Canadian postings: 115 ok, 7 failing, 22 promoted, 74 demoted (2 more waiting for a slot)._
+_Plus 128 boards discovered from Canadian postings: 121 ok, 7 failing, 26 promoted, 77 demoted._
 
 <!-- radar:listings:end -->
 
