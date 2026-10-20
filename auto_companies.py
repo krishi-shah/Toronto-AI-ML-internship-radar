@@ -6,6 +6,7 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
+    {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
     {'name': 'Alliaxis', 'platform': 'workday', 'token': 'https://aliaxis.wd3.myworkdayjobs.com/wday/cxs/aliaxis/aliaxis/jobs', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
@@ -14,6 +15,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Bird Construction', 'platform': 'workday', 'token': 'https://bird.wd3.myworkdayjobs.com/wday/cxs/bird/BirdConstructionCareers/jobs', 'ai_native': False},
     {'name': 'Bree', 'platform': 'ashby', 'token': 'bree', 'ai_native': False},
     {'name': 'Brookfield', 'platform': 'workday', 'token': 'https://brookfield.wd5.myworkdayjobs.com/wday/cxs/brookfield/brookfieldprivate/jobs', 'ai_native': False},
+    {'name': 'Capital One', 'platform': 'workday', 'token': 'https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs', 'ai_native': False},
     {'name': 'Clutch Canada', 'platform': 'greenhouse', 'token': 'clutch', 'ai_native': False},
     {'name': 'DoorDash', 'platform': 'greenhouse', 'token': 'doordashcanada', 'ai_native': False},
     {'name': 'Equitable Bank', 'platform': 'lever', 'token': 'eqbank', 'ai_native': False},
@@ -33,7 +35,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers2/jobs', 'ai_native': False},
     {'name': 'Nuclear Promise X', 'platform': 'ashby', 'token': 'NPX', 'ai_native': False},
     {'name': 'Procter & Gamble', 'platform': 'workday', 'token': 'https://pg.wd5.myworkdayjobs.com/wday/cxs/pg/1000/jobs', 'ai_native': False},
-    {'name': 'Quora', 'platform': 'ashby', 'token': 'quora', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External-Rockwell-Automation-Early-Careers/jobs', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External_Rockwell_Automation/jobs', 'ai_native': False},
     {'name': 'Semtech', 'platform': 'workday', 'token': 'https://semtech.wd1.myworkdayjobs.com/wday/cxs/semtech/SemtechCareers/jobs', 'ai_native': False},
@@ -44,6 +45,5 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs', 'ai_native': False},
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
-    {'name': 'WTW', 'platform': 'oracle', 'token': 'https://eedu.fa.em3.oraclecloud.com|CX_1003', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
 ]
