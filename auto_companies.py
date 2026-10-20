@@ -6,8 +6,8 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
-    {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
     {'name': 'Alliaxis', 'platform': 'workday', 'token': 'https://aliaxis.wd3.myworkdayjobs.com/wday/cxs/aliaxis/aliaxis/jobs', 'ai_native': False},
+    {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'AstraZeneca', 'platform': 'workday', 'token': 'https://astrazeneca.wd3.myworkdayjobs.com/wday/cxs/astrazeneca/Careers/jobs', 'ai_native': False},
     {'name': 'BDO Canada', 'platform': 'workday', 'token': 'https://bdo.wd3.myworkdayjobs.com/wday/cxs/bdo/BDO/jobs', 'ai_native': False},
