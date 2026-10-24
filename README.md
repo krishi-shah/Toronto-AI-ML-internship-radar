@@ -46,7 +46,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 43 AI/ML matches &middot; last 14 days
 
@@ -96,7 +96,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | [PhD Research Intern, Quantum and AI for Chemistry - 2027](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Canada-Toronto/PhD-Research-Intern--Quantum-and-AI-for-Chemistry---2027_JR2024997) | Nvidia | Canada, Toronto | - | 12 days ago |
 | [Data Intern - Product Analytics - Winter 2027](https://jobs.ashbyhq.com/1password/412c1aac-13ce-4cc9-9c81-90a9a7a2ee48) <br><sub>AI in description: machine learning, NLP, data science, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 12 days ago |
 
-### Loose &middot; 78 to review
+### Loose &middot; 77 to review
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -177,7 +177,6 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | [Application Developer Co-op (Winter 2027)](https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Application-Software-Developer-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2621524) | CIBC | Toronto, ON | Winter 2027 | 6 days ago |
 | [Application Developer Co-op - Enterprise Technology &amp; Business Management, Winter](https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Application-Software-Developer-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2621524) | CIBC | Toronto, ON, Canada | - | 6 days ago |
 | [AI Intern - AI, Spring 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Summer-Intern-2027---AI_JR26081688-1) | Manulife Financial | Toronto, ON, Canada | Spring 2027 | 6 days ago |
-| [Software Engineering Intern, Summer](https://physicalreasoning.ai/join/software-engineering-intern/) | Physical Reasoning | San Francisco, CA, New York, NY, Toronto, Canada, Remote | - | 7 days ago |
 
 <details><summary>Other fields &middot; 99 outside AI/ML</summary>
 
@@ -305,7 +304,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Aptiv \[workday\] | 357 | ok |
 | Astera Labs \[greenhouse\] | 91 | ok |
 | AstraZeneca \[workday\] | 344 | ok |
-| AtkinsRéalis \[workday\] | 574 | ok |
+| AtkinsRéalis \[workday\] | 573 | ok |
 | Autodesk \[workday\] | 191 | ok |
 | BDO Canada \[workday\] | 237 | ok |
 | BGIS \[oracle\] | 227 | ok |
@@ -318,7 +317,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Brookfield \[workday\] | 30 | ok |
 | CIBC \[workday:campus\] | 37 | ok |
 | CIBC \[workday\] | 362 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 269 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 265 | ok |
 | Capital One \[workday\] | 401 | ok |
 | Cerebras \[ashby\] | 122 | ok |
 | Ciena \[workday\] | 142 | ok |
@@ -354,9 +353,9 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Hopper \[ashby\] | 18 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Ideogram \[ashby\] | 2 | ok |
-| Inovia \[getro\] | 408 | ok |
+| Inovia \[getro\] | 412 | ok |
 | Instacart \[greenhouse\] | 113 | ok |
-| Intel \[workday\] | 473 | ok |
+| Intel \[workday\] | 472 | ok |
 | Interac \[workday\] | 74 | ok |
 | Jobber \[ashby\] | 44 | ok |
 | KPMG \[jibe\] | 11 | ok |
@@ -366,7 +365,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Kindred AI \[ashby\] | 4 | ok |
 | Klue \[ashby\] | 7 | ok |
 | Lightmatter \[greenhouse\] | 61 | ok |
-| Loblaw Companies \[workday\] | 620 | ok |
+| Loblaw Companies \[workday\] | 622 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
 | Lumentum \[workday\] | 236 | ok |
@@ -384,10 +383,10 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Miovision \[ashby\] | 21 | ok |
 | MongoDB \[greenhouse\] | 382 | ok |
 | Neo Financial \[ashby\] | 58 | ok |
-| New-Grad-Positions \[tracker\] | 3067 | ok |
-| Nokia \[oracle\] | 223 | ok |
+| New-Grad-Positions \[tracker\] | 2938 | ok |
+| Nokia \[oracle\] | 226 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
-| Nvidia \[workday\] | 604 | ok |
+| Nvidia \[workday\] | 605 | ok |
 | Okta \[greenhouse\] | 390 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
 | OpenAI \[ashby\] | 796 | ok |
@@ -412,7 +411,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | Royal Bank of Canada \[workday:rbcglobal1\] | 424 | ok |
 | Royal Bank of Canada \[workday\] | 20 | ok |
 | SOTI \[workday\] | 13 | ok |
-| Samsara \[greenhouse\] | 284 | ok |
+| Samsara \[greenhouse\] | 283 | ok |
 | Scale AI \[greenhouse\] | 171 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
 | Semtech \[workday\] | 104 | ok |
@@ -426,7 +425,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | StackAdapt \[greenhouse\] | 76 | ok |
 | Stantec \[oracle\] | 276 | ok |
 | Stripe \[greenhouse\] | 719 | ok |
-| Summer2027-Internships \[tracker\] | 5033 | ok |
+| Summer2027-Internships \[tracker\] | 4851 | ok |
 | Sun Life \[workday:Campus\] | 6 | ok |
 | Sun Life \[workday\] | 245 | ok |
 | TD \[workday\] | 516 | ok |
@@ -455,7 +454,7 @@ _Updated Saturday 24 October, 12:46 Toronto &middot; 165/165 sources healthy &mi
 | vansh-Summer2027 \[tracker\] | 910 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 163 boards discovered from Canadian postings: 162 ok, 1 failing, 40 promoted, 94 demoted._
+_Plus 162 boards discovered from Canadian postings: 162 ok, 40 promoted, 94 demoted._
 
 <!-- radar:listings:end -->
 
