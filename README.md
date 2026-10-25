@@ -46,7 +46,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 24 October, 20:28 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 43 AI/ML matches &middot; last 14 days
 
@@ -365,7 +365,7 @@ _Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &mi
 | Kindred AI \[ashby\] | 4 | ok |
 | Klue \[ashby\] | 7 | ok |
 | Lightmatter \[greenhouse\] | 61 | ok |
-| Loblaw Companies \[workday\] | 622 | ok |
+| Loblaw Companies \[workday\] | 623 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
 | Lumentum \[workday\] | 236 | ok |
@@ -383,13 +383,13 @@ _Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &mi
 | Miovision \[ashby\] | 21 | ok |
 | MongoDB \[greenhouse\] | 382 | ok |
 | Neo Financial \[ashby\] | 58 | ok |
-| New-Grad-Positions \[tracker\] | 2938 | ok |
-| Nokia \[oracle\] | 226 | ok |
+| New-Grad-Positions \[tracker\] | 2937 | ok |
+| Nokia \[oracle\] | 223 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
 | Nvidia \[workday\] | 605 | ok |
 | Okta \[greenhouse\] | 390 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
-| OpenAI \[ashby\] | 796 | ok |
+| OpenAI \[ashby\] | 794 | ok |
 | PagerDuty \[greenhouse\] | 50 | ok |
 | Picton Mahoney Asset Management \[bamboohr\] | 29 | ok |
 | Pinterest \[greenhouse\] | 163 | ok |
@@ -411,7 +411,7 @@ _Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &mi
 | Royal Bank of Canada \[workday:rbcglobal1\] | 424 | ok |
 | Royal Bank of Canada \[workday\] | 20 | ok |
 | SOTI \[workday\] | 13 | ok |
-| Samsara \[greenhouse\] | 283 | ok |
+| Samsara \[greenhouse\] | 284 | ok |
 | Scale AI \[greenhouse\] | 171 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
 | Semtech \[workday\] | 104 | ok |
@@ -425,10 +425,10 @@ _Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &mi
 | StackAdapt \[greenhouse\] | 76 | ok |
 | Stantec \[oracle\] | 276 | ok |
 | Stripe \[greenhouse\] | 719 | ok |
-| Summer2027-Internships \[tracker\] | 4851 | ok |
+| Summer2027-Internships \[tracker\] | 4828 | ok |
 | Sun Life \[workday:Campus\] | 6 | ok |
 | Sun Life \[workday\] | 245 | ok |
-| TD \[workday\] | 516 | ok |
+| TD \[workday\] | 523 | ok |
 | TELUS \[successfactors\] | 15 | ok |
 | Tailscale \[greenhouse\] | 57 | ok |
 | Telus Digital \[ashby\] | 59 | ok |
@@ -439,7 +439,7 @@ _Updated Saturday 24 October, 17:45 Toronto &middot; 165/165 sources healthy &mi
 | Thomson Reuters \[workday\] | 84 | ok |
 | Trimble \[workday\] | 213 | ok |
 | Twilio \[greenhouse\] | 134 | ok |
-| Ubisoft \[smartrecruiters\] | 344 | ok |
+| Ubisoft \[smartrecruiters\] | 342 | ok |
 | Vector Institute \[html\] | 30 | ok |
 | WTW \[oracle\] | 243 | ok |
 | Waabi \[lever\] | 94 | ok |
