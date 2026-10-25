@@ -46,7 +46,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 25 October, 17:58 Toronto &middot; 165/165 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 42 AI/ML matches &middot; last 14 days
 
@@ -177,7 +177,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | [Application Developer Co-op - Enterprise Technology &amp; Business Management, Winter](https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Application-Software-Developer-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2621524) | CIBC | Toronto, ON, Canada | - | 7 days ago |
 | [AI Intern - AI, Spring 2027](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Summer-Intern-2027---AI_JR26081688-1) | Manulife Financial | Toronto, ON, Canada | Spring 2027 | 7 days ago |
 
-<details><summary>Other fields &middot; 98 outside AI/ML</summary>
+<details><summary>Other fields &middot; 97 outside AI/ML</summary>
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -278,7 +278,6 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | [Events Intern (Winter/January 2027, 12 Months)](https://job-boards.greenhouse.io/internshiplist2000/jobs/5452423008) | Geotab | Oakville, Ontario - Canada | - | 6 days ago |
 | [Intern - Partner Relations (Procurement)](https://job-boards.greenhouse.io/kensingtontours/jobs/5262686007) | Kensington | Toronto, ON, Canada | - | 6 days ago |
 | [FY27 Intern - QDSP Hardware Physical Design Internship - Canada (12 or 16 months)](https://qualcomm.eightfold.ai/careers/job/446721636316) | Qualcomm | Markham, Ontario, Canada | - | 7 days ago |
-| [Government Relations &amp; External Affairs Intern](https://interac.wd3.myworkdayjobs.com/en-US/Interac/job/Toronto/Government-Relations---External-Affairs-Intern_REQ-2402) | Interac | Toronto | - | 7 days ago |
 
 </details>
 
@@ -286,22 +285,22 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 
 | Source | Postings | Status |
 |---|---|---|
-| 1Password \[ashby\] | 90 | ok |
+| 1Password \[ashby\] | 91 | ok |
 | AMD \[jibe\] | 33 | ok |
 | Acceldata \[lever\] | 38 | ok |
 | Ada \[greenhouse\] | 7 | ok |
 | Affirm \[greenhouse\] | 225 | ok |
-| Airbnb \[greenhouse\] | 191 | ok |
+| Airbnb \[greenhouse\] | 190 | ok |
 | Alexion \[workday\] | 106 | ok |
 | Alliaxis \[workday\] | 230 | ok |
 | Altera \[workday\] | 175 | ok |
 | Amazon \[amazon\] | 8 | ok |
-| American Express \[oracle\] | 221 | ok |
-| Anthropic \[greenhouse\] | 682 | ok |
+| American Express \[oracle\] | 220 | ok |
+| Anthropic \[greenhouse\] | 681 | ok |
 | Aon \[jibe\] | 6 | ok |
 | Aptiv \[workday\] | 357 | ok |
 | Astera Labs \[greenhouse\] | 91 | ok |
-| AstraZeneca \[workday\] | 342 | ok |
+| AstraZeneca \[workday\] | 344 | ok |
 | AtkinsRéalis \[workday\] | 572 | ok |
 | Autodesk \[workday\] | 191 | ok |
 | BDO Canada \[workday\] | 237 | ok |
@@ -327,7 +326,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Confluent \[ashby\] | - | **empty** |
 | Cresta \[greenhouse\] | 87 | ok |
 | D2L \[greenhouse\] | 13 | ok |
-| Databricks \[greenhouse\] | 896 | ok |
+| Databricks \[greenhouse\] | 894 | ok |
 | Deep Genomics \[lever\] | 4 | ok |
 | Definity Financial \[oracle\] | 39 | ok |
 | DoorDash \[greenhouse\] | 39 | ok |
@@ -341,7 +340,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Float \[ashby\] | 21 | ok |
 | Foresters Financial \[workday\] | 25 | ok |
 | GE Vernova \[workday:vernova\_externalsite\] | 426 | ok |
-| GE Vernova \[workday\] | 431 | ok |
+| GE Vernova \[workday\] | 434 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 68 | ok |
 | GitLab \[greenhouse\] | 239 | ok |
@@ -352,7 +351,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Ideogram \[ashby\] | 2 | ok |
 | Inovia \[getro\] | 412 | ok |
-| Instacart \[greenhouse\] | 113 | ok |
+| Instacart \[greenhouse\] | 111 | ok |
 | Intel \[workday\] | 472 | ok |
 | Interac \[workday\] | 55 | ok |
 | Jobber \[ashby\] | 44 | ok |
@@ -363,7 +362,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Kindred AI \[ashby\] | 4 | ok |
 | Klue \[ashby\] | 7 | ok |
 | Lightmatter \[greenhouse\] | 61 | ok |
-| Loblaw Companies \[workday\] | 627 | ok |
+| Loblaw Companies \[workday\] | 625 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 14 | ok |
 | Lumentum \[workday\] | 236 | ok |
@@ -375,16 +374,16 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Manulife Financial \[workday\] | 371 | ok |
 | Maple Leaf Sports &amp; Entertainment Partnership (MLSE) \[workday\] | 91 | ok |
 | Marsh \[workday\] | 515 | ok |
-| Marvell \[workday:MarvellCareers2\] | 56 | ok |
+| Marvell \[workday:MarvellCareers2\] | 51 | ok |
 | Marvell \[workday\] | 279 | ok |
 | Microsoft \[eightfold\] | 9 | ok |
 | Miovision \[ashby\] | 21 | ok |
 | MongoDB \[greenhouse\] | 381 | ok |
 | Neo Financial \[ashby\] | 58 | ok |
-| New-Grad-Positions \[tracker\] | 2933 | ok |
-| Nokia \[oracle\] | 223 | ok |
+| New-Grad-Positions \[tracker\] | 2932 | ok |
+| Nokia \[oracle\] | 225 | ok |
 | Nuclear Promise X \[ashby\] | 15 | ok |
-| Nvidia \[workday\] | 605 | ok |
+| Nvidia \[workday\] | 606 | ok |
 | Okta \[greenhouse\] | 390 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
 | OpenAI \[ashby\] | 793 | ok |
@@ -401,7 +400,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Reddit \[greenhouse\] | 160 | ok |
 | Robinhood \[greenhouse\] | 157 | ok |
 | Rocket Lab USA \[greenhouse\] | 585 | ok |
-| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 317 | ok |
+| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 316 | ok |
 | Rockwell Automation \[workday\] | 32 | ok |
 | Rodan Energy Solutions \[jazzhr\] | 14 | ok |
 | Rogers \[successfactors\] | 100 | ok |
@@ -409,11 +408,11 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Royal Bank of Canada \[workday:rbcglobal1\] | 425 | ok |
 | Royal Bank of Canada \[workday\] | 19 | ok |
 | SOTI \[workday\] | 13 | ok |
-| Samsara \[greenhouse\] | 286 | ok |
+| Samsara \[greenhouse\] | 287 | ok |
 | Scale AI \[greenhouse\] | 171 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
 | Semtech \[workday\] | 104 | ok |
-| ServiceNow \[smartrecruiters\] | 715 | ok |
+| ServiceNow \[smartrecruiters\] | 714 | ok |
 | Shakepay \[greenhouse\] | 10 | ok |
 | Shopify \[html\] | 40 | ok |
 | ShyftLabs \[lever\] | 23 | ok |
@@ -422,7 +421,7 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | Solink \[ashby\] | 22 | ok |
 | StackAdapt \[greenhouse\] | 76 | ok |
 | Stantec \[oracle\] | 276 | ok |
-| Stripe \[greenhouse\] | 719 | ok |
+| Stripe \[greenhouse\] | 718 | ok |
 | Summer2027-Internships \[tracker\] | 4839 | ok |
 | Sun Life \[workday:Campus\] | 6 | ok |
 | Sun Life \[workday\] | 245 | ok |
@@ -435,8 +434,8 @@ _Updated Sunday 25 October, 13:10 Toronto &middot; 165/165 sources healthy &midd
 | The Home Depot \[workday\] | 260 | ok |
 | Thinkific \[ashby\] | 3 | ok |
 | Thomson Reuters \[workday\] | 84 | ok |
-| Trimble \[workday\] | 213 | ok |
-| Twilio \[greenhouse\] | 134 | ok |
+| Trimble \[workday\] | 212 | ok |
+| Twilio \[greenhouse\] | 133 | ok |
 | Ubisoft \[smartrecruiters\] | 342 | ok |
 | Vector Institute \[html\] | 30 | ok |
 | WTW \[oracle\] | 243 | ok |
