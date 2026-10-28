@@ -6,7 +6,6 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
-    {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
     {'name': 'Alliaxis', 'platform': 'workday', 'token': 'https://aliaxis.wd3.myworkdayjobs.com/wday/cxs/aliaxis/aliaxis/jobs', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'American Express', 'platform': 'oracle', 'token': 'https://egug.fa.us2.oraclecloud.com|CX_1', 'ai_native': False},
@@ -21,6 +20,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Equitable Bank', 'platform': 'lever', 'token': 'eqbank', 'ai_native': False},
     {'name': 'Foresters Financial', 'platform': 'workday', 'token': 'https://foresters.wd3.myworkdayjobs.com/wday/cxs/foresters/ForestersFinancialCareers/jobs', 'ai_native': False},
     {'name': 'GE Vernova', 'platform': 'workday', 'token': 'https://gevernova.wd5.myworkdayjobs.com/wday/cxs/gevernova/vernova_externalsite/jobs', 'ai_native': False},
+    {'name': 'General Magic', 'platform': 'ashby', 'token': 'generalmagic', 'ai_native': False},
     {'name': 'Georgian Partners Growth', 'platform': 'ashby', 'token': 'georgian', 'ai_native': False},
     {'name': 'Hitachi Energy', 'platform': 'workday', 'token': 'https://hitachi.wd1.myworkdayjobs.com/wday/cxs/hitachi/hitachi/jobs', 'ai_native': False},
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
