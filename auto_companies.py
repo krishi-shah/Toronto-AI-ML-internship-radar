@@ -6,6 +6,7 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
+    {'name': 'Acceldata', 'platform': 'lever', 'token': 'acceldata', 'ai_native': False},
     {'name': 'Alliaxis', 'platform': 'workday', 'token': 'https://aliaxis.wd3.myworkdayjobs.com/wday/cxs/aliaxis/aliaxis/jobs', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'American Express', 'platform': 'oracle', 'token': 'https://egug.fa.us2.oraclecloud.com|CX_1', 'ai_native': False},
@@ -41,7 +42,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'ShyftLabs', 'platform': 'lever', 'token': 'shyftlabs', 'ai_native': False},
     {'name': 'SOTI', 'platform': 'workday', 'token': 'https://soti.wd3.myworkdayjobs.com/wday/cxs/soti/SOTI-Next-Gen/jobs', 'ai_native': False},
     {'name': 'Stantec', 'platform': 'oracle', 'token': 'https://hdhl.fa.us6.oraclecloud.com|CX_1', 'ai_native': False},
-    {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs', 'ai_native': False},
     {'name': 'Tenstorrent', 'platform': 'greenhouse', 'token': 'tenstorrentuniversity', 'ai_native': False},
     {'name': 'Trimble', 'platform': 'workday', 'token': 'https://trimble.wd1.myworkdayjobs.com/wday/cxs/trimble/TrimbleCareers/jobs', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
