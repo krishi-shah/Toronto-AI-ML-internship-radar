@@ -46,7 +46,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 31 October, 18:40 Toronto &middot; 169/169 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 59 AI/ML matches &middot; last 14 days
 
@@ -112,7 +112,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | [SCM Data Scientist Intern, Summer](https://go.vansh.nyc/QZ) | Celestica | Toronto, Canada | - | 13 days ago |
 | [Machine Learning Compiler &amp; Performance Engineering Intern, Summer](https://go.vansh.nyc/Rw) | Qualcomm | Markham, Canada | - | 13 days ago |
 
-### Loose &middot; 70 to review
+### Loose &middot; 69 to review
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -185,7 +185,6 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | [Developer Intern, RBC Amplify (Summer 2027)](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000187114) | Royal Bank of Canada | Toronto, ON | Summer 2027 | 6 days ago |
 | [Developer Intern, Summer 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000191193-1) | Royal Bank of Canada | Toronto, ON, Canada | Summer 2027 | 6 days ago |
 | [Developer Intern, Summer](https://go.vansh.nyc/Qb) | Royal Bank of Canada | Toronto, Canada | - | 6 days ago |
-| [Software Developer Co-op, Front End (Winter 2027)](https://jobs.intuit.com/job/toronto/winter-2027-software-developer-co-op-front-end-8-months/27595/102435217392) | Intuit | Toronto, ON | Winter 2027 | 7 days ago |
 
 <details><summary>Other fields &middot; 62 outside AI/ML</summary>
 
@@ -290,7 +289,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | Brookfield \[workday\] | 29 | ok |
 | CIBC \[workday:campus\] | 49 | ok |
 | CIBC \[workday\] | 384 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 295 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 293 | ok |
 | Capital One \[workday\] | 390 | ok |
 | Cerebras \[ashby\] | 116 | ok |
 | Ciena \[workday\] | 157 | ok |
@@ -298,7 +297,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | Clearco \[ashby\] | 5 | ok |
 | Clutch Canada \[greenhouse\] | 75 | ok |
 | Cohere \[ashby\] | 122 | ok |
-| Coinbase \[greenhouse\] | 250 | ok |
+| Coinbase \[greenhouse\] | 254 | ok |
 | Confluent \[ashby\] | - | **empty** |
 | Cresta \[greenhouse\] | 87 | ok |
 | D2L \[greenhouse\] | 22 | ok |
@@ -361,9 +360,10 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | Nokia \[oracle\] | 227 | ok |
 | Nuclear Promise X \[ashby\] | 16 | ok |
 | Nvidia \[workday\] | 608 | ok |
+| OLG \[workday\] | 4 | ok |
 | Okta \[greenhouse\] | 387 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
-| OpenAI \[ashby\] | 812 | ok |
+| OpenAI \[ashby\] | 810 | ok |
 | PagerDuty \[greenhouse\] | 47 | ok |
 | Picton Mahoney Asset Management \[bamboohr\] | 23 | ok |
 | Pinterest \[greenhouse\] | 170 | ok |
@@ -372,7 +372,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | Qualcomm \[eightfold\] | 37 | ok |
 | Quora \[ashby\] | 9 | ok |
 | RSM \[workday\] | 419 | ok |
-| Ramp \[ashby\] | 171 | ok |
+| Ramp \[ashby\] | 172 | ok |
 | Real Ventures \[getro\] | 425 | ok |
 | Reddit \[greenhouse\] | 163 | ok |
 | Robinhood \[greenhouse\] | 160 | ok |
@@ -385,7 +385,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | Royal Bank of Canada \[workday:rbcglobal1\] | 420 | ok |
 | Royal Bank of Canada \[workday\] | 31 | ok |
 | SOTI \[workday\] | 17 | ok |
-| Samsara \[greenhouse\] | 324 | ok |
+| Samsara \[greenhouse\] | 323 | ok |
 | Scale AI \[greenhouse\] | 170 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
 | Semtech \[workday\] | 107 | ok |
@@ -399,7 +399,7 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | StackAdapt \[greenhouse\] | 76 | ok |
 | Stantec \[oracle\] | 277 | ok |
 | Stripe \[greenhouse\] | 745 | ok |
-| Summer2027-Internships \[tracker\] | 5176 | ok |
+| Summer2027-Internships \[tracker\] | 5174 | ok |
 | Sun Life \[workday:Campus\] | 12 | ok |
 | Sun Life \[workday\] | 241 | ok |
 | TD \[workday\] | 534 | ok |
@@ -426,10 +426,10 @@ _Updated Saturday 31 October, 13:57 Toronto &middot; 168/168 sources healthy &mi
 | ecobee \[html\] | 20 | ok |
 | speedyapply-AI-2027 \[tracker\] | 805 | ok |
 | speedyapply-SWE-2027 \[tracker\] | 848 | ok |
-| vansh-Summer2027 \[tracker\] | 1630 | ok |
+| vansh-Summer2027 \[tracker\] | 1642 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 182 boards discovered from Canadian postings: 182 ok, 40 promoted, 111 demoted._
+_Plus 182 boards discovered from Canadian postings: 182 ok, 40 promoted, 113 demoted._
 
 <!-- radar:listings:end -->
 
