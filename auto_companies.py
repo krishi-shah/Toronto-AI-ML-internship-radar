@@ -6,7 +6,6 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
-    {'name': 'Alliaxis', 'platform': 'workday', 'token': 'https://aliaxis.wd3.myworkdayjobs.com/wday/cxs/aliaxis/aliaxis/jobs', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'American Express', 'platform': 'oracle', 'token': 'https://egug.fa.us2.oraclecloud.com|CX_1', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
@@ -26,15 +25,16 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
     {'name': 'Interac', 'platform': 'workday', 'token': 'https://interac.wd3.myworkdayjobs.com/wday/cxs/interac/Interac/jobs', 'ai_native': False},
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
+    {'name': 'Kepler Communications', 'platform': 'lever', 'token': 'kepler', 'ai_native': False},
     {'name': 'Loblaw Companies', 'platform': 'workday', 'token': 'https://myview.wd3.myworkdayjobs.com/wday/cxs/myview/paradox_careers/jobs', 'ai_native': False},
     {'name': 'Manulife Financial', 'platform': 'workday', 'token': 'https://manulife.wd3.myworkdayjobs.com/wday/cxs/manulife/MFCJH_adminJobs/jobs', 'ai_native': False},
     {'name': 'Maple Leaf Sports & Entertainment Partnership (MLSE)', 'platform': 'workday', 'token': 'https://mlse.wd3.myworkdayjobs.com/wday/cxs/mlse/MLSE/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers2/jobs', 'ai_native': False},
+    {'name': 'OLG', 'platform': 'workday', 'token': 'https://olg.wd3.myworkdayjobs.com/wday/cxs/olg/Careers-Students/jobs', 'ai_native': False},
     {'name': 'Picton Mahoney Asset Management', 'platform': 'bamboohr', 'token': 'pictonmahoney', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External-Rockwell-Automation-Early-Careers/jobs', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External_Rockwell_Automation/jobs', 'ai_native': False},
-    {'name': 'Royal Bank of Canada', 'platform': 'workday', 'token': 'https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/ExternalPrivatePostingStudents/jobs', 'ai_native': False},
     {'name': 'RSM', 'platform': 'workday', 'token': 'https://rsm.wd1.myworkdayjobs.com/wday/cxs/rsm/RSMCareers/jobs', 'ai_native': False},
     {'name': 'Semtech', 'platform': 'workday', 'token': 'https://semtech.wd1.myworkdayjobs.com/wday/cxs/semtech/SemtechCareers/jobs', 'ai_native': False},
     {'name': 'ShyftLabs', 'platform': 'lever', 'token': 'shyftlabs', 'ai_native': False},
