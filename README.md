@@ -48,7 +48,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 01 November, 17:59 Toronto &middot; 163/163 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 68 AI/ML matches &middot; last 14 days
 
@@ -217,7 +217,7 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | [Manufacturing Engineering Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineering-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441480800/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
 | [Intern, Business Development (Winter 2027)](https://pictonmahoney.bamboohr.com/careers/385) | Picton Mahoney Asset Management | Toronto, Ontario | Winter 2027 | date unknown |
 
-<details><summary>Other fields &middot; 97 outside AI/ML</summary>
+<details><summary>Other fields &middot; 96 outside AI/ML</summary>
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -278,7 +278,6 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | [Apprentice - Electrician](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Electrician_R00267792-1) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
 | [Apprentice - Millwright](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Millwright_R00267802) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
 | [Apprentice - Tool &amp; Die](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Tool---Die_R00267808) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
-| [IP Design Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/IP-Design-Intern_R03322) | Altera | Toronto, Ontario, Canada | - | 5 days ago |
 | [WFM Real Time Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/WFM-Real-Time-Analyst-co-op_2621769-2) | CIBC | Toronto, ON | - | 5 days ago |
 | [Business Enablement Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Enablement-Analyst-co-op_2621800) | CIBC | Toronto, ON | - | 5 days ago |
 | [Governance Solutions Analyst Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Governance-Solutions-Analyst-Co-op_2622047-1) | CIBC | Toronto, ON | - | 5 days ago |
@@ -330,12 +329,12 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | Acceldata \[lever\] | 36 | ok |
 | Accenture \[workday\] | 155 | ok |
 | Ada \[greenhouse\] | 7 | ok |
-| Affirm \[greenhouse\] | 244 | ok |
+| Affirm \[greenhouse\] | 240 | ok |
 | Airbnb \[greenhouse\] | 202 | ok |
 | Altera \[workday\] | 180 | ok |
 | Amazon \[amazon\] | 170 | ok |
 | American Express \[oracle\] | 163 | ok |
-| Anthropic \[greenhouse\] | 675 | ok |
+| Anthropic \[greenhouse\] | 672 | ok |
 | Aon \[jibe\] | 5 | ok |
 | Astera Labs \[greenhouse\] | 93 | ok |
 | AtkinsRéalis \[workday\] | 476 | ok |
@@ -343,7 +342,7 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | Autodesk \[workday\] | 3 | ok |
 | BDO Canada \[workday\] | 239 | ok |
 | BGIS \[oracle\] | 225 | ok |
-| BMO \[workday\] | 359 | ok |
+| BMO \[workday\] | 361 | ok |
 | Bank of Montreal \[workday\] | 13 | ok |
 | BenchSci \[lever\] | - | **empty** |
 | Bird Construction \[workday\] | 144 | ok |
@@ -399,7 +398,7 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | Klue \[ashby\] | 7 | ok |
 | L3Harris Technologies \[successfactors\] | 103 | ok |
 | Lightmatter \[greenhouse\] | 58 | ok |
-| Loblaw Companies \[workday\] | 669 | ok |
+| Loblaw Companies \[workday\] | 673 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 16 | ok |
 | Lyft \[greenhouse\] | 170 | ok |
@@ -422,7 +421,7 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | OLG \[workday\] | 4 | ok |
 | Okta \[greenhouse\] | 386 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
-| OpenAI \[ashby\] | 810 | ok |
+| OpenAI \[ashby\] | 809 | ok |
 | PagerDuty \[greenhouse\] | 47 | ok |
 | Picton Mahoney Asset Management \[bamboohr\] | 23 | ok |
 | Pinterest \[greenhouse\] | 170 | ok |
@@ -443,7 +442,7 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | Royal Bank of Canada \[workday:rbcglobal1\] | 465 | ok |
 | Royal Bank of Canada \[workday\] | 13 | ok |
 | SOTI \[workday\] | 17 | ok |
-| Samsara \[greenhouse\] | 339 | ok |
+| Samsara \[greenhouse\] | 340 | ok |
 | Scale AI \[greenhouse\] | 170 | ok |
 | Scotiabank \[successfactors:co-op\] | 4 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
@@ -458,8 +457,8 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | StackAdapt \[greenhouse\] | 76 | ok |
 | Stantec \[oracle\] | 238 | ok |
 | Steel \[ashby\] | 3 | ok |
-| Stripe \[greenhouse\] | 746 | ok |
-| Summer2027-Internships \[tracker\] | 5137 | ok |
+| Stripe \[greenhouse\] | 745 | ok |
+| Summer2027-Internships \[tracker\] | 5133 | ok |
 | Sun Life \[workday:Campus\] | 6 | ok |
 | Sun Life \[workday\] | 108 | ok |
 | TD \[workday\] | 558 | ok |
@@ -486,10 +485,10 @@ _Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &mid
 | ecobee \[html\] | 26 | ok |
 | speedyapply-AI-2027 \[tracker\] | 797 | ok |
 | speedyapply-SWE-2027 \[tracker\] | 842 | ok |
-| vansh-Summer2027 \[tracker\] | 1854 | ok |
+| vansh-Summer2027 \[tracker\] | 1857 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 121 boards discovered from Canadian postings: 118 ok, 3 failing, 15 promoted, 79 demoted._
+_Plus 121 boards discovered from Canadian postings: 118 ok, 3 failing, 15 promoted, 84 demoted._
 
 <!-- radar:listings:end -->
 
