@@ -48,9 +48,9 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 01 November, 13:34 Toronto &middot; 163/163 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
-### Strict &middot; 67 AI/ML matches &middot; last 14 days
+### Strict &middot; 68 AI/ML matches &middot; last 14 days
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -75,6 +75,7 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | [FY27 Intern - Deep Learning Research Internship - Canada (4 Months)](https://qualcomm.eightfold.ai/careers/job/446721828828) | Qualcomm | Markham, Ontario, Canada | - | 5 days ago |
 | [Firmware &amp; Machine Learning Engineering Intern (16 Months)](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Navigation---Machine-Learning-Engineering-Intern--16-Months-_R57980) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
 | [Student, Quality Engineering Analyst (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Quality-Engineering-Analyst--Winter-and-Summer-2027-_JR00128337) <br><sub>AI in description: LLMs, RAG, data science, AI agents</sub> | Sun Life | Waterloo, Ontario, Sun Life Toronto Atria, Canada | Winter 2027 | 5 days ago |
+| [Data Associate Intern (Winter 2027)](https://lumerate.breezy.hr/p/baf2283496ad-data-associate-winter-spring-2027) <br><sub>AI in description: machine learning, LLMs, data science</sub> | Lumerate | Remote, Canada | Winter 2027 | 6 days ago |
 | [AI Scientist Co-op, Winter](https://go.vansh.nyc/T1) | CIBC | Toronto, Canada | - | 6 days ago |
 | [AI Scientist Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/AI-Scientist-Co-op_2622058) | CIBC | Toronto, ON | - | 6 days ago |
 | [Revenue Operations Intern (Winter, 2027)](https://jobs.ashbyhq.com/cohere/f3290fb2-66f1-44c7-9824-3f416f44af5a) | Cohere | Toronto, New York | Winter 2027 | 6 days ago |
@@ -122,7 +123,7 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | [Intern, Data Engineer (8 Months)](https://pictonmahoney.bamboohr.com/careers/387) | Picton Mahoney Asset Management | Toronto, Ontario | - | date unknown |
 | [Intern, AI Value Creation Office](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790) | Brookfield | Toronto, Ontario | - | date unknown |
 
-### Loose &middot; 90 to review
+### Loose &middot; 89 to review
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -184,7 +185,6 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | [Software Analyst Intern, Winter](https://go.vansh.nyc/Wz) | Hitachi | Toronto, Canada | - | 6 days ago |
 | [Software Engineering Intern, Summer](https://go.vansh.nyc/Wx) | Uber | Toronto, Canada | - | 6 days ago |
 | [Quality Engineering Analyst Intern, Winter](https://go.vansh.nyc/Xj) | Sun Life | Waterloo, Canada | - | 6 days ago |
-| [Quality Engineering Analyst Intern (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Quality-Engineering-Analyst--Winter-and-Summer-2027-_JR00128337) | Sun Life | Waterloo, ON | Winter 2027 | 6 days ago |
 | [CPU Software Intern](https://jobs.lever.co/nuvacore/f167579a-db4b-4f85-91b9-e0bfb444a37c) | NUVACORE | Markham, ON, hybrid, Intern | - | 6 days ago |
 | [CPU Software Intern, Summer](https://go.vansh.nyc/Tm) | NUVACORE | Markham, Canada | - | 6 days ago |
 | [Undergrad Technical Intern, Summer](https://go.vansh.nyc/SU) | Altera | Toronto, Canada | - | 6 days ago |
@@ -332,9 +332,9 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | Ada \[greenhouse\] | 7 | ok |
 | Affirm \[greenhouse\] | 244 | ok |
 | Airbnb \[greenhouse\] | 202 | ok |
-| Altera \[workday\] | 181 | ok |
+| Altera \[workday\] | 180 | ok |
 | Amazon \[amazon\] | 170 | ok |
-| American Express \[oracle\] | 164 | ok |
+| American Express \[oracle\] | 163 | ok |
 | Anthropic \[greenhouse\] | 675 | ok |
 | Aon \[jibe\] | 5 | ok |
 | Astera Labs \[greenhouse\] | 93 | ok |
@@ -387,7 +387,7 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | Hopper \[ashby\] | 18 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Ideogram \[ashby\] | 4 | ok |
-| Inovia \[getro\] | 403 | ok |
+| Inovia \[getro\] | 404 | ok |
 | Instacart \[greenhouse\] | 96 | ok |
 | Intel \[workday\] | 590 | ok |
 | Jobber \[ashby\] | 39 | ok |
@@ -399,7 +399,7 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | Klue \[ashby\] | 7 | ok |
 | L3Harris Technologies \[successfactors\] | 103 | ok |
 | Lightmatter \[greenhouse\] | 58 | ok |
-| Loblaw Companies \[workday\] | 665 | ok |
+| Loblaw Companies \[workday\] | 669 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 16 | ok |
 | Lyft \[greenhouse\] | 170 | ok |
@@ -443,7 +443,7 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | Royal Bank of Canada \[workday:rbcglobal1\] | 465 | ok |
 | Royal Bank of Canada \[workday\] | 13 | ok |
 | SOTI \[workday\] | 17 | ok |
-| Samsara \[greenhouse\] | 338 | ok |
+| Samsara \[greenhouse\] | 339 | ok |
 | Scale AI \[greenhouse\] | 170 | ok |
 | Scotiabank \[successfactors:co-op\] | 4 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
@@ -484,12 +484,12 @@ _Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &mid
 | Xanadu \[jazzhr\] | 1 | ok |
 | Yotta Labs \[ashby\] | 4 | ok |
 | ecobee \[html\] | 26 | ok |
-| speedyapply-AI-2027 \[tracker\] | 805 | ok |
-| speedyapply-SWE-2027 \[tracker\] | 848 | ok |
-| vansh-Summer2027 \[tracker\] | 1846 | ok |
+| speedyapply-AI-2027 \[tracker\] | 797 | ok |
+| speedyapply-SWE-2027 \[tracker\] | 842 | ok |
+| vansh-Summer2027 \[tracker\] | 1854 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 116 boards discovered from Canadian postings: 114 ok, 2 failing, 15 promoted, 78 demoted (5 more waiting for a slot)._
+_Plus 121 boards discovered from Canadian postings: 118 ok, 3 failing, 15 promoted, 79 demoted._
 
 <!-- radar:listings:end -->
 
