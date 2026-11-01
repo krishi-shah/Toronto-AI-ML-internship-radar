@@ -48,75 +48,81 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 01 November, 02:43 Toronto &middot; 169/169 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 01 November, 12:13 Toronto &middot; 163/163 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
-### Strict &middot; 61 AI/ML matches &middot; last 14 days
+### Strict &middot; 67 AI/ML matches &middot; last 14 days
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
 | [Software Engineer Co-op, AI, Winter](https://go.vansh.nyc/13D) | Foresters Financial | Toronto, Canada | - | 2 days ago |
 | [AI Engineer Co-op, Winter](https://go.vansh.nyc/13G) | General Magic | Toronto, Canada | - | 2 days ago |
+| [Full-stack AI Developer Intern](https://revvity.wd103.myworkdayjobs.com/en-US/External/job/CAD-Remote--ON/Full-stack-AI-Developer-Intern_JR-045792) | Revvity | CAD Remote – ON | - | 2 days ago |
+| [PhD Research Intern, Quantum and AI for Chemistry - 2027](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Canada-Toronto/PhD-Research-Intern--Quantum-and-AI-for-Chemistry---2027_JR2024997) | Nvidia | Canada, Toronto | - | 2 days ago |
 | [PhD Machine Learning Engineer, Intern](https://stripe.com/jobs/search?gh_jid=8328664) | Stripe | Toronto | - | 2 days ago |
 | [Master's Machine Learning Engineer, Intern](https://stripe.com/jobs/search?gh_jid=8333122) | Stripe | Toronto | - | 2 days ago |
-| [Full-stack AI Developer Intern](https://revvity.wd103.myworkdayjobs.com/External/job/CAD-Remote--ON/Full-stack-AI-Developer-Intern_JR-045792) | Revvity | Ontario, Canada | - | 3 days ago |
+| [Data Associate (Winter/Spring 2027)](https://lumerate.breezy.hr/p/baf2283496ad-data-associate-winter-spring-2027) <br><sub>AI in description: machine learning, LLMs, data science</sub> | Lumerate | Canada, remote | Spring 2027 | 2 days ago |
+| [FY27 Intern - AI Software Engineering Co-op - Canada (4 months)](https://qualcomm.eightfold.ai/careers/job/446721862429) | Qualcomm | Toronto, Ontario, Canada | - | 3 days ago |
+| [FY27 Intern - AI Software Systems Co-op - Canada (4 months)](https://qualcomm.eightfold.ai/careers/job/446721862430) | Qualcomm | Toronto, Ontario, Canada | - | 3 days ago |
 | [AI Software Engineering Co-op, Summer](https://go.vansh.nyc/ZK) | Qualcomm | Toronto, Canada | - | 3 days ago |
 | [AI Software Systems Co-op, Summer](https://go.vansh.nyc/ZL) | Qualcomm | Toronto, Canada | - | 3 days ago |
 | [Deep Learning Research Intern, Embodied AI Systems, Summer](https://go.vansh.nyc/ZM) | Qualcomm | Markham, Canada | - | 3 days ago |
 | [Data Analyst Intern (Winter/January 2027, 12 Months)](https://job-boards.greenhouse.io/internshiplist2000/jobs/5444306008) <br><sub>AI in description: machine learning, LLMs, data science, AI agents</sub> | Geotab | Burnaby, British Columbia - Canada; Oakville, Ontario - Canada; Toronto, Ontario - Canada | - | 3 days ago |
 | [FY27 Intern - Deep Learning Research Internship - Embodied AI - Canada (4 Months)](https://qualcomm.eightfold.ai/careers/job/446721858024) | Qualcomm | Markham, Ontario, Canada | - | 4 days ago |
-| [FY27 Intern - AI Software Engineering Co-op - Canada (4 months)](https://qualcomm.eightfold.ai/careers/job/446721862429) | Qualcomm | Toronto, Ontario, Canada | - | 4 days ago |
-| [FY27 Intern - AI Software Systems Co-op - Canada (4 months)](https://qualcomm.eightfold.ai/careers/job/446721862430) | Qualcomm | Toronto, Ontario, Canada | - | 4 days ago |
 | [Data Analyst Intern, Winter](https://go.vansh.nyc/ZS) <br><sub>AI in description: machine learning, LLMs, data science, AI agents</sub> | Geotab | Burnaby, Canada, Oakville, Canada, Toronto, Canada | - | 4 days ago |
-| [Data Engineer Intern/Co-op​ (Winter 2027)](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Data-Engineer-Co-op---Intern---Winter-2027-_R_1509826) | TD | Toronto, Ontario | Winter 2027 | 4 days ago |
 | [Deep Learning Research Intern, Interim Engineering Systems, Summer](https://go.vansh.nyc/Yh) | Qualcomm | Markham, Canada | - | 4 days ago |
 | [GTM (FAE &amp; Customer Success) and Product Intern](https://job-boards.greenhouse.io/tenstorrentuniversity/jobs/5274249007) | Tenstorrent | Santa Clara, California, United States; Toronto, Ontario, Canada | - | 4 days ago |
+| [FY27 Intern - Design Automation &amp; Quality Assurance Engineering Intern - Canada (16 months)](https://qualcomm.eightfold.ai/careers/job/446721349404) <br><sub>AI in description: LLMs, RAG, AI agents</sub> | Qualcomm | Toronto, Ontario, Canada | - | 5 days ago |
 | [FY27 Intern - Deep Learning Research Internship - Canada (4 Months)](https://qualcomm.eightfold.ai/careers/job/446721828828) | Qualcomm | Markham, Ontario, Canada | - | 5 days ago |
+| [Firmware &amp; Machine Learning Engineering Intern (16 Months)](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Navigation---Machine-Learning-Engineering-Intern--16-Months-_R57980) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
 | [Student, Quality Engineering Analyst (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Quality-Engineering-Analyst--Winter-and-Summer-2027-_JR00128337) <br><sub>AI in description: LLMs, RAG, data science, AI agents</sub> | Sun Life | Waterloo, Ontario, Sun Life Toronto Atria, Canada | Winter 2027 | 5 days ago |
-| [AI Scientist Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/AI-Scientist-Co-op_2622058) | CIBC | Toronto, ON | - | 6 days ago |
-| [Data Associate Intern (Winter 2027)](https://lumerate.breezy.hr/p/baf2283496ad-data-associate-winter-spring-2027) <br><sub>AI in description: machine learning, LLMs, data science</sub> | Lumerate | Remote, Canada | Winter 2027 | 6 days ago |
 | [AI Scientist Co-op, Winter](https://go.vansh.nyc/T1) | CIBC | Toronto, Canada | - | 6 days ago |
+| [AI Scientist Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/AI-Scientist-Co-op_2622058) | CIBC | Toronto, ON | - | 6 days ago |
 | [Revenue Operations Intern (Winter, 2027)](https://jobs.ashbyhq.com/cohere/f3290fb2-66f1-44c7-9824-3f416f44af5a) | Cohere | Toronto, New York | Winter 2027 | 6 days ago |
 | [IP Sales and Operations Intern](https://job-boards.greenhouse.io/tenstorrentuniversity/jobs/5274169007) | Tenstorrent | Austin, Texas, United States; Santa Clara, California, United States; Toronto, Ontario, Canada | - | 6 days ago |
 | [Business Operations &amp; Program Management Intern](https://job-boards.greenhouse.io/tenstorrentuniversity/jobs/5271796007) | Tenstorrent | Austin, Texas, United States; Santa Clara, California, United States; Toronto, Ontario, Canada | - | 6 days ago |
+| [FY27 Intern - Machine Learning AISW Internship - Canada (4 Months)](https://qualcomm.eightfold.ai/careers/job/446721636765) | Qualcomm | Markham, Ontario, Canada | - | 7 days ago |
+| [Technology Intern - Early Careers - Data Engineering, Summer 2027](https://wd1.myworkdaysite.com/recruiting/wf/WellsFargoJobs/job/CHARLOTTE-NC/XMLNAME-2027-Technology-Summer-Internship---Early-Careers--Data-Engineering-_R-583066) | Wells Fargo | Iselin, Woodbridge Township, NJ, Charlotte, NC, Irving, TX | Summer 2027 | 7 days ago |
 | [Data Engineer Intern, Summer](https://go.vansh.nyc/Qc) | Royal Bank of Canada | Toronto, Canada | - | 7 days ago |
-| [Navigation &amp; Machine Learning Engineering Intern (16 Months)](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Navigation---Machine-Learning-Engineering-Intern--16-Months-_R57980) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 8 days ago |
+| [Data Engineer Intern, Summer 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Data-Engineer--RBC-Amplify-2027--Toronto_R-0000191192-1) | Royal Bank of Canada | Toronto, ON, Canada | Summer 2027 | 7 days ago |
+| [AI Engineer Intern - Enterprise Technology Services, Summer 2027](https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26015552) | American Express | Toronto, ON, Canada | Summer 2027 | 9 days ago |
 | [Product Management Intern, End User Experience - Winter 2027](https://jobs.ashbyhq.com/1password/bef2e88e-9590-467d-8ba6-821b30529003) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 9 days ago |
 | [Developer Intern, Developer Interfaces - Winter 2027](https://jobs.ashbyhq.com/1password/00f861d4-2b4a-4159-b6dc-8aed0cde6e39) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 9 days ago |
 | [Developer Intern, Credential Brokering - Winter 2027](https://jobs.ashbyhq.com/1password/67bfbd8b-aba9-42b1-a8a8-833367888fba) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 9 days ago |
 | [IT Intern, IT Support - Winter 2027](https://jobs.ashbyhq.com/1password/71e986eb-3b58-4c3c-adff-aebdb49a34b7) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 9 days ago |
 | [Applied Science Intern - PhD Student Science](https://amazon.jobs/en/jobs/10564588/2027-applied-science-internship-canada-phd-student-science-recruiting) | Amazon | Toronto, ON, Canada, Burnaby, BC, Canada, Pitt Meadows, BC, Canada, Vancouver, BC, Canada | - | 10 days ago |
 | [Campus Graduate Masters Summer Internship Program - 2027 AI Engineer, Enterprise Technology Services- Toronto, Ontario, CN](https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26015552) | American Express | Toronto, ON, Canada | - | 10 days ago |
+| [AI and DSP Applications Engineer Intern, Summer](https://go.vansh.nyc/fy) | Qualcomm | Markham, Canada | - | 10 days ago |
 | [Developer Intern, Extension Excellence - Winter 2027](https://jobs.ashbyhq.com/1password/7f1732a6-5317-4319-82b9-67c62e88d491) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
-| [Compiler Engineering Graduate Intern](https://intel.wd1.myworkdayjobs.com/en-US/External/job/Canada-Toronto/Compiler-Engineering-Graduate-Intern_JR0287933) <br><sub>AI in description: machine learning, PyTorch, CUDA</sub> | Intel | Canada, Toronto | - | 10 days ago |
-| [Research Operations &amp; AI Enablement, Winter 2027 Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Research-Operations---AI-Enablement--Winter-2027-Co-op_2621713) | CIBC | Toronto, ON | Winter 2027 | 10 days ago |
 | [Machine Learning Engineer Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Machine-Learning-Engineer-Co-op_2621721) | CIBC | Toronto, ON | - | 10 days ago |
+| [Research Operations &amp; AI Enablement, Winter 2027 Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Research-Operations---AI-Enablement--Winter-2027-Co-op_2621713) | CIBC | Toronto, ON | Winter 2027 | 10 days ago |
 | [Developer Intern, Provisioning - Winter 2027](https://jobs.ashbyhq.com/1password/c5289ef1-e919-4672-85c5-ee3112f9ddb9) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
 | [Security Intern, Threat Operations - Winter 2027](https://jobs.ashbyhq.com/1password/aac7eea6-ed7c-4871-bbf2-7cb2d5138847) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
 | [Developer Intern, Vault Team - Winter 2027](https://jobs.ashbyhq.com/1password/b2726ac7-dd0d-42f3-93a5-139e18c90779) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
 | [Developer Intern, Machine Identity - Winter 2027](https://jobs.ashbyhq.com/1password/6a6869a7-98d2-43e3-b9b5-b68fa4daeb9f) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
 | [Developer Intern, Data Security - Winter 2027](https://jobs.ashbyhq.com/1password/8af1359a-c8a2-492b-b567-ae8ae184a8a1) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
 | [Developer Intern, Front-End Platform - Winter 2027](https://jobs.ashbyhq.com/1password/71a3afd1-12b3-4f55-a3bd-fc4e7c46ee37) <br><sub>AI in description: machine learning, NLP, AI agents</sub> | 1Password | Remote (United States \| Canada) | Winter 2027 | 10 days ago |
+| [Applied AI Engineer Intern, Summer](https://go.vansh.nyc/el) | Qualcomm | Markham, ON, Canada | - | 11 days ago |
 | [FY27 Intern - AI and DSP Applications Engineering Internship - Canada (16 months)](https://qualcomm.eightfold.ai/careers/job/446721686396) | Qualcomm | Markham, Ontario, Canada | - | 11 days ago |
-| [Machine Learning Engineer Co-op, Winter](https://cibc.wd3.myworkdayjobs.com/campus/job/Toronto-ON/Machine-Learning-Engineer-Co-op_2621721) | CIBC | Toronto, ON, Canada | - | 11 days ago |
+| [Machine Learning Engineer Co-op, Winter](https://go.vansh.nyc/ep) | CIBC | Toronto, ON, Canada | - | 11 days ago |
+| [Edge AI and Display Hardware Architecture Intern, Summer](https://go.vansh.nyc/dY) | Qualcomm | Markham, ON, Canada | - | 11 days ago |
 | [AI Engineer Co-op, Winter](https://go.vansh.nyc/Db) | Themis Intelligence | Mississauga, Canada | - | 11 days ago |
 | [Business Strategy &amp; Product Management (AI) Intern](https://mlse.wd3.myworkdayjobs.com/en-US/MLSE/job/Toronto-Ontario/Business-Strategy---Product-Management--AI--Intern_JR0000887-2) | Maple Leaf Sports &amp; Entertainment Partnership (MLSE) | Toronto, Ontario | - | 11 days ago |
 | [AI and Quantum Scientist Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/AI-and-Quantum-Scientist-Co-op_2621649) | CIBC | Toronto, ON | - | 11 days ago |
-| [Software Engineer Co-op, Data, Winter](https://go.vansh.nyc/Da) <br><sub>AI in description: machine learning, RAG, embeddings</sub> | Themis Intelligence | Mississauga, Canada | - | 11 days ago |
-| [AI and Quantum Scientist Co-op, Winter](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/AI-and-Quantum-Scientist-Co-op_2621649) | CIBC | Toronto, ON | - | 11 days ago |
+| [Advanced Analytics and AI Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Advanced-Analytics-and-AI-Co-op_2621440) | CIBC | Toronto, ON | - | 11 days ago |
+| [\[I\] ML Research Intern - Reconstruction (Spring 2027)](https://app.dover.com/apply/peripheral/d05a12b8-ad7b-43b2-b8dc-f58651fa4811) | Peripheral Labs | Toronto, ON, Canada | Spring 2027 | 11 days ago |
+| [AI and Quantum Scientist Co-op, Winter](https://go.vansh.nyc/dG) | CIBC | Toronto, ON | - | 11 days ago |
 | [FY27 Intern - Edge AI and Display Hardware Architecture Development Engineering Internship - Canada (16 months)](https://qualcomm.eightfold.ai/careers/job/446721661830) | Qualcomm | Markham, Ontario, Canada | - | 12 days ago |
-| [Data Engineer Intern, Summer](https://pictonmahoney.bamboohr.com/careers/387) | Picton Mahoney Asset Management | Toronto, ON, Canada | - | 12 days ago |
-| [Intern, Data Engineer (8 Months)](https://pictonmahoney.bamboohr.com/careers/387) | Picton Mahoney Asset Management | Toronto, Ontario | - | found 12 days ago |
+| [Data Engineer Intern, Summer](https://go.vansh.nyc/dc) | Picton Mahoney Asset Management | Toronto, ON, Canada | - | 12 days ago |
 | [AI Intern, Supply Chain (Winter 2027, 12months)](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/AI-Intern--Supply-Chain--Winter-2027--12months-_R0145043) | Hitachi Energy | Toronto, Ontario, Canada | Winter 2027 | 12 days ago |
-| [Applied Machine Learning - Co-op Student](https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Applied-Machine-Learning---Co-op-Student_R2000697038) | Loblaw Companies | 1 Presidents Choice Circle, Brampton, ON | - | 13 days ago |
+| [AI Intern, Supply Chain, Winter](https://go.vansh.nyc/d0) | Hitachi | Toronto, ON, Canada | - | 13 days ago |
+| [Machine Learning AISW Intern, Summer](https://go.vansh.nyc/c8) | Qualcomm | Markham, ON, Canada | - | 13 days ago |
 | [Summer Intern 2027 - AI](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Summer-Intern-2027---AI_JR26081688-1) | Manulife Financial | Toronto, Ontario | - | 13 days ago |
-| [Advanced Analytics and AI Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Advanced-Analytics-and-AI-Co-op_2621440) | CIBC | Toronto, ON | - | 13 days ago |
-| [Advanced Analytics and AI Co-op, Winter](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Advanced-Analytics-and-AI-Co-op_2621440) | CIBC | Toronto, ON | - | 13 days ago |
-| [FY27 Intern - Machine Learning AISW Internship - Canada (4 Months)](https://qualcomm.eightfold.ai/careers/job/446721636765) | Qualcomm | Markham, Ontario, Canada | - | 14 days ago |
-| [Low Power AI Software Development Intern, Summer](https://go.vansh.nyc/Rz) | Qualcomm | Markham, Canada | - | 14 days ago |
-| [SCM Data Scientist Intern, Summer](https://go.vansh.nyc/QZ) | Celestica | Toronto, Canada | - | 14 days ago |
-| [Machine Learning Compiler &amp; Performance Engineering Intern, Summer](https://go.vansh.nyc/Rw) | Qualcomm | Markham, Canada | - | 14 days ago |
+| [Advanced Analytics and AI Co-op, Winter](https://go.vansh.nyc/bH) | CIBC | Toronto, ON | - | 13 days ago |
+| [AI Intern, Spring](https://go.vansh.nyc/bS) | Manulife Financial | Toronto, ON, Canada | - | 14 days ago |
+| [Intern, Data Engineer (8 Months)](https://pictonmahoney.bamboohr.com/careers/387) | Picton Mahoney Asset Management | Toronto, Ontario | - | date unknown |
+| [Intern, AI Value Creation Office](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790) | Brookfield | Toronto, Ontario | - | date unknown |
 
-### Loose &middot; 74 to review
+### Loose &middot; 90 to review
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -125,142 +131,193 @@ _Updated Sunday 01 November, 02:43 Toronto &middot; 169/169 sources healthy &mid
 | [Junior Security Analyst Co-op, Winter](https://go.vansh.nyc/13B) | BC Pensions | Victoria, Canada | - | 2 days ago |
 | [Agile Software Engineer Co-op, Winter](https://go.vansh.nyc/13L) | TribalScale | Toronto, Canada | - | 2 days ago |
 | [Software Engineer Co-op, Agents, Winter](https://go.vansh.nyc/13K) | Solink | Remote, Canada | - | 2 days ago |
-| [Cyber Security Intern/Co-op (Winter 2027)](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Cyber-Security-Co-op---Intern---Winter-2027-_R_1509810) | TD | Toronto, Ontario, Mississauga, Ontario, Canada | Winter 2027 | 2 days ago |
 | [FPGA Development Tools Intern, Summer](https://go.vansh.nyc/10V) | Altera | Toronto, Canada | - | 2 days ago |
+| [Entry Level Technology Development Program - Summer Analyst - Canada - NAELFY27](https://accenture.wd103.myworkdayjobs.com/en-US/AccentureCareers/job/Toronto-40-King-St-W-Corp/Entry-Level-Technology-Development-Program---Summer-Analyst---Canada---NAELFY27_R00363654-1) | Accenture | not listed | - | 2 days ago |
+| [Associate, Software Engineer, New Grad Card Expansion](https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Toronto-ON/Associate--Software-Engineer--New-Grad-Card-Expansion_R247320) | Capital One | Toronto, ON | - | 2 days ago |
+| [UX Intern](https://revvity.wd103.myworkdayjobs.com/en-US/External/job/CAD-Remote--ON/UX-Intern_JR-043675) | Revvity | CAD Remote – ON | - | 2 days ago |
 | [Fire Protection Engineering New Graduate](https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/Fire-Protection-Engineering-New-Graduate_R-168777) | AtkinsRéalis | CA.ON.Toronto.191 The West Mall, CA.ON.Ottawa.1145 Hunt Club Road, CA.BC.Vancouver. 733 Seymour St., Canada | - | 2 days ago |
-| [FPGA Development Tools - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/FPGA-Development-Tools---Intern_R03394) | Altera | Toronto, Ontario, Canada | - | 2 days ago |
-| [Content Strategy and Development Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Content-Strategy-and-Development-Co-op_2622509-1) | CIBC | Toronto, ON | - | 2 days ago |
-| [Corporate Security Coordinator Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Corporate-Security-Coordinator-Co-op_2622551) | CIBC | Toronto, ON | - | 2 days ago |
 | [Front End Developer Student](https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students/job/Sault-Ste-Marie-Ontario-Canada/Front-End-Developer-Student_R26_00665) | OLG | Sault Ste. Marie, Ontario, Canada, Toronto, Ontario, Canada, Canada | - | 2 days ago |
-| [Machine Learning Engineer Intern, Summer 2027](https://stripe.com/jobs/search?gh_jid=8333122) | Stripe | Toronto, ON, Canada | Summer 2027 | 2 days ago |
+| [Cyber Security Intern/Co-op (Winter 2027)](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Cyber-Security-Co-op---Intern---Winter-2027-_R_1509810) | TD | Toronto, Ontario, Mississauga, Ontario, Canada | Winter 2027 | 2 days ago |
+| [FPGA Development Tools - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/FPGA-Development-Tools---Intern_R03394) | Altera | Toronto, Ontario, Canada | - | 2 days ago |
+| [Corporate Security Coordinator Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Corporate-Security-Coordinator-Co-op_2622551) | CIBC | Toronto, ON | - | 2 days ago |
+| [Junior Technical Writer co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Junior-Technical-Writer-co-op_2622456) | CIBC | Toronto, ON | - | 2 days ago |
+| [Content Strategy and Development Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Content-Strategy-and-Development-Co-op_2622509-1) | CIBC | Toronto, ON | - | 2 days ago |
 | [FPGA Software Tool Developer Co-op, Summer](https://go.vansh.nyc/10n) | L3Harris Technologies | Waterdown, Canada | - | 3 days ago |
+| [Optical Test Automation Co-op/Intern](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40117) | Nokia | Canada | - | 3 days ago |
 | [Front End Developer Student Intern, Winter 2027](https://olg.wd3.myworkdayjobs.com/Careers-Students/job/Sault-Ste-Marie-Ontario-Canada/Front-End-Developer-Student_R26_00665) | OLG | Toronto, ON, Canada, Sault Ste. Marie, ON, Canada | Winter 2027 | 3 days ago |
 | [Full-Stack AI Developer Intern, Summer](https://go.vansh.nyc/116) | Revvity | Canada | - | 3 days ago |
 | [Front End Developer Intern, Winter](https://go.vansh.nyc/11s) | OLG | Toronto, Canada, Sault Ste. Marie, Canada | - | 3 days ago |
-| [QA Intern (May 2027, 12 months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/QA-Intern--May-2027--12-months-_R10610) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 3 days ago |
-| [Software Developer Intern - SOTI XSight (May 2027 12 Months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-XSight--May-2027-12-Months-_R10611) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 3 days ago |
-| [Software Engineer - Factory Apps - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Software-Engineer---Factory-Apps---Intern_R03384) | Altera | Toronto, Ontario, Canada | - | 3 days ago |
-| [Junior Technical Writer co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Junior-Technical-Writer-co-op_2622456) | CIBC | Toronto, ON | - | 3 days ago |
 | [Computer Science Co-op, Winter](https://go.vansh.nyc/10a) | Waterworth | Victoria, Canada | - | 3 days ago |
-| [Deep Learning Research Intern - Embodied AI - Interim Engineering Intern - Systems, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721858024) | Qualcomm | Markham, ON, Canada | Summer 2027 | 3 days ago |
-| [AI Software Engineering Co-op Intern, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721862429) | Qualcomm | Toronto, ON, Canada | Summer 2027 | 3 days ago |
-| [AI Software Systems Co-op Intern, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721862430) | Qualcomm | Toronto, ON, Canada | Summer 2027 | 3 days ago |
-| [Student, Data Analyst (Winter-Summer-Fall 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Analyst--Winter-Summer-Fall-2027-_JR00129284) | Sun Life | Toronto, Ontario, Waterloo, Ontario, Canada | Fall 2027 | 3 days ago |
 | [Summer Intern 2027 - Asset Management Operations Technology)](https://careersen-mackenzieinvestments.icims.com/jobs/6145/summer-intern-2027---asset-management-operations-technology%29/job) | Mackenzie Investments | Greater Toronto Area, ON, Canada | - | 3 days ago |
+| [Entry Level Advisory Development Program - Summer Analyst - Canada - NAELFY27](https://accenture.wd103.myworkdayjobs.com/en-US/AccentureCareers/job/Toronto-40-King-St-W-Corp/Entry-Level-Advisory-Development-Program---Summer-Analyst---Canada---NAELFY27_R00364487) | Accenture | not listed | - | 3 days ago |
+| [Software Developer Intern - SOTI XSight (May 2027 12 Months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-XSight--May-2027-12-Months-_R10611) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 3 days ago |
+| [QA Intern (May 2027, 12 months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/QA-Intern--May-2027--12-months-_R10610) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 3 days ago |
+| [Software Engineer - Factory Apps - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Software-Engineer---Factory-Apps---Intern_R03384) | Altera | Toronto, Ontario, Canada | - | 3 days ago |
+| [Student, Data Analyst (Winter-Summer-Fall 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Data-Analyst--Winter-Summer-Fall-2027-_JR00129284) | Sun Life | Toronto, Ontario, Waterloo, Ontario, Canada | Fall 2027 | 3 days ago |
 | [Software Engineering Co-op, Winter](https://go.vansh.nyc/YN) | L3Harris Technologies | Waterdown, Canada | - | 3 days ago |
 | [Quantitative Trading Analyst Co-op, Summer](https://go.vansh.nyc/Z0) | Bank of Montreal | Toronto, Canada | - | 4 days ago |
 | [Data Analyst Co-op, Winter](https://go.vansh.nyc/ZB) | Sun Life | Toronto, Canada | - | 4 days ago |
 | [Software Developer Intern, XSight, Summer](https://go.vansh.nyc/ZV) | SOTI | Mississauga, Canada | - | 4 days ago |
 | [Software Engineer Intern, Factory Apps, Summer](https://go.vansh.nyc/ZA) | Altera | Toronto, Canada | - | 4 days ago |
 | [Quantitative Trading Analyst Co-op, Summer 2027](https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/BMO-Capital-Markets-Quantitative-Trading-Analyst---12-16-Month-Co-op_R260029657) | Bank of Montreal | Toronto, ON, Canada | Summer 2027 | 4 days ago |
-| [Software Developer Intern, Summer 2027](https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-XSight--May-2027-12-Months-_R10611) | SOTI | Mississauga, ON, Canada | Summer 2027 | 4 days ago |
-| [Deep Learning Research Intern - Interim Engineering Intern - Systems, Summer 2027](https://qualcomm.eightfold.ai/careers/job/446721828828) | Qualcomm | Markham, ON, Canada | Summer 2027 | 4 days ago |
+| [Business Development Intern](https://jobs.lever.co/shyftlabs/402f57f4-ef06-49e2-8ec6-07bc1ea7c4ba) | ShyftLabs | Toronto, Ontario, onsite, Intern | - | 4 days ago |
 | [Co-op, Warehouse Engineering](https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External-Rockwell-Automation-Early-Careers/job/Cambridge-Ontario-Canada/Co-op--Warehouse-Engineering_R26-8236-2) | Rockwell Automation | Cambridge, Ontario, Canada | - | 4 days ago |
+| [Cloud Administrator Intern (January 2027 - 12 months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Cloud-Administrator--Intern-_R10569) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 4 days ago |
 | [Operations &amp; Data Analyst Co-op (8 Months)](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Waterloo-Ontario/Operations---Data-Analyst-Co-op--8-Months-_JR26091348) | Manulife Financial | Waterloo, Ontario, Toronto, Ontario, Canada | - | 4 days ago |
 | [QA Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/QA-Analyst-co-op_2622340) | CIBC | Toronto, ON | - | 4 days ago |
-| [Business Development Intern](https://jobs.lever.co/shyftlabs/402f57f4-ef06-49e2-8ec6-07bc1ea7c4ba) | ShyftLabs | Toronto, Ontario, onsite, Intern | - | 4 days ago |
-| [New Graduate, Rail, Transit Systems &amp; Telecoms](https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/New-Graduate--Rail--Transit-Systems---Telecoms-Division_R-162198) | AtkinsRéalis | CA.ON.Toronto.191 The West Mall, CA.AB.Calgary.144-4th avenue SW Suite 2200 (West Tower), CA.BC.Vancouver. 733 Seymour St., Canada | - | 5 days ago |
+| [Software Engineer Intern](https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/304178) | Uber | Toronto, ON, Canada | - | 5 days ago |
 | [Data Associate Intern, Winter 2027](https://lumerate.breezy.hr/p/baf2283496ad/apply) | Lumerate | Canada, Remote in Canada | Winter 2027 | 5 days ago |
-| [Business Technology Analyst, Winter 2027 (Co-op/Internship) - 4 Months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Business-Technology-Analyst--Winter-2027--Co-op-Internship----4-Months_R260026185) | Bank of Montreal | Toronto, ON, CAN | Winter 2027 | 5 days ago |
-| [Geospatial Support Analyst Intern](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Geospatial-Support-Analyst-Intern_R57921) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
 | [Geospatial Product Engineering Intern](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Geospatial-Product-Engineering-Intern_R58213) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
+| [Geospatial Support Analyst Intern](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Geospatial-Support-Analyst-Intern_R57921) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
+| [Co-op, Manufacturing Engineering](https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External-Rockwell-Automation-Early-Careers/job/Cambridge-Ontario-Canada/Co-op--Manufacturing-Engineering_R26-6978) | Rockwell Automation | Cambridge, Ontario, Canada | - | 5 days ago |
 | [Software Analyst Intern (Winter 2027, 8 months)](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/Software-Analyst-Intern--Fall-2026--8-months-_R0148741) | Hitachi Energy | Toronto, Ontario, Canada | Winter 2027 | 5 days ago |
-| [Winter Co-op 2027 - Data &amp; Analytics](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/XMLNAME-2027-Winter-Co-op---Data---Analytics_JR26081943) | Manulife Financial | Toronto, Ontario | - | 5 days ago |
-| [Junior Insights &amp; Analytics Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Junior-Insights---Analytics-Co-op_2622099) | CIBC | Toronto, ON | - | 5 days ago |
+| [Summer 2027, PCO National Office - Technical Operations](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Summer-2027--PCO-National-Office---Technical-Operations_R-0000190455) | Royal Bank of Canada | TORONTO, Ontario, Canada, MONTRÉAL, Quebec, Canada, MISSISSAUGA, Ontario, Canada, VANCOUVER, British Columbia, Canada, Canada | Summer 2027 | 5 days ago |
+| [Business Technology Analyst, Winter 2027 (Co-op/Internship) - 4 Months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Business-Technology-Analyst--Winter-2027--Co-op-Internship----4-Months_R260026185) | Bank of Montreal | Toronto, ON, CAN | Winter 2027 | 5 days ago |
+| [Analyst, Enterprise Data and Records co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Analyst--Enterprise-Data-and-Records-co-op_2621668) | CIBC | Toronto, ON | - | 5 days ago |
 | [Data Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Data-Analyst-co-op_2622122) | CIBC | Toronto, ON | - | 5 days ago |
+| [Junior Insights &amp; Analytics Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Junior-Insights---Analytics-Co-op_2622099) | CIBC | Toronto, ON | - | 5 days ago |
 | [Production Support Co-op (Winter 2027), Enterprise Technology &amp; Business Management](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Production-Support-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2622138) | CIBC | Toronto, ON | Winter 2027 | 5 days ago |
-| [Student, Software Engineer - Security (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Software-Engineer---Security--Winter-2027-_JR00129065) | Sun Life | Toronto, Ontario | Winter 2027 | 6 days ago |
-| [Loblaw Brands, Technology Transformation - Co-op Student](https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Loblaw-Brands--Technology-Transformation---Co-op-Student_R2000695051) | Loblaw Companies | 1 Presidents Choice Circle, Brampton, ON | - | 6 days ago |
-| [Business Systems Analyst Co-op (Winter 2027), Enterprise Technology &amp; Business Management](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Systems-Analyst-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2621526-2) | CIBC | Toronto, ON | Winter 2027 | 6 days ago |
+| [Software Developer Intern, Geotab Vitality, Winter](https://go.vansh.nyc/17F) | Geotab | Oakville, Canada, Toronto, Canada, Waterloo, Canada | - | 5 days ago |
+| [Software Developer Intern, MyAdmin, Winter](https://go.vansh.nyc/17E) | Geotab | Oakville, Canada, Waterloo, Canada | - | 5 days ago |
 | [Optical Test Coop/Intern](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40113) | Nokia | Canada | - | 6 days ago |
-| [2027 Software Engineering Intern, Canada](https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/304178) | Uber | Toronto, ON, Canada | - | 6 days ago |
 | [Data Analyst Co-op, Winter](https://go.vansh.nyc/Wy) | CIBC | Toronto, Canada | - | 6 days ago |
 | [Software Analyst Intern, Winter](https://go.vansh.nyc/Wz) | Hitachi | Toronto, Canada | - | 6 days ago |
 | [Software Engineering Intern, Summer](https://go.vansh.nyc/Wx) | Uber | Toronto, Canada | - | 6 days ago |
 | [Quality Engineering Analyst Intern, Winter](https://go.vansh.nyc/Xj) | Sun Life | Waterloo, Canada | - | 6 days ago |
+| [Quality Engineering Analyst Intern (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Quality-Engineering-Analyst--Winter-and-Summer-2027-_JR00128337) | Sun Life | Waterloo, ON | Winter 2027 | 6 days ago |
 | [CPU Software Intern](https://jobs.lever.co/nuvacore/f167579a-db4b-4f85-91b9-e0bfb444a37c) | NUVACORE | Markham, ON, hybrid, Intern | - | 6 days ago |
 | [CPU Software Intern, Summer](https://go.vansh.nyc/Tm) | NUVACORE | Markham, Canada | - | 6 days ago |
+| [Undergrad Technical Intern, Summer](https://go.vansh.nyc/SU) | Altera | Toronto, Canada | - | 6 days ago |
 | [Software Developer Intern - Android (May 2027 - 12 Months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 6 days ago |
 | [Software Developer Intern - Server (May 2027 - 12 Months)](https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647) | SOTI | Mississauga, Canada – Meadowvale Office (HQ) | - | 6 days ago |
-| [Co-op, Manufacturing Engineering](https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External-Rockwell-Automation-Early-Careers/job/Cambridge-Ontario-Canada/Co-op--Manufacturing-Engineering_R26-6978) | Rockwell Automation | Cambridge, Ontario, Canada | - | 6 days ago |
 | [Undergrad Intern Technical](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Undergrad-Intern-Technical_R03351) | Altera | Toronto, Ontario, Canada | - | 6 days ago |
-| [Undergrad Technical Intern, Summer](https://go.vansh.nyc/SU) | Altera | Toronto, Canada | - | 6 days ago |
+| [Business Systems Analyst Co-op (Winter 2027), Enterprise Technology &amp; Business Management](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Systems-Analyst-Co-op--Winter-2027---Enterprise-Technology---Business-Management_2621526-2) | CIBC | Toronto, ON | Winter 2027 | 6 days ago |
+| [Student, Software Engineer - Security (Winter 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Software-Engineer---Security--Winter-2027-_JR00129065) | Sun Life | Toronto, Ontario | Winter 2027 | 6 days ago |
 | [Performance Test Engineer Intern, Winter](https://go.vansh.nyc/SG) | SOTI | Mississauga, Canada | - | 6 days ago |
 | [Software Developer Intern, Server, Summer](https://go.vansh.nyc/SJ) | SOTI | Mississauga, Canada | - | 6 days ago |
 | [Software Developer Intern, Summer](https://go.vansh.nyc/SK) | Member Solutions | Markham, Canada, Remote, Canada | - | 6 days ago |
 | [Software Developer Intern, Android, Summer](https://go.vansh.nyc/SI) | SOTI | Mississauga, Canada | - | 6 days ago |
-| [Technology Intern - Early Careers - Data Engineering, Summer 2027](https://wd1.myworkdaysite.com/recruiting/wf/WellsFargoJobs/job/CHARLOTTE-NC/XMLNAME-2027-Technology-Summer-Internship---Early-Careers--Data-Engineering-_R-583066) | Wells Fargo | Iselin, Woodbridge Township, NJ, Charlotte, NC, Irving, TX | Summer 2027 | 7 days ago |
-| [Data Engineer Intern, Summer 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Data-Engineer--RBC-Amplify-2027--Toronto_R-0000191192-1) | Royal Bank of Canada | Toronto, ON, Canada | Summer 2027 | 7 days ago |
-| [Developer Intern, RBC Amplify (Summer 2027)](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000187114) | Royal Bank of Canada | Toronto, ON | Summer 2027 | 7 days ago |
-| [Developer Intern, Summer 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000191193-1) | Royal Bank of Canada | Toronto, ON, Canada | Summer 2027 | 7 days ago |
 | [Developer Intern, Summer](https://go.vansh.nyc/Qb) | Royal Bank of Canada | Toronto, Canada | - | 7 days ago |
+| [Developer Intern, Summer 2027](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000191193-1) | Royal Bank of Canada | Toronto, ON, Canada | Summer 2027 | 7 days ago |
+| [Developer Intern, RBC Amplify (Summer 2027)](https://rbc.wd3.myworkdayjobs.com/RBCEARLYTALENT1/job/TORONTO-Ontario-Canada/Developer--RBC-Amplify-2027--Toronto_R-0000187114) | Royal Bank of Canada | Toronto, ON | Summer 2027 | 7 days ago |
+| [Test Engineering, Co-op](https://armstrongfluidtechnology.bamboohr.com/careers/1001) | Armstrong Fluid Technology | Toronto, Ontario | - | date unknown |
+| [Test &amp; Integration Technician Co-op](https://jobs.l3harris.com/job/Waterdown-Test-&-Integration-Technician-Co-op-ON-L9H-0C5/1426011400/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Electro-Optical Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Electro-Optical-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428469000/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Specialty Engineering Co-Op Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Specialty-Engineering-Co-Op-Waterdown%2C-CAN%29-ON-L9H-0C5/1428469500/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Integrated Systems Engineering Co-Op(Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Integrated-Systems-Engineering-Co-Op%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428470700/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Quality Systems Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Quality-Systems-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428471600/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Manufacturing Engineering Co-Op (Toronto, CAN)](https://jobs.l3harris.com/job/Toronto-Manufacturing-Engineering-Co-Op-%28Toronto%2C-CAN%29-ON-M3C-2H2/1430125300/) | L3Harris Technologies | Toronto, ON, CA, M3C 2H2 | - | date unknown |
+| [Manufacturing Engineering Intern - Service Co-op](https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineering-Intern-Service-Co-op-ON-L9H-0C5/1430126700/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [FPGA Software Tool Developer Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-FPGA-Software-Tool-Developer-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430127100/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Manufacturing Engineer Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineer-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430143700/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Project Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Project-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1432399900/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Software Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Software-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1432400300/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Systems Engineering (R&amp;A) Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Systems-Engineering-%28R&A%29-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1435257600/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Systems Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Systems-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1435297900/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Manufacturing Engineering Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineering-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441480800/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Intern, Business Development (Winter 2027)](https://pictonmahoney.bamboohr.com/careers/385) | Picton Mahoney Asset Management | Toronto, Ontario | Winter 2027 | date unknown |
 
-<details><summary>Other fields &middot; 62 outside AI/ML</summary>
+<details><summary>Other fields &middot; 97 outside AI/ML</summary>
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
+| [Hardware Design Engineer Intern, Summer](https://go.vansh.nyc/10W) | Altera | Toronto, Canada | - | 2 days ago |
+| [ISO Finance Coordinator Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/ISO-Finance-Coordinator-Intern_R-6652) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
+| [Cash Management Officer - Tax Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Cash-Management-Officer---Tax_R-6588) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
+| [ISO Coordinator Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/ISO-Coordinator-Intern_R-6650) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
+| [Process Analyst Student Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Process-Analyst-Student-Intern_R-6651) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
+| [Supply Chain Intern (Winter 2027 - 12 months)](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/Supply-Chain-Intern--Winter-2027---12-months-_R0147289) | Hitachi Energy | Toronto, Ontario, Canada | Winter 2027 | 2 days ago |
+| [Assurance Intern - Summer 2027](https://rsm.wd1.myworkdayjobs.com/en-US/RSMCareers/job/Toronto/Assurance-Intern---Summer-2027_JR119677) | RSM | Toronto | Summer 2027 | 2 days ago |
+| [RBC T&amp;O Student Quest (Co-op)](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/RBC-T-O-Student-Quest--Co-op-_R-0000183270-1) | Royal Bank of Canada | TORONTO, Ontario, Canada, MISSISSAUGA, Ontario, Canada, Canada | - | 2 days ago |
 | [2027 Capital Markets, Financial Risk Internal Audit, Winter Co-op (4 Months)](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Capital-Markets--Financial-Risk-Internal-Audit--Winter-Co-op--4-Months-_R-0000186870-2) | Royal Bank of Canada | TORONTO, Ontario, Canada | - | 2 days ago |
 | [Co-op Student](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Co-op-Student_R-0000191711) | Royal Bank of Canada | TORONTO, Ontario, Canada | - | 2 days ago |
-| [Assurance Intern - Summer 2027](https://rsm.wd1.myworkdayjobs.com/en-US/RSMCareers/job/Toronto/Assurance-Intern---Summer-2027_JR119677) | RSM | Toronto | Summer 2027 | 2 days ago |
-| [Winter Co-Op 2027 - Taxation Analyst](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Waterloo-Ontario/Winter-Co-Op-2027---Taxation-Analyst_JR26081957) | Manulife Financial | Waterloo, Ontario | - | 2 days ago |
-| [Mixed Signal Designer Intern](https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Remote-Canada/Mixed-Signal-Designer-Intern_R031989) | Ciena | Remote-Canada | - | 2 days ago |
-| [Process Analyst Student Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Process-Analyst-Student-Intern_R-6651) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
-| [ISO Coordinator Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/ISO-Coordinator-Intern_R-6650) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
-| [ISO Finance Coordinator Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/ISO-Finance-Coordinator-Intern_R-6652) | TMX Group | Toronto - 100 Adelaide St W | - | 2 days ago |
-| [Hardware Design Engineer Intern, Summer](https://go.vansh.nyc/10W) | Altera | Toronto, Canada | - | 2 days ago |
-| [Supply Chain Intern (Winter 2027 - 12 months)](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/Supply-Chain-Intern--Winter-2027---12-months-_R0147289) | Hitachi Energy | Toronto, Ontario, Canada | Winter 2027 | 2 days ago |
-| [Compliance Associate Rotational Program](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Compliance-Associate-Rotational-Program_R_1513885) | TD | Toronto, Ontario | - | 2 days ago |
+| [Tool &amp; Die Maker Apprentice](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/Concord-Ontario-CA/Tool---Die-Maker-Apprentice_R00262205) | Magna | Concord, Ontario, CA | - | 2 days ago |
 | [Hardware Design Engineer - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Hardware-Design-Engineer---Intern_R03367) | Altera | Toronto, Ontario, Canada | - | 2 days ago |
-| [Personal Banking Associate Trainee - Future Opportunities](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Oakville-Ontario/Personal-Banking-Associate-Trainee---Future-Opportunities_R_1519891-1) | TD | Oakville, Ontario, Milton, Ontario, Canada | - | 2 days ago |
-| [Project Analyst Co-op- Winter 2027](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Product-Analyst-Co-op--Winter-2027_2622544) | CIBC | Toronto, ON | Winter 2027 | 2 days ago |
+| [Compliance Associate Rotational Program](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Compliance-Associate-Rotational-Program_R_1513885) | TD | Toronto, Ontario | - | 2 days ago |
+| [Winter Co-Op 2027 - Taxation Analyst](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Waterloo-Ontario/Winter-Co-Op-2027---Taxation-Analyst_JR26081957) | Manulife Financial | Waterloo, Ontario | - | 2 days ago |
+| [Procurement Associate Co-op (8 Month) - Winter 2027](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Procurement-Associate-Co-op--Winter-2027-_2621955) | CIBC | Toronto, ON | Winter 2027 | 2 days ago |
+| [People Change Management &amp; Communications Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/People-Change-Management---Communications-Co-op_2622160-2) | CIBC | Toronto, ON | - | 2 days ago |
 | [Procurement Analyst (8 Month) - Winter 2027 Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Procurement-Analyst--8-Month----Winter-2027-Co-op_2622500) | CIBC | Toronto, ON | Winter 2027 | 2 days ago |
 | [Innovation &amp; Marketing Content Co-op (Winter 2027)](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Innovation---Marketing-Content-Co-op--Winter-2027-_2622537) | CIBC | Toronto, ON | Winter 2027 | 2 days ago |
+| [Project Analyst Co-op- Winter 2027](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Product-Analyst-Co-op--Winter-2027_2622544) | CIBC | Toronto, ON | Winter 2027 | 2 days ago |
+| [Personal Banking Associate Trainee - Future Opportunities](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Oakville-Ontario/Personal-Banking-Associate-Trainee---Future-Opportunities_R_1519891-1) | TD | Oakville, Ontario, Milton, Ontario, Canada | - | 2 days ago |
+| [Mixed Signal Designer Intern](https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Remote-Canada/Mixed-Signal-Designer-Intern_R031989) | Ciena | Remote-Canada | - | 2 days ago |
+| [ASIC Verification Intern - Summer 2027](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Canada-Toronto/ASIC-Verification-Intern---Summer-2027_JR2027982) | Nvidia | Canada, Toronto | Summer 2027 | 2 days ago |
 | [Intern - Marketing Performance](https://job-boards.greenhouse.io/kensingtontours/jobs/5279540007) | Kensington | Toronto, ON, Canada | - | 2 days ago |
 | [Direct Channel Operations - Winter 2027 Co-op/Intern](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9470) | Definity Financial | Toronto, ONT, Canada | Winter 2027 | 3 days ago |
 | [Analyst, Market Insights Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Student-Intern---Analyst--Market-Insights--WinterTerm-_R-6586) | TMX Group | Toronto - 100 Adelaide St W | - | 3 days ago |
 | [Project Analyst Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Project-Analyst-Intern_R-6615) | TMX Group | Toronto - 100 Adelaide St W | - | 3 days ago |
-| [International Tax Transfer Pricing Intern - Winter 2027](https://rsm.wd1.myworkdayjobs.com/en-US/RSMCareers/job/Toronto/International-Tax-Transfer-Pricing-Intern---Winter-2027_JR120896) | RSM | Toronto | Winter 2027 | 3 days ago |
 | [Co-op or Intern, Human Resources – Winter 2027](https://bdo.wd3.myworkdayjobs.com/en-US/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Human-Resources---Winter-2027_JR7294) | BDO Canada | Toronto - Bay St, Calgary - 8th Ave SW, Halifax - Mumford Rd, Vancouver, Canada | Winter 2027 | 3 days ago |
-| [BMO Capital Markets Quantitative Trading Analyst – 12–16 Month Co-op](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Toronto-ON-CAN/BMO-Capital-Markets-Quantitative-Trading-Analyst---12-16-Month-Co-op_R260029657) | BMO | Toronto, ON, CAN | - | 3 days ago |
+| [International Tax Transfer Pricing Intern - Winter 2027](https://rsm.wd1.myworkdayjobs.com/en-US/RSMCareers/job/Toronto/International-Tax-Transfer-Pricing-Intern---Winter-2027_JR120896) | RSM | Toronto | Winter 2027 | 3 days ago |
 | [Compliance Student](https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students/job/Toronto-Ontario-Canada/Compliance-Student_R26_00677) | OLG | Toronto, Ontario, Canada, Sault Ste. Marie, Ontario, Canada, Canada | - | 3 days ago |
+| [New Graduate, Environment](https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAABCalgary2200---144-4th-avenue-SW/New-Graduate--Environment-Division_R-162347) | AtkinsRéalis | CA.AB.Calgary.2200 - 144 4th avenue SW, CA.BC.Vancouver. 733 Seymour St., CA.ON.Toronto.191 The West Mall, CA.BC.Fort St John.10012 97th Avenue, CA.AB.Edmonton.8915 51st Avenue, Suite 201, CA.SK.Saskatoon.406 Jessop Avenue, CA.YT.Whitehorse.102, 4149 4th Avenue, Canada | - | 3 days ago |
+| [BMO Capital Markets Quantitative Trading Analyst – 12–16 Month Co-op](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Toronto-ON-CAN/BMO-Capital-Markets-Quantitative-Trading-Analyst---12-16-Month-Co-op_R260029657) | BMO | Toronto, ON, CAN | - | 3 days ago |
+| [Branch Manager Trainee](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Brampton-Ontario/Branch-Manager-Trainee_R_1519696) | TD | Brampton, Ontario | - | 3 days ago |
 | [Mechanical Engineer Student](https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/41687) | Nokia | Canada | - | 4 days ago |
 | [Incident &amp; Issue Management Analyst - Winter 2027 Co-op/Intern](https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9468) | Definity Financial | Waterloo, ONT, Canada | Winter 2027 | 4 days ago |
 | [Intern - Luxury Events &amp; Content Marketing](https://job-boards.greenhouse.io/kensingtontours/jobs/5270052007) | Kensington | Toronto, ON, Canada | - | 4 days ago |
-| [Business Management Analyst Intern](https://interac.wd3.myworkdayjobs.com/en-US/Interac/job/Toronto/Business-Management-Analyst-Intern_REQ-2392) | Interac | Toronto | - | 4 days ago |
-| [Assistant Branch Manager Intern, Bloor &amp; Yonge Branch](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/Assistant-Branch-Manager-Intern--Bloor---Yonge-Branch_R-0000191326) | Royal Bank of Canada | TORONTO, Ontario, Canada | - | 4 days ago |
-| [Strategic Partnerships Manager Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Strategic-Partnerships-Manager-Co-op_2622303) | CIBC | Toronto, ON | - | 4 days ago |
-| [Marketing Coordinator - BMO Rewards Team (Co-op/Internship) Winter 2027](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Toronto-ON-CAN/Coordonnateur-rice--marketing---quipe-de-rcompenses-BMO--Co-op-Stage---Hiver-2027_R260030136-2) | BMO | Toronto, ON, CAN | Winter 2027 | 4 days ago |
 | [Graphic Design Intern](https://jobs.lever.co/shyftlabs/b9de405d-1a6b-401e-b093-6a6f81d1ecde) | ShyftLabs | Toronto, Ontario, onsite, Intern | - | 4 days ago |
+| [Assistant Branch Manager Intern, Bloor &amp; Yonge Branch](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/Assistant-Branch-Manager-Intern--Bloor---Yonge-Branch_R-0000191326) | Royal Bank of Canada | TORONTO, Ontario, Canada | - | 4 days ago |
+| [New Graduate, Technician, Transmission, Distribution and Renewables Division](https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CABCVancouver-733-Seymour-St/New-Graduate--Technician--Transmission--Distribution-and-Renewables-Division_R-162458) | AtkinsRéalis | CA.BC.Vancouver. 733 Seymour St., CA.ON.Toronto.191 The West Mall, Canada | - | 4 days ago |
 | [Ancillary Services Student](https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students/job/Toronto-Ontario-Canada/Ancillary-Services-Student_R26_00657) | OLG | Toronto, Ontario, Canada | - | 4 days ago |
 | [Anti-Money Laundering (AML) Student](https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students/job/Sault-Ste-Marie-Ontario-Canada/Anti-Money-Laundering--AML--Student_R26_00662) | OLG | Sault Ste. Marie, Ontario, Canada, Toronto, Ontario, Canada, Canada | - | 4 days ago |
-| [Intern - Hotel Partner Relations &amp; Procurement](https://job-boards.greenhouse.io/kensingtontours/jobs/5262699007) | Kensington | Toronto, ON, Canada | - | 4 days ago |
+| [Personal Banking Associate Trainee](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Etobicoke-Ontario/Personal-Banking-Associate-Trainee_R_1511444) | TD | Etobicoke, Ontario | - | 4 days ago |
+| [Business Banking Relationship Manager Trainee](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Guelph-ON-CAN/Business-Banking-Relationship-Manager-Trainee_R260029998) | BMO | Guelph, ON, CAN | - | 4 days ago |
+| [Business Management Coordinator, Winter 2027 (Co-op/Internship) - 4 months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Business-Management-Coordinator--Winter-2027--Co-op-Internship----4-months_R260024334) | Bank of Montreal | Toronto, ON, CAN | Winter 2027 | 4 days ago |
 | [Personal Banking Associate Trainee (North York, Central Toronto) - Current and Future Opportunities](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Personal-Banking-Associate-Trainee--North-York--Central-Toronto----Current-and-Future-Opportunities_R_1513476) | TD | Toronto, Ontario, North York, Ontario, Canada | - | 4 days ago |
-| [Apprentice - Millwright](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Millwright_R00267802) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
-| [IP Design Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/IP-Design-Intern_R03322) | Altera | Toronto, Ontario, Canada | - | 5 days ago |
-| [RBC T&amp;O Student Quest (Co-op)](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/RBC-T-O-Student-Quest--Co-op-_R-0000183270-1) | Royal Bank of Canada | TORONTO, Ontario, Canada, MISSISSAUGA, Ontario, Canada, Canada | - | 5 days ago |
-| [Marketing Intern](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Marketing-Intern_R58007) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
-| [Supply Chain Business Intelligence - Co-op Student](https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Supply-Chain-Business-Intelligence---Co-op-Student_R2000697069) | Loblaw Companies | 1 Presidents Choice Circle, Brampton, ON | - | 5 days ago |
-| [Apprentice - Electrician](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Electrician_R00267792-1) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
-| [Apprentice - Tool &amp; Die](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Tool---Die_R00267808) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
-| [Winter Co-op 2027 - Canadian Operations Management Intern](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Waterloo-Ontario/Canadian-Operations-Management-Intern_JR26091873) | Manulife Financial | Waterloo, Ontario, Halifax, Nova Scotia, Canada | - | 5 days ago |
-| [WCM Co-op Student](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/Brampton-Ontario-CA/WCM-Co-op-Student_R00267687) | Magna | Brampton, Ontario, CA | - | 5 days ago |
-| [Winter Co-op 2027 - Documentation &amp; Knowledge Management Co-op](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Waterloo-Ontario/Winter-Co-op-2027---Documentation---Knowledge-Management-Co-op_JR26100842) | Manulife Financial | Waterloo, Ontario | - | 5 days ago |
-| [People Change Management &amp; Communications Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/People-Change-Management---Communications-Co-op_2622160-2) | CIBC | Toronto, ON | - | 5 days ago |
+| [Strategic Partnerships Manager Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Strategic-Partnerships-Manager-Co-op_2622303) | CIBC | Toronto, ON | - | 4 days ago |
+| [Intern - Hotel Partner Relations &amp; Procurement](https://job-boards.greenhouse.io/kensingtontours/jobs/5262699007) | Kensington | Toronto, ON, Canada | - | 4 days ago |
 | [Intern - Strategic Sourcing &amp; Third-Party Management , Winter 2027](https://jobs.lever.co/eqbank/46175add-4a8e-4427-b269-8c84517b2556) | Equitable Bank | Toronto, hybrid, Student | Winter 2027 | 5 days ago |
-| [Business Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Analyst-co-op_2622052) | CIBC | Toronto, ON | - | 6 days ago |
+| [Marketing Intern](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/Canada---Richmond-Hill-Ontario-Applanix/Marketing-Intern_R58007) | Trimble | Canada - Richmond Hill, Ontario (Applanix) | - | 5 days ago |
+| [Summer 2027, PCO National Office - Business Operations](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Summer-2027--PCO-National-Office---Business-Operations_R-0000190476) | Royal Bank of Canada | TORONTO, Ontario, Canada, MONTRÉAL, Quebec, Canada, MISSISSAUGA, Ontario, Canada, VANCOUVER, British Columbia, Canada, Canada | Summer 2027 | 5 days ago |
+| [Summer 2027, PCO - Personal Banking Operations](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Summer-2027--PCO---Personal-Banking-Operations_R-0000190517) | Royal Bank of Canada | TORONTO, Ontario, Canada, MONTRÉAL, Quebec, Canada, VANCOUVER, British Columbia, Canada, Canada | Summer 2027 | 5 days ago |
+| [Summer 2027, PCO- Commercial Banking Operations](https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/Summer-2027--PCO--Commercial-Banking-Operations_R-0000190519) | Royal Bank of Canada | TORONTO, Ontario, Canada, MONTRÉAL, Quebec, Canada, VANCOUVER, British Columbia, Canada, Canada | Summer 2027 | 5 days ago |
+| [Commercial Banking Credit Analyst Internship, Summer 2027 (Co-op/Internship) - 4 months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Commercial-Banking-Credit-Analyst-Internship--Summer-2027--Co-op-Internship----4-months_R260026697-3) | Bank of Montreal | Toronto, ON, CAN | Summer 2027 | 5 days ago |
+| [Mould Maker Apprentice](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/Brampton-Ontario-CA/Mould-Maker-Apprentice_R00256073) | Magna | Brampton, Ontario, CA | - | 5 days ago |
+| [WCM Co-op Student](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/Brampton-Ontario-CA/WCM-Co-op-Student_R00267687) | Magna | Brampton, Ontario, CA | - | 5 days ago |
+| [Apprentice - Electrician](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Electrician_R00267792-1) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
+| [Apprentice - Millwright](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Millwright_R00267802) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
+| [Apprentice - Tool &amp; Die](https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/St-Thomas--Formet-Ontario-CA/Apprentice---Tool---Die_R00267808) | Magna | St. Thomas – Formet, Ontario, CA | - | 5 days ago |
+| [IP Design Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/IP-Design-Intern_R03322) | Altera | Toronto, Ontario, Canada | - | 5 days ago |
+| [WFM Real Time Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/WFM-Real-Time-Analyst-co-op_2621769-2) | CIBC | Toronto, ON | - | 5 days ago |
+| [Business Enablement Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Enablement-Analyst-co-op_2621800) | CIBC | Toronto, ON | - | 5 days ago |
+| [Governance Solutions Analyst Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Governance-Solutions-Analyst-Co-op_2622047-1) | CIBC | Toronto, ON | - | 5 days ago |
+| [Personal Banker Trainee](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Wiarton-Ontario/Personal-Banker-Trainee_R_1510877) | TD | Wiarton, Ontario, Owen Sound, Ontario, Port Elgin, Ontario, Canada | - | 5 days ago |
 | [Customer Acquisition Representative Intern – Summer 2027 (CAN)](https://www.amazon.jobs/en/jobs/10590674/customer-acquisition-representative-intern-summer-2027-can) | Amazon | Toronto, Ontario, CAN, CA, ON, Toronto | Summer 2027 | 6 days ago |
-| [Financial Lines Fall Intern/Co-op - Winter 2027](https://www.careers.zurich.com/job/Toronto-Financial-Lines-Fall-InternCo-op-Winter-2027-ON/1375996357/) | Zurich Insurance | Toronto, ON | Winter 2027 | 6 days ago |
-| [Student, Canadian Document Administrator (Winter, 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Canadian-Document-Administrator--Winter--2027-_JR00129140) | Sun Life | Toronto, Ontario | Winter 2027 | 6 days ago |
-| [Brand Marketing, Hard Discount, No Frills Co-op Student](https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Brand-Marketing--Hard-Discount--No-Frills-Co-op-Student_R2000694776) | Loblaw Companies | 1 Presidents Choice Circle, Brampton, ON | - | 6 days ago |
+| [Financial Lines Intern/Co-op - Winter 2027](https://www.careers.zurich.com/job/Toronto-Financial-Lines-InternCo-op-Winter-2027-ON/1375996357/) | Zurich Insurance | Toronto, ON | Winter 2027 | 6 days ago |
 | [Student Project Coordinator](https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONMississauga2251-Speakman-Drive/Student-Project-Coordinator_R-167112) | AtkinsRéalis | CA.ON.Mississauga.2251 Speakman Drive | - | 6 days ago |
-| [Client Advisor Intern](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/PETAWAWA-Ontario-Canada/Client-Advisor-Intern_R-0000190985-2) | Royal Bank of Canada | PETAWAWA, Ontario, Canada | - | 6 days ago |
+| [Business Analyst co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Business-Analyst-co-op_2622052) | CIBC | Toronto, ON | - | 6 days ago |
+| [Personal Banker Trainee - Future Opportunities](https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Mississauga-Ontario/Personal-Banker---Future-Opportunities_R_1435447-1) | TD | Mississauga, Ontario | - | 6 days ago |
+| [Student, Canadian Document Administrator (Winter, 2027)](https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-Ontario/Student--Canadian-Document-Administrator--Winter--2027-_JR00129140) | Sun Life | Toronto, Ontario | Winter 2027 | 6 days ago |
 | [Banking Advisor Intern](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/HUNTSVILLE-Ontario-Canada/Banking-Advisor-Intern_R-0000191043-1) | Royal Bank of Canada | HUNTSVILLE, Ontario, Canada | - | 6 days ago |
-| [(12 Month Co-op) Portfolio Management Specialist](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/CAN-Quebec-Montreal-900-Boulevard-de-Maisonneuve-Ouest/XMLNAME--12-Month-Co-op--Portfolio-Management-Specialist_JR26091622) | Manulife Financial | CAN, Quebec, Montreal, 900 Boulevard de Maisonneuve Ouest, Toronto, Ontario, Waterloo, Ontario, Halifax, Nova Scotia, Canada | - | 6 days ago |
-| [Business Banking Relationship Manager Trainee](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Oshawa-ON-CAN/Business-Banking-Relationship-Manager-Trainee_R260025452) | BMO | Oshawa, ON, CAN | - | 6 days ago |
-| [Governance Solutions Analyst Co-op](https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Governance-Solutions-Analyst-Co-op_2622047-1) | CIBC | Toronto, ON | - | 6 days ago |
+| [Client Advisor Intern](https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/PETAWAWA-Ontario-Canada/Client-Advisor-Intern_R-0000190985-2) | Royal Bank of Canada | PETAWAWA, Ontario, Canada | - | 6 days ago |
 | [Quality Assurance Specialist Intern, SOTI Connect, Winter](https://go.vansh.nyc/SH) | SOTI | Mississauga, Canada | - | 6 days ago |
 | [eReader Quality Assurance Intern, Winter](https://go.vansh.nyc/SF) | Rakuten International | Toronto, Canada | - | 6 days ago |
 | [Apprentice Automotive Service Technician](https://job-boards.greenhouse.io/clutch/jobs/6186662004) | Clutch Canada | Etobicoke, Ontario, Canada | - | 6 days ago |
+| [Electrical Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Electrical-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428467500/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Inventory Analyst Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Inventory-Analyst-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428470000/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Logistics Co-op](https://jobs.l3harris.com/job/Waterdown-Logistics-Co-op-ON-L9H-0C5/1428471300/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Production Planning Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Production-Planning-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428472400/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Supply Chain Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Supply-Chain-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428472700/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Intern, Environmental Health &amp; Safety (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Intern%2C-Environmental-Health-&-Safety-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430125700/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [FPGA Designer Coop (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-FPGA-Designer-Coop-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430127300/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Opto-Mechanical Design Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Toronto-Opto-Mechanical-Design-Co-Op-%28Waterdown%2C-CAN%29-ON-M3C-2H2/1430128300/) | L3Harris Technologies | Toronto, ON, CA, M3C 2H2 | - | date unknown |
+| [Sales Operations Support Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Sales-Operations-Support-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430141100/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Manufacturing Engineering - Mechanical Co-Op](https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineering-Mechanical-Co-Op-ON-L9H-0C5/1430875900/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Mechanical Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Mechanical-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430876500/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Materials Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Materials-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1435256200/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Operations Test Engineering, Mechanical Tooling Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Operations-Test-Engineering%2C-Mechanical-Tooling-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1435257000/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Linux Administrator Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Linux-Administrator-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1435258800/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Procurement Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Procurement-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441481400/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Materials - Receiving Co-op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Materials-Receiving-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441484600/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Accounts Payable &amp; Tax Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Accounts-Payable-&-Tax-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441487900/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Program Management Co-op (Waterdown, Ontario) 1](https://jobs.l3harris.com/job/Waterdown-Program-Management-Co-op-%28Waterdown%2C-Ontario%29-1-ON-L9H-0C5/1441488300/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Operations NPI, Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Operations-NPI%2C-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1444689200/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
+| [Intern, Compliance (Winter 2027)](https://pictonmahoney.bamboohr.com/careers/381) | Picton Mahoney Asset Management | Toronto, Ontario | Winter 2027 | date unknown |
+| [Intern, PICTON Investment Counsel (Winter 2027)](https://pictonmahoney.bamboohr.com/careers/383) | Picton Mahoney Asset Management | Toronto, Ontario | Winter 2027 | date unknown |
+| [Intern, Valuations &amp; FP&amp;A](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern_R2046748) | Brookfield | Toronto, Ontario | - | date unknown |
+| [Intern](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern_R2047947) | Brookfield | Toronto, Ontario | - | date unknown |
+| [Intern, Investments (BAIIF)](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern_R2053138) | Brookfield | Toronto, Ontario | - | date unknown |
 
 </details>
 
@@ -271,134 +328,127 @@ _Updated Sunday 01 November, 02:43 Toronto &middot; 169/169 sources healthy &mid
 | 1Password \[ashby\] | 87 | ok |
 | AMD \[jibe\] | 32 | ok |
 | Acceldata \[lever\] | 36 | ok |
+| Accenture \[workday\] | 155 | ok |
 | Ada \[greenhouse\] | 7 | ok |
 | Affirm \[greenhouse\] | 244 | ok |
 | Airbnb \[greenhouse\] | 202 | ok |
-| Alexion \[workday\] | 106 | ok |
-| Alliaxis \[workday\] | 214 | ok |
 | Altera \[workday\] | 181 | ok |
-| Amazon \[amazon\] | 8 | ok |
-| American Express \[oracle\] | 166 | ok |
+| Amazon \[amazon\] | 170 | ok |
+| American Express \[oracle\] | 164 | ok |
 | Anthropic \[greenhouse\] | 675 | ok |
-| Aon \[jibe\] | 6 | ok |
-| Aptiv \[workday\] | 357 | ok |
+| Aon \[jibe\] | 5 | ok |
 | Astera Labs \[greenhouse\] | 93 | ok |
-| AstraZeneca \[workday\] | 390 | ok |
-| AtkinsRéalis \[workday\] | 578 | ok |
+| AtkinsRéalis \[workday\] | 476 | ok |
+| Autodesk \[workday:uni\] | - | **empty** |
 | Autodesk \[workday\] | 3 | ok |
-| BDO Canada \[workday\] | 237 | ok |
-| BGIS \[oracle\] | 226 | ok |
-| BMO \[workday\] | 341 | ok |
-| Bank of Montreal \[workday:Privileged\] | 21 | ok |
-| Bank of Montreal \[workday\] | 22 | ok |
+| BDO Canada \[workday\] | 239 | ok |
+| BGIS \[oracle\] | 225 | ok |
+| BMO \[workday\] | 359 | ok |
+| Bank of Montreal \[workday\] | 13 | ok |
 | BenchSci \[lever\] | - | **empty** |
 | Bird Construction \[workday\] | 144 | ok |
 | BitGo \[greenhouse\] | 4 | ok |
 | Bree \[ashby\] | 13 | ok |
-| Brookfield \[workday\] | 29 | ok |
-| CIBC \[workday:campus\] | 49 | ok |
-| CIBC \[workday\] | 382 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 320 | ok |
-| Capital One \[workday\] | 390 | ok |
+| Brookfield \[workday\] | 9 | ok |
+| CIBC \[workday:campus\] | 41 | ok |
+| CIBC \[workday\] | 370 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 317 | ok |
+| Capital One \[workday\] | 541 | ok |
 | Cerebras \[ashby\] | 116 | ok |
-| Ciena \[workday\] | 157 | ok |
+| Ciena \[workday\] | 80 | ok |
 | Cisco \[html\] | 48 | ok |
 | Clearco \[ashby\] | 5 | ok |
 | Clutch Canada \[greenhouse\] | 75 | ok |
-| Cohere \[ashby\] | 122 | ok |
+| Cohere \[ashby\] | 120 | ok |
 | Coinbase \[greenhouse\] | 254 | ok |
 | Confluent \[ashby\] | - | **empty** |
-| Cresta \[greenhouse\] | 87 | ok |
 | D2L \[greenhouse\] | 22 | ok |
-| Databricks \[greenhouse\] | 904 | ok |
+| Databricks \[greenhouse\] | 909 | ok |
 | Deep Genomics \[lever\] | 1 | ok |
 | Definity Financial \[oracle\] | 39 | ok |
 | DoorDash \[greenhouse\] | 39 | ok |
 | Dropbox \[greenhouse\] | 24 | ok |
 | Elastic \[greenhouse\] | 407 | ok |
-| Entrust \[workday\] | 95 | ok |
+| Entrust \[workday\] | 8 | ok |
 | Equitable Bank \[lever\] | 82 | ok |
 | Ericsson \[eightfold\] | 5 | ok |
 | Faire \[greenhouse\] | 67 | ok |
-| Farm Credit Canada \[workday\] | 31 | ok |
 | Float \[ashby\] | 19 | ok |
 | Foresters Financial \[workday\] | 24 | ok |
-| GE Vernova \[workday:vernova\_externalsite\] | 422 | ok |
-| GE Vernova \[workday\] | 422 | ok |
+| GE Vernova \[workday:vernova\_externalsite\] | 546 | ok |
+| GE Vernova \[workday\] | 534 | ok |
 | General Magic \[ashby\] | 7 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 63 | ok |
 | GitLab \[greenhouse\] | 238 | ok |
 | Golden Ventures \[consider\] | 588 | ok |
-| Hitachi Energy \[workday\] | 618 | ok |
+| Hitachi Energy \[workday\] | 149 | ok |
 | Hootsuite \[greenhouse\] | 4 | ok |
 | Hopper \[ashby\] | 18 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Ideogram \[ashby\] | 4 | ok |
-| Inovia \[getro\] | 404 | ok |
+| Inovia \[getro\] | 403 | ok |
 | Instacart \[greenhouse\] | 96 | ok |
-| Intel \[workday\] | 472 | ok |
-| Interac \[workday\] | 49 | ok |
+| Intel \[workday\] | 590 | ok |
 | Jobber \[ashby\] | 39 | ok |
-| KPMG \[jibe\] | 9 | ok |
 | Kensington \[greenhouse\] | 33 | ok |
 | Kepler Communications \[lever\] | 25 | ok |
 | Kinaxis \[icims\] | 109 | ok |
+| Kinaxis \[jibe\] | 13 | ok |
 | Kindred AI \[ashby\] | 4 | ok |
 | Klue \[ashby\] | 7 | ok |
+| L3Harris Technologies \[successfactors\] | 103 | ok |
 | Lightmatter \[greenhouse\] | 58 | ok |
-| Loblaw Companies \[workday\] | 620 | ok |
+| Loblaw Companies \[workday\] | 665 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 16 | ok |
-| Lumentum \[workday\] | 236 | ok |
 | Lyft \[greenhouse\] | 170 | ok |
 | Mackenzie Investments \[icims\] | 21 | ok |
-| Magna \[workday\] | 540 | ok |
-| Magnet Forensics \[lever\] | 36 | ok |
-| Manulife Financial \[workday:MFCJH\_adminJobs\] | 40 | ok |
-| Manulife Financial \[workday\] | 345 | ok |
+| Magna \[workday\] | 195 | ok |
+| Magnet Forensics \[lever\] | 40 | ok |
+| Manulife Financial \[workday:MFCJH\_adminJobs\] | 13 | ok |
+| Manulife Financial \[workday\] | 168 | ok |
 | Maple Leaf Sports &amp; Entertainment Partnership (MLSE) \[workday\] | 90 | ok |
-| Marsh \[workday\] | 515 | ok |
-| Marvell \[workday:MarvellCareers2\] | 53 | ok |
-| Marvell \[workday\] | 283 | ok |
+| Marvell \[workday:MarvellCareers2\] | 7 | ok |
+| Marvell \[workday\] | 14 | ok |
 | Microsoft \[eightfold\] | 4 | ok |
 | Miovision \[ashby\] | 18 | ok |
 | MongoDB \[greenhouse\] | 366 | ok |
 | Neo Financial \[ashby\] | 63 | ok |
 | New-Grad-Positions \[tracker\] | 3122 | ok |
-| Nokia \[oracle\] | 227 | ok |
+| Nokia \[oracle\] | 38 | ok |
 | Nuclear Promise X \[ashby\] | 16 | ok |
-| Nvidia \[workday\] | 608 | ok |
+| Nvidia \[workday\] | 14 | ok |
 | OLG \[workday\] | 4 | ok |
-| Okta \[greenhouse\] | 387 | ok |
+| Okta \[greenhouse\] | 386 | ok |
 | Ontario Power Generation \[html\] | 16 | ok |
 | OpenAI \[ashby\] | 810 | ok |
 | PagerDuty \[greenhouse\] | 47 | ok |
 | Picton Mahoney Asset Management \[bamboohr\] | 23 | ok |
 | Pinterest \[greenhouse\] | 170 | ok |
 | PointClickCare \[lever\] | 70 | ok |
-| Procter &amp; Gamble \[workday\] | 335 | ok |
 | Qualcomm \[eightfold\] | 37 | ok |
 | Quora \[ashby\] | 9 | ok |
-| RSM \[workday\] | 419 | ok |
+| RSM \[workday\] | 67 | ok |
 | Ramp \[ashby\] | 172 | ok |
-| Real Ventures \[getro\] | 425 | ok |
+| Real Ventures \[getro\] | 426 | ok |
 | Reddit \[greenhouse\] | 163 | ok |
+| Revvity \[workday\] | 9 | ok |
 | Robinhood \[greenhouse\] | 160 | ok |
-| Rocket Lab USA \[greenhouse\] | 585 | ok |
-| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 323 | ok |
-| Rockwell Automation \[workday\] | 41 | ok |
-| Rodan Energy Solutions \[jazzhr\] | 14 | ok |
+| Rockwell Automation \[workday:External\_Rockwell\_Automation\] | 34 | ok |
+| Rockwell Automation \[workday\] | 7 | ok |
+| Rogers \[successfactors:co-op\] | - | **empty** |
 | Rogers \[successfactors\] | 97 | ok |
 | Royal Bank of Canada \[workday:ExternalPrivatePostingStudents\] | 16 | ok |
-| Royal Bank of Canada \[workday:rbcglobal1\] | 421 | ok |
-| Royal Bank of Canada \[workday\] | 34 | ok |
+| Royal Bank of Canada \[workday:rbcglobal1\] | 465 | ok |
+| Royal Bank of Canada \[workday\] | 13 | ok |
 | SOTI \[workday\] | 17 | ok |
 | Samsara \[greenhouse\] | 338 | ok |
 | Scale AI \[greenhouse\] | 170 | ok |
+| Scotiabank \[successfactors:co-op\] | 4 | ok |
 | Scotiabank \[successfactors\] | 6 | ok |
-| Semtech \[workday\] | 107 | ok |
-| ServiceNow \[smartrecruiters\] | 731 | ok |
+| Semtech \[workday\] | 36 | ok |
+| ServiceNow \[smartrecruiters\] | 19 | ok |
 | Shakepay \[greenhouse\] | 9 | ok |
 | Shopify \[html\] | 114 | ok |
 | ShyftLabs \[lever\] | 31 | ok |
@@ -406,39 +456,40 @@ _Updated Sunday 01 November, 02:43 Toronto &middot; 169/169 sources healthy &mid
 | Snowflake \[ashby\] | 366 | ok |
 | Solink \[ashby\] | 22 | ok |
 | StackAdapt \[greenhouse\] | 76 | ok |
-| Stantec \[oracle\] | 277 | ok |
-| Stripe \[greenhouse\] | 745 | ok |
-| Summer2027-Internships \[tracker\] | 5119 | ok |
-| Sun Life \[workday:Campus\] | 12 | ok |
-| Sun Life \[workday\] | 241 | ok |
-| TD \[workday\] | 531 | ok |
+| Stantec \[oracle\] | 238 | ok |
+| Steel \[ashby\] | 3 | ok |
+| Stripe \[greenhouse\] | 746 | ok |
+| Summer2027-Internships \[tracker\] | 5137 | ok |
+| Sun Life \[workday:Campus\] | 6 | ok |
+| Sun Life \[workday\] | 108 | ok |
+| TD \[workday\] | 558 | ok |
+| TELUS \[successfactors:co-op\] | - | **empty** |
 | TELUS \[successfactors\] | 14 | ok |
 | TMX Group \[workday\] | 92 | ok |
 | Tailscale \[greenhouse\] | 58 | ok |
 | Telus Digital \[ashby\] | 55 | ok |
 | Tenstorrent \[greenhouse:tenstorrentuniversity\] | 15 | ok |
 | Tenstorrent \[greenhouse\] | 126 | ok |
-| The Home Depot \[workday\] | 260 | ok |
 | Thinkific \[ashby\] | 3 | ok |
-| Thomson Reuters \[workday\] | 75 | ok |
-| Trimble \[workday\] | 218 | ok |
+| Thomson Reuters \[workday\] | 18 | ok |
+| Trimble \[workday\] | 15 | ok |
 | Twilio \[greenhouse\] | 132 | ok |
-| Ubisoft \[smartrecruiters\] | 306 | ok |
+| Ubisoft \[smartrecruiters\] | 122 | ok |
 | Vector Institute \[html\] | 30 | ok |
-| WTW \[oracle\] | 243 | ok |
+| Veeda AI \[ashby\] | 8 | ok |
 | Waabi \[lever\] | 92 | ok |
 | Wattpad \[lever\] | 16 | ok |
 | Wealthsimple \[ashby\] | 42 | ok |
-| Workday \[workday\] | 13 | ok |
+| Workday \[workday\] | 3 | ok |
 | Xanadu \[jazzhr\] | 1 | ok |
 | Yotta Labs \[ashby\] | 4 | ok |
 | ecobee \[html\] | 26 | ok |
 | speedyapply-AI-2027 \[tracker\] | 805 | ok |
 | speedyapply-SWE-2027 \[tracker\] | 848 | ok |
-| vansh-Summer2027 \[tracker\] | 1720 | ok |
+| vansh-Summer2027 \[tracker\] | 1846 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 182 boards discovered from Canadian postings: 182 ok, 40 promoted, 113 demoted._
+_Plus 116 boards discovered from Canadian postings: 114 ok, 2 failing, 15 promoted, 78 demoted (5 more waiting for a slot)._
 
 <!-- radar:listings:end -->
 
