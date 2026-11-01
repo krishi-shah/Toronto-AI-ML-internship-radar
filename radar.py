@@ -12,6 +12,7 @@ Windows notifications plus a local HTML dashboard.
     python radar.py --sniff <url>    detect ATS and print a config line
     python radar.py --probe <slug>   guess a board token on the common ATSes
     python radar.py --discovered     list boards found automatically
+    python radar.py --reasons        count stored postings by tier and reason
     python radar.py --open           rebuild and open the dashboard
     python radar.py --test           fire one fake alert
 """
@@ -27,6 +28,7 @@ import traceback
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Callable, Optional
+from urllib.parse import parse_qs, urlparse
 
 import companies as cfg
 import notify
@@ -78,6 +80,47 @@ def _with_default_location(
     return run
 
 
+# Platforms whose search is already limited to Canada, so every row they
+# return is Canadian whatever its location field says.
+_CANADA_SEARCH_PLATFORMS = {"jibe", "eightfold", "getro"}
+
+
+def _country_of(entry: dict) -> str:
+    """The country a source is scoped to, or "" when it lists anywhere."""
+    if entry.get("country"):
+        return entry["country"]
+    if entry.get("platform") in _CANADA_SEARCH_PLATFORMS:
+        return "Canada"
+    if entry.get("platform") == "amazon" and str(entry.get("token")).upper() == "CAN":
+        return "Canada"
+    return ""
+
+
+def _with_country(
+    thunk: Callable[[], list[Posting]], country: str
+) -> Callable[[], list[Posting]]:
+    """Mark postings from a country-scoped source with that country.
+
+    A Canada-only search or tracker often lists a role as just "Remote" or
+    "2 Locations", which says nothing about the country, so the classifier
+    rejected it. ``country`` is one of the raw keys the location gate reads:
+    "Remote" becomes remote within Canada, and a blank location becomes
+    Canada with no province. A row that names a foreign place stays foreign.
+    """
+
+    def run() -> list[Posting]:
+        found = thunk()
+        for post in found:
+            raw = post.raw if isinstance(post.raw, dict) else {}
+            if not raw.get("country"):
+                raw["country"] = country
+            post.raw = raw
+        return found
+
+    run.browser = getattr(thunk, "browser", False)
+    return run
+
+
 def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting]], bool]]:
     """Return ``(source_name, thunk, ai_native)`` for every configured source."""
     tasks: list[tuple[str, Callable[[], list[Posting]], bool]] = []
@@ -93,6 +136,10 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
         # the health table is keyed by label, so repeats get the board's slug.
         if label in labels:
             slug = token.rstrip("/").removesuffix("/jobs").rsplit("/", 1)[-1]
+            # A search URL is told apart by its query: "TELUS [successfactors:co-op]".
+            query = parse_qs(urlparse(token).query).get("q")
+            if query:
+                slug = query[0]
             label = f"{name} [{platform}:{slug}]"
         labels.add(label)
 
@@ -111,17 +158,16 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
 
         if entry.get("location"):
             thunk = _with_default_location(thunk, entry["location"])
+        if _country_of(entry):
+            thunk = _with_country(thunk, _country_of(entry))
         tasks.append((label, thunk, ai_native))
 
     for entry in cfg.TRACKERS:
         label = f"{entry['name']} [tracker]"
-        tasks.append(
-            (
-                label,
-                lambda n=entry["name"], r=entry["repo"]: sources.tracker(http, n, r),
-                False,
-            )
-        )
+        thunk = lambda n=entry["name"], r=entry["repo"]: sources.tracker(http, n, r)  # noqa: E731
+        if entry.get("country"):
+            thunk = _with_country(thunk, entry["country"])
+        tasks.append((label, thunk, False))
 
     # VC and ecosystem job boards list many companies' roles at once, so each
     # posting carries its own company name rather than the board's.
@@ -134,6 +180,8 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
             )
         else:
             thunk = lambda a=adapter, n=entry["name"], t=entry["token"]: a(http, n, t)  # noqa: E731
+        if _country_of(entry):
+            thunk = _with_country(thunk, _country_of(entry))
         tasks.append((label, thunk, False))
 
     return tasks
@@ -169,7 +217,7 @@ def fetch_all(
     its source still lists (see Store.mark_present). ``--check`` passes False
     because it records nothing.
     """
-    deadline = time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S
+    started = time.monotonic()
     stamp = int(time.time()) if track else None
     tasks = build_tasks(http)
     http_tasks = [task for task in tasks if not getattr(task[1], "browser", False)]
@@ -183,6 +231,8 @@ def fetch_all(
         errors.update(portal_errors)
     store.commit()
 
+    deadline = min(time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S,
+                   started + cfg.FETCH_MAX_S)
     if cfg.DISCOVERY_MAX_BOARDS > 0:
         found = _run_discovered(http, store, postings, quiet, deadline, stamp)
         postings.extend(found)
@@ -434,6 +484,10 @@ def _wants_description(verdict: Verdict) -> bool:
     return verdict.tier is None and verdict.student and verdict.reason == "no Canadian location"
 
 
+# Higher is better; a stored verdict is only ever moved up.
+_TIER_RANK = {None: 0, OTHER: 1, LOOSE: 2, STRICT: 3}
+
+
 class Describer:
     """Reads job descriptions within a per-run request and time budget.
 
@@ -492,7 +546,13 @@ class Describer:
         return revised
 
     def backfill(self, max_age_hours: int) -> int:
-        """Read stored loose rows from earlier runs; return how many turned strict."""
+        """Read stored rows from earlier runs; return how many turned strict.
+
+        The stored row has no ``raw``, so the student or location signal that
+        came from raw fields is missing when it is classified again. Only a
+        promotion is written back: a verdict that comes out lower says more
+        about the missing fields than about the role.
+        """
         before = self.upgraded
         for row in self.store.description_backlog(self.left, max_age_hours):
             if not self._budget_left():
@@ -502,8 +562,9 @@ class Describer:
                 url=row["url"] or "", uid=row["uid"], source=row["source"] or "",
                 posted_at=row["posted_at"] or 0,
             )
-            revised = self.reclassify(post, Verdict(LOOSE, row["reason"]))
-            if revised.tier != LOOSE or revised.reason != row["reason"]:
+            stored = Verdict(row["tier"], row["reason"])
+            revised = self.reclassify(post, stored)
+            if _TIER_RANK[revised.tier] > _TIER_RANK[stored.tier]:
                 self.store.update_verdict(post.uid, revised.tier, revised.reason, revised.ai_terms)
             if post.location != (row["location"] or ""):
                 self.store.update_place(post.uid, post.location, post.posted_at)
@@ -1048,6 +1109,18 @@ def cmd_health(store: Store) -> int:
     return 0
 
 
+def cmd_reasons(store: Store) -> int:
+    """Where stored postings ended up, by tier and reason, with sample titles."""
+    rows = store.reason_counts()
+    total = sum(count for _tier, _reason, count, _titles in rows)
+    print(f"{total} stored postings\n")
+    for tier, reason, count, titles in rows:
+        print(f"{count:>7}  {tier:<8} {reason or '-'}")
+        for title in titles:
+            print(f"           · {title[:110]}")
+    return 0
+
+
 def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         description="Toronto AI/ML internship radar",
@@ -1062,6 +1135,8 @@ def main(argv: Optional[list[str]] = None) -> int:
                         help="guess a board token on Ashby/Greenhouse/Lever/...")
     parser.add_argument("--test", action="store_true", help="fire one fake alert")
     parser.add_argument("--health", action="store_true", help="print the health table")
+    parser.add_argument("--reasons", action="store_true",
+                        help="count stored postings by tier and reason")
     parser.add_argument("--discovered", action="store_true",
                         help="list automatically discovered boards")
     parser.add_argument("--open", action="store_true", help="rebuild and open the dashboard")
@@ -1083,6 +1158,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             return cmd_check(store)
         if args.health:
             return cmd_health(store)
+        if args.reasons:
+            return cmd_reasons(store)
         if args.discovered:
             return cmd_discovered(store)
         if args.digest:

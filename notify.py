@@ -24,7 +24,7 @@ from typing import Any, Iterable, Optional, Protocol, Sequence
 import companies as cfg
 from datetime import datetime
 
-from core import AI_IN_DESCRIPTION, Posting, Verdict, toronto_now
+from core import AI_IN_DESCRIPTION, Posting, Verdict, term_label, toronto_now
 
 DASHBOARD_PATH = os.environ.get("RADAR_DASHBOARD", "radar.html")
 README_PATH = os.environ.get("RADAR_README", "README.md")
@@ -136,7 +136,8 @@ class ToastNotifier:
     def strict(self, hits: Sequence[tuple[Posting, Verdict]]) -> bool:
         shown = 0
         for post, verdict in hits[:MAX_TOASTS_PER_RUN]:
-            cycle = "  (Winter 2027)" if verdict.cycle == "target" else ""
+            term = term_label(post) if verdict.cycle == "target" else ""
+            cycle = f"  ({term})" if term else ""
             body = f"{post.company} - {post.location or 'location not listed'}{cycle}"
             if _raise_toast(post.title, body, post.url):
                 shown += 1
@@ -285,6 +286,9 @@ def _when_label(row: Any) -> tuple[str, bool]:
     spotted the link. Say "found", never "posted" -- we do not know when it was
     published, and implying we do is how a month-old role looks new.
     """
+    if not row["posted_at"] and _col(row, "seeded"):
+        # Seen during a seed: first_seen is the seed's time, not the role's.
+        return "date unknown", False
     when, days = _day_label(row["shown_at"])
     if not row["posted_at"]:
         when = f"found {when[0].lower()}{when[1:]}"

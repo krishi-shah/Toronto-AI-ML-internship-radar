@@ -154,6 +154,38 @@ class TestSuccessFactors(unittest.TestCase):
         self.assertEqual(len(posts), 26)
         self.assertTrue(http.text.call_args[0][0].endswith("&startrow=25"))
 
+    def test_tile_layout_is_parsed(self):
+        """L3Harris lists results as tiles, up to 100 a page."""
+        tile = (
+            '<li class="job-tile job-id-1428467500" data-url="/job/x/1428467500/">'
+            '<a class="jobTitle-link fontcolor59" href="/job/Waterdown-Electrical-Engineering-'
+            'Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428467500/">\n'
+            '  Electrical Engineering Co-Op (Waterdown, CAN)\n</a>'
+            '<div id="job-1428467500-desktop-section-location-value">Waterdown, ON, CA, L9H 0C5\n'
+            '</div></li>')
+        page = f'Showing 1 to 1 of 1 Jobs <ul id="job-tile-list">{tile}</ul>'
+        http = mock.Mock()
+        http.text.return_value = page
+        [post] = sources.successfactors(
+            http, "L3Harris", "https://jobs.l3harris.com/search/?q=&locationsearch=Ontario")
+        self.assertEqual(post.title, "Electrical Engineering Co-Op (Waterdown, CAN)")
+        self.assertEqual(post.location, "Waterdown, ON, CA, L9H 0C5")
+        self.assertEqual(post.uid, "successfactors:jobs.l3harris.com:1428467500")
+        self.assertEqual(http.text.call_count, 1)
+
+    def test_posting_links_lead_to_the_site(self):
+        url = ("https://jobs.l3harris.com/job/Waterdown-Software-Engineering-Co-Op-"
+               "%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428467500/")
+        self.assertEqual(sources.board_from_url(url), (
+            "successfactors", "https://jobs.l3harris.com/search/?q=&locationsearch=Ontario"))
+
+    def test_one_site_is_one_board_whatever_the_search(self):
+        """Discovering jobs.rogers.com must not re-add the configured Rogers searches."""
+        self.assertEqual(
+            sources.board_key("successfactors", "https://jobs.rogers.com/search/?q=intern"),
+            sources.board_key("successfactors",
+                              "https://jobs.rogers.com/search/?q=&locationsearch=Ontario"))
+
     def test_sniffed_from_its_asset_host(self):
         hits = sources._sniff_hits(
             "https://jobs.l3harris.com/job/Waterdown-Co-Op/1/",
@@ -203,6 +235,14 @@ class TestStartupAts(unittest.TestCase):
             ("https://signal1.bamboohr.com/careers/43", ("bamboohr", "signal1")),
             ("https://ats.rippling.com/fluidai-medical-careers/jobs/e52b", ("rippling", "fluidai-medical-careers")),
             ("https://techinsights.applytojob.com/apply/bKNl/x", ("jazzhr", "techinsights")),
+            ("https://hardrockdigital.recruitee.com/o/associate-product-manager",
+             ("recruitee", "hardrockdigital")),
+            ("https://vitalbio.na.teamtailor.com/jobs/728187-automation-controls-engineer",
+             ("teamtailor", "vitalbio.na")),
+            ("https://acme.teamtailor.com/jobs/1234-ml-intern", ("teamtailor", "acme")),
+            ("https://zendar.breezy.hr/p/d28b44a36bef-product-data-science-intern",
+             ("breezy", "zendar")),
+            ("https://acme.jobs.personio.de/job/1234567?language=en", ("personio", "acme")),
         ]:
             with self.subTest(url=url):
                 self.assertEqual(sources.board_from_url(url), board)

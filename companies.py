@@ -26,6 +26,10 @@ token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs`
            ``icims``      the portal root, e.g. ``https://careers-kinaxis.icims.com``
 location   Optional. Filled into postings from this source that carry no
            location, for employers that only hire in one place.
+country    Optional. The country this source's search is limited to, so a
+           row that says only "Remote" or "2 Locations" still counts as in
+           it. Jibe, Eightfold, Getro and the Amazon ``CAN`` search set it
+           automatically; trackers accept it too.
 browser    Optional, and only meaningful for ``html``. True opens the careers
            page in Chromium because the job list is drawn by JavaScript.
            Leave it off when the listings are already in the downloaded HTML.
@@ -46,6 +50,8 @@ COMPANIES: list[dict] = [
     {"name": "Waabi", "platform": "lever", "token": "waabi", "ai_native": True},
     {"name": "BenchSci", "platform": "lever", "token": "benchsci", "ai_native": True},
     {"name": "Tenstorrent", "platform": "greenhouse", "token": "tenstorrent", "ai_native": True},
+    {"name": "Tenstorrent", "platform": "greenhouse", "token": "tenstorrentuniversity",
+     "ai_native": True},
     {"name": "Wealthsimple", "platform": "ashby", "token": "wealthsimple", "ai_native": False},
     {"name": "Faire", "platform": "greenhouse", "token": "faire", "ai_native": False},
     {"name": "Deep Genomics", "platform": "lever", "token": "deepgenomics", "ai_native": True},
@@ -136,6 +142,10 @@ COMPANIES: list[dict] = [
     {"name": "Royal Bank of Canada", "platform": "workday",
      "token": "https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/rbcglobal1/jobs",
      "ai_native": False},
+    # Campus boards, pinned so discovery's promotion cap cannot drop them.
+    {"name": "Royal Bank of Canada", "platform": "workday",
+     "token": "https://rbc.wd3.myworkdayjobs.com/wday/cxs/rbc/ExternalPrivatePostingStudents/jobs",
+     "ai_native": False},
     {"name": "TD", "platform": "workday",
      "token": "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_Bank_Careers/jobs",
      "ai_native": False},
@@ -154,6 +164,9 @@ COMPANIES: list[dict] = [
     {"name": "Sun Life", "platform": "workday",
      "token": "https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Experienced-Jobs/jobs",
      "ai_native": False},
+    {"name": "Sun Life", "platform": "workday",
+     "token": "https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/Campus/jobs",
+     "ai_native": False},
     {"name": "Nvidia", "platform": "workday",
      "token": "https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs",
      "ai_native": False},
@@ -162,6 +175,9 @@ COMPANIES: list[dict] = [
      "ai_native": False},
     {"name": "Autodesk", "platform": "workday",
      "token": "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/jobs",
+     "ai_native": False},
+    {"name": "Autodesk", "platform": "workday",
+     "token": "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/uni/jobs",
      "ai_native": False},
     {"name": "Ciena", "platform": "workday",
      "token": "https://ciena.wd5.myworkdayjobs.com/wday/cxs/ciena/Careers/jobs",
@@ -207,16 +223,26 @@ COMPANIES: list[dict] = [
     # Server-rendered result rows, so no browser: real title, place and date.
     # The token is the site's own search URL, already narrowed to Ontario.
     # OPG runs the same software but draws its rows with JavaScript, so it
-    # stays a browser scrape below.
+    # stays a browser scrape below. The search matches whole words, so a
+    # second search per site catches "Co-op" titles that never say intern.
     {"name": "TELUS", "platform": "successfactors",
      "token": "https://careers.telus.com/search/?q=intern&locationsearch=Ontario",
-     "ai_native": False},
+     "ai_native": False, "country": "Canada"},
+    {"name": "TELUS", "platform": "successfactors",
+     "token": "https://careers.telus.com/search/?q=co-op&locationsearch=Ontario",
+     "ai_native": False, "country": "Canada"},
     {"name": "Rogers", "platform": "successfactors",
      "token": "https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario",
-     "ai_native": False},
+     "ai_native": False, "country": "Canada"},
+    {"name": "Rogers", "platform": "successfactors",
+     "token": "https://jobs.rogers.com/search/?q=co-op&locationsearch=Ontario",
+     "ai_native": False, "country": "Canada"},
     {"name": "Scotiabank", "platform": "successfactors",
      "token": "https://jobs.scotiabank.com/search/?q=internship&locationsearch=Ontario",
-     "ai_native": False},
+     "ai_native": False, "country": "Canada"},
+    {"name": "Scotiabank", "platform": "successfactors",
+     "token": "https://jobs.scotiabank.com/search/?q=co-op&locationsearch=Ontario",
+     "ai_native": False, "country": "Canada"},
 
     # -- Careers pages, HTML layer ---------------------------------------
     # For careers pages with no API. Pages that embed schema.org JobPosting
@@ -299,7 +325,9 @@ def all_companies() -> list[dict]:
 # main and master, and prefers each repo's structured listings.json over the
 # README table -- Simplify's README is an HTML <table>, not markdown pipes.
 TRACKERS: list[dict] = [
-    {"name": "Canadian-Tech-Internships-2027", "repo": "negarprh/Canadian-Tech-Internships-2027"},
+    # Canada-only, so its "Remote" rows are remote within Canada.
+    {"name": "Canadian-Tech-Internships-2027", "repo": "negarprh/Canadian-Tech-Internships-2027",
+     "country": "Canada"},
     # hanzili/canada_sde_intern_position removed: 404 on both main and master,
     # the repo is gone. It was failing every run and showing red in Sources.
     {"name": "Summer2027-Internships", "repo": "SimplifyJobs/Summer2027-Internships"},
@@ -349,13 +377,14 @@ MAX_AGE_HOURS = 168
 # longer triggers an instant alert (that still uses MAX_AGE_HOURS).
 STRICT_MAX_AGE_HOURS = 336
 
-# The cycle being targeted, as (year, month) of its first month.
-# Winter 2027 starts January 2027. Any posting whose cycle label points at a
-# cycle EARLIER than this is rejected outright -- Fall 2026 recruiting is over,
-# so those postings are dead weight. Later cycles (Summer 2027, Fall 2027) are
-# not rejected, only demoted to the loose tier.
-# Bump this when you move on to the next cycle.
-TARGET_CYCLE = (2027, 1)
+# The cycles being targeted, as (year, month) of their first month. Winter
+# 2027 starts January 2027 and Summer 2027 starts May 2027; both can reach
+# strict, and so can anything between them. Any posting whose cycle labels
+# all point EARLIER than the first one is rejected outright -- Fall 2026
+# recruiting is over, so those postings are dead weight. Cycles after the
+# last one (Fall 2027) are not rejected, only demoted to the loose tier.
+# Move these on when a cycle's recruiting closes.
+TARGET_CYCLES = [(2027, 1), (2027, 5)]
 
 # Warn me if more than this share of sources fail in one run. A silently
 # broken scraper looks exactly like a quiet hiring week.
@@ -363,20 +392,23 @@ HEALTH_FAIL_THRESHOLD = 0.2
 
 # Automatic discovery. Every run mines Canadian postings (mostly tracker rows)
 # for the employer boards they link to, and scrapes boards that are not
-# configured above until DISCOVERY_TIME_BUDGET_S seconds have passed since the
-# fetch began, or DISCOVERY_MAX_BOARDS boards (0 turns discovery off). The
+# configured above for DISCOVERY_TIME_BUDGET_S seconds after the configured
+# sources finish, or DISCOVERY_MAX_BOARDS boards (0 turns discovery off). The
 # DISCOVERY_TOP_BOARDS with the most Canadian postings go first every run; the
-# rest take turns, least recently scraped first. The budget leaves headroom
-# under the workflow's 25-minute timeout for seeding, rendering and committing.
+# rest take turns, least recently scraped first. Discovery, retries and
+# sniffing all stop FETCH_MAX_S seconds after the fetch began, whatever the
+# configured sources took, which leaves headroom under the workflow's 25-minute
+# timeout for descriptions, seeding, rendering and committing.
 # A board drops out after 5 failures in a row or 30 days without a Canadian
 # posting. See them with: python radar.py --discovered
 DISCOVERY_MAX_BOARDS = 300
 DISCOVERY_TIME_BUDGET_S = 330
+FETCH_MAX_S = 900
 DISCOVERY_TOP_BOARDS = 40
 
 # How many discovered boards may be promoted into auto_companies.py. Ranked by
 # strict hits, then student hits, then how often Canadian postings linked them.
-PROMOTE_MAX = 40
+PROMOTE_MAX = 60
 
 # Unrecognised careers sites that Canadian tracker postings link to are sniffed
 # for a supported ATS, this many per run, each host at most once a fortnight.
@@ -392,11 +424,13 @@ CLOSED_AFTER_MISSES = 2
 # Job descriptions. A tech role in the commute area with no AI word in its
 # title has its description read, and is promoted to strict when it names at
 # least AI_DESC_MIN_TERMS distinct ML terms (PyTorch, LLMs, model training,
-# ...). Each posting is read once; DESC_PER_RUN and DESC_TIME_BUDGET_S cap one
-# run, and whatever is left over is read on the next.
+# ...). A student role rejected for naming no Canadian location is read too,
+# since the posting page often names the city. Each posting is read once;
+# DESC_PER_RUN and DESC_TIME_BUDGET_S cap one run, and whatever is left over
+# is read on the next.
 AI_DESC_MIN_TERMS = 3
-DESC_PER_RUN = 80
-DESC_TIME_BUDGET_S = 120
+DESC_PER_RUN = 150
+DESC_TIME_BUDGET_S = 180
 
 # Thread pool width for source fetching. Requests to one host are serialised
 # by the politeness gap anyway, so this mostly overlaps different boards.

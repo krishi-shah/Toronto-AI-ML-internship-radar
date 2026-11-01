@@ -130,8 +130,8 @@ class TestLooseTier(unittest.TestCase):
     def test_business_intern_in_canada(self):
         self.assertEqual(tier("Product Management Intern"), LOOSE)
 
-    def test_summer_2027_demoted_out_of_strict(self):
-        self.assertEqual(tier("Machine Learning Intern, Summer 2027"), LOOSE)
+    def test_fall_2027_demoted_out_of_strict(self):
+        self.assertEqual(tier("Machine Learning Intern, Fall 2027"), LOOSE)
 
     def test_later_cycle_is_never_rejected(self):
         self.assertIsNotNone(tier("Data Science Intern (S27)"))
@@ -214,7 +214,7 @@ class TestOtherFields(unittest.TestCase):
 class TestPastCycles(unittest.TestCase):
     """Cycles earlier than the target are rejected: that recruiting is over.
 
-    Target is Winter 2027 (companies.TARGET_CYCLE = (2027, 1)).
+    Targets are Winter and Summer 2027 (companies.TARGET_CYCLES).
     """
 
     def test_fall_2026_is_rejected(self):
@@ -234,6 +234,24 @@ class TestPastCycles(unittest.TestCase):
 
     def test_future_cycle_is_only_demoted(self):
         self.assertEqual(tier("ML Intern, Fall 2027"), LOOSE)
+
+    def test_summer_2027_is_a_target(self):
+        self.assertEqual(tier("Machine Learning Intern, Summer 2027"), STRICT)
+        self.assertEqual(tier("ML Intern (S27)"), STRICT)
+
+    def test_cycle_between_targets_is_a_target(self):
+        self.assertEqual(tier("ML Intern, Spring 2027"), STRICT)
+
+    def test_cycle_label_alone_is_student_level(self):
+        """Regression: no intern wording, so these were "not student level"."""
+        self.assertEqual(tier("ML Engineer - Winter 2027"), STRICT)
+        self.assertEqual(tier("Software Engineer, Summer 2027"), LOOSE)
+        post = p("Machine Learning Engineer", raw={"details": "4mo - Summer 2027"})
+        self.assertEqual(classify(post).tier, STRICT)
+
+    def test_past_cycle_label_is_not_student_level(self):
+        self.assertIsNone(tier("ML Engineer - Fall 2026"))
+        self.assertIsNone(tier("Machine Learning Engineer"))
 
     def test_multi_cycle_posting_keeps_the_best_one(self):
         """A req spanning several terms is live if any of them is the target."""
@@ -750,6 +768,32 @@ class TestCommuteArea(unittest.TestCase):
 
     def verdict(self, location):
         return classify(p("ML Intern", location=location))
+
+    def test_gta_towns_are_in_the_commute_area(self):
+        """Regression: these were "no Canadian location" without ", ON"."""
+        for location in [
+            "Aurora", "Thornhill", "Concord", "Stouffville", "Caledon", "Bolton",
+            "King City", "Unionville", "Georgetown", "Halton Hills",
+            "Orangeville", "Bowmanville", "Clarington", "Burlington", "Milton",
+            "Aurora, ON", "Concord, Ontario",
+        ]:
+            with self.subTest(location=location):
+                self.assertEqual(self.verdict(location).tier, STRICT)
+
+    def test_canada_country_code_after_an_ontario_city(self):
+        """Regression: "Markham, CA" read as California."""
+        for location in ["Markham, CA", "Waterloo, CA", "Burlington, CA"]:
+            with self.subTest(location=location):
+                self.assertEqual(self.verdict(location).tier, STRICT)
+
+    def test_same_named_us_towns_are_still_rejected(self):
+        for location in [
+            "Concord, CA", "King City, CA", "Aurora, IL", "Aurora, CO",
+            "Burlington, MA", "Burlington, VT", "Milton, MA", "Georgetown, TX",
+            "Cambridge", "Cambridge, MA",
+        ]:
+            with self.subTest(location=location):
+                self.assertIsNone(self.verdict(location).tier)
 
     def test_far_ontario_is_rejected(self):
         for location in [

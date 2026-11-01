@@ -15,6 +15,7 @@ from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import notify  # noqa: E402
 import radar  # noqa: E402
 import sources  # noqa: E402
 from core import (  # noqa: E402
@@ -210,6 +211,37 @@ class TestClosedPostings(StoreCase):
         self.assertEqual(self.store.count_jobs(STRICT, 336), 0)
 
 
+class TestUndatedSeededRows(StoreCase):
+    """A seed's undated rows have no known age; they show while still listed."""
+
+    def seed(self, uid, title="Machine Learning Intern"):
+        self.store.record(self.post(uid, title, source="A"), STRICT, "t", seeded=True)
+        self.store.commit()
+
+    def test_listed_after_the_window_while_still_live(self):
+        self.seed("a")
+        old = int(time.time()) - 30 * 86400
+        self.store.conn.execute("UPDATE jobs SET first_seen = ?", (old,))
+        self.assertEqual(self.store.count_jobs(STRICT, 336), 1)
+        self.store.mark_present("A", ["a"], int(time.time()) + 1)
+        self.assertEqual(self.store.count_jobs(STRICT, 336), 1)
+
+    def test_dropped_when_no_longer_seen(self):
+        self.seed("a")
+        old = int(time.time()) - 30 * 86400
+        self.store.conn.execute("UPDATE jobs SET first_seen = ?, last_seen = ?", (old, old))
+        self.assertEqual(self.store.count_jobs(STRICT, 336), 0)
+
+    def test_sorted_after_dated_rows_and_labelled(self):
+        self.seed("a", "ML Intern A")
+        self.store.record(self.post("b", "ML Intern B", posted_at=int(time.time()) - 86400 * 3),
+                          STRICT, "t")
+        self.store.commit()
+        rows = self.store.recent_jobs(STRICT, 5, 336)
+        self.assertEqual([r["uid"] for r in rows], ["b", "a"])
+        self.assertEqual(notify._when_label(rows[1]), ("date unknown", False))
+
+
 class TestTerm(StoreCase):
     def test_term_is_stored(self):
         self.store.record(self.post("a", "ML Intern (Summer 2026, Winter 2027)"), STRICT, "t")
@@ -314,6 +346,29 @@ class TestDescriber(StoreCase):
         self.assertEqual(promoted, 1)
         self.assertEqual(self.store.count_jobs(STRICT, 336), 1)
         self.assertEqual(self.store.count_jobs(LOOSE, 168), 0)
+
+    def test_backfill_never_demotes_a_row(self):
+        """Regression: the rebuilt posting has no raw fields, so a loose row
+        whose student signal came from ``employmentType`` was rejected."""
+        post = Posting("Acme", "Software Developer", "Toronto, ON", "u", "g:1",
+                       raw={"employmentType": "Intern"})
+        self.assertEqual(classify(post).tier, LOOSE)
+        self.store.record(post, LOOSE, "no AI signal")
+        self.store.commit()
+        with mock.patch.object(sources, "describe", return_value=sources.Description("SQL")):
+            self.describer().backfill(168)
+        self.assertEqual(self.store.count_jobs(LOOSE, 168), 1)
+
+    def test_backfill_places_a_rejected_student_role(self):
+        post = Posting("Acme", "Machine Learning Intern", "2 Locations", "u", "g:1")
+        self.assertEqual(classify(post).reason, "no Canadian location")
+        self.store.record(post, None, "no Canadian location")
+        self.store.commit()
+        desc = sources.Description("Python", "Toronto, ON, Canada")
+        with mock.patch.object(sources, "describe", return_value=desc):
+            promoted = self.describer().backfill(168)
+        self.assertEqual(promoted, 1)
+        self.assertEqual(self.store.count_jobs(STRICT, 336), 1)
 
     def test_page_location_places_a_careers_link(self):
         """A careers-page link names no city; its posting page does."""

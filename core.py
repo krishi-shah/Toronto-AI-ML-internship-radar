@@ -302,9 +302,8 @@ _ONTARIO_TERMS = [
     r"\bbrantford\b",
     r"\bsarnia\b",
     r"\bthunder[\s\-]?bay\b",
+    # Bare "Cambridge" is almost always the UK or Massachusetts in tech.
     r"\bcambridge,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
-    r"\bburlington,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
-    r"\bmilton,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
     r"\blondon,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
     r"\bkingston,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
     r"\bwindsor,?\s*(?:(?-i:ON)(?![\w-])|ontario\b)",
@@ -321,13 +320,41 @@ _ONTARIO_TERMS = [
 #
 # The guard reads: not followed by a comma and then somewhere that is not
 # Ontario or Canada. "Waterloo, ON" and "Waterloo, Ontario" survive it;
-# "Waterloo, IA" and "Waterloo, Iowa" do not.
-_ELSEWHERE = (
-    r"(?!\s*,\s*(?!ON(?![\w-]))(?:[A-Za-z]{2}(?![\w-])|iowa|ohio|illinois|"
+# "Waterloo, IA" and "Waterloo, Iowa" do not. ", CA" is Canada here, since
+# Workday and others write "Markham, CA"; towns that also exist in California
+# use the strict guard, where ", CA" still rules them out.
+_ELSEWHERE_PLACES = (
+    r"(?:[A-Za-z]{2}(?![\w-])|iowa|ohio|illinois|"
     r"maine|massachusetts|michigan|minnesota|missouri|kansas|indiana|"
     r"wisconsin|georgia|colorado|connecticut|vermont|virginia|new\s+jersey|"
-    r"new\s+york|england|scotland|wales|australia|belgium))"
+    r"new\s+york|england|scotland|wales|australia|belgium)"
 )
+_ELSEWHERE = r"(?!\s*,\s*(?!(?:ON|CA)(?![\w-]))" + _ELSEWHERE_PLACES + ")"
+_ELSEWHERE_STRICT = r"(?!\s*,\s*(?!ON(?![\w-]))" + _ELSEWHERE_PLACES + ")"
+
+# GTA towns that are not big enough to be unambiguous, plus a few that also
+# exist in the US or the UK (Aurora IL, Bolton UK, Burlington VT).
+_GTA_TOWNS = [
+    r"\baurora\b",
+    r"\bthornhill\b",
+    r"\bstouffville\b",
+    r"\bcaledon\b",
+    r"\bbolton\b",
+    r"\bunionville\b",
+    r"\bgeorgetown\b",
+    r"\bhalton[\s\-]?hills\b",
+    r"\borangeville\b",
+    r"\bbowmanville\b",
+    r"\bclarington\b",
+    r"\bburlington\b",
+    r"\bmilton\b",
+]
+
+# GTA towns that California has too: "Concord, CA" is the Bay Area one.
+_GTA_TOWNS_ALSO_IN_CALIFORNIA = [
+    r"\bconcord\b",
+    r"\bking[\s\-]?city\b",
+]
 
 _AMBIGUOUS_ONTARIO_CITIES = [
     r"\bwaterloo\b",
@@ -344,13 +371,15 @@ _AMBIGUOUS_ONTARIO_CITIES = [
     r"\bpeterborough\b",
     r"\bsudbury\b",
     r"\bniagara\b",
-]
+] + _GTA_TOWNS
 
 # A street address is not the city: RTX's "1 Hamilton Rd" is in Connecticut.
 _NOT_STREET = r"(?!\s+(?:rd|road|st|street|ave|avenue|dr|drive|blvd|way|lane|ln)\b)"
 
 _ONTARIO_TERMS += [
     city + _NOT_STREET + _ELSEWHERE for city in _AMBIGUOUS_ONTARIO_CITIES
+] + [
+    city + _NOT_STREET + _ELSEWHERE_STRICT for city in _GTA_TOWNS_ALSO_IN_CALIFORNIA
 ]
 
 # The commute area: the GTA plus Hamilton, Waterloo Region and Guelph. The
@@ -367,7 +396,6 @@ _COMMUTE_TERMS = [
     r"\bvaughan\b",
     r"\bnorth[\s\-]?york\b",
     r"\betobicoke\b",
-    r"\bthornhill\b",
     r"\boshawa\b",
     r"\bajax\b",
     r"\bkitchener\b",
@@ -375,12 +403,13 @@ _COMMUTE_TERMS = [
     r"\bygk\b",
 ] + [
     city + _NOT_STREET + _ELSEWHERE
-    for city in (
+    for city in [
         r"\bwaterloo\b", r"\bhamilton\b", r"\bmarkham\b", r"\boakville\b",
         r"\bwoodbridge\b", r"\brichmond[\s\-]?hill\b", r"\bscarborough\b",
-        r"\bwhitby\b", r"\bpickering\b", r"\bnewmarket\b", r"\baurora\b",
-        r"\bconcord\b", r"\bburlington\b", r"\bmilton\b", r"\bcambridge\b",
-    )
+        r"\bwhitby\b", r"\bpickering\b", r"\bnewmarket\b", r"\bcambridge\b",
+    ] + _GTA_TOWNS
+] + [
+    city + _NOT_STREET + _ELSEWHERE_STRICT for city in _GTA_TOWNS_ALSO_IN_CALIFORNIA
 ]
 
 # Ontario, but too far to commute from Toronto.
@@ -708,7 +737,8 @@ def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
       * an internship-level signal (new-grad-only roles cap at loose)
       * a location in the commute area (the GTA, Hamilton, Waterloo Region,
         Guelph), Ontario with no city named, or remote within Canada
-      * no cycle token pointing exclusively at a season other than Winter 2027
+      * no cycle token pointing exclusively at a season outside the targeted
+        cycles (Winter and Summer 2027)
 
     Anything else student-level in the commute area (or in Canada with no
     province) falls through to loose only when the title is tech-relevant. A
@@ -729,6 +759,8 @@ def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
     level_text = f"{title} | {loc_blob} | {(posting.raw or {}).get('employmentType', '')}"
     internship = bool(STUDENT_RE.search(level_text))
     new_grad = not internship and bool(NEWGRAD_RE.search(level_text))
+    if not (internship or new_grad) and names_live_cycle(posting):
+        internship = True
     if not (internship or new_grad):
         return Verdict(REJECTED, "not student level", student=False)
 
@@ -830,12 +862,13 @@ def _cycle_blob(posting: Posting) -> str:
 
 
 def _cycle_verdict(text: str) -> str:
-    """Classify a posting's cycle labels against the targeted cycle.
+    """Classify a posting's cycle labels against the targeted cycles.
 
-    Returns ``target`` (the cycle being hunted), ``later`` (a future cycle,
-    demoted to loose), ``past`` (recruiting is over, rejected), or ``unknown``
-    when no cycle is named at all -- which stays eligible for strict, because
-    plenty of real postings never name a term.
+    Returns ``target`` (a cycle being hunted, or one between the first and
+    last of them), ``later`` (a future cycle, demoted to loose), ``past``
+    (recruiting is over, rejected), or ``unknown`` when no cycle is named at
+    all -- which stays eligible for strict, because plenty of real postings
+    never name a term.
 
     A posting naming several cycles keeps the best one: "Summer 2026, Winter
     2027, Fall 2027" is a live Winter 2027 opportunity, not a dead 2026 one.
@@ -844,23 +877,43 @@ def _cycle_verdict(text: str) -> str:
     if not cycles:
         return "unknown"
 
-    target = _target_cycle()
-    if any(c == target for c in cycles):
+    targets = _target_cycles()
+    first, last = targets[0], targets[-1]
+    if any(first <= c <= last for c in cycles):
         return "target"
-    if any(c > target for c in cycles):
+    if any(c > last for c in cycles):
         return "later"
     return "past"
 
 
-def _target_cycle() -> tuple[int, int]:
-    """The cycle being targeted, from config, defaulting to Winter 2027."""
+def _target_cycles() -> list[tuple[int, int]]:
+    """The cycles being targeted, sorted, from config.
+
+    Defaults to Winter and Summer 2027. ``TARGET_CYCLE`` (a single cycle) is
+    still read when ``TARGET_CYCLES`` is absent.
+    """
     try:
         import companies
 
-        year, month = companies.TARGET_CYCLE
-        return int(year), int(month)
+        raw = getattr(companies, "TARGET_CYCLES", None) or [companies.TARGET_CYCLE]
+        return sorted((int(year), int(month)) for year, month in raw)
     except Exception:  # noqa: BLE001 - config is optional for library use
-        return (2027, 1)
+        return [(2027, 1), (2027, 5)]
+
+
+def _target_cycle() -> tuple[int, int]:
+    """The earliest targeted cycle: anything before it is over."""
+    return _target_cycles()[0]
+
+
+def names_live_cycle(posting: Posting) -> bool:
+    """Does the title or a term field name a targeted or later cycle?
+
+    "ML Engineer - Winter 2027" carries no intern wording, but a work term
+    attached to the role only makes sense for a student.
+    """
+    first = _target_cycle()
+    return any(c >= first for c in parse_cycles(f"{posting.title} | {_cycle_blob(posting)}"))
 
 
 _SEASON_NAME = {1: "Winter", 4: "Spring", 5: "Summer", 9: "Fall"}
@@ -1373,6 +1426,8 @@ class Store:
     # When both exist, the employer's own copy is the one listed, and only the
     # employer's board closing a role is taken as the role being gone.
     _AGGREGATOR = "(uid LIKE 'tracker:%' OR uid LIKE 'getro:%' OR uid LIKE 'consider:%')"
+    # Recorded by a seed with no provider date: its real age is unknown.
+    _UNDATED_SEED = "(posted_at = 0 AND seeded = 1)"
 
     def _feed_query(self, tier: str, max_age_hours: Optional[int]) -> tuple[str, list]:
         """SQL for the feed rows of one tier, one row per role, and its params."""
@@ -1380,12 +1435,16 @@ class Store:
         closed_after = closed_after_misses()
         params: list = [closed_after, tier]
         # A posting with no provider date that was recorded during the seed has
-        # an unknown age -- first_seen is just when seeding ran, so it would
-        # masquerade as brand new forever. Undated rows only count as fresh
-        # when the radar genuinely discovered them after seeding.
-        clause = " AND NOT (posted_at = 0 AND seeded = 1)"
+        # an unknown age -- first_seen is just when seeding ran, so it is not
+        # judged by that. It stays listed while its source keeps returning it
+        # in complete listings (``last_seen``), labelled "date unknown" and
+        # sorted after dated rows (see ``recent_jobs``).
+        clause = ""
         if max_age_hours:
-            clause += f" AND {age_expr} >= ?"
+            clause += (
+                f" AND (CASE WHEN {self._UNDATED_SEED} THEN last_seen"
+                f" ELSE {age_expr} END) >= ?"
+            )
             params.append(int(time.time()) - max_age_hours * 3600)
         params.append(closed_after)
         # One row per role. A role on both its own board and a tracker is
@@ -1425,7 +1484,8 @@ class Store:
         """
         sql, params = self._feed_query(tier, max_age_hours)
         cur = self.conn.execute(
-            f"{sql} ORDER BY shown_at DESC LIMIT ?", params + [limit]
+            f"{sql} ORDER BY ({self._UNDATED_SEED}) ASC, shown_at DESC LIMIT ?",
+            params + [limit],
         )
         return cur.fetchall()
 
@@ -1470,14 +1530,17 @@ class Store:
         )
 
     def description_backlog(self, limit: int, max_age_hours: int) -> list[sqlite3.Row]:
-        """Stored loose rows a description might promote, newest first.
+        """Stored rows a description might promote, newest first.
 
-        Only rows that missed strict for want of an AI word in the title, that
-        are still inside the feed window, and whose description was never read.
+        Loose rows that missed strict for want of an AI word in the title, and
+        student roles rejected for naming no Canadian location -- the posting
+        page often names the city. Only rows still inside the feed window
+        whose description was never read.
         """
         cutoff = int(time.time()) - max_age_hours * 3600
         return self.conn.execute(
-            "SELECT * FROM jobs WHERE tier = ? AND reason = 'no AI signal'"
+            "SELECT * FROM jobs WHERE ((tier = ? AND reason = 'no AI signal')"
+            "   OR (tier IS NULL AND reason = 'no Canadian location'))"
             " AND COALESCE(NULLIF(posted_at, 0), first_seen) >= ?"
             " AND uid NOT IN (SELECT uid FROM descriptions)"
             " ORDER BY COALESCE(NULLIF(posted_at, 0), first_seen) DESC LIMIT ?",
@@ -1506,6 +1569,31 @@ class Store:
             "SELECT tier, COUNT(*) c FROM jobs GROUP BY tier"
         )
         return {r["tier"] or "rejected": r["c"] for r in cur.fetchall()}
+
+    def reason_counts(self, samples: int = 5) -> list[tuple[str, str, int, list[str]]]:
+        """``(tier, reason, count, sample titles)`` for every stored verdict.
+
+        Rejected rows have no tier, so they report as ``rejected``. Samples
+        are the newest titles, which is what a filter change should be judged
+        against.
+        """
+        rows = self.conn.execute(
+            "SELECT COALESCE(tier, 'rejected') t, COALESCE(reason, '') r, COUNT(*) c"
+            " FROM jobs GROUP BY 1, 2 ORDER BY c DESC"
+        ).fetchall()
+        out = []
+        for row in rows:
+            titles = [
+                f"{s['company']} — {s['title']}"
+                for s in self.conn.execute(
+                    "SELECT company, title FROM jobs"
+                    " WHERE COALESCE(tier, 'rejected') = ? AND COALESCE(reason, '') = ?"
+                    " ORDER BY first_seen DESC LIMIT ?",
+                    (row["t"], row["r"], samples),
+                )
+            ]
+            out.append((row["t"], row["r"], row["c"], titles))
+        return out
 
     # -- health -----------------------------------------------------------
 

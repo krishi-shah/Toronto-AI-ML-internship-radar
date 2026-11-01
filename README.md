@@ -2,7 +2,7 @@
 
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
-A live feed of Winter 2027 AI/ML internships and co-ops **in and around
+A live feed of Winter and Summer 2027 AI/ML internships and co-ops **in and around
 Toronto**. GitHub
 Actions re-scrapes every source six times a day and rewrites the listings below,
 so the feed stays current with my laptop closed. Zero cost: no paid APIs, no
@@ -19,10 +19,12 @@ Three rules shape what you see:
   newest first, each role labelled *Today*,
   *Yesterday* or *N days ago* so you can see at a glance what is still worth
   racing for. Older postings stay in the database so dedupe keeps working, but
-  never reach the feed.
-- **Only live cycles.** Winter 2027 is the target. Fall 2026 and earlier are
-  rejected outright — that recruiting is over. Summer 2027 and later are kept
-  but demoted below the strict tier.
+  never reach the feed. A role whose board gives no posting date and that was
+  already open when the database was built is listed as *date unknown*, last,
+  for as long as its board still lists it.
+- **Only live cycles.** Winter and Summer 2027 are the targets. Fall 2026 and
+  earlier are rejected outright — that recruiting is over. Fall 2027 and later
+  are kept but demoted below the strict tier.
 - **One row per role.** The same posting reached through its own board, a
   second careers site and a tracker that retitled it is listed once, and a
   posting its board stops listing drops out of the feed.
@@ -477,7 +479,7 @@ Two other things worth knowing about scheduled workflows:
    leave the schedule to it.
 
 Do the same seed-then-run whenever the cache prefix in the workflow is bumped
-(currently `radar-db-v4-`). Stored rows keep the tier they were classified
+(currently `radar-db-v6-`). Stored rows keep the tier they were classified
 into, so a classifier change only reaches old postings through a fresh DB.
 
 No secrets to configure. The workflow commits with the built-in `GITHUB_TOKEN`
@@ -524,6 +526,7 @@ python radar.py --probe <slug>…  guess a board token on Ashby, Greenhouse, Lev
 python radar.py --test           fire one fake alert through the channels
 python radar.py --health         per-source last success, last error, counts
 python radar.py --discovered     boards found from Canadian postings, with status
+python radar.py --reasons        stored postings by tier and reason, with sample titles
 ```
 
 ## Alert channels
@@ -547,15 +550,16 @@ Two other knobs live in the same file:
 |---|---|
 | `MAX_AGE_HOURS = 168` | How fresh a posting must be to appear in loose and other fields, and to trigger an alert. 168 = seven days; drop to 48 for a stricter feed. |
 | `STRICT_MAX_AGE_HOURS = 336` | How long strict (AI/ML) roles stay listed. 336 = two weeks. Never shorter than `MAX_AGE_HOURS`. |
-| `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the fetch begins during which discovered boards keep being scraped. Keep it well under the workflow's 25-minute timeout. |
+| `DISCOVERY_TIME_BUDGET_S = 330` | Seconds after the configured sources finish during which discovered boards keep being scraped. |
+| `FETCH_MAX_S = 900` | Hard stop for discovery, retries and sniffing, counted from the start of the fetch. Keep it well under the workflow's 25-minute timeout. |
 | `DISCOVERY_MAX_BOARDS = 300` | Hard cap on discovered boards per run; 0 turns discovery off. |
 | `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. A page that names no ATS waits 30 days, one that named a platform waits 7, and a fetch error waits 14. Leftover budget sniffs another batch. |
-| `PROMOTE_MAX = 40` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
-| `TARGET_CYCLE = (2027, 1)` | Winter 2027. Anything earlier is rejected; anything later is demoted. Bump it next cycle. |
+| `PROMOTE_MAX = 60` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
+| `TARGET_CYCLES = [(2027, 1), (2027, 5)]` | Winter and Summer 2027. Anything earlier than the first is rejected; anything later than the last is demoted. A title naming one of them (*ML Engineer – Winter 2027*) counts as a student role. Bump it next cycle. |
 | `PORTFOLIO_BOARDS` | VC job boards on Getro or Consider (Inovia, Real Ventures, Golden Ventures), each listing roles at many portfolio startups. |
 | `CLOSED_AFTER_MISSES = 2` | A posting leaves the feed once its source has returned a complete listing without it this many runs in a row. |
 | `AI_DESC_MIN_TERMS = 3` | Distinct ML terms (PyTorch, LLMs, model training, …) a job description needs to make a tech role strict. |
-| `DESC_PER_RUN = 80`, `DESC_TIME_BUDGET_S = 120` | Cap on job descriptions read per run. Each posting is read once; the backlog drains over later runs. |
+| `DESC_PER_RUN = 150`, `DESC_TIME_BUDGET_S = 180` | Cap on job descriptions read per run: tech student roles with no AI word in the title, and student roles rejected for naming no Canadian location (the posting page often names the city). Each posting is read once; the backlog drains over later runs. A description only ever promotes a row. |
 
 Backends share one small interface in [notify.py](notify.py) — `strict`,
 `digest`, `health`. Adding a phone channel later (email, ntfy, a Discord
@@ -664,13 +668,15 @@ feeds discovery below.
 **Discovered boards.** Every Canadian posting the trackers and portfolio
 boards carry links to the employer's own board, so each run mines those links
 (Ashby, Greenhouse, Lever, SmartRecruiters, Workable, both Workday URL forms,
-Oracle, Eightfold, Jibe, iCIMS, BambooHR, Rippling and JazzHR) for boards not already in `companies.py`. They are remembered in a
+Oracle, Eightfold, Jibe, iCIMS, SuccessFactors, BambooHR, Rippling, JazzHR,
+Recruitee, Teamtailor, Breezy and Personio) for boards not already in `companies.py`. They are remembered in a
 `discovered` table and scraped as a second wave, which surfaces roles no
 tracker lists.
 
 The wave runs on a time budget rather than a fixed count: boards are scraped
-until `DISCOVERY_TIME_BUDGET_S` (330) seconds after the fetch began, leaving
-headroom under the 10-minute job timeout. The 40 boards with the most Canadian
+for `DISCOVERY_TIME_BUDGET_S` (330) seconds after the configured sources
+finish, and never past `FETCH_MAX_S` (900) seconds after the fetch began,
+leaving headroom under the 25-minute job timeout. The 40 boards with the most Canadian
 postings go first every run; the rest follow least recently scraped first, so
 a board the budget cut off gets its turn next run. A skipped board is not a
 failure. A board that fails five runs in a row, or has had no Canadian
@@ -749,7 +755,8 @@ Two tiers, because a wide net plus one channel equals noise.
 - an internship-level signal (intern, co-op, student, placement, work term, …)
 - a location in the commute area, Ontario with no city named, **or** remote
   within Canada
-- no cycle token pointing exclusively at a season other than Winter 2027
+- no cycle token pointing exclusively at a season after Summer 2027 (a title
+  naming Winter or Summer 2027 also counts as the internship-level signal)
 
 **loose** — tech-relevant student roles in the commute area that miss
 strict, plus
@@ -757,7 +764,7 @@ roles that say only "Canada" with no province. Without an AI signal, the title
 needs a tech term (software, developer, engineering, data, analytics, cloud,
 security, QA, IT, product, R&D, …) to land here. Full-time early-career
 roles (new grad, entry level, early talent) are capped here even with an AI
-title: they are a different race from a Winter 2027 co-op.
+title: they are a different race from a 2027 co-op.
 
 **other fields** — student roles in Ontario with no AI signal whose title
 either names a discipline with no AI angle (analog and mixed-signal design,
@@ -782,15 +789,21 @@ as the Toronto role it is. Then:
 
 - **Ontario outside the commute area is rejected.** The commute area is the
   GTA (Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville,
-  Burlington, Milton, Pickering, Ajax, Whitby, Oshawa, Newmarket, Aurora, …),
-  Hamilton, Kitchener-Waterloo, Cambridge and Guelph. A posting naming only
+  Burlington, Milton, Pickering, Ajax, Whitby, Oshawa, Newmarket, Aurora,
+  Thornhill, Stouffville, Caledon, Georgetown, Bowmanville, Orangeville, …),
+  Hamilton, Kitchener-Waterloo, Cambridge and Guelph. Town names shared with
+  US or UK places (Burlington, Milton, Cambridge, Aurora, Concord, …) count only
+  when the posting does not pair them with a foreign state or country; a bare
+  "Cambridge" is read as the UK or Massachusetts. A posting naming only
   Ottawa, Kanata, London, Kingston, Windsor, Barrie, Niagara or the north is
   rejected; one naming Ottawa *and* Toronto is kept. "Ontario, Canada" with no
   city is kept, since it is nearly always a Toronto head office, and so is
   remote work from anywhere in Ontario.
 - **Remote in Canada is kept.** It names no province, and it is workable from
   Toronto. Bare "Remote" is rejected: it says nothing about the country, and
-  in practice it is almost always a US role.
+  in practice it is almost always a US role. The exception is a source that
+  only lists Canadian roles (a Canadian tracker, a board searched with its own
+  Canada filter): its rows are marked Canadian, so its "Remote" means Canada.
 - **Bare "Canada" is capped at loose.** No province named, so it cannot be
   confirmed as Ontario, but it is plausibly workable.
 - **The rest of Canada is rejected**, not demoted. Vancouver, Montreal,
@@ -815,6 +828,9 @@ after the name means it is an address, not the city, so RTX's
 
 A posting naming several cycles keeps the best one: *"Summer 2026, Winter 2027,
 Fall 2027"* is a live Winter 2027 opportunity, not a dead 2026 one.
+
+A Toronto city followed by the country code (*Markham, CA*) is Canada, not
+California; only a US state or a foreign country after the name rejects it.
 
 ### Freshness
 
@@ -936,7 +952,7 @@ for RBC, BMO, Sun Life and Autodesk among them) into `auto_companies.py` on
 the next normal run.
 
 Strict is small on purpose: in `--check` it counts only roles posted in the
-last seven days (the alert window) that are Winter 2027 (or undated) AI/ML internships in Ontario.
+last seven days (the alert window) that are Winter or Summer 2027 (or undated) AI/ML internships in Ontario.
 
 Endpoint shapes were confirmed against live companies rather than assumed.
 Corrections found along the way:
@@ -952,7 +968,7 @@ Corrections found along the way:
 | A tracker's apply column holds the job URL | Some wrap a shields.io badge in a link, so the first URL in the cell was the badge image |
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
-| `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are hidden rather than shown as new |
+| `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are labelled *date unknown* and listed last, never shown as new |
 | The state DB can just be committed | ~5 MB of SQLite every run is gigabytes of binary history a year; it lives in `actions/cache` instead |
 | A missing location is harmless in loose | "Remote", blank and "Multiple Locations" rows were overwhelmingly US roles; now a Canadian signal is required in every tier |
 | Workday posting URLs all look like `tenant.wdN.myworkdayjobs.com` | Magna, Sysco and others link as `wdN.myworkdaysite.com/recruiting/tenant/Site`; the same tenant answers on the usual host, so discovery maps one to the other |
@@ -1004,8 +1020,17 @@ Corrections found along the way:
   no ATS in the HTML, so sniffing finds nothing there. Those hosts are then
   left alone for 30 days.
 - **Workday "N Locations"** rows are resolved only for student and new-grad
-  titles, up to 40 per board per run; any beyond that are dropped as having
-  no Canadian location.
+  titles (or titles naming a 2027 work term), up to 80 per board per run; any
+  beyond that are dropped as having no Canadian location until a description
+  read places them.
+- **Small GTA towns can be missed.** The commute list names the towns that
+  show up in postings; one it does not know (a hamlet, a business park name)
+  with no "ON" after it is rejected as having no Canadian location.
+- **Workday boards with no country facet** (Intel offers only city facets)
+  are searched globally, so a big global board can still fill the search cap
+  with other countries before reaching Toronto.
+- **Avature, Phenom and Job Bank** have no adapter; their roles arrive only
+  through the trackers.
 - **Datacenter IPs get blocked more often** than a home connection, so a
   source can pass locally and fail on the runner. The Sources table in the feed
   is where that shows up.

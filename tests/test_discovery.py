@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import radar  # noqa: E402
 import sources  # noqa: E402
-from core import Posting, Store  # noqa: E402
+from core import STRICT, Posting, Store, classify  # noqa: E402
 
 
 def setUpModule():
@@ -289,6 +289,34 @@ class TestDiscoveryWave(StoreCase):
         row = self.store.discovered_rows()[0]
         self.assertEqual((row["fails"], row["last_attempt"]), (0, None))
 
+    def test_budget_starts_after_the_configured_sources(self):
+        """A slow configured wave must not eat discovery's whole budget."""
+        tracker_row = post("https://jobs.lever.co/kepler/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab")
+        called = []
+
+        def slow_tracker():
+            time.sleep(1.2)
+            return [tracker_row]
+
+        tasks = [("Tracker [tracker]", slow_tracker, False)]
+        with mock.patch.object(radar, "build_tasks", return_value=tasks), \
+                mock.patch.dict(sources.ADAPTERS, {"lever": lambda *a: called.append(a) or []}), \
+                mock.patch.object(radar.cfg, "COMPANIES", []), \
+                mock.patch.object(radar.cfg, "DISCOVERY_TIME_BUDGET_S", 1):
+            radar.fetch_all(None, self.store, quiet=True)
+        self.assertEqual(len(called), 1)
+
+    def test_whole_fetch_cap_still_stops_discovery(self):
+        tracker_row = post("https://jobs.lever.co/kepler/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab")
+        called = []
+        tasks = [("Tracker [tracker]", lambda: [tracker_row], False)]
+        with mock.patch.object(radar, "build_tasks", return_value=tasks), \
+                mock.patch.dict(sources.ADAPTERS, {"lever": lambda *a: called.append(a) or []}), \
+                mock.patch.object(radar.cfg, "COMPANIES", []), \
+                mock.patch.object(radar.cfg, "FETCH_MAX_S", -1):
+            radar.fetch_all(None, self.store, quiet=True)
+        self.assertEqual(called, [])
+
     def test_discovery_can_be_turned_off(self):
         tracker_row = post("https://jobs.lever.co/kepler/1b2c3d4e-aaaa-bbbb-cccc-1234567890ab")
         tasks = [("Tracker [tracker]", lambda: [tracker_row], False)]
@@ -507,6 +535,56 @@ class TestDefaultLocation(unittest.TestCase):
             tasks = radar.build_tasks(None)
             self.assertEqual(len(tasks), 1)
             self.assertEqual(tasks[0][1]()[0].location, "Toronto, ON")
+
+
+class TestCountryScopedSources(unittest.TestCase):
+    """A Canada-only source's "Remote" rows are remote within Canada."""
+
+    def _tasks(self, companies=(), trackers=(), boards=()):
+        with mock.patch.object(radar.cfg, "COMPANIES", list(companies)), \
+                mock.patch.object(radar.cfg, "AUTO_COMPANIES", []), \
+                mock.patch.object(radar.cfg, "TRACKERS", list(trackers)), \
+                mock.patch.object(radar.cfg, "PORTFOLIO_BOARDS", list(boards)):
+            return radar.build_tasks(None)
+
+    def test_canada_tracker_marks_its_rows(self):
+        rows = [post("u1", location="Remote"), post("u2", location="Seattle, WA")]
+        tracker = {"name": "CA", "repo": "x/y", "country": "Canada"}
+        with mock.patch.object(sources, "tracker", return_value=rows):
+            found = self._tasks(trackers=[tracker])[0][1]()
+        verdicts = [classify(p) for p in found]
+        self.assertEqual(verdicts[0].tier, STRICT)
+        self.assertIsNone(verdicts[1].tier)
+
+    def test_other_trackers_are_left_alone(self):
+        tracker = {"name": "US", "repo": "x/z"}
+        with mock.patch.object(sources, "tracker",
+                               return_value=[post("u1", location="Remote")]):
+            found = self._tasks(trackers=[tracker])[0][1]()
+        self.assertIsNone(classify(found[0]).tier)
+
+    def test_canada_search_platforms_are_scoped_automatically(self):
+        self.assertEqual(radar._country_of({"platform": "jibe"}), "Canada")
+        self.assertEqual(radar._country_of({"platform": "getro"}), "Canada")
+        self.assertEqual(radar._country_of({"platform": "amazon", "token": "CAN"}), "Canada")
+        self.assertEqual(radar._country_of({"platform": "amazon", "token": "USA"}), "")
+        self.assertEqual(radar._country_of({"platform": "greenhouse"}), "")
+
+    def test_existing_country_is_kept(self):
+        row = post("u1", location="Remote")
+        row.raw = {"country": "United States"}
+        thunk = radar._with_country(lambda: [row], "Canada")
+        self.assertEqual(thunk()[0].raw["country"], "United States")
+
+    def test_search_urls_get_readable_labels(self):
+        entries = [
+            {"name": "TELUS", "platform": "successfactors",
+             "token": "https://careers.telus.com/search/?q=intern&locationsearch=Ontario"},
+            {"name": "TELUS", "platform": "successfactors",
+             "token": "https://careers.telus.com/search/?q=co-op&locationsearch=Ontario"},
+        ]
+        labels = [label for label, _thunk, _ai in self._tasks(companies=entries)]
+        self.assertEqual(labels, ["TELUS [successfactors]", "TELUS [successfactors:co-op]"])
 
 
 if __name__ == "__main__":

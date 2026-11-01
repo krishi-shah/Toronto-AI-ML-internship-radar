@@ -289,7 +289,7 @@ class TestOracle(unittest.TestCase):
         http = mock.Mock()
         http.json.return_value = {"items": [{"TotalJobsCount": 1, "requisitionList": [self.REQ]}]}
         [post] = sources.oracle(http, "Definity", self.TOKEN)
-        self.assertEqual(http.json.call_count, len(sources.SEARCH_TERMS))
+        self.assertEqual(http.json.call_count, 1 + len(sources.SEARCH_TERMS))
         self.assertEqual(post.uid, "oracle:hdks.fa.ca2.oraclecloud.com:9347")
         self.assertEqual(post.url, "https://hdks.fa.ca2.oraclecloud.com/hcmUI/"
                                    "CandidateExperience/en/sites/CX_1/job/9347")
@@ -297,6 +297,51 @@ class TestOracle(unittest.TestCase):
         self.assertGreater(post.posted_at, 0)
         finder = http.json.call_args.kwargs["params"]["finder"]
         self.assertIn("siteNumber=CX_1", finder)
+        self.assertNotIn("selectedLocationsFacet", finder)
+
+    def test_search_is_limited_to_the_canada_facet(self):
+        facets = {"items": [{"locationsFacet": [
+            {"Id": 300000007173023, "Name": "ONT, Canada"},
+            {"Id": 300000000228588, "Name": "Canada"},
+        ]}]}
+        reqs = {"items": [{"TotalJobsCount": 1, "requisitionList": [
+            dict(self.REQ, PrimaryLocation="Remote", secondaryLocations=[])]}]}
+        http = mock.Mock()
+        http.json.side_effect = [facets] + [reqs] * len(sources.SEARCH_TERMS)
+        [post] = sources.oracle(http, "Definity", self.TOKEN)
+        self.assertIn("facetsList=LOCATIONS", http.json.call_args_list[0].kwargs["params"]["finder"])
+        finder = http.json.call_args.kwargs["params"]["finder"]
+        self.assertIn("selectedLocationsFacet=300000000228588", finder)
+        self.assertEqual(post.raw["country"], "Canada")
+
+
+class TestSmartRecruiters(unittest.TestCase):
+    def test_only_canadian_postings_are_requested(self):
+        http = mock.Mock()
+        http.json.return_value = {"totalFound": 1, "content": [{
+            "id": "744", "name": "ML Intern",
+            "location": {"city": "", "country": "ca", "remote": True}}]}
+        [post] = sources.smartrecruiters(http, "Ubisoft", "ubisoft2")
+        self.assertIn("&country=ca", http.json.call_args[0][0])
+        self.assertEqual(post.raw["country"], "Canada")
+
+
+class TestTeamtailor(unittest.TestCase):
+    def test_json_feed_items_are_read(self):
+        """VitalBio's jobs.json is a JSON Feed; the place is in _jobposting."""
+        http = mock.Mock()
+        http.json.return_value = {"version": "https://jsonfeed.org/version/1.1", "items": [{
+            "id": "5b39", "title": "Automation Controls Engineer",
+            "url": "https://vitalbio.na.teamtailor.com/jobs/728187-automation",
+            "date_published": "2026-10-28T17:32:20-04:00",
+            "_jobposting": {"jobLocation": [{"address": {
+                "addressLocality": "Oakville", "addressRegion": None, "addressCountry": "CA"}}]},
+        }]}
+        [post] = sources.teamtailor(http, "VitalBio", "vitalbio.na")
+        self.assertEqual(post.title, "Automation Controls Engineer")
+        self.assertEqual(post.location, "Oakville, CA")
+        self.assertEqual(post.url, "https://vitalbio.na.teamtailor.com/jobs/728187-automation")
+        self.assertGreater(post.posted_at, 0)
 
 
 class TestJibe(unittest.TestCase):
@@ -440,8 +485,58 @@ class TestWorkdayPagination(unittest.TestCase):
             posts = sources.workday(
                 http, "Acme", "https://acme.wd3.myworkdayjobs.com/wday/cxs/acme/Ext/jobs"
             )
-        self.assertEqual(http.request.call_count, 5)
+        self.assertEqual(http.request.call_count, 1 + 5)
         self.assertEqual(len(posts), 100)
+
+
+class TestWorkdayCanadaFacet(unittest.TestCase):
+    BASE = "https://td.wd3.myworkdayjobs.com/wday/cxs/td/TD_Bank_Careers/jobs"
+
+    def respond(self, facets):
+        payloads = []
+
+        def request(*_args, json, **_kwargs):
+            payloads.append(json)
+            resp = mock.Mock()
+            if json["searchText"] == "":
+                resp.json.return_value = {"total": 900, "facets": facets, "jobPostings": []}
+            else:
+                resp.json.return_value = {"total": 1, "jobPostings": [{
+                    "title": "ML Intern", "bulletFields": ["R1"], "externalPath": "/job/x",
+                    "locationsText": "Remote"}]}
+            return resp
+
+        http = mock.Mock()
+        http.request.side_effect = request
+        with mock.patch.object(sources, "WORKDAY_TERMS", ["intern"]):
+            posts = sources.workday(http, "TD", self.BASE)
+        return payloads, posts
+
+    def test_country_facet_is_applied_and_rows_marked(self):
+        facets = [{"facetParameter": "locationMainGroup", "values": [
+            {"facetParameter": "locationCountry", "values": [
+                {"descriptor": "United States of America", "id": "us1"},
+                {"descriptor": "Canada", "id": "ca1"}]},
+        ]}]
+        payloads, [post] = self.respond(facets)
+        self.assertEqual(payloads[-1]["appliedFacets"], {"locationCountry": ["ca1"]})
+        self.assertEqual(post.raw["country"], "Canada")
+
+    def test_country_named_facet_wins_over_a_hierarchy(self):
+        facets = [
+            {"facetParameter": "locationHierarchy1", "values": [{"descriptor": "Canada", "id": "h"}]},
+            {"facetParameter": "Location_Country", "values": [{"descriptor": "Canada", "id": "c"}]},
+        ]
+        payloads, _ = self.respond(facets)
+        self.assertEqual(payloads[-1]["appliedFacets"], {"Location_Country": ["c"]})
+
+    def test_a_city_is_not_the_country(self):
+        """Intel only offers "Canada, Toronto"; that would hide other cities."""
+        facets = [{"facetParameter": "locations", "values": [
+            {"descriptor": "Canada, Toronto", "id": "t"}]}]
+        payloads, [post] = self.respond(facets)
+        self.assertEqual(payloads[-1]["appliedFacets"], {})
+        self.assertNotIn("country", post.raw)
 
 
 class TestBadgeLinks(unittest.TestCase):
@@ -498,6 +593,13 @@ class TestWorkdayMultiLocation(unittest.TestCase):
                  self.make("Senior Engineer", "3 Locations")]
         sources._resolve_workday_locations(http, self.BASE, posts)
         http.json.assert_not_called()
+
+    def test_title_naming_a_live_term_is_resolved(self):
+        http = mock.Mock()
+        http.json.return_value = {"jobPostingInfo": {"location": "Toronto, Ontario"}}
+        post = self.make("ML Engineer - Summer 2027", "2 Locations")
+        sources._resolve_workday_locations(http, self.BASE, [post])
+        self.assertEqual(post.location, "Toronto, Ontario")
 
     def test_detail_calls_are_capped(self):
         http = mock.Mock()

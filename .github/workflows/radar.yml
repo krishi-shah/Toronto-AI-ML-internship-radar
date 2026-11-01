@@ -83,6 +83,8 @@ jobs:
       # in strict. v4 drops rows kept with no Canadian location, which the
       # stricter location gate now rejects. v5 drops rows from Ontario outside
       # the commute area (Ottawa, London, Kingston, ...), which are now
+      # rejected. v6 reclassifies for Summer 2027 as a target, the new GTA
+      # towns and Canada-only sources: those rows were stored as demoted or
       # rejected. After a prefix bump, dispatch `seed` once, then `run`.
       #
       # A cache miss is survivable: every run re-fetches every source, and
@@ -93,9 +95,9 @@ jobs:
         uses: actions/cache@v6
         with:
           path: radar.db
-          key: radar-db-v5-${{ github.run_id }}
+          key: radar-db-v6-${{ github.run_id }}
           restore-keys: |
-            radar-db-v5-
+            radar-db-v6-
 
       - name: Run radar
         env:
@@ -116,6 +118,14 @@ jobs:
             test)  python radar.py --test ;;
             *)     echo "::error::unknown mode '$MODE'"; exit 1 ;;
           esac
+
+      # Where postings were dropped, so a filter that bins good roles shows up
+      # in the run log instead of as a quiet feed.
+      - name: Rejection reasons
+        if: always()
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python radar.py --reasons || true
 
       - name: Commit the feed
         run: |

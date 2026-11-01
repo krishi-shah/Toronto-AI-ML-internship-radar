@@ -228,6 +228,17 @@ class TestStoreDedupe(unittest.TestCase):
             url="https://example.com", uid=uid,
         )
 
+    def test_reason_counts_group_rejected_rows_by_reason(self):
+        self.store.record(self._post("u1"), STRICT, "ai + student + ontario")
+        self.store.record(self._post("u2", title="Data Intern"), None, "no Canadian location")
+        self.store.record(self._post("u3", title="ML Intern NYC"), None, "no Canadian location")
+        self.store.commit()
+        rows = {(t, r): (c, titles) for t, r, c, titles in self.store.reason_counts()}
+        count, titles = rows[("rejected", "no Canadian location")]
+        self.assertEqual(count, 2)
+        self.assertEqual(len(titles), 2)
+        self.assertEqual(rows[(STRICT, "ai + student + ontario")][0], 1)
+
     def test_uid_is_remembered(self):
         post = self._post("ashby:cohere:abc")
         self.assertFalse(self.store.seen_uid(post.uid))
@@ -321,12 +332,16 @@ class TestStoreDedupe(unittest.TestCase):
 
         Sources with no publish date fall back to first_seen. Seeding stamps
         that as "now" for everything, so an undated seeded row would claim to
-        be brand new for the whole window.
+        be brand new for the whole window. It is listed, but as date unknown.
         """
+        import notify
+
         undated = self._post("tracker:hanzili:abc", "SAP", "AI Intern")
         self.store.record(undated, STRICT, "t", seeded=True)
         self.store.commit()
-        self.assertEqual(len(self.store.recent_jobs(STRICT, 50, 168)), 0)
+        rows = self.store.recent_jobs(STRICT, 50, 168)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(notify._when_label(rows[0]), ("date unknown", False))
 
     def test_undated_rows_found_after_seeding_do_show(self):
         """A link that genuinely just appeared is real news."""

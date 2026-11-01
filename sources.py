@@ -332,6 +332,9 @@ def smartrecruiters(http: Http, company: str, token: str) -> list[Posting]:
 
     The token is case-sensitive and is the company identifier, not the display
     name -- ``--sniff`` prints the right one.
+
+    Only Canadian postings are fetched. The country code must be lowercase:
+    ``country=CA`` silently returns nothing.
     """
     out: list[Posting] = []
     offset = 0
@@ -339,7 +342,7 @@ def smartrecruiters(http: Http, company: str, token: str) -> list[Posting]:
     while True:
         data = http.json(
             "https://api.smartrecruiters.com/v1/companies/"
-            f"{token}/postings?limit=100&offset={offset}"
+            f"{token}/postings?limit=100&offset={offset}&country=ca"
         )
         items = (data or {}).get("content", []) or []
         for job in items:
@@ -357,7 +360,7 @@ def smartrecruiters(http: Http, company: str, token: str) -> list[Posting]:
                     ),
                     url=f"https://jobs.smartrecruiters.com/{token}/{jid}",
                     uid=f"smartrecruiters:{token}:{jid}",
-                    raw=job,
+                    raw={**job, "country": "Canada"},
                     posted_at=_date(job.get("releasedDate"), job.get("createdOn")),
                 )
             )
@@ -426,10 +429,36 @@ def recruitee(http: Http, company: str, token: str) -> list[Posting]:
     return out
 
 
+def _teamtailor_feed_item(item: dict) -> dict:
+    """A JSON Feed item (``{"items": [...]}``) in the older jobs.json shape.
+
+    Its place is only in the schema.org ``_jobposting``. Verified against
+    VitalBio (``vitalbio.na``).
+    """
+    posting = item.get("_jobposting") or {}
+    places = posting.get("jobLocation") or []
+    if isinstance(places, dict):
+        places = [places]
+    location = "; ".join(
+        _join(addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry"))
+        for addr in ((p or {}).get("address") or {} for p in places)
+    )
+    remote = "remote" if posting.get("jobLocationType") == "TELECOMMUTE" else ""
+    return {"id": item.get("id"), "title": item.get("title"), "url": item.get("url"),
+            "location": _join(location, remote), "created-at": item.get("date_published"),
+            "employmentType": posting.get("employmentType")}
+
+
 def teamtailor(http: Http, company: str, token: str) -> list[Posting]:
-    """Teamtailor public jobs feed. Accepts either a bare list or ``{"jobs": []}``."""
+    """Teamtailor public jobs feed: a bare list, ``{"jobs": []}``, or a JSON
+    Feed ``{"items": []}``."""
     data = http.json(f"https://{token}.teamtailor.com/jobs.json")
-    jobs = data if isinstance(data, list) else (data or {}).get("jobs", [])
+    if isinstance(data, list):
+        jobs = data
+    elif (data or {}).get("items") is not None:
+        jobs = [_teamtailor_feed_item(item) for item in data["items"]]
+    else:
+        jobs = (data or {}).get("jobs", [])
     out = []
     for job in jobs or []:
         jid = _s(job.get("id")) or _s(job.get("careersite-job-id"))
@@ -509,8 +538,48 @@ def personio(http: Http, company: str, token: str) -> list[Posting]:
 
 
 # Workday search is keyword-driven, so one term never surfaces everything.
-WORKDAY_TERMS = ["intern", "co-op", "student", "new grad"]
+WORKDAY_TERMS = ["intern", "co-op", "student", "new grad",
+                 "internship", "summer student", "work term"]
 WORKDAY_PAGE = 20
+
+_WORKDAY_HEADERS = {"Content-Type": "application/json", "Accept": "application/json"}
+
+
+def _workday_canada_facet(http: Http, base: str) -> dict:
+    """The board's own Canada filter, as ``appliedFacets``, or ``{}``.
+
+    Each tenant names its country facet differently (``locationCountry``,
+    ``Country``, ``Location_Country``; NVIDIA nests it as
+    ``locationHierarchy1``), so it is found by its value. Facets come back
+    with every search; an empty one sees the whole board.
+    """
+    try:
+        resp = http.request("POST", base, json={
+            "appliedFacets": {}, "limit": 1, "offset": 0, "searchText": "",
+        }, headers=_WORKDAY_HEADERS)
+        data = resp.json() if resp is not None else {}
+    except Exception:  # noqa: BLE001 - the global search still works
+        return {}
+
+    matches: list[tuple[str, str]] = []
+
+    def walk(facets: Any) -> None:
+        for facet in facets or []:
+            if not isinstance(facet, dict):
+                continue
+            param = _s(facet.get("facetParameter"))
+            for value in facet.get("values") or []:
+                if value.get("facetParameter"):
+                    walk([value])
+                elif _s(value.get("descriptor")).strip().lower() == "canada" and value.get("id"):
+                    matches.append((param, _s(value.get("id"))))
+
+    walk((data or {}).get("facets"))
+    if not matches:
+        return {}
+    matches.sort(key=lambda m: "country" not in m[0].lower())
+    param, value = matches[0]
+    return {param: [value]}
 
 
 def workday(http: Http, company: str, token: str) -> list[Posting]:
@@ -522,11 +591,18 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
     Runs every search term with offset pagination and merges on the provider's
     own requisition id (``bulletFields[0]``, e.g. ``JR2021277``), which is
     stable across runs. ``externalPath`` is the fallback.
+
+    Searches use the board's Canada facet when it has one: a global bank's
+    "intern" search otherwise fills the 200-result cap with other countries
+    before reaching Toronto. Rows from a Canada-filtered search are marked so
+    a "Remote" row counts as Canadian. Boards without the facet are searched
+    globally.
     """
     base = token.rstrip("/")
     if not base.endswith("/jobs"):
         base = base + "/jobs"
 
+    facets = _workday_canada_facet(http, base)
     found: dict[str, Posting] = {}
     capped = False
     for term in WORKDAY_TERMS:
@@ -536,17 +612,12 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
         total = 0
         while offset <= 200:
             payload = {
-                "appliedFacets": {},
+                "appliedFacets": facets,
                 "limit": WORKDAY_PAGE,
                 "offset": offset,
                 "searchText": term,
             }
-            resp = http.request(
-                "POST",
-                base,
-                json=payload,
-                headers={"Content-Type": "application/json", "Accept": "application/json"},
-            )
+            resp = http.request("POST", base, json=payload, headers=_WORKDAY_HEADERS)
             data = resp.json() if resp is not None else {}
             posts = data.get("jobPostings") or []
             for job in posts:
@@ -561,7 +632,7 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
                     location=_join(job.get("locationsText")),
                     url=_workday_url(base, path),
                     uid=f"workday:{urlparse(base).netloc}:{jid}",
-                    raw=job,
+                    raw={**job, "country": "Canada"} if facets else job,
                     posted_at=_date(job.get("postedOn"), job.get("startDate")),
                 )
             if offset == 0:
@@ -577,7 +648,7 @@ def workday(http: Http, company: str, token: str) -> list[Posting]:
 
 
 _WORKDAY_MULTI_RE = re.compile(r"^\d+\s+Locations?$", re.IGNORECASE)
-WORKDAY_DETAIL_CAP = 40
+WORKDAY_DETAIL_CAP = 80
 
 
 def _resolve_workday_locations(http: Http, base: str, posts: Iterable[Posting]) -> None:
@@ -586,9 +657,11 @@ def _resolve_workday_locations(http: Http, base: str, posts: Iterable[Posting]) 
     Workday's search summarises multi-site reqs as "N Locations", which names
     no city, so the classifier cannot place them. Real Toronto co-ops hide
     behind it (TD's Winter 2027 SWE co-op lists Toronto, Mississauga and
-    London). One detail request per posting, capped per board.
+    London). One detail request per posting, capped per board. A title that
+    names a live work term ("ML Engineer - Winter 2027") counts as student
+    level here, as it does in the classifier.
     """
-    from core import NEWGRAD_RE, STUDENT_RE
+    from core import NEWGRAD_RE, STUDENT_RE, names_live_cycle
 
     detail_base = base[: -len("/jobs")]
     budget = WORKDAY_DETAIL_CAP
@@ -597,7 +670,8 @@ def _resolve_workday_locations(http: Http, base: str, posts: Iterable[Posting]) 
             break
         if not _WORKDAY_MULTI_RE.match(post.location or ""):
             continue
-        if not (STUDENT_RE.search(post.title) or NEWGRAD_RE.search(post.title)):
+        if not (STUDENT_RE.search(post.title) or NEWGRAD_RE.search(post.title)
+                or names_live_cycle(post)):
             continue
         budget -= 1
         try:
@@ -690,17 +764,22 @@ def oracle(http: Http, company: str, token: str) -> list[Posting]:
 
     ``token`` is ``"https://{host}|{siteNumber}"``, both read straight off a
     posting URL: ``{host}/hcmUI/CandidateExperience/en/sites/CX_1/job/40261``.
+
+    Searches are limited to the site's "Canada" location facet when it has
+    one, and its rows are marked Canadian; otherwise they run globally.
     """
     host, site = _split_token(token)
     site = site or "CX_1"
     api = f"{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+    canada = _oracle_canada_facet(http, api, site)
+    scope = f",selectedLocationsFacet={canada}" if canada else ""
     found: dict[str, Posting] = {}
     capped = False
     for term in SEARCH_TERMS:
         offset = 0
         while offset <= SEARCH_MAX_OFFSET:
             finder = (f"findReqs;siteNumber={site},keyword={term},"
-                      f"limit=25,offset={offset}")
+                      f"limit=25,offset={offset}{scope}")
             data = http.json(api, params={
                 "onlyData": "true",
                 "expand": "requisitionList.secondaryLocations",
@@ -720,7 +799,8 @@ def oracle(http: Http, company: str, token: str) -> list[Posting]:
                     location=_join(req.get("PrimaryLocation"), *secondary, remote),
                     url=f"{host}/hcmUI/CandidateExperience/en/sites/{site}/job/{jid}",
                     uid=f"oracle:{urlparse(host).netloc}:{jid}",
-                    raw={"PrimaryLocationCountry": req.get("PrimaryLocationCountry")},
+                    raw={"PrimaryLocationCountry": req.get("PrimaryLocationCountry"),
+                         "country": "Canada" if canada else ""},
                     posted_at=_date(req.get("PostedDate")),
                 )
             offset += 25
@@ -729,6 +809,22 @@ def oracle(http: Http, company: str, token: str) -> list[Posting]:
         else:
             capped = True
     return _result(found, capped)
+
+
+def _oracle_canada_facet(http: Http, api: str, site: str) -> str:
+    """Id of the site's "Canada" location facet, or "" if it has none."""
+    try:
+        data = http.json(api, params={
+            "onlyData": "true",
+            "finder": f"findReqs;siteNumber={site},facetsList=LOCATIONS,limit=1",
+        }) or {}
+    except Exception:  # noqa: BLE001 - the global search still works
+        return ""
+    items = data.get("items") or [{}]
+    for facet in items[0].get("locationsFacet") or []:
+        if _s(facet.get("Name")).strip().lower() == "canada" and facet.get("Id"):
+            return _s(facet.get("Id"))
+    return ""
 
 
 def jibe(http: Http, company: str, token: str) -> list[Posting]:
@@ -913,13 +1009,15 @@ def icims(http: Http, company: str, token: str) -> list[Posting]:
 
 # SAP SuccessFactors career sites ("/search/?q=...&locationsearch=..."), which
 # render their result rows on the server -- no browser needed. TELUS, Rogers
-# and Scotiabank run on it.
-_SF_ROW_RE = re.compile(r'<tr class="data-row"(.*?)</tr>', re.S)
+# and Scotiabank run on it. Sites use one of two layouts: a results table
+# (TELUS) or a list of tiles (L3Harris).
+_SF_ROW_RE = re.compile(r'<tr class="data-row"(.*?)</tr>|<li class="job-tile(.*?)</li>', re.S)
 _SF_LINK_RE = re.compile(r'<a[^>]*href="([^"]*/job/[^"]*?/(\d+)/?)"[^>]*>(.*?)</a>', re.S)
 _SF_LINK_ALT_RE = re.compile(r'<a[^>]*class="jobTitle-link"[^>]*href="([^"]*/(\d+)/?)"[^>]*>(.*?)</a>', re.S)
-_SF_LOC_RE = re.compile(r'<span class="jobLocation">\s*([^<]*?)\s*</span>')
+_SF_LOC_RE = re.compile(r'<span class="jobLocation">\s*([^<]*?)\s*</span>'
+                        r'|-section-location-value">\s*([^<]*?)\s*</div>')
 _SF_DATE_RE = re.compile(r'class="jobDate[^"]*">\s*([A-Z][a-z]{2,8}\.? \d{1,2}, \d{4})')
-_SF_TOTAL_RE = re.compile(r'of\s*<b>\s*([\d,]+)\s*</b>')
+_SF_TOTAL_RE = re.compile(r'of\s*(?:<b>\s*([\d,]+)\s*</b>|([\d,]+)\s+Jobs\b)')
 SF_PAGE = 25
 SF_MAX_PAGES = 12
 
@@ -955,13 +1053,14 @@ def _sf_slug_place(path: str) -> str:
 
 def _sf_rows(page: str) -> list[dict[str, Any]]:
     rows = []
-    for block in _SF_ROW_RE.findall(page):
+    for row in _SF_ROW_RE.finditer(page):
+        block = row.group(1) or row.group(2) or ""
         link = _SF_LINK_RE.search(block) or _SF_LINK_ALT_RE.search(block)
         if not link:
             continue
         loc = _SF_LOC_RE.search(block)
         date = _SF_DATE_RE.search(block)
-        place = _WS_RE.sub(" ", unescape(loc.group(1))).strip() if loc else ""
+        place = _WS_RE.sub(" ", unescape(loc.group(1) or loc.group(2))).strip() if loc else ""
         rows.append({
             "path": unescape(link.group(1)),
             "id": link.group(2),
@@ -977,16 +1076,20 @@ def successfactors(http: Http, company: str, token: str) -> list[Posting]:
     already narrowed by keyword and place, e.g.
     ``https://jobs.rogers.com/search/?q=intern&locationsearch=Ontario``.
 
-    Pages through ``startrow`` 25 rows at a time. Verified against TELUS,
-    Rogers and Scotiabank.
+    Pages through ``startrow`` by however many rows a page holds: 25 in the
+    table layout, up to 100 in the tile one. Verified against TELUS, Rogers,
+    Scotiabank and L3Harris.
     """
     parsed = urlparse(token)
     site = f"{parsed.scheme}://{parsed.netloc}"
     joiner = "&" if parsed.query else "?"
     found: dict[str, Posting] = {}
-    for number in range(SF_MAX_PAGES):
-        page = http.text(f"{token}{joiner}startrow={number * SF_PAGE}") or ""
+    start = per_page = 0
+    for _ in range(SF_MAX_PAGES):
+        page = http.text(f"{token}{joiner}startrow={start}") or ""
         rows = _sf_rows(page)
+        start += len(rows)
+        per_page = per_page or len(rows)
         for row in rows:
             found[row["id"]] = Posting(
                 company=company,
@@ -998,7 +1101,8 @@ def successfactors(http: Http, company: str, token: str) -> list[Posting]:
                 posted_at=row["posted_at"],
             )
         total = _SF_TOTAL_RE.search(page)
-        if not rows or not total or (number + 1) * SF_PAGE >= int(total.group(1).replace(",", "")):
+        count = int((total.group(1) or total.group(2)).replace(",", "")) if total else 0
+        if not rows or len(rows) < per_page or start >= count:
             return list(found.values())
     return Partial(found.values())
 
@@ -1942,6 +2046,11 @@ _BOARD_URL_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("bamboohr", re.compile(r"([A-Za-z0-9\-]+)\.bamboohr\.com/careers/\d+", re.I)),
     ("jazzhr", re.compile(r"([A-Za-z0-9\-]+)\.applytojob\.com/apply/", re.I)),
     ("rippling", re.compile(r"ats\.rippling\.com/([A-Za-z0-9_\-]+)/jobs/", re.I)),
+    ("recruitee", re.compile(r"([A-Za-z0-9\-]+)\.recruitee\.com/o/", re.I)),
+    # North American Teamtailor accounts sit under "{company}.na".
+    ("teamtailor", re.compile(r"([A-Za-z0-9\-]+(?:\.na)?)\.teamtailor\.com/jobs/\d+", re.I)),
+    ("breezy", re.compile(r"([A-Za-z0-9\-]+)\.breezy\.hr/p/", re.I)),
+    ("personio", re.compile(r"([A-Za-z0-9\-]+)\.jobs\.personio\.(?:de|com)/job/\d+", re.I)),
 ]
 
 # tenant.wdN.myworkdayjobs.com/[en-US/]Site/job/... -- the "/job/" anchor is
@@ -1969,6 +2078,10 @@ _COMPOSITE_POSTING_RES: list[tuple[str, re.Pattern, Callable[..., str]]] = [
      lambda host: f"https://{host.lower()}"),
     ("icims", re.compile(r"https?://([a-z0-9\-]+\.icims\.com)/jobs/\d+", re.I),
      lambda host: f"https://{host.lower()}"),
+    # SuccessFactors career sites sit on the employer's own domain; their
+    # posting paths read /job/{City-Title-Province}/{requisition}/.
+    ("successfactors", re.compile(r"https?://([a-z0-9.\-]+)/job/[^/?#]+/\d{6,}/", re.I),
+     lambda host: f"https://{host.lower()}/search/?q=&locationsearch=Ontario"),
 ]
 
 
@@ -1995,7 +2108,12 @@ def board_from_url(url: str) -> Optional[tuple[str, str]]:
 
 
 def board_key(platform: str, token: str) -> tuple[str, str]:
-    """Case-insensitive identity of a board, for comparing against config."""
+    """Case-insensitive identity of a board, for comparing against config.
+
+    A SuccessFactors token is one search on a site, so the site is the board.
+    """
+    if platform == "successfactors":
+        return platform, urlparse(token).netloc.lower()
     return platform, token.rstrip("/").lower()
 
 
