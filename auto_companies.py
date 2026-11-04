@@ -55,7 +55,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Solink', 'platform': 'ashby', 'token': 'solink', 'ai_native': False},
     {'name': 'SOTI', 'platform': 'workday', 'token': 'https://soti.wd3.myworkdayjobs.com/wday/cxs/soti/SOTI-Next-Gen/jobs', 'ai_native': False},
     {'name': 'Stantec', 'platform': 'oracle', 'token': 'https://hdhl.fa.us6.oraclecloud.com|CX_1', 'ai_native': False},
-    {'name': 'Steel', 'platform': 'ashby', 'token': 'steel', 'ai_native': False},
     {'name': 'TMX Group', 'platform': 'workday', 'token': 'https://tmx.wd3.myworkdayjobs.com/wday/cxs/tmx/TMX_Careers/jobs', 'ai_native': False},
     {'name': 'Trimble', 'platform': 'workday', 'token': 'https://trimble.wd1.myworkdayjobs.com/wday/cxs/trimble/TrimbleCareers/jobs', 'ai_native': False},
     {'name': 'Veeda AI', 'platform': 'ashby', 'token': 'veeda-ai', 'ai_native': False},
