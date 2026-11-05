@@ -60,4 +60,5 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Veeda AI', 'platform': 'ashby', 'token': 'veeda-ai', 'ai_native': False},
     {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
+    {'name': 'Zurich Insurance', 'platform': 'successfactors', 'token': 'https://www.careers.zurich.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
 ]
