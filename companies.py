@@ -416,6 +416,14 @@ PROMOTE_MAX = 60
 SNIFF_PER_RUN = 8
 SNIFF_EVERY_DAYS = 14
 
+# Trackers that wrap apply links in a shortener (go.vansh.nyc) are resolved to
+# the employer's real posting URL, so the feed links the posting, dedupe sees
+# its requisition id and discovery sees its board. Only Canadian rows are
+# resolved, each link once ever: the answer is cached in radar.db. A backlog
+# larger than this is worked through over the next few runs.
+SHORT_LINK_PER_RUN = 200
+SHORT_LINK_TIME_BUDGET_S = 120
+
 # A posting is hidden from the feed once its source has returned a complete
 # listing without it this many runs in a row. Capped searches and careers-page
 # scrapes never count as complete, so their postings simply age out.

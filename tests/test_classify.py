@@ -91,6 +91,19 @@ class TestCoopSpellingVariants(unittest.TestCase):
             with self.subTest(spelling=spelling):
                 self.assertEqual(tier(spelling), STRICT)
 
+    def test_pey_titles(self):
+        """U of T's Professional Experience Year often replaces "co-op" outright."""
+        for title in [
+            "Machine Learning Engineer (PEY)",
+            "PEY Student, Data Science",
+            "Data Scientist, Professional Experience Year",
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(tier(title), STRICT)
+
+    def test_pey_is_a_whole_word(self):
+        self.assertIsNone(tier("Machine Learning Engineer, Peyton Team"))
+
 
 class TestAiNativeCompanyPromotion(unittest.TestCase):
     """A generic title at an AI-native company still earns an instant ping."""
