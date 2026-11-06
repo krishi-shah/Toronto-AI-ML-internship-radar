@@ -1208,6 +1208,23 @@ CREATE TABLE IF NOT EXISTS hosts (
     result        TEXT
 );
 
+-- Boards linked by any tracker row, Canadian or not, that are not configured
+-- or discovered yet. The nightly explore run scrapes them once each and hands
+-- the ones with Canadian student roles to discovery.
+CREATE TABLE IF NOT EXISTS candidates (
+    platform    TEXT NOT NULL,
+    token       TEXT NOT NULL,
+    name        TEXT NOT NULL,
+    links       INTEGER NOT NULL DEFAULT 0,
+    first_seen  INTEGER NOT NULL,
+    last_seen   INTEGER NOT NULL,
+    checked_at  INTEGER,
+    canada      INTEGER NOT NULL DEFAULT 0,
+    student     INTEGER NOT NULL DEFAULT 0,
+    result      TEXT,
+    PRIMARY KEY (platform, token)
+);
+
 CREATE TABLE IF NOT EXISTS cache (
     key   TEXT PRIMARY KEY,
     etag  TEXT,
@@ -1749,6 +1766,61 @@ class Store:
             " WHERE platform=? AND token=?",
             (error[:500], int(time.time()), platform, token),
         )
+
+    # -- candidate boards for the nightly explore run ---------------------
+
+    def candidates_add(self, boards: Iterable[dict]) -> int:
+        """Remember boards linked by this run's postings. Returns how many."""
+        now = int(time.time())
+        rows = [(b["platform"], b["token"], b["name"], b["hits"], now, now) for b in boards]
+        with self._lock:
+            self.conn.executemany(
+                "INSERT INTO candidates (platform, token, name, links, first_seen, last_seen)"
+                " VALUES (?,?,?,?,?,?)"
+                " ON CONFLICT(platform, token) DO UPDATE SET last_seen=excluded.last_seen,"
+                " links=MAX(candidates.links, excluded.links)",
+                rows,
+            )
+        return len(rows)
+
+    def candidates_due(self, limit: int, recheck_days: int) -> list[sqlite3.Row]:
+        """Candidates to scrape tonight: never checked first, most linked first.
+
+        A board checked before is due again after ``recheck_days`` (it may
+        have opened a Toronto role since). Boards already in discovery, or
+        no longer linked by any tracker for ``DISCOVERY_STALE_DAYS``, are
+        skipped.
+        """
+        now = int(time.time())
+        with self._lock:
+            return self.conn.execute(
+                "SELECT c.* FROM candidates c LEFT JOIN discovered d"
+                " ON d.platform = c.platform AND d.token = c.token"
+                " WHERE d.platform IS NULL AND c.last_seen >= ?"
+                " AND (c.checked_at IS NULL OR c.checked_at < ?)"
+                " ORDER BY c.checked_at IS NOT NULL, c.checked_at, c.links DESC, c.name"
+                " LIMIT ?",
+                (now - self.DISCOVERY_STALE_DAYS * 86400, now - recheck_days * 86400, limit),
+            ).fetchall()
+
+    def candidates_checked(
+        self, platform: str, token: str, canada: int, student: int, result: str,
+    ) -> None:
+        with self._lock:
+            self.conn.execute(
+                "UPDATE candidates SET checked_at=?, canada=?, student=?, result=?"
+                " WHERE platform=? AND token=?",
+                (int(time.time()), canada, student, result[:300], platform, token),
+            )
+
+    def candidates_summary(self) -> dict:
+        with self._lock:
+            row = self.conn.execute(
+                "SELECT COUNT(*) total, SUM(checked_at IS NOT NULL) checked,"
+                " SUM(student > 0 AND canada > 0) hits FROM candidates"
+            ).fetchone()
+        return {"total": row["total"] or 0, "checked": row["checked"] or 0,
+                "hits": row["hits"] or 0}
 
     # -- careers-site hosts no pattern recognises -------------------------
 
