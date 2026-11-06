@@ -127,6 +127,10 @@ _STUDENT_TERMS = [
     r"\bstudent\b",
     r"\bplacement\b",
     r"work[\s\-]?term",
+    # U of T's Professional Experience Year: "PEY Co-op" or "PEY Student",
+    # but also bare "Data Analyst (PEY)".
+    r"\bpey\b",
+    r"professional[\s\-]?experience[\s\-]?year",
     r"\bon[\s\-]?campus\b",
     r"\bundergrad",
     r"\bapprentice",
@@ -1326,6 +1330,50 @@ class Store:
         return cur.fetchone() is not None
 
     # -- postings ---------------------------------------------------------
+
+    def refresh_url(self, posting: Posting) -> bool:
+        """Point a stored row at ``posting.url`` when its link has changed.
+
+        Used when a tracker's short link is resolved after the row was first
+        stored. The new URL can carry a requisition id the short link hid, so
+        the row's keys are recomputed and, if they match another stored copy
+        of the role, the two groups are merged so the feed lists it once.
+        Returns whether anything changed.
+        """
+        with self._lock:
+            row = self.conn.execute(
+                "SELECT url, group_id FROM jobs WHERE uid = ?", (posting.uid,)
+            ).fetchone()
+            if row is None or not posting.url or row["url"] == posting.url:
+                return False
+            self.conn.execute(
+                "UPDATE jobs SET url = ? WHERE uid = ?", (posting.url, posting.uid)
+            )
+            current = row["group_id"] or posting.uid
+            keys = role_keys(posting.company, posting.title, posting.url)
+            for key in keys:
+                found = self.conn.execute(
+                    "SELECT group_id FROM role_keys WHERE key = ?", (key,)
+                ).fetchone()
+                if found and found["group_id"] != current:
+                    other = found["group_id"]
+                    self.conn.execute(
+                        "UPDATE jobs SET group_id = ? WHERE group_id = ?", (other, current)
+                    )
+                    self.conn.execute(
+                        "UPDATE role_keys SET group_id = ? WHERE group_id = ?",
+                        (other, current),
+                    )
+                    current = other
+                    break
+            self.conn.execute(
+                "UPDATE jobs SET group_id = ? WHERE uid = ?", (current, posting.uid)
+            )
+            self.conn.executemany(
+                "INSERT OR IGNORE INTO role_keys (key, group_id) VALUES (?,?)",
+                ((key, current) for key in keys),
+            )
+            return True
 
     def seen_uid(self, uid: str) -> bool:
         cur = self.conn.execute("SELECT 1 FROM jobs WHERE uid = ?", (uid,))

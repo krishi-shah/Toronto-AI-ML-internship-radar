@@ -1001,6 +1001,8 @@ Corrections found along the way:
 | TD Layer 6 is on `TD_External` | 404; `--sniff https://layer6.ai/careers/` points at `TD_Bank_Careers` |
 | A tracker's apply column holds the job URL | Some wrap a shields.io badge in a link, so the first URL in the cell was the badge image |
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
+| A tracker's apply link is the posting | `vansh` wraps every link in its `go.vansh.nyc` shortener, which hid the requisition id dedupe needs and the board discovery needs; Canadian short links are now resolved once and cached |
+| Board searches for "intern", "co-op" and "student" catch every student role | U of T's PEY placements are often titled only "PEY", and some search engines never match "coop" for "co-op"; every searchable board now uses one shared, longer term list |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are labelled *date unknown* and listed last, never shown as new |
 | The state DB can just be committed | ~5 MB of SQLite every run is gigabytes of binary history a year; it lives in `actions/cache` instead |

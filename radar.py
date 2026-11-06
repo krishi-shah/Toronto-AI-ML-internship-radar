@@ -231,6 +231,13 @@ def fetch_all(
         errors.update(portal_errors)
     store.commit()
 
+    # Before discovery, so boards hidden behind tracker short links are found.
+    resolve_short_links(
+        http, store, postings, quiet,
+        min(time.monotonic() + cfg.SHORT_LINK_TIME_BUDGET_S, started + cfg.FETCH_MAX_S),
+    )
+    store.commit()
+
     deadline = min(time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S,
                    started + cfg.FETCH_MAX_S)
     if cfg.DISCOVERY_MAX_BOARDS > 0:
@@ -356,6 +363,66 @@ def configured_boards() -> set[tuple[str, str]]:
         for c in cfg.all_companies()
         if c["platform"] in sources.ADAPTERS
     }
+
+
+SHORT_LINK_CACHE = "short:"
+
+
+def resolve_short_links(
+    http: sources.Http, store: Store, postings: list[Posting], quiet: bool,
+    deadline: float, limit: Optional[int] = None,
+) -> int:
+    """Swap tracker short links for the employer's posting URL, in place.
+
+    Only Canadian rows are resolved; nothing else can reach the feed or feed
+    discovery. Each answer is cached in radar.db for good, including "leads
+    nowhere" (stored as ""), so a link costs one request ever. A link that
+    errors is not cached and is tried again next run. The original short link
+    stays on the posting as ``raw["short_url"]``; the uid is never touched.
+
+    Returns how many postings now carry a resolved URL.
+    """
+    limit = cfg.SHORT_LINK_PER_RUN if limit is None else limit
+    todo: dict[str, list[Posting]] = {}
+    swapped = 0
+    for post in postings:
+        if not sources.is_short_link(post.url) or not in_canada(post):
+            continue
+        cached = store.get_etag(SHORT_LINK_CACHE + post.url)
+        if cached is None:
+            todo.setdefault(post.url, []).append(post)
+        elif cached:
+            swapped += _swap_url(post, cached)
+
+    fetched = failed = 0
+    for short, posts in todo.items():
+        if fetched >= limit or time.monotonic() >= deadline:
+            break
+        fetched += 1
+        try:
+            target = sources.resolve_short_link(http, short)
+        except Exception:  # noqa: BLE001 - a dead link must never fail the run
+            failed += 1
+            continue
+        store.set_etag(SHORT_LINK_CACHE + short, target)
+        if target:
+            for post in posts:
+                swapped += _swap_url(post, target)
+
+    if not quiet and (todo or swapped):
+        left = len(todo) - fetched
+        print(
+            f"\n  -- short links: {swapped} resolved, {fetched} looked up"
+            f" ({failed} failed), {left} left for later runs --"
+        )
+    return swapped
+
+
+def _swap_url(post: Posting, target: str) -> int:
+    post.raw = dict(post.raw or {})
+    post.raw["short_url"] = post.url
+    post.url = target
+    return 1
 
 
 def configured_hosts() -> set[str]:
@@ -601,6 +668,10 @@ def triage(
         if not post.uid or not post.title:
             continue
         if store.seen_uid(post.uid):
+            # Stored before its short link was resolved: fix the link and
+            # let the real requisition id merge it with the employer's copy.
+            if (post.raw or {}).get("short_url"):
+                store.refresh_url(post)
             skipped += 1
             continue
 
@@ -883,6 +954,8 @@ def cmd_run(store: Store, seed: bool = False) -> int:
     if seed:
         recorded = 0
         for post in postings:
+            if post.uid and (post.raw or {}).get("short_url"):
+                store.refresh_url(post)
             if post.uid and post.title and not store.seen_uid(post.uid):
                 verdict = classify(post)
                 if _wants_description(verdict):

@@ -538,8 +538,15 @@ def personio(http: Http, company: str, token: str) -> list[Posting]:
 
 
 # Workday search is keyword-driven, so one term never surfaces everything.
-WORKDAY_TERMS = ["intern", "co-op", "student", "new grad",
-                 "internship", "summer student", "work term"]
+# Keywords every searchable board is queried with, one search each. Board
+# search engines differ on stemming and punctuation, so near duplicates are
+# deliberate: some never match "internship" for "intern", or "coop" for
+# "co-op". "PEY" is U of T's Professional Experience Year, a 12 to 16 month
+# placement Toronto employers often name in the title instead of "co-op".
+STUDENT_SEARCH_TERMS = ["intern", "internship", "co-op", "coop", "student",
+                        "summer student", "work term", "PEY", "new grad"]
+
+WORKDAY_TERMS = STUDENT_SEARCH_TERMS
 WORKDAY_PAGE = 20
 
 _WORKDAY_HEADERS = {"Content-Type": "application/json", "Accept": "application/json"}
@@ -749,7 +756,9 @@ def amazon(http: Http, company: str, token: str) -> list[Posting]:
 # The four platforms below are keyword-driven like Workday, so the student
 # terms are searched and merged on the provider's own id. "new grad" is left
 # out: these boards are large and the classifier caps new-grad roles anyway.
-SEARCH_TERMS = ["intern", "co-op", "student"]
+# Oracle, Jibe and Eightfold used to search only intern, co-op and student,
+# so PEY, work term and "coop" titles there were never fetched at all.
+SEARCH_TERMS = STUDENT_SEARCH_TERMS
 SEARCH_MAX_OFFSET = 200
 
 
@@ -1632,6 +1641,58 @@ def _tracker_from_json(name: str, repo: str, data: list[dict]) -> list[Posting]:
     return out
 
 
+# Link shorteners some trackers wrap every apply link in (vanshb03 uses its
+# own go.vansh.nyc). A short link hides the employer's posting URL, which
+# costs three things: the feed links a redirect instead of the posting, the
+# requisition id that dedupes a tracker row against the employer's own copy is
+# missing, and discovery cannot see which board the role lives on.
+SHORTENER_HOSTS = (
+    "go.vansh.nyc", "bit.ly", "tinyurl.com", "t.co", "ow.ly", "rebrand.ly",
+    "cutt.ly", "short.gy", "shorturl.at", "tiny.cc", "is.gd",
+)
+SHORT_LINK_MAX_HOPS = 4
+SHORT_LINK_TIMEOUT = 10
+_META_REFRESH_RE = re.compile(
+    r"""<meta[^>]+http-equiv=["']?refresh["']?[^>]*content=["'][^"']*?url=([^"'>\s]+)""",
+    re.IGNORECASE,
+)
+
+
+def is_short_link(url: str) -> bool:
+    host = _bare_host(url)
+    return any(host == d or host.endswith("." + d) for d in SHORTENER_HOSTS)
+
+
+def resolve_short_link(http: Http, url: str) -> str:
+    """The URL a short link points at, or "" when it leads nowhere usable.
+
+    Redirects are followed by hand, one hop at a time, and only while the hop
+    is still a shortener: the employer's page is never fetched, so resolving
+    costs one small request per link. A shortener that answers 200 with a
+    meta refresh instead of a redirect is read the same way.
+    """
+    current = url
+    for _ in range(SHORT_LINK_MAX_HOPS):
+        resp = http.get(current, allow_redirects=False, timeout=SHORT_LINK_TIMEOUT)
+        if resp is None:
+            return ""
+        target = ""
+        if resp.is_redirect or resp.status_code in (301, 302, 303, 307, 308):
+            target = resp.headers.get("Location", "")
+        else:
+            m = _META_REFRESH_RE.search(resp.text[:20_000])
+            if m:
+                target = unescape(m.group(1))
+        if not target:
+            return ""
+        current = urljoin(current, target.strip())
+        if not current.startswith(("http://", "https://")):
+            return ""
+        if not is_short_link(current):
+            return current
+    return ""
+
+
 def _tracker_from_rows(name: str, repo: str, rows: list[dict]) -> list[Posting]:
     out = []
     for row in rows:
@@ -2124,7 +2185,7 @@ SNIFF_DENY_HOSTS = (
     "indeed.ca", "glassdoor.com", "glassdoor.ca", "github.com", "careerpuck.com",
     "wellfound.com", "workatastartup.com", "joinhandshake.com", "amazon.jobs",
     "bit.ly", "forms.gle", "notion.site", "lnkd.in",
-)
+) + SHORTENER_HOSTS
 
 
 def _bare_host(url: str) -> str:
