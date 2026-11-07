@@ -17,6 +17,10 @@ on:
     # way; nothing is lost, since each run re-fetches everything and the
     # README is rebuilt from the result.
     - cron: "17 1,4,13,16,19,22 * * *"
+    # Nightly explore run: checks candidate boards for Canadian roles with a
+    # long time budget, in the quiet gap between the 04:17 and 13:17 UTC runs
+    # (about 3am Toronto). The job's timeout and MODE below match on this exact string.
+    - cron: "43 7 * * *"
   # Also the one-click way to re-enable the schedule: GitHub disables
   # scheduled workflows on public repos after 60 days without repository
   # activity. The README commits below normally count as activity.
@@ -27,7 +31,7 @@ on:
         required: true
         default: run
         type: choice
-        options: [run, check, seed, test]
+        options: [run, check, seed, test, explore]
 
 # Runs must never overlap: two runs fetching at once would both see the same
 # posting as new, and both would try to push a conflicting README.
@@ -41,7 +45,13 @@ permissions:
 jobs:
   radar:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # The nightly explore run has an 80 minute budget; the feed runs must
+    # stay short so they never overlap the next one.
+    timeout-minutes: ${{ (inputs.mode == 'explore' || github.event.schedule == '43 7 * * *') && 100 || 25 }}
+    env:
+      # Not interpolated directly into a script: an expression pasted into a
+      # shell command is how workflows get injected.
+      MODE: ${{ inputs.mode || (github.event.schedule == '43 7 * * *' && 'explore') || 'run' }}
 
     steps:
       - uses: actions/checkout@v7
@@ -62,6 +72,7 @@ jobs:
       # Chromium is for careers pages whose job list is drawn by JavaScript.
       # Unit tests mock the browser and never launch it.
       - name: Install Chromium
+        if: env.MODE != 'explore'
         run: python -m playwright install --with-deps chromium
 
       # A classifier bug would quietly publish a garbled feed, so the tests
@@ -101,9 +112,6 @@ jobs:
 
       - name: Run radar
         env:
-          # Not interpolated directly into the script below: an expression
-          # pasted into a shell command is how workflows get injected.
-          MODE: ${{ inputs.mode || 'run' }}
           # Renders README.md only. The HTML dashboard is a local-only channel
           # and nothing on the runner would open it.
           RADAR_NOTIFIERS: readme
@@ -116,6 +124,7 @@ jobs:
             check) python radar.py --check ;;
             seed)  python radar.py --seed ;;
             test)  python radar.py --test ;;
+            explore) python radar.py --explore ;;
             *)     echo "::error::unknown mode '$MODE'"; exit 1 ;;
           esac
 

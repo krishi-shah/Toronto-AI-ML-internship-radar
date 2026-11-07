@@ -14,7 +14,7 @@ name       Display name used in alerts and in the dedupe fingerprint. Match the
            seen on both collapses into one row.
 platform   One of: ashby, greenhouse, lever, smartrecruiters, workable,
            recruitee, teamtailor, breezy, personio, workday, amazon, oracle,
-           jibe, eightfold, icims, html.
+           jibe, eightfold, icims, sitemap, html.
 token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs``
            URL; for ``amazon`` an ISO-3 country code; for ``html`` it is the
            careers page URL. ``python radar.py --probe <slug>`` guesses tokens.
@@ -24,6 +24,9 @@ token      The board token. For ``workday`` it is the full ``/wday/cxs/.../jobs`
                           (posting URLs end ``?icims=1``)
            ``eightfold``  ``{tenant}.eightfold.ai|{company domain}``
            ``icims``      the portal root, e.g. ``https://careers-kinaxis.icims.com``
+           ``sitemap``    the careers site's sitemap URL, optionally followed by
+                          ``|`` and a regex posting URLs must match; find it
+                          with ``python radar.py --sitemap <careers url>``
 location   Optional. Filled into postings from this source that carry no
            location, for employers that only hire in one place.
 country    Optional. The country this source's search is limited to, so a
@@ -194,6 +197,32 @@ COMPANIES: list[dict] = [
     {"name": "Magna", "platform": "workday",
      "token": "https://magna.wd3.myworkdayjobs.com/wday/cxs/magna/Magna/jobs",
      "ai_native": False},
+
+    # -- Found through tracker posting URLs, 6 Nov 2026 -----------------------
+    # Each was on the "only menu links" or "no role links" list below: the
+    # careers page hides the board, but Simplify's rows link the posting on
+    # the board itself, and its URL carries the token.
+    {"name": "OMERS", "platform": "workday",
+     "token": "https://omers.wd3.myworkdayjobs.com/wday/cxs/omers/omers_external/jobs",
+     "ai_native": False},
+    {"name": "Ontario Teachers' Pension Plan", "platform": "workday",
+     "token": "https://otppb.wd3.myworkdayjobs.com/wday/cxs/otppb/OntarioTeachers_Careers/jobs",
+     "ai_native": False},
+    {"name": "Intact", "platform": "workday",
+     "token": "https://intactfc.wd3.myworkdayjobs.com/wday/cxs/intactfc/intactfc/jobs",
+     "ai_native": False},
+    {"name": "General Motors", "platform": "workday",
+     "token": "https://generalmotors.wd5.myworkdayjobs.com/wday/cxs/generalmotors/Careers_GM/jobs",
+     "ai_native": False},
+    {"name": "Clio", "platform": "workday",
+     "token": "https://clio.wd3.myworkdayjobs.com/wday/cxs/clio/ClioCareerSite/jobs",
+     "ai_native": False},
+    {"name": "CPP Investments", "platform": "smartrecruiters",
+     "token": "CPPInvestmentsInvestissementsRPC", "ai_native": False},
+    # Uber's student roles sit on a separate university iCIMS portal.
+    {"name": "Uber", "platform": "icims",
+     "token": "https://university-uber.icims.com", "ai_native": False},
+
     # Scotiabank answers 422 to the standard cxs search; left out until
     # someone captures the request its own site sends. AMD's Workday does too,
     # but its public careers site is Jibe (below).
@@ -281,10 +310,8 @@ COMPANIES: list[dict] = [
      "ai_native": False, "browser": True},
 
     # Checked and left out, all covered by the trackers meanwhile:
-    #   Clio           -- Cloudflare 403 to every non-browser request, and no
-    #                     Ashby/Greenhouse/Lever/SmartRecruiters/Workable board
-    #                     (Ada and Xanadu were here too; --probe has since
-    #                     found their Greenhouse and JazzHR boards, above)
+    #   (Clio, CPP Investments, OMERS, Ontario Teachers', Intact, GM and Uber
+    #   were here; their boards were found through tracker posting URLs, above)
     #   Limina         -- listings rendered client-side, no board found
     #   Groq, Untether AI, Private AI, Layer 6, Borealis AI, Samsung, Huawei,
     #   D2L, ApplyBoard, FreshBooks, Top Hat, Tealbook, Vidyard, LG AI
@@ -294,11 +321,10 @@ COMPANIES: list[dict] = [
     #   Kinaxis        -- iCIMS, which answers 405 to non-browser requests
     #   Arteria AI     -- Greenhouse board exists but is empty
     #   OpenText       -- rendered links carry no location, and the search is global
-    #   Layer 6, Private AI, Ross Video, eSentire, Huawei, Uber, Miovision,
+    #   Layer 6, Private AI, Ross Video, eSentire, Huawei, Miovision,
     #   Moneris, Descartes -- rendered page has no role links
-    #   Borealis AI, CPP Investments, OMERS, Ontario Teachers', Hydro One,
-    #   Intact, Meta, GM, SickKids -- only menu links; roles sit behind
-    #                     another portal
+    #   Borealis AI, Hydro One, Meta, SickKids -- only menu links; roles sit
+    #                     behind another portal
     #   League, Questrade -- 403 or no reachable careers host
     #   Magnet Forensics, Fullscript -- discovery already reaches their Lever
     #                     boards; a careers-page scrape would list each role twice
@@ -415,6 +441,17 @@ PROMOTE_MAX = 60
 # Anything found joins the discovered boards above.
 SNIFF_PER_RUN = 8
 SNIFF_EVERY_DAYS = 14
+
+# Nightly explore run (``radar.py --explore``). Every board any tracker row
+# links -- Canadian or not, since a US company's Toronto office posts on the
+# same board as its US interns -- is a candidate. Each night up to
+# EXPLORE_MAX_BOARDS of them are scraped once, never-checked and most linked
+# first; any with a Canadian student role joins discovery and can be promoted
+# right away. A board with nothing Canadian is checked again after
+# EXPLORE_RECHECK_DAYS. The budget sits inside the nightly job's own timeout.
+EXPLORE_MAX_BOARDS = 1500
+EXPLORE_TIME_BUDGET_S = 80 * 60
+EXPLORE_RECHECK_DAYS = 30
 
 # Trackers that wrap apply links in a shortener (go.vansh.nyc) are resolved to
 # the employer's real posting URL, so the feed links the posting, dedupe sees

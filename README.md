@@ -994,6 +994,9 @@ Corrections found along the way:
 | A tracker's apply column holds the job URL | Some wrap a shields.io badge in a link, so the first URL in the cell was the badge image |
 | Trackers only list a title and link | `negar` and `vansh` carry date columns, now parsed for the freshness window |
 | A tracker's apply link is the posting | `vansh` wraps every link in its `go.vansh.nyc` shortener, which hid the requisition id dedupe needs and the board discovery needs; Canadian short links are now resolved once and cached |
+| Only boards linked by Canadian postings are worth checking | Most employers with a Toronto office are only ever linked by their US roles. Every board any tracker row links is now a candidate, and a nightly explore run (about 3am Toronto, 80 minute budget) checks each once and promotes the ones with Canadian student roles |
+| OMERS, Ontario Teachers', CPP Investments, Intact, GM, Clio and Uber can't be scraped | Their careers pages hide the board, but tracker rows link postings on it: all seven run on Workday, SmartRecruiters or iCIMS and are now configured |
+| A careers site with no API needs a browser | Many publish a job sitemap with dates; the `sitemap` platform reads it plus each posting's JSON LD. Find one with `python radar.py --sitemap <careers url>` |
 | Board searches for "intern", "co-op" and "student" catch every student role | U of T's PEY placements are often titled only "PEY", and some search engines never match "coop" for "co-op"; every searchable board now uses one shared, longer term list |
 | The title carries the work term | Some trackers put it only in a "Details" column (`Intern · 4mo · Fall 2026`), so cycle detection reads those fields too |
 | `first_seen` approximates posting date | True only for links found *after* seeding; seeding stamps everything "now", so undated seeded rows are labelled *date unknown* and listed last, never shown as new |

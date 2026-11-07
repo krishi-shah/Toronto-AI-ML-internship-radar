@@ -236,6 +236,10 @@ def fetch_all(
         http, store, postings, quiet,
         min(time.monotonic() + cfg.SHORT_LINK_TIME_BUDGET_S, started + cfg.FETCH_MAX_S),
     )
+    # Every board any posting links, wherever the role is, for the nightly
+    # explore run. Costs no requests here.
+    store.candidates_add(
+        sources.discover_boards(postings, configured_boards(), canadian_only=False))
     store.commit()
 
     deadline = min(time.monotonic() + cfg.DISCOVERY_TIME_BUDGET_S,
@@ -917,6 +921,85 @@ def auto_companies_path() -> str:
     )
 
 
+def cmd_explore(store: Store, quiet: bool = True) -> int:
+    """Nightly: scrape candidate boards once each, keep any with Canadian roles.
+
+    The hourly runs only scrape boards that a Canadian posting linked. Most
+    employers with a Toronto office are only ever linked by their US roles,
+    so the trackers' other links are queued as candidates and checked here,
+    where the long time budget cannot slow the feed.
+
+    A board with a Canadian student role joins discovery with its evidence
+    recorded, so promotion into auto_companies.py happens tonight and the
+    next hourly run scrapes it like any configured board. Nothing is alerted
+    or written to the feed from here.
+    """
+    http = sources.Http(None)
+    started = time.monotonic()
+    deadline = started + cfg.EXPLORE_TIME_BUDGET_S
+    known = configured_boards()
+    due = [
+        row for row in store.candidates_due(cfg.EXPLORE_MAX_BOARDS, cfg.EXPLORE_RECHECK_DAYS)
+        if sources.board_key(row["platform"], row["token"]) not in known
+        and row["platform"] in sources.ADAPTERS
+    ]
+    print(f"[EXPLORE] {toronto_now():%Y-%m-%d %H:%M:%S} Toronto: {len(due)} candidate boards")
+
+    by_label: dict[str, sqlite3.Row] = {}
+    tasks = []
+    for row in due:
+        label = f"{row['platform']}:{row['token']}"
+        by_label[label] = row
+        adapter = sources.ADAPTERS[row["platform"]]
+        thunk = lambda a=adapter, n=row["name"], t=row["token"]: a(http, n, t)  # noqa: E731
+        tasks.append((label, _before(deadline, thunk), False))
+
+    stats = {"checked": 0, "failed": 0, "found": 0}
+
+    def record(label: str, found: Optional[list[Posting]], error: Optional[str]) -> None:
+        row = by_label[label]
+        stats["checked"] += 1
+        if error is not None:
+            stats["failed"] += 1
+            store.candidates_checked(row["platform"], row["token"], 0, 0, f"error: {error}")
+            return
+        canada = [p for p in found if in_canada(p)]
+        student = strict_n = 0
+        for post in canada:
+            verdict = classify(post)
+            if verdict.tier in (STRICT, LOOSE, OTHER):
+                student += 1
+            if verdict.tier == STRICT:
+                strict_n += 1
+        store.candidates_checked(
+            row["platform"], row["token"], len(canada), student,
+            f"{len(found)} jobs, {len(canada)} in Canada, {student} student")
+        if student:
+            stats["found"] += 1
+            store.discovered_add(row["platform"], row["token"], row["name"], len(canada))
+            store.discovered_ok(row["platform"], row["token"], len(found), len(canada),
+                                student=student, strict=strict_n)
+            print(f"  + {row['name']} [{row['platform']}]: {student} Canadian student roles"
+                  f" ({strict_n} strict)")
+        if stats["checked"] % 100 == 0:
+            store.commit()
+
+    _run_wave(tasks, store, quiet, on_result=record)
+    store.commit()
+    sync_auto_companies(store)
+
+    summary = store.candidates_summary()
+    left = len(tasks) - stats["checked"]
+    print(
+        f"\nChecked {stats['checked']} boards ({stats['failed']} failed),"
+        f" {stats['found']} with Canadian student roles."
+        f" {left} left for tomorrow. Pool: {summary['checked']}/{summary['total']}"
+        f" ever checked, {summary['hits']} with hits."
+        f" Done in {time.monotonic() - started:.0f}s."
+    )
+    return 0
+
+
 def sync_auto_companies(store: Store) -> bool:
     """Rewrite the generated source list from this run's evidence.
 
@@ -1087,6 +1170,28 @@ def cmd_sniff(url: str) -> int:
     return 0
 
 
+def cmd_sitemap(url: str) -> int:
+    """Find a careers site's job sitemap and print the line to paste."""
+    http = sources.Http()
+    print(f"Looking for job sitemaps on {url}\n")
+    found = sources.find_sitemaps(http, url)
+    if not found:
+        print("No sitemap found. The site needs a browser scrape or its ATS board.")
+        return 1
+    for sitemap_url, recent in found:
+        print(f"  {recent:>4} postings in the last {sources.SITEMAP_MAX_AGE_DAYS} days"
+              f"  {sitemap_url}")
+    best, recent = found[0]
+    if not recent:
+        print("\nSitemaps exist but list no recent posting URLs; not worth adding.")
+        return 1
+    print("\nAdd to COMPANIES in companies.py (set the name, and a location if the"
+          " pages carry none):")
+    print(f'    {{"name": "?", "platform": "sitemap", "token": "{best}",'
+          f' "ai_native": False}},')
+    return 0
+
+
 def cmd_discovered(store: Store) -> int:
     """List discovered boards, so good ones can be promoted into companies.py."""
     rows = store.discovered_rows()
@@ -1213,6 +1318,10 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--discovered", action="store_true",
                         help="list automatically discovered boards")
     parser.add_argument("--open", action="store_true", help="rebuild and open the dashboard")
+    parser.add_argument("--explore", action="store_true",
+                        help="nightly: check candidate boards for Canadian roles")
+    parser.add_argument("--sitemap", metavar="URL",
+                        help="find a careers site's job sitemap and print a config line")
     parser.add_argument("--db", default=DB_PATH, help=f"SQLite path (default {DB_PATH})")
     args = parser.parse_args(argv)
 
@@ -1220,6 +1329,8 @@ def main(argv: Optional[list[str]] = None) -> int:
         return cmd_sniff(args.sniff)
     if args.probe:
         return cmd_probe(args.probe)
+    if args.sitemap:
+        return cmd_sitemap(args.sitemap)
 
     store = Store(args.db)
     try:
@@ -1235,6 +1346,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             return cmd_reasons(store)
         if args.discovered:
             return cmd_discovered(store)
+        if args.explore:
+            return cmd_explore(store)
         if args.digest:
             send_digest(store, notify.build_notifiers(cfg.NOTIFIERS, store))
             return 0
