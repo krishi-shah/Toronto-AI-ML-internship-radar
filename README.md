@@ -48,7 +48,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Sunday 08 November, 18:02 Toronto &middot; 174/174 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 43 AI/ML matches &middot; last 14 days
 
@@ -312,7 +312,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Brookfield \[workday\] | 9 | ok |
 | CIBC \[workday:campus\] | 44 | ok |
 | CIBC \[workday\] | 355 | ok |
-| Canadian-Tech-Internships-2027 \[tracker\] | 286 | ok |
+| Canadian-Tech-Internships-2027 \[tracker\] | 283 | ok |
 | Capital One \[workday\] | 534 | ok |
 | Celestica \[successfactors\] | 75 | ok |
 | Cerebras \[ashby\] | 121 | ok |
@@ -329,15 +329,15 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Definity Financial \[oracle\] | 38 | ok |
 | DoorDash \[greenhouse\] | 41 | ok |
 | Dropbox \[greenhouse\] | 33 | ok |
-| Elastic \[greenhouse\] | 425 | ok |
+| Elastic \[greenhouse\] | 426 | ok |
 | Entrust \[workday\] | 9 | ok |
 | Equitable Bank \[lever\] | 82 | ok |
 | Ericsson \[eightfold\] | 25 | ok |
 | Faire \[greenhouse\] | 68 | ok |
 | Float \[ashby\] | 17 | ok |
 | Foresters Financial \[workday\] | 21 | ok |
-| GE Vernova \[workday:vernova\_externalsite\] | 558 | ok |
-| GE Vernova \[workday\] | 571 | ok |
+| GE Vernova \[workday:vernova\_externalsite\] | 557 | ok |
+| GE Vernova \[workday\] | 570 | ok |
 | General Magic \[ashby\] | 4 | ok |
 | Georgian Partners Growth \[ashby\] | 2 | ok |
 | Geotab \[greenhouse\] | 62 | ok |
@@ -348,7 +348,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Hopper \[ashby\] | 21 | ok |
 | Human Computer Lab \[ashby\] | 14 | ok |
 | Ideogram \[ashby\] | 4 | ok |
-| Inovia \[getro\] | 403 | ok |
+| Inovia \[getro\] | 402 | ok |
 | Instacart \[greenhouse\] | 90 | ok |
 | Intel \[workday\] | 610 | ok |
 | Jobber \[ashby\] | 38 | ok |
@@ -360,7 +360,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Klue \[ashby\] | 9 | ok |
 | L3Harris Technologies \[successfactors\] | 98 | ok |
 | Lightmatter \[greenhouse\] | 56 | ok |
-| Loblaw Companies \[workday\] | 654 | ok |
+| Loblaw Companies \[workday\] | 655 | ok |
 | Loblaw Digital \[smartrecruiters\] | 4 | ok |
 | Loopio \[ashby\] | 16 | ok |
 | Lyft \[greenhouse\] | 166 | ok |
@@ -377,7 +377,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Miovision \[ashby\] | 17 | ok |
 | MongoDB \[greenhouse\] | 374 | ok |
 | Neo Financial \[ashby\] | 60 | ok |
-| New-Grad-Positions \[tracker\] | 3227 | ok |
+| New-Grad-Positions \[tracker\] | 3222 | ok |
 | Nokia \[oracle\] | 34 | ok |
 | Nuclear Promise X \[ashby\] | 16 | ok |
 | Nvidia \[workday\] | 20 | ok |
@@ -425,10 +425,10 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Stantec \[oracle\] | 271 | ok |
 | Steel \[ashby\] | 1 | ok |
 | Stripe \[greenhouse\] | 766 | ok |
-| Summer2027-Internships \[tracker\] | 5349 | ok |
+| Summer2027-Internships \[tracker\] | 5342 | ok |
 | Sun Life \[workday:Campus\] | 4 | ok |
 | Sun Life \[workday\] | 110 | ok |
-| TD \[workday\] | 587 | ok |
+| TD \[workday\] | 589 | ok |
 | TELUS \[successfactors:co-op\] | - | **empty** |
 | TELUS \[successfactors\] | 14 | ok |
 | TMX Group \[workday\] | 98 | ok |
@@ -444,7 +444,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | Varian \[workday\] | 20 | ok |
 | Vector Institute \[html\] | 30 | ok |
 | Veeda AI \[ashby\] | 9 | ok |
-| WTW \[oracle\] | 370 | ok |
+| WTW \[oracle\] | 369 | ok |
 | Waabi \[lever\] | 88 | ok |
 | Wattpad \[lever\] | 16 | ok |
 | Wealthsimple \[ashby\] | 42 | ok |
@@ -455,7 +455,7 @@ _Updated Sunday 08 November, 13:29 Toronto &middot; 174/174 sources healthy &mid
 | ecobee \[html\] | 26 | ok |
 | speedyapply-AI-2027 \[tracker\] | 799 | ok |
 | speedyapply-SWE-2027 \[tracker\] | 834 | ok |
-| vansh-Summer2027 \[tracker\] | 2279 | ok |
+| vansh-Summer2027 \[tracker\] | 2288 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
 _Plus 166 boards discovered from Canadian postings: 166 ok, 33 promoted, 114 demoted._
