@@ -764,75 +764,6 @@ class FeedWriter:
 
 
 # --------------------------------------------------------------------------
-# Discord
-# --------------------------------------------------------------------------
-
-DISCORD_ENV = "DISCORD_WEBHOOK_URL"
-DISCORD_MAX_PER_RUN = 30
-_DISCORD_EMBEDS_PER_MESSAGE = 10
-
-
-class DiscordNotifier:
-    """Posts each new strict role to a Discord channel through a webhook.
-
-    The webhook URL comes from the ``DISCORD_WEBHOOK_URL`` environment
-    variable (a repository secret in Actions), never from the repo itself:
-    anyone holding it can post to the channel. Without it the backend is
-    skipped. Only new strict roles are posted; digests and health checks are
-    left to the README.
-    """
-
-    name = "discord"
-
-    def __init__(self, webhook: str) -> None:
-        self.webhook = webhook
-
-    def strict(self, hits: Sequence[tuple[Posting, Verdict]]) -> bool:
-        if not hits:
-            return True
-        import requests
-
-        embeds = []
-        for post, verdict in list(hits)[:DISCORD_MAX_PER_RUN]:
-            term = term_label(post) if verdict.cycle == "target" else ""
-            fields = [{"name": "Company", "value": post.company[:256] or "?", "inline": True},
-                      {"name": "Location", "value": (post.location or "not listed")[:256],
-                       "inline": True}]
-            if term:
-                fields.append({"name": "Term", "value": term, "inline": True})
-            embeds.append({
-                "title": post.title[:256],
-                "url": post.url,
-                "color": 0x2F81F7,
-                "fields": fields,
-            })
-        ok = True
-        for i in range(0, len(embeds), _DISCORD_EMBEDS_PER_MESSAGE):
-            chunk = embeds[i:i + _DISCORD_EMBEDS_PER_MESSAGE]
-            body = {"username": "Internship Radar", "embeds": chunk,
-                    "allowed_mentions": {"parse": []}}
-            if i == 0:
-                count = len(embeds)
-                body["content"] = f"**{count} new AI/ML role{'s' if count != 1 else ''}**"
-            try:
-                resp = requests.post(self.webhook, json=body, timeout=15)
-                if resp.status_code >= 300:
-                    print(f"  ! discord answered {resp.status_code}: {resp.text[:200]}")
-                    ok = False
-            except requests.RequestException as exc:
-                print(f"  ! discord failed: {exc}")
-                ok = False
-            time.sleep(1)
-        return ok
-
-    def digest(self, rows: Sequence[Any]) -> bool:
-        return True
-
-    def health(self, message: str) -> bool:
-        return True
-
-
-# --------------------------------------------------------------------------
 # Assembly
 # --------------------------------------------------------------------------
 
@@ -861,12 +792,6 @@ def build_notifiers(names: Iterable[str], store: Any) -> list[Notifier]:
             built.append(ReadmeWriter(store))
         elif name == "feed":
             built.append(FeedWriter(store))
-        elif name == "discord":
-            webhook = os.environ.get(DISCORD_ENV, "").strip()
-            if webhook:
-                built.append(DiscordNotifier(webhook))
-            else:
-                print(f"  (discord skipped: {DISCORD_ENV} is not set)")
         else:
             print(f"  ! unknown notifier '{name}', skipping")
     return built

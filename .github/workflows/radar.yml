@@ -112,13 +112,9 @@ jobs:
 
       - name: Run radar
         env:
-          # Renders README.md, feed.json and feed.xml, and posts new strict
-          # roles to Discord when the webhook secret is set. The HTML
-          # dashboard is a local-only channel.
-          RADAR_NOTIFIERS: readme,feed,discord
-          # Optional: a Discord channel webhook, added as a repository secret.
-          # Without it the Discord alert is skipped and nothing else changes.
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # Renders README.md, feed.json and feed.xml. The HTML dashboard is
+          # a local-only channel.
+          RADAR_NOTIFIERS: readme,feed
           # Tracker listings and job titles carry emoji, and the runner's
           # default encoding cannot always encode them.
           PYTHONIOENCODING: utf-8
