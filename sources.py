@@ -1725,6 +1725,91 @@ def find_sitemaps(http: Http, careers_url: str) -> list[tuple[str, int]]:
 
 
 # --------------------------------------------------------------------------
+# Postings added by hand (manual_postings.py)
+# --------------------------------------------------------------------------
+
+# Sites whose terms forbid automated reading, or that sit behind a login. An
+# entry linking one is never fetched: it must carry its own title, company
+# and location.
+NO_FETCH_HOSTS = (
+    "glassdoor.com", "glassdoor.ca", "indeed.com", "indeed.ca", "workopolis.com",
+    "linkedin.com", "lnkd.in", "intern-list.com", "ziprecruiter.com", "monster.ca",
+    "monster.com", "simplyhired.ca", "simplyhired.com", "jooble.org", "talent.com",
+    "handshake.com", "joinhandshake.com", "wellfound.com",
+)
+
+
+def _no_fetch(url: str) -> bool:
+    host = _bare_host(url)
+    return any(host == d or host.endswith("." + d) for d in NO_FETCH_HOSTS)
+
+
+def manual_uid(url: str) -> str:
+    parts = urlparse(url.strip())
+    return f"manual:{_bare_host(url)}{parts.path.rstrip('/')}" + (f"?{parts.query}" if parts.query else "")
+
+
+def manual(http: Http, entries: Iterable[dict]) -> list[Posting]:
+    """Postings from ``manual_postings.py``.
+
+    An employer link is read for its title, company, place and date (the
+    page's schema.org JobPosting, else its description); anything the entry
+    spells out wins. A link to a site in ``NO_FETCH_HOSTS`` is never opened,
+    so it is skipped unless the entry carries title, company and location.
+    A bad entry is skipped with a warning; it never fails the others.
+    """
+    out: list[Posting] = []
+    failed = False
+    for entry in entries:
+        url = (entry.get("url") or "").strip()
+        if not url.startswith(("http://", "https://")):
+            print(f"  [manual] skipped, no valid url: {entry}")
+            continue
+        title = (entry.get("title") or "").strip()
+        company = (entry.get("company") or "").strip()
+        location = (entry.get("location") or "").strip()
+        posted = _one_date(entry.get("added") or "")
+
+        if not (title and company and location):
+            if _no_fetch(url):
+                print(f"  [manual] skipped {url}: this site is never opened, so add"
+                      " title, company and location to the entry")
+                continue
+            try:
+                text = http.text(url) or ""
+            except (requests.RequestException, RuntimeError) as exc:
+                text = ""
+                failed = True
+                print(f"  [manual] could not read {url}: {exc}")
+            found = _jsonld_postings(company or _bare_host(url), url, text) if text else []
+            if found:
+                page = found[0]
+                title = title or page.title
+                company = company or page.company
+                location = location or page.location
+                posted = posted or page.posted_at
+            else:
+                title = title or (_page_title(text) if text else "")
+            if not title:
+                print(f"  [manual] skipped {url}: no title on the page, add one to the entry")
+                continue
+            company = company or _bare_host(url)
+
+        raw = {"manual": True}
+        if entry.get("term"):
+            raw["terms"] = [entry["term"]]
+        if entry.get("found_on"):
+            raw["found_on"] = entry["found_on"]
+        out.append(Posting(
+            company=company, title=title, location=location, url=url,
+            uid=manual_uid(url), raw=raw, posted_at=posted,
+        ))
+    # A page that failed to load is not a removed entry: an incomplete
+    # listing never closes anything.
+    return Partial(out) if failed else out
+
+
+# --------------------------------------------------------------------------
 # Layer 3: community trackers
 # --------------------------------------------------------------------------
 

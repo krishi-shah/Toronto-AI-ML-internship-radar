@@ -170,6 +170,12 @@ def build_tasks(http: sources.Http) -> list[tuple[str, Callable[[], list[Posting
             thunk = _with_country(thunk, entry["country"])
         tasks.append((label, thunk, False))
 
+    # Roles added by hand: ones found on sites the radar never reads.
+    entries = _manual_entries()
+    if entries:
+        tasks.append(("Added by hand [manual]",
+                      lambda e=entries: sources.manual(http, e), False))
+
     # VC and ecosystem job boards list many companies' roles at once, so each
     # posting carries its own company name rather than the board's.
     for entry in cfg.PORTFOLIO_BOARDS:
@@ -195,9 +201,19 @@ def ai_native_companies() -> set[str]:
     }
 
 
+def _manual_entries() -> list[dict]:
+    """``MANUAL_POSTINGS`` from manual_postings.py, or none without the file."""
+    try:
+        import manual_postings
+    except ImportError:
+        return []
+    return list(getattr(manual_postings, "MANUAL_POSTINGS", []) or [])
+
+
 def source_count() -> int:
     """Configured sources: company boards, trackers and portfolio job boards."""
-    return len(cfg.all_companies()) + len(cfg.TRACKERS) + len(cfg.PORTFOLIO_BOARDS)
+    return (len(cfg.all_companies()) + len(cfg.TRACKERS) + len(cfg.PORTFOLIO_BOARDS)
+            + (1 if _manual_entries() else 0))
 
 
 def fetch_all(

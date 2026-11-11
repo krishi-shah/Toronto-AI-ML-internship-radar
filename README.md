@@ -40,6 +40,14 @@ Three rules shape what you see:
 Within those bounds it is tuned for recall: ambiguous tech postings are kept,
 never binned.
 
+**Found a role somewhere else?** Glassdoor, Indeed, Workopolis, LinkedIn and
+sites like intern-list.com don't allow automated reading, so the radar never
+fetches them. Add the role to [`manual_postings.py`](manual_postings.py)
+instead (you can edit it on GitHub, even from your phone) and it shows up on
+the next run, with the same tiers and Toronto filter as everything else. Paste
+the employer's own apply link and the radar reads the details itself; for a
+Glassdoor or Workopolis link, also fill in the title, company and location.
+
 **Want to help?** Contributions are welcome, from a one-line company
 suggestion to a new job-board adapter. See [Contributing](#contributing).
 
