@@ -50,7 +50,7 @@ class TestStrictTier(unittest.TestCase):
         self.assertEqual(tier("Machine Learning Intern"), STRICT)
 
     def test_ai_abbreviation_in_title(self):
-        self.assertEqual(tier("AI Engineer Intern, Winter 2027"), STRICT)
+        self.assertEqual(tier("AI Engineer Intern, Summer 2027"), STRICT)
 
     def test_ml_abbreviation_in_title(self):
         self.assertEqual(tier("ML Engineering Co-op"), STRICT)
@@ -73,8 +73,8 @@ class TestStrictTier(unittest.TestCase):
     def test_remote_in_canada_counts_as_location(self):
         self.assertEqual(tier("NLP Intern", location="Remote in Canada"), STRICT)
 
-    def test_winter_2027_cycle_token(self):
-        self.assertEqual(tier("AI Intern (W27)"), STRICT)
+    def test_summer_2027_cycle_token(self):
+        self.assertEqual(tier("AI Intern (S27)"), STRICT)
 
 
 class TestCoopSpellingVariants(unittest.TestCase):
@@ -225,9 +225,10 @@ class TestOtherFields(unittest.TestCase):
 
 
 class TestPastCycles(unittest.TestCase):
-    """Cycles earlier than the target are rejected: that recruiting is over.
+    """Summer 2027 is the target (companies.TARGET_CYCLES).
 
-    Targets are Winter and Summer 2027 (companies.TARGET_CYCLES).
+    Winter 2027 is still live but earlier, so it is demoted to loose; anything
+    before it (companies.EARLIEST_LIVE_CYCLE) is rejected outright.
     """
 
     def test_fall_2026_is_rejected(self):
@@ -242,8 +243,13 @@ class TestPastCycles(unittest.TestCase):
     def test_short_form_past_cycle_is_rejected(self):
         self.assertIsNone(tier("Data Science Intern F26"))
 
-    def test_winter_2027_still_strict(self):
-        self.assertEqual(tier("ML Intern, Winter 2027"), STRICT)
+    def test_winter_2027_is_demoted_not_dropped(self):
+        self.assertEqual(tier("ML Intern, Winter 2027"), LOOSE)
+        self.assertEqual(tier("AI Intern (W27)"), LOOSE)
+        self.assertEqual(classify(p("ML Intern, Winter 2027")).reason, "earlier cycle")
+
+    def test_winter_and_summer_posting_is_a_target(self):
+        self.assertEqual(tier("ML Co-op, Winter/Summer 2027"), STRICT)
 
     def test_future_cycle_is_only_demoted(self):
         self.assertEqual(tier("ML Intern, Fall 2027"), LOOSE)
@@ -252,12 +258,14 @@ class TestPastCycles(unittest.TestCase):
         self.assertEqual(tier("Machine Learning Intern, Summer 2027"), STRICT)
         self.assertEqual(tier("ML Intern (S27)"), STRICT)
 
-    def test_cycle_between_targets_is_a_target(self):
+    def test_spring_2027_is_a_target(self):
+        """Waterloo calls its May to August term "Spring"."""
         self.assertEqual(tier("ML Intern, Spring 2027"), STRICT)
 
     def test_cycle_label_alone_is_student_level(self):
         """Regression: no intern wording, so these were "not student level"."""
-        self.assertEqual(tier("ML Engineer - Winter 2027"), STRICT)
+        self.assertEqual(tier("ML Engineer - Summer 2027"), STRICT)
+        self.assertEqual(tier("ML Engineer - Winter 2027"), LOOSE)
         self.assertEqual(tier("Software Engineer, Summer 2027"), LOOSE)
         post = p("Machine Learning Engineer", raw={"details": "4mo - Summer 2027"})
         self.assertEqual(classify(post).tier, STRICT)
@@ -269,7 +277,7 @@ class TestPastCycles(unittest.TestCase):
     def test_multi_cycle_posting_keeps_the_best_one(self):
         """A req spanning several terms is live if any of them is the target."""
         self.assertEqual(
-            tier("Machine Learning Intern - Summer 2026, Winter 2027, Fall 2027"),
+            tier("Machine Learning Intern - Fall 2026, Summer 2027, Fall 2027"),
             STRICT,
         )
 
@@ -307,8 +315,13 @@ class TestCycleOutsideTitle(unittest.TestCase):
 
     def test_target_cycle_in_details_still_strict(self):
         post = p("Machine Learning Intern",
-                 raw={"details": "Co-op - 8mo - Winter 2027"})
+                 raw={"details": "Co-op - 8mo - Summer 2027"})
         self.assertEqual(classify(post).tier, STRICT)
+
+    def test_earlier_cycle_in_details_is_demoted(self):
+        post = p("Machine Learning Intern",
+                 raw={"details": "Co-op - 4mo - Winter 2027"})
+        self.assertEqual(classify(post).tier, LOOSE)
 
     def test_details_without_a_cycle_changes_nothing(self):
         post = p("Machine Learning Intern", raw={"details": "Co-op - 8mo - $20/hr"})
@@ -839,3 +852,42 @@ class TestCommuteArea(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestStoredRowsFollowTheTarget(unittest.TestCase):
+    """A row stored strict while Winter 2027 was a target drops on its next sighting."""
+
+    def setUp(self):
+        import tempfile
+
+        from core import Store
+        handle = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        handle.close()
+        self.path = handle.name
+        self.store = Store(self.path)
+
+    def tearDown(self):
+        self.store.close()
+        os.unlink(self.path)
+
+    def test_winter_row_is_demoted_without_an_alert(self):
+        import radar
+        post = p("Machine Learning Intern", raw={"terms": ["Winter 2027"]})
+        self.store.record(post, STRICT, "ai + student + ontario", notified=True)
+        new_strict, new_loose, skipped = radar.triage([post], self.store)
+        self.assertEqual((new_strict, new_loose, skipped), ([], [], 1))
+        self.assertEqual(self.store.stored_tier(post.uid), LOOSE)
+
+    def test_summer_row_is_left_alone(self):
+        import radar
+        post = p("Machine Learning Intern", raw={"terms": ["Summer 2027"]})
+        self.store.record(post, STRICT, "ai + student + ontario", notified=True)
+        radar.triage([post], self.store)
+        self.assertEqual(self.store.stored_tier(post.uid), STRICT)
+
+    def test_loose_row_is_never_promoted_here(self):
+        import radar
+        post = p("Machine Learning Intern", raw={"terms": ["Summer 2027"]})
+        self.store.record(post, LOOSE, "no AI signal", notified=True)
+        radar.triage([post], self.store)
+        self.assertEqual(self.store.stored_tier(post.uid), LOOSE)

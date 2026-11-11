@@ -377,14 +377,21 @@ MAX_AGE_HOURS = 168
 # longer triggers an instant alert (that still uses MAX_AGE_HOURS).
 STRICT_MAX_AGE_HOURS = 336
 
-# The cycles being targeted, as (year, month) of their first month. Winter
-# 2027 starts January 2027 and Summer 2027 starts May 2027; both can reach
-# strict, and so can anything between them. Any posting whose cycle labels
-# all point EARLIER than the first one is rejected outright -- Fall 2026
-# recruiting is over, so those postings are dead weight. Cycles after the
-# last one (Fall 2027) are not rejected, only demoted to the loose tier.
+# The cycles being targeted, as (year, month) of their first month. Summer
+# 2027 is the target, with Spring 2027 alongside it because Waterloo calls
+# its May to August term "Spring": only these can reach strict, along with
+# postings that name no cycle at all. A posting spanning several terms
+# ("Summer/Fall 2027", "Winter/Summer 2027") is a target if any of them is.
+# Cycles after the last target (Fall 2027) are kept but demoted to loose.
 # Move these on when a cycle's recruiting closes.
-TARGET_CYCLES = [(2027, 1), (2027, 5)]
+TARGET_CYCLES = [(2027, 4), (2027, 5)]
+
+# Earlier cycles still worth seeing, from this (year, month) up to the first
+# target. Winter 2027 roles still hire into January, so they are demoted to
+# loose rather than dropped. Anything before this is rejected outright --
+# Fall 2026 recruiting is over. Set it equal to the first target to reject
+# every earlier cycle.
+EARLIEST_LIVE_CYCLE = (2027, 1)
 
 # Warn me if more than this share of sources fail in one run. A silently
 # broken scraper looks exactly like a quiet hiring week.

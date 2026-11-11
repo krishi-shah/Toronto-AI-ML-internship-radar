@@ -742,7 +742,7 @@ def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
       * a location in the commute area (the GTA, Hamilton, Waterloo Region,
         Guelph), Ontario with no city named, or remote within Canada
       * no cycle token pointing exclusively at a season outside the targeted
-        cycles (Winter and Summer 2027)
+        cycle (Summer 2027); Winter 2027 and Fall 2027 roles are kept as loose
 
     Anything else student-level in the commute area (or in Canada with no
     province) falls through to loose only when the title is tech-relevant. A
@@ -839,6 +839,11 @@ def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
             LOOSE, "later cycle", ai=True, student=True, ontario=True, cycle=cycle,
             ai_terms=ai_terms,
         )
+    if cycle == "earlier":
+        return Verdict(
+            LOOSE, EARLIER_CYCLE, ai=True, student=True, ontario=True, cycle=cycle,
+            ai_terms=ai_terms,
+        )
 
     if ai_terms:
         return Verdict(STRICT, AI_IN_DESCRIPTION, ai=True, student=True,
@@ -869,13 +874,14 @@ def _cycle_verdict(text: str) -> str:
     """Classify a posting's cycle labels against the targeted cycles.
 
     Returns ``target`` (a cycle being hunted, or one between the first and
-    last of them), ``later`` (a future cycle, demoted to loose), ``past``
-    (recruiting is over, rejected), or ``unknown`` when no cycle is named at
+    last of them), ``later`` (a future cycle, demoted to loose), ``earlier``
+    (still live but before the target, such as Winter 2027, demoted to
+    loose), ``past`` (recruiting is over, rejected), or ``unknown`` when no cycle is named at
     all -- which stays eligible for strict, because plenty of real postings
     never name a term.
 
-    A posting naming several cycles keeps the best one: "Summer 2026, Winter
-    2027, Fall 2027" is a live Winter 2027 opportunity, not a dead 2026 one.
+    A posting naming several cycles keeps the best one: "Winter 2027, Summer
+    2027" is a live Summer 2027 opportunity, not an early Winter one.
     """
     cycles = parse_cycles(text)
     if not cycles:
@@ -887,14 +893,16 @@ def _cycle_verdict(text: str) -> str:
         return "target"
     if any(c > last for c in cycles):
         return "later"
+    if any(_earliest_live_cycle() <= c < first for c in cycles):
+        return "earlier"
     return "past"
 
 
 def _target_cycles() -> list[tuple[int, int]]:
     """The cycles being targeted, sorted, from config.
 
-    Defaults to Winter and Summer 2027. ``TARGET_CYCLE`` (a single cycle) is
-    still read when ``TARGET_CYCLES`` is absent.
+    Defaults to Summer 2027. ``TARGET_CYCLE`` (a single cycle) is still read
+    when ``TARGET_CYCLES`` is absent.
     """
     try:
         import companies
@@ -902,21 +910,37 @@ def _target_cycles() -> list[tuple[int, int]]:
         raw = getattr(companies, "TARGET_CYCLES", None) or [companies.TARGET_CYCLE]
         return sorted((int(year), int(month)) for year, month in raw)
     except Exception:  # noqa: BLE001 - config is optional for library use
-        return [(2027, 1), (2027, 5)]
+        return [(2027, 5)]
 
 
 def _target_cycle() -> tuple[int, int]:
-    """The earliest targeted cycle: anything before it is over."""
+    """The earliest targeted cycle."""
     return _target_cycles()[0]
 
 
+def _earliest_live_cycle() -> tuple[int, int]:
+    """The earliest cycle still kept (as loose); anything before it is over.
+
+    ``EARLIEST_LIVE_CYCLE`` in config, never later than the first target.
+    """
+    first = _target_cycle()
+    try:
+        import companies
+
+        raw = getattr(companies, "EARLIEST_LIVE_CYCLE", None)
+        earliest = (int(raw[0]), int(raw[1])) if raw else first
+    except Exception:  # noqa: BLE001 - config is optional for library use
+        earliest = first
+    return min(earliest, first)
+
+
 def names_live_cycle(posting: Posting) -> bool:
-    """Does the title or a term field name a targeted or later cycle?
+    """Does the title or a term field name a live (earlier, target or later) cycle?
 
     "ML Engineer - Winter 2027" carries no intern wording, but a work term
     attached to the role only makes sense for a student.
     """
-    first = _target_cycle()
+    first = _earliest_live_cycle()
     return any(c >= first for c in parse_cycles(f"{posting.title} | {_cycle_blob(posting)}"))
 
 
@@ -924,13 +948,13 @@ _SEASON_NAME = {1: "Winter", 4: "Spring", 5: "Summer", 9: "Fall"}
 
 
 def term_label(posting: Posting) -> str:
-    """The work term(s) a posting names, for the feed: "Winter 2027".
+    """The work term(s) a posting names, for the feed: "Summer 2027".
 
-    Cycles before the targeted one are left out when a current one is also
-    named, so "Summer 2026, Winter 2027" shows as "Winter 2027".
+    Cycles that are already over are left out when a live one is also named,
+    so "Fall 2026, Summer 2027" shows as "Summer 2027".
     """
     cycles = parse_cycles(f"{posting.title} | {_cycle_blob(posting)}")
-    current = [c for c in cycles if c >= _target_cycle()] or cycles
+    current = [c for c in cycles if c >= _earliest_live_cycle()] or cycles
     return ", ".join(f"{_SEASON_NAME[month]} {year}" for year, month in current)
 
 
@@ -943,6 +967,8 @@ def term_label(posting: Posting) -> str:
 # --------------------------------------------------------------------------
 
 AI_IN_DESCRIPTION = "AI in description"
+# A live cycle before the target (Winter 2027 while Summer 2027 is hunted).
+EARLIER_CYCLE = "earlier cycle"
 
 _AI_DESC_TERMS = [
     ("machine learning", r"machine[\s\-]?learning"),
@@ -1374,6 +1400,10 @@ class Store:
                 ((key, current) for key in keys),
             )
             return True
+
+    def stored_tier(self, uid: str) -> Optional[str]:
+        row = self.conn.execute("SELECT tier FROM jobs WHERE uid = ?", (uid,)).fetchone()
+        return row["tier"] if row else None
 
     def seen_uid(self, uid: str) -> bool:
         cur = self.conn.execute("SELECT 1 FROM jobs WHERE uid = ?", (uid,))

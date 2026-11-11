@@ -34,7 +34,7 @@ import companies as cfg
 import notify
 import sources
 from core import (
-    AI_IN_DESCRIPTION, LOOSE, OTHER, STRICT, Posting, Store, Verdict,
+    AI_IN_DESCRIPTION, EARLIER_CYCLE, LOOSE, OTHER, STRICT, Posting, Store, Verdict,
     ai_description_score, classify, in_canada, names_a_place, normalize_company,
     role_keys, toronto_now,
 )
@@ -365,6 +365,32 @@ def configured_boards() -> set[tuple[str, str]]:
     }
 
 
+# Verdicts that come only from the posting's work term. A stored row whose
+# term has since stopped being the target (Winter 2027 once Summer 2027 is
+# hunted) is moved down on its next sighting rather than staying strict
+# until it ages out.
+_CYCLE_DEMOTIONS = (EARLIER_CYCLE, "later cycle", "cycle already passed")
+
+
+def demote_for_cycle(store: Store, post: Posting) -> bool:
+    """Lower a stored row's tier when the target cycle has moved past it.
+
+    Only demotions caused by the cycle are written: the fresh posting carries
+    its raw term fields, so the verdict is as good as the first one. No alert
+    is sent. Returns whether the row changed.
+    """
+    stored = store.stored_tier(post.uid)
+    if stored not in (STRICT, LOOSE):
+        return False
+    verdict = classify(post)
+    if verdict.reason not in _CYCLE_DEMOTIONS:
+        return False
+    if _TIER_RANK[verdict.tier] >= _TIER_RANK[stored]:
+        return False
+    store.update_verdict(post.uid, verdict.tier, verdict.reason, verdict.ai_terms)
+    return True
+
+
 SHORT_LINK_CACHE = "short:"
 
 
@@ -672,6 +698,7 @@ def triage(
             # let the real requisition id merge it with the employer's copy.
             if (post.raw or {}).get("short_url"):
                 store.refresh_url(post)
+            demote_for_cycle(store, post)
             skipped += 1
             continue
 
