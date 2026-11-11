@@ -646,6 +646,193 @@ class ReadmeWriter:
 
 
 # --------------------------------------------------------------------------
+# RSS and JSON feeds
+# --------------------------------------------------------------------------
+
+REPO_URL = "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar"
+FEED_JSON_PATH = "feed.json"
+FEED_XML_PATH = "feed.xml"
+FEED_LIMIT = 200
+
+
+def _feed_items(store: Any) -> list[dict]:
+    """Strict then loose roles in the feed window, as plain dicts."""
+    max_age, strict_age = _max_ages()
+    items = []
+    for tier, age in (("strict", strict_age), ("loose", max_age)):
+        for row in store.recent_jobs(tier, FEED_LIMIT, age):
+            shown = int(_col(row, "shown_at") or _col(row, "posted_at") or 0)
+            items.append({
+                "id": _col(row, "uid") or row["url"],
+                "tier": tier,
+                "title": row["title"],
+                "company": row["company"],
+                "location": row["location"] or "",
+                "term": _col(row, "term"),
+                "url": row["url"],
+                "date": datetime.fromtimestamp(shown).astimezone().isoformat() if shown else "",
+                "date_known": bool(row["posted_at"]),
+                "ai_terms": _col(row, "ai_terms"),
+            })
+    return items[:FEED_LIMIT]
+
+
+def _rss(items: Sequence[dict]) -> str:
+    from email.utils import format_datetime
+
+    def entry(item: dict) -> str:
+        bits = [item["company"], item["location"] or "location not listed"]
+        if item["term"]:
+            bits.append(item["term"])
+        label = "AI/ML" if item["tier"] == "strict" else "Tech"
+        when = ""
+        if item["date"]:
+            when = f"<pubDate>{format_datetime(datetime.fromisoformat(item['date']))}</pubDate>"
+        return (
+            "<item>"
+            f"<title>{_xml_escape(item['title'] + ' at ' + item['company'])}</title>"
+            f"<link>{_xml_escape(item['url'])}</link>"
+            f"<guid isPermaLink=\"false\">{_xml_escape(item['id'])}</guid>"
+            f"<category>{label}</category>"
+            f"<description>{_xml_escape(' · '.join(bits))}</description>"
+            f"{when}</item>"
+        )
+
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0"><channel>'
+        "<title>Toronto AI/ML Internship Radar</title>"
+        f"<link>{REPO_URL}</link>"
+        "<description>Summer 2027 AI/ML and tech internships and co-ops in and around"
+        " Toronto, refreshed six times a day.</description>"
+        "<language>en-ca</language>"
+        + "".join(entry(i) for i in items)
+        + "</channel></rss>\n"
+    )
+
+
+class FeedWriter:
+    """Writes feed.xml (RSS) and feed.json beside the README.
+
+    People subscribe in an RSS reader, or build on the JSON, instead of
+    checking the README. Like the README, it renders the whole database, and
+    an unchanged feed leaves both files untouched so a quiet run commits
+    nothing.
+    """
+
+    name = "feed"
+
+    def __init__(self, store: Any, json_path: str = FEED_JSON_PATH,
+                 xml_path: str = FEED_XML_PATH) -> None:
+        self.store = store
+        self.json_path = json_path
+        self.xml_path = xml_path
+
+    def strict(self, hits: Sequence[tuple[Posting, Verdict]]) -> bool:
+        return self.render()
+
+    def digest(self, rows: Sequence[Any]) -> bool:
+        return self.render()
+
+    def health(self, message: str) -> bool:
+        return self.render()
+
+    def render(self) -> bool:
+        import json
+
+        items = _feed_items(self.store)
+        payload = {"title": "Toronto AI/ML Internship Radar", "home": REPO_URL,
+                   "count": len(items), "jobs": items}
+        outputs = {
+            self.json_path: json.dumps(payload, indent=1, ensure_ascii=False) + "\n",
+            self.xml_path: _rss(items),
+        }
+        for path, text in outputs.items():
+            try:
+                with open(path, encoding="utf-8") as fh:
+                    if fh.read() == text:
+                        continue
+            except OSError:
+                pass
+            try:
+                with open(path, "w", encoding="utf-8", newline="\n") as fh:
+                    fh.write(text)
+            except OSError as exc:
+                print(f"  ! feed write failed: {exc}")
+                return False
+        return True
+
+
+# --------------------------------------------------------------------------
+# Discord
+# --------------------------------------------------------------------------
+
+DISCORD_ENV = "DISCORD_WEBHOOK_URL"
+DISCORD_MAX_PER_RUN = 30
+_DISCORD_EMBEDS_PER_MESSAGE = 10
+
+
+class DiscordNotifier:
+    """Posts each new strict role to a Discord channel through a webhook.
+
+    The webhook URL comes from the ``DISCORD_WEBHOOK_URL`` environment
+    variable (a repository secret in Actions), never from the repo itself:
+    anyone holding it can post to the channel. Without it the backend is
+    skipped. Only new strict roles are posted; digests and health checks are
+    left to the README.
+    """
+
+    name = "discord"
+
+    def __init__(self, webhook: str) -> None:
+        self.webhook = webhook
+
+    def strict(self, hits: Sequence[tuple[Posting, Verdict]]) -> bool:
+        if not hits:
+            return True
+        import requests
+
+        embeds = []
+        for post, verdict in list(hits)[:DISCORD_MAX_PER_RUN]:
+            term = term_label(post) if verdict.cycle == "target" else ""
+            fields = [{"name": "Company", "value": post.company[:256] or "?", "inline": True},
+                      {"name": "Location", "value": (post.location or "not listed")[:256],
+                       "inline": True}]
+            if term:
+                fields.append({"name": "Term", "value": term, "inline": True})
+            embeds.append({
+                "title": post.title[:256],
+                "url": post.url,
+                "color": 0x2F81F7,
+                "fields": fields,
+            })
+        ok = True
+        for i in range(0, len(embeds), _DISCORD_EMBEDS_PER_MESSAGE):
+            chunk = embeds[i:i + _DISCORD_EMBEDS_PER_MESSAGE]
+            body = {"username": "Internship Radar", "embeds": chunk,
+                    "allowed_mentions": {"parse": []}}
+            if i == 0:
+                count = len(embeds)
+                body["content"] = f"**{count} new AI/ML role{'s' if count != 1 else ''}**"
+            try:
+                resp = requests.post(self.webhook, json=body, timeout=15)
+                if resp.status_code >= 300:
+                    print(f"  ! discord answered {resp.status_code}: {resp.text[:200]}")
+                    ok = False
+            except requests.RequestException as exc:
+                print(f"  ! discord failed: {exc}")
+                ok = False
+            time.sleep(1)
+        return ok
+
+    def digest(self, rows: Sequence[Any]) -> bool:
+        return True
+
+    def health(self, message: str) -> bool:
+        return True
+
+
+# --------------------------------------------------------------------------
 # Assembly
 # --------------------------------------------------------------------------
 
@@ -672,6 +859,14 @@ def build_notifiers(names: Iterable[str], store: Any) -> list[Notifier]:
             built.append(DashboardWriter(store))
         elif name == "readme":
             built.append(ReadmeWriter(store))
+        elif name == "feed":
+            built.append(FeedWriter(store))
+        elif name == "discord":
+            webhook = os.environ.get(DISCORD_ENV, "").strip()
+            if webhook:
+                built.append(DiscordNotifier(webhook))
+            else:
+                print(f"  (discord skipped: {DISCORD_ENV} is not set)")
         else:
             print(f"  ! unknown notifier '{name}', skipping")
     return built

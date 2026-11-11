@@ -112,9 +112,13 @@ jobs:
 
       - name: Run radar
         env:
-          # Renders README.md only. The HTML dashboard is a local-only channel
-          # and nothing on the runner would open it.
-          RADAR_NOTIFIERS: readme
+          # Renders README.md, feed.json and feed.xml, and posts new strict
+          # roles to Discord when the webhook secret is set. The HTML
+          # dashboard is a local-only channel.
+          RADAR_NOTIFIERS: readme,feed,discord
+          # Optional: a Discord channel webhook, added as a repository secret.
+          # Without it the Discord alert is skipped and nothing else changes.
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           # Tracker listings and job titles carry emoji, and the runner's
           # default encoding cannot always encode them.
           PYTHONIOENCODING: utf-8
@@ -148,12 +152,13 @@ jobs:
           # A quiet run leaves the README byte-identical, so there is nothing
           # to commit. Without this the schedule would push 6 identical
           # READMEs a day.
-          if git diff --quiet -- README.md auto_companies.py; then
+          # status, not diff: the feed files are new until their first commit.
+          if [ -z "$(git status --porcelain -- README.md auto_companies.py feed.json feed.xml)" ]; then
             echo "Feed unchanged; nothing to commit."
             exit 0
           fi
 
-          git add README.md auto_companies.py
+          git add README.md auto_companies.py feed.json feed.xml
           git commit --quiet -m "radar: $(TZ=America/Toronto date '+%Y-%m-%d %H:%M') Toronto"
 
           # Commit once, then retry only the network half. Committing inside
