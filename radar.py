@@ -38,6 +38,7 @@ from core import (
     ai_description_score, classify, in_canada, names_a_place, normalize_company,
     role_keys, toronto_now,
 )
+from core import DESC_RULES_VERSION  # noqa: E402
 
 # Tracker READMEs and job titles carry emoji and arrows; the Windows console
 # defaults to cp1252 and would crash on the first one.
@@ -621,6 +622,8 @@ class Describer:
         about the missing fields than about the role.
         """
         before = self.upgraded
+        if self.record:
+            self.store.requeue_descriptions(DESC_RULES_VERSION, max_age_hours)
         for row in self.store.description_backlog(self.left, max_age_hours):
             if not self._budget_left():
                 break

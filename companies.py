@@ -432,11 +432,14 @@ CLOSED_AFTER_MISSES = 2
 # Job descriptions. A tech role in the commute area with no AI word in its
 # title has its description read, and is promoted to strict when it names at
 # least AI_DESC_MIN_TERMS distinct ML terms (PyTorch, LLMs, model training,
-# ...). A student role rejected for naming no Canadian location is read too,
+# ...), or when AI runs through the whole description: a software developer
+# role building LLM features, say, with AI_DESC_MIN_MENTIONS mentions across
+# at least two distinct terms. A student role rejected for naming no Canadian location is read too,
 # since the posting page often names the city. Each posting is read once;
 # DESC_PER_RUN and DESC_TIME_BUDGET_S cap one run, and whatever is left over
 # is read on the next.
 AI_DESC_MIN_TERMS = 3
+AI_DESC_MIN_MENTIONS = 6
 DESC_PER_RUN = 150
 DESC_TIME_BUDGET_S = 180
 

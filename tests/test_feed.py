@@ -430,3 +430,66 @@ class TestDescribeSources(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+AI_SOFTWARE_TEXT = """
+<h2>Software Developer Co-op</h2>
+<p>You'll build LLM features into our customer app. Day to day you will integrate
+the OpenAI API and Claude, write prompt templates, and ship AI features behind
+feature flags. You'll help build our RAG pipeline and evaluate AI models with
+evals, and improve the LLM integrations our support team uses.</p>
+<p>Stack: TypeScript, Python, Postgres, React.</p>
+"""
+
+PLAIN_SOFTWARE_TEXT = """
+<p>Software Developer Co-op. Build REST APIs in Java and React screens for our
+AI-powered banking platform. We are an AI-driven company with AI products used
+by millions. Work with Postgres, Kafka and AWS.</p>
+"""
+
+
+class TestAiFocusedSoftwareRoles(unittest.TestCase):
+    """A software role whose description is mostly AI work reaches strict."""
+
+    def test_ai_heavy_software_description_counts(self):
+        from core import description_is_ai
+        yes, terms = description_is_ai(AI_SOFTWARE_TEXT)
+        self.assertTrue(yes)
+        self.assertIn("LLM APIs", terms)
+
+    def test_taglines_alone_do_not_count(self):
+        from core import description_is_ai
+        yes, _ = description_is_ai(PLAIN_SOFTWARE_TEXT)
+        self.assertFalse(yes)
+
+    def test_one_repeated_term_is_not_enough(self):
+        from core import description_is_ai
+        yes, _ = description_is_ai("We use ChatGPT. ChatGPT, ChatGPT, ChatGPT, ChatGPT, ChatGPT, ChatGPT.")
+        self.assertFalse(yes)
+
+    def test_classify_promotes_the_role(self):
+        post = Posting("Acme", "Software Developer Co-op", "Toronto, ON", "https://e.com/1", "u1")
+        self.assertEqual(classify(post).tier, LOOSE)
+        verdict = classify(post, AI_SOFTWARE_TEXT)
+        self.assertEqual(verdict.tier, STRICT)
+        self.assertEqual(verdict.reason, AI_IN_DESCRIPTION)
+        self.assertEqual(classify(post, PLAIN_SOFTWARE_TEXT).tier, LOOSE)
+
+    def test_old_reads_are_requeued_once(self):
+        import tempfile
+        from core import DESC_RULES_VERSION, Store
+        handle = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        handle.close()
+        self.addCleanup(os.unlink, handle.name)
+        store = Store(handle.name)
+        self.addCleanup(store.close)
+        post = Posting("Acme", "Software Developer Co-op", "Toronto, ON", "https://e.com/1", "u1",
+                       posted_at=int(time.time()))
+        store.record(post, LOOSE, "no AI signal")
+        store.record_description("u1", 1, ["LLMs"])
+        self.assertTrue(store.description_checked("u1"))
+        self.assertEqual(store.requeue_descriptions(DESC_RULES_VERSION, 336), 1)
+        self.assertFalse(store.description_checked("u1"))
+        store.record_description("u1", 4, ["LLMs"])
+        self.assertEqual(store.requeue_descriptions(DESC_RULES_VERSION, 336), 0)
+        self.assertTrue(store.description_checked("u1"))
