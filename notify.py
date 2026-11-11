@@ -82,7 +82,7 @@ def _xml_escape(text: str) -> str:
     return html.escape(text or "", quote=True)
 
 
-def _raise_toast(title: str, body: str, launch: str = "") -> bool:
+def _raise_toast(title: str, body: str, launch: str = "", trusted: bool = False) -> bool:
     """Show one Windows notification. Clicking it opens ``launch`` if given.
 
     The script is fed to PowerShell on stdin rather than through ``-Command``
@@ -93,6 +93,11 @@ def _raise_toast(title: str, body: str, launch: str = "") -> bool:
         return False
 
     attrs = ""
+    # Protocol activation hands the link to whatever app owns its scheme, so
+    # a scraped "ms-settings:" or "file:" link must never get here. Only the
+    # radar's own dashboard URI (``trusted``) may be anything but http(s).
+    if not trusted:
+        launch = safe_url(launch)
     if launch:
         attrs = f' activationType="protocol" launch="{_xml_escape(launch)}"'
 
@@ -149,6 +154,7 @@ class ToastNotifier:
                 f"+{overflow} more AI/ML roles",
                 "Open the radar dashboard to see the rest.",
                 _dashboard_uri(),
+                trusted=True,
             )
         return shown > 0
 
@@ -159,10 +165,11 @@ class ToastNotifier:
             f"Daily digest: {len(rows)} maybe-relevant roles",
             "Student-level roles near Toronto that missed the strict filter.",
             _dashboard_uri(),
+            trusted=True,
         )
 
     def health(self, message: str) -> bool:
-        return _raise_toast("Radar health warning", message[:180], _dashboard_uri())
+        return _raise_toast("Radar health warning", message[:180], _dashboard_uri(), trusted=True)
 
 
 def _dashboard_uri() -> str:
@@ -326,8 +333,9 @@ def _row_html(row: Any, tag: str) -> str:
 
     return (
         f'<div class="card"><span class="tag {tag}">{label}</span>'
-        f'<a class="title" href="{_e(row["url"])}" target="_blank" rel="noopener">'
-        f'{_e(row["title"])}</a>'
+        + (f'<a class="title" href="{_e(safe_url(row["url"]))}" target="_blank"'
+           f' rel="noopener noreferrer">{_e(row["title"])}</a>'
+           if safe_url(row["url"]) else f'<span class="title">{_e(row["title"])}</span>')
         + (f'<span class="tag ai">{_e(note)}</span>' if note else "")
         + f'<span class="meta">{_e(row["company"])}'
         f' &middot; {_e(row["location"] or "location not listed")}'
@@ -463,6 +471,22 @@ def _md(text: Any) -> str:
     return out
 
 
+def safe_url(url: Any) -> str:
+    """``url`` if it is an http(s) link with no control characters, else "".
+
+    Tracker repos are community edited, so a posting URL is untrusted input.
+    A ``javascript:`` link in the local dashboard runs script on click, and a
+    custom scheme in a Windows toast launches whatever app claims it. Every
+    output that renders a scraped link goes through this.
+    """
+    raw = str(url or "").strip()
+    if not raw or any(c in raw for c in "\r\n\t\x00"):
+        return ""
+    if not raw.lower().startswith(("http://", "https://")):
+        return ""
+    return raw
+
+
 def _md_url(url: Any) -> str:
     """Return ``url`` if it is safely linkable, else "" so the caller drops it.
 
@@ -471,10 +495,8 @@ def _md_url(url: Any) -> str:
     clickable link. Parentheses and spaces would terminate the link target
     early, so they are percent-encoded instead.
     """
-    raw = str(url or "").strip()
-    if not raw or any(c in raw for c in "\r\n\t"):
-        return ""
-    if not raw.lower().startswith(("http://", "https://")):
+    raw = safe_url(url)
+    if not raw:
         return ""
     for char, encoded in (
         (" ", "%20"), ("(", "%28"), (")", "%29"),
@@ -661,6 +683,9 @@ def _feed_items(store: Any) -> list[dict]:
     items = []
     for tier, age in (("strict", strict_age), ("loose", max_age)):
         for row in store.recent_jobs(tier, FEED_LIMIT, age):
+            # Feed readers and scripts open these links; only http(s) goes out.
+            if not safe_url(row["url"]):
+                continue
             shown = int(_col(row, "shown_at") or _col(row, "posted_at") or 0)
             items.append({
                 "id": _col(row, "uid") or row["url"],
