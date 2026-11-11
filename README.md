@@ -1,4 +1,7 @@
-# Toronto AI/ML Internship Radar
+<p align="center">
+  <img src=".github/banner.webp" width="100%"
+       alt="Toronto AI/ML Internship Radar: Summer 2027 internships and co ops, straight from 170+ employer job boards and trackers, filtered to the Toronto area">
+</p>
 
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 [![Stars](https://img.shields.io/github/stars/krishi-shah/Toronto-AI-ML-internship-radar?style=flat&logo=github)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/stargazers)
