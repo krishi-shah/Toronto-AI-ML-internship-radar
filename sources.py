@@ -1970,7 +1970,16 @@ def parse_tracker_readme(text: str) -> list[dict]:
     return rows
 
 
+# "[Acme](https://acme.com)" -> "Acme": Jobright wraps every company and
+# title in a markdown link.
+# Jobright appends the page heading of the employer's site to some titles:
+# "Student Intern, SCM Data Scientist Job Details / Celestica International LP".
+_JOB_DETAILS_SUFFIX_RE = re.compile(r"\s+Job Details\s*/.*$", re.IGNORECASE)
+_MD_LINK_TEXT_RE = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
+
+
 def _cell_text(cell: str) -> str:
+    cell = _MD_LINK_TEXT_RE.sub(r"\1", cell)
     return _WS_RE.sub(" ", unescape(_TAG_RE.sub(" ", cell))).strip(" |*")
 
 
@@ -2014,7 +2023,10 @@ def _rows_from_cells(cell_rows: list[list[str]]) -> list[dict]:
     if len(cell_rows) < 2:
         return []
     mapping = _map_columns([_cell_text(c) for c in cell_rows[0]])
-    if "title" not in mapping or "url" not in mapping:
+    # No Apply column: the link sits on the title itself (Jobright).
+    if "title" in mapping and "url" not in mapping:
+        mapping["url"] = mapping["title"]
+    if "title" not in mapping:
         return []
 
     out: list[dict] = []
@@ -2032,7 +2044,7 @@ def _rows_from_cells(cell_rows: list[list[str]]) -> list[dict]:
         else:
             last_company = company
 
-        title = _cell_text(cells[mapping["title"]])
+        title = _JOB_DETAILS_SUFFIX_RE.sub("", _cell_text(cells[mapping["title"]]))
         url = _cell_url(cells[mapping["url"]])
         if not title or not url:
             continue
