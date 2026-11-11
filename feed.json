@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 114,
+ "count": 115,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:2212b9e2-0cac-4357-8314-902e2825e25d",
@@ -86,30 +86,6 @@
    "date": "2026-11-06T02:35:39+00:00",
    "date_known": true,
    "ai_terms": "machine learning, LLMs, RAG, embeddings, data science, AI agents"
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:85d7f227-a2d3-465f-bffa-863963928ef1",
-   "tier": "strict",
-   "title": "AI Solutions Specialist Co-op, Winter",
-   "company": "Rodan Energy Solutions Inc.",
-   "location": "Mississauga, Canada",
-   "term": "",
-   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027",
-   "date": "2026-11-05T10:06:57+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:a8261ef3-b6f9-4160-bacd-d68e298539ec",
-   "tier": "strict",
-   "title": "Data Operations Engineer AI Co-op, Winter",
-   "company": "Rodan Energy Solutions Inc.",
-   "location": "Mississauga, Canada",
-   "term": "",
-   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027",
-   "date": "2026-11-05T10:06:57+00:00",
-   "date_known": true,
-   "ai_terms": ""
   },
   {
    "id": "tracker:SimplifyJobs/Summer2027-Internships:e8e696f2-23e9-4021-95e0-fe24d2a40c66",
@@ -256,18 +232,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:vanshb03/Summer2027-Internships:239af140-d1dd-4c4d-9c85-49b260d696c7",
-   "tier": "strict",
-   "title": "Software Engineer Co-op, AI, Winter",
-   "company": "Foresters Financial",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://foresters.wd3.myworkdayjobs.com/en-US/ForestersFinancialCareers/job/Toronto-Ontario/Software-Engineer-Co-op-Student--AI---4-month-contract-_R-2332",
-   "date": "2026-10-31T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:revvity.wd103.myworkdayjobs.com:JR-045792",
    "tier": "strict",
    "title": "Full-stack AI Developer Intern",
@@ -388,18 +352,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:manulife.wd3.myworkdayjobs.com:JR26080362",
-   "tier": "loose",
-   "title": "Winter Co-op 2027 - Business Technology",
-   "company": "Manulife Financial",
-   "location": "Toronto, Ontario",
-   "term": "",
-   "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Winter-Co-op-2027---Business-Technology_JR26080362",
-   "date": "2026-11-11T01:33:22+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "lever:magnetforensics:21c3d181-2751-4255-8084-f82cdc799483",
    "tier": "loose",
    "title": "Information Security Analyst Co-op (Winter 2027)",
@@ -491,6 +443,18 @@
    "location": "Newmarket, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Newmarket-Student-Intern%2C-Process-and-Manufacturing-Engineer-ON/1456226233/",
+   "date": "2026-11-10T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af430d055dfd18e245c3721?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Student Intern, Processes and Applications, Programmer",
+   "company": "Celestica",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6af430d055dfd18e245c3721?utm_campaign=1079&utm_source=git",
    "date": "2026-11-10T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -748,6 +712,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:329555f7-ccbb-4636-ada2-8ceff325cde4",
+   "tier": "loose",
+   "title": "Software Developer Co-op - Full Stack / Backend, Winter",
+   "company": "Cisco",
+   "location": "Kanata, Canada, Saint-Laurent, Canada, Calgary, Canada, Toronto, Canada, Montreal, Canada, Vancouver, Canada, Halifax, Canada, Ottawa, Canada",
+   "term": "Winter 2027",
+   "url": "https://cisco.wd5.myworkdayjobs.com/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Full-Stack---Backend-I--Co-op----Canada_2024208",
+   "date": "2026-11-06T20:06:40+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:bmo.wd3.myworkdayjobs.com:R260031068",
    "tier": "loose",
    "title": "BMO Personal & Business Banking Development Program (New Graduate) - 2 Year Program",
@@ -792,6 +768,42 @@
    "term": "",
    "url": "https://job-boards.greenhouse.io/brave/jobs/8360001",
    "date": "2026-11-06T19:21:56+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:cisco.wd5.myworkdayjobs.com:2024136",
+   "tier": "loose",
+   "title": "Software Developer Embedded Systems II (Co-op) – Canada",
+   "company": "Cisco",
+   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Vancouver, British Columbia, Canada, Ottawa, Ontario, Canada, Canada",
+   "term": "",
+   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Embedded-Systems-II--Co-op----Canada_2024136",
+   "date": "2026-11-06T12:00:30+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:cisco.wd5.myworkdayjobs.com:2024111",
+   "tier": "loose",
+   "title": "Software Developer Embedded Systems I (Co-op) - Canada",
+   "company": "Cisco",
+   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Ottawa, Ontario, Canada, Canada",
+   "term": "",
+   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Embedded-Systems-I--Co-op----Canada_2024111",
+   "date": "2026-11-06T12:00:28+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:cisco.wd5.myworkdayjobs.com:2024208",
+   "tier": "loose",
+   "title": "Software Developer Full Stack / Backend I (Co-op) - Canada",
+   "company": "Cisco",
+   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Vancouver, British Columbia, Canada, Halifax, Nova Scotia, Canada, Ottawa, Ontario, Canada, Canada",
+   "term": "",
+   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Full-Stack---Backend-I--Co-op----Canada_2024208",
+   "date": "2026-11-06T12:00:28+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -1000,6 +1012,30 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:85d7f227-a2d3-465f-bffa-863963928ef1",
+   "tier": "loose",
+   "title": "AI Solutions Specialist Co-op, Winter",
+   "company": "Rodan Energy Solutions Inc.",
+   "location": "Mississauga, Canada",
+   "term": "",
+   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027",
+   "date": "2026-11-05T10:06:57+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:a8261ef3-b6f9-4160-bacd-d68e298539ec",
+   "tier": "loose",
+   "title": "Data Operations Engineer AI Co-op, Winter",
+   "company": "Rodan Energy Solutions Inc.",
+   "location": "Mississauga, Canada",
+   "term": "",
+   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027",
+   "date": "2026-11-05T10:06:57+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:vanshb03/Summer2027-Internships:a9a431f2-ef7a-4cc4-a5ff-7aa27b84143a",
    "tier": "loose",
    "title": "Web Software Developer Intern, WFM, Summer",
@@ -1188,30 +1224,6 @@
    "term": "",
    "url": "https://bdo.wd3.myworkdayjobs.com/en-US/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Technology---BizApps--January-2027-_JR7062",
    "date": "2026-11-04T20:28:44+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:98912234",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Xanadu",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://xanadu.careers.hibob.com/jobs/fa179125-845b-4a10-a648-75c1cc20bda4",
-   "date": "2026-11-04T11:30:19+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:4ca3e32b-f50a-4fa7-82f8-72ad9dd8adc6",
-   "tier": "loose",
-   "title": "Student Cyber Security Analyst Intern, Winter",
-   "company": "MDA",
-   "location": "Brampton, Canada",
-   "term": "",
-   "url": "https://recruiting.ultipro.ca/MAC5000MCDW/JobBoard/7667adcc-47ae-477a-9183-0d8ef8bc0748/OpportunityDetail?opportunityId=6e6b20f0-d908-4f9e-9edb-f3ac82d1ab64",
-   "date": "2026-11-04T05:06:08+00:00",
    "date_known": true,
    "ai_terms": ""
   },
