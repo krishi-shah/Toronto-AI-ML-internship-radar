@@ -816,10 +816,8 @@ def classify(posting: Posting, description: Optional[str] = None) -> Verdict:
     # Co-op" on a model-training team. The description settles it when given.
     ai_terms: list[str] = []
     if not ai and description:
-        score, ai_terms = ai_description_score(description)
-        if score >= _desc_min_terms():
-            ai = True
-        else:
+        ai, ai_terms = description_is_ai(description)
+        if not ai:
             ai_terms = []
 
     if canada_only:
@@ -994,6 +992,21 @@ _AI_DESC_TERMS = [
     ("generative AI", r"generative[\s\-]?ai|\bgenai\b|gen[\s\-]ai\b"),
     ("ML engineering", r"\bml\s+(?:engineer|pipeline|model|system|infrastructure|platform)"),
     ("AI agents", r"\b(?:ai|llm)[\s\-]?agents?\b|agentic"),
+    # Applied AI: software roles that build on models rather than train them
+    # say these instead of PyTorch and neural networks.
+    ("prompt engineering", r"prompt[\s\-]?(?:engineering|design|tuning|templates?)|\bprompts\b"),
+    ("LLM APIs", r"\bopenai\b|\banthropic\b|\bclaude\b|\bgemini\b|\bgpt[\s\-]?\d|\bchatgpt\b"
+                 r"|\bllama\b|\bmistral\b|azure[\s\-]openai|\bbedrock\b|vertex[\s\-]ai"),
+    ("AI frameworks", r"\blangchain\b|\blanggraph\b|llama[\s\-]?index|hugging[\s\-]?face"
+                      r"|\bautogen\b|\bcrewai\b|model[\s\-]context[\s\-]protocol"),
+    ("conversational AI", r"\bchat[\s\-]?bots?\b|conversational[\s\-]ai|\bcopilots?\b"),
+    ("model serving", r"\binference\b|model[\s\-]?(?:serving|deployment|evaluation)|\bevals?\b"),
+    # The work itself ("build AI features", "AI models"), never the tagline
+    # words a company puts on every posting ("AI powered", "AI driven",
+    # "our AI products").
+    ("AI features", r"\b(?:ai|ml|llm)[\s\-]?(?:features?|applications?|capabilit(?:y|ies)"
+                    r"|assistants?|workflows?|integrations?|models?|pipelines?|systems?)\b"
+                    r"|\bai/ml\b"),
 ]
 _AI_DESC_RES = [(label, re.compile(rx, re.IGNORECASE)) for label, rx in _AI_DESC_TERMS]
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
@@ -1004,6 +1017,34 @@ def ai_description_score(text: str) -> tuple[int, list[str]]:
     plain = _HTML_TAG_RE.sub(" ", text or "")
     terms = [label for label, rx in _AI_DESC_RES if rx.search(plain)]
     return len(terms), terms
+
+
+def ai_description_mentions(text: str) -> int:
+    """Every AI or ML mention in a description, repeats included.
+
+    Distinct terms catch ML roles; this catches AI focused software roles,
+    which name the same few things over and over ("build LLM features",
+    "integrate the OpenAI API", "ship AI powered tools"). A bare "AI" is still
+    never counted: boilerplate says "AI powered" on every posting.
+    """
+    plain = _HTML_TAG_RE.sub(" ", text or "")
+    return sum(len(rx.findall(plain)) for _, rx in _AI_DESC_RES)
+
+
+def description_is_ai(text: str) -> tuple[bool, list[str]]:
+    """Does this description make the role AI work? Returns ``(yes, terms)``.
+
+    Either enough distinct ML terms (``AI_DESC_MIN_TERMS``), or AI running
+    through the whole description: at least ``AI_DESC_MIN_MENTIONS`` mentions
+    across at least two distinct terms, so one company tagline repeated in
+    the footer is not enough.
+    """
+    score, terms = ai_description_score(text)
+    if score >= _desc_min_terms():
+        return True, terms
+    if score >= 2 and ai_description_mentions(text) >= _desc_min_mentions():
+        return True, terms
+    return False, terms
 
 
 def _config_int(name: str, default: int) -> int:
@@ -1019,6 +1060,16 @@ def _config_int(name: str, default: int) -> int:
 def _desc_min_terms() -> int:
     """How many distinct ML terms a description needs to make a role AI."""
     return _config_int("AI_DESC_MIN_TERMS", 3)
+
+
+def _desc_min_mentions() -> int:
+    """How many AI mentions make a description AI focused on their own."""
+    return _config_int("AI_DESC_MIN_MENTIONS", 6)
+
+
+# Bumped whenever the description rules change, so loose rows read under the
+# old rules are read again (see Store.requeue_descriptions).
+DESC_RULES_VERSION = "2"
 
 
 def closed_after_misses() -> int:
@@ -1623,6 +1674,28 @@ class Store:
             " VALUES (?,?,?,?,?)",
             (uid, int(time.time()), score, ", ".join(terms), (error or None) and error[:300]),
         )
+
+    def requeue_descriptions(self, version: str, max_age_hours: int) -> int:
+        """Forget description reads made under older rules, once per version.
+
+        Only loose rows still in the feed window that missed strict for want
+        of an AI signal: those are the ones new rules can promote. They join
+        the backlog and are read again within the normal per run budget.
+        Returns how many were requeued.
+        """
+        key = "desc_rules_version"
+        if self.get_etag(key) == version:
+            return 0
+        cutoff = int(time.time()) - max_age_hours * 3600
+        with self._lock:
+            cur = self.conn.execute(
+                "DELETE FROM descriptions WHERE uid IN (SELECT uid FROM jobs"
+                " WHERE tier = 'loose' AND reason = 'no AI signal'"
+                " AND COALESCE(NULLIF(posted_at, 0), first_seen) >= ?)",
+                (cutoff,),
+            )
+        self.set_etag(key, version)
+        return cur.rowcount
 
     def description_backlog(self, limit: int, max_age_hours: int) -> list[sqlite3.Row]:
         """Stored rows a description might promote, newest first.
