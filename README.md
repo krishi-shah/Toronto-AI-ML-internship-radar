@@ -2,7 +2,7 @@
 
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 
-A live feed of Winter and Summer 2027 AI/ML internships and co-ops **in and around
+A live feed of Summer 2027 AI/ML internships and co-ops **in and around
 Toronto**. GitHub
 Actions re-scrapes every source six times a day and rewrites the listings below,
 so the feed stays current with my laptop closed. Zero cost: no paid APIs, no
@@ -22,9 +22,12 @@ Three rules shape what you see:
   never reach the feed. A role whose board gives no posting date and that was
   already open when the database was built is listed as *date unknown*, last,
   for as long as its board still lists it.
-- **Only live cycles.** Winter and Summer 2027 are the targets. Fall 2026 and
-  earlier are rejected outright — that recruiting is over. Fall 2027 and later
-  are kept but demoted below the strict tier.
+- **Summer 2027 first.** Summer 2027 (and Waterloo's Spring 2027, the same
+  May to August term) is the target, and only it reaches the strict tier. A
+  role spanning several terms (*Winter/Summer 2027*, *Summer/Fall 2027*) counts
+  if Summer is one of them. Winter 2027 and Fall 2027 roles are kept but
+  demoted to loose. Fall 2026 and earlier are rejected outright — that
+  recruiting is over.
 - **One row per role.** The same posting reached through its own board, a
   second careers site and a tracker that retitled it is listed once, and a
   posting its board stops listing drops out of the feed.
@@ -556,7 +559,8 @@ Two other knobs live in the same file:
 | `DISCOVERY_MAX_BOARDS = 300` | Hard cap on discovered boards per run; 0 turns discovery off. |
 | `SNIFF_PER_RUN = 8` | Unrecognised careers hosts checked for a supported ATS each run; 0 turns it off. A page that names no ATS waits 30 days, one that named a platform waits 7, and a fetch error waits 14. Leftover budget sniffs another batch. |
 | `PROMOTE_MAX = 60` | Discovered boards written into `auto_companies.py` after they return Canadian student roles. |
-| `TARGET_CYCLES = [(2027, 1), (2027, 5)]` | Winter and Summer 2027. Anything earlier than the first is rejected; anything later than the last is demoted. A title naming one of them (*ML Engineer – Winter 2027*) counts as a student role. Bump it next cycle. |
+| `TARGET_CYCLES = [(2027, 4), (2027, 5)]` | Spring and Summer 2027, the May to August term. Only these reach strict; anything later than the last is demoted. A title naming a live cycle (*ML Engineer – Summer 2027*) counts as a student role. Bump it next cycle. |
+| `EARLIEST_LIVE_CYCLE = (2027, 1)` | Cycles from here up to the first target (Winter 2027) are demoted to loose instead of rejected; anything earlier is rejected. Set it to the first target to drop them. Rows already stored move down on their next sighting, with no alert. |
 | `PORTFOLIO_BOARDS` | VC job boards on Getro or Consider (Inovia, Real Ventures, Golden Ventures), each listing roles at many portfolio startups. |
 | `CLOSED_AFTER_MISSES = 2` | A posting leaves the feed once its source has returned a complete listing without it this many runs in a row. |
 | `AI_DESC_MIN_TERMS = 3` | Distinct ML terms (PyTorch, LLMs, model training, …) a job description needs to make a tech role strict. |
@@ -756,8 +760,9 @@ Two tiers, because a wide net plus one channel equals noise.
 - an internship-level signal (intern, co-op, student, placement, work term, …)
 - a location in the commute area, Ontario with no city named, **or** remote
   within Canada
-- no cycle token pointing exclusively at a season after Summer 2027 (a title
-  naming Winter or Summer 2027 also counts as the internship-level signal)
+- no cycle token pointing exclusively at a season other than Spring or Summer
+  2027 (a title naming a live cycle such as Summer 2027 also counts as the
+  internship-level signal)
 
 **loose** — tech-relevant student roles in the commute area that miss
 strict, plus
@@ -827,8 +832,8 @@ after the name means it is an address, not the city, so RTX's
 `US-CT-WINDSOR LOCKS ~ 1 Hamilton Rd` is not Hamilton, Ontario. And
 "Ontario, California" and "Ontario, Oregon" are US cities, not the province.
 
-A posting naming several cycles keeps the best one: *"Summer 2026, Winter 2027,
-Fall 2027"* is a live Winter 2027 opportunity, not a dead 2026 one.
+A posting naming several cycles keeps the best one: *"Winter 2027, Summer
+2027"* is a live Summer 2027 opportunity, not an early Winter one.
 
 A Toronto city followed by the country code (*Markham, CA*) is Canada, not
 California; only a US state or a foreign country after the name rejects it.
@@ -953,7 +958,7 @@ for RBC, BMO, Sun Life and Autodesk among them) into `auto_companies.py` on
 the next normal run.
 
 Strict is small on purpose: in `--check` it counts only roles posted in the
-last seven days (the alert window) that are Winter or Summer 2027 (or undated) AI/ML internships in Ontario.
+last seven days (the alert window) that are Summer 2027 (or undated) AI/ML internships in Ontario.
 
 Endpoint shapes were confirmed against live companies rather than assumed.
 Corrections found along the way:

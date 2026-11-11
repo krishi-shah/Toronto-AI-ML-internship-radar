@@ -117,9 +117,9 @@ class TestOneRowPerRole(StoreCase):
         self.assertTrue(self.store.delivered(tracker, STRICT))
 
     def test_triage_alerts_once_for_a_retitled_copy(self):
-        board = Posting("Royal Bank of Canada", "2027 Winter – GRM, AI Developer Intern",
+        board = Posting("Royal Bank of Canada", "2027 Summer – GRM, AI Developer Intern",
                         "Toronto, ON", RBC_BOARD, "workday:rbc:1")
-        tracker = Posting("RBC", "AI Developer Intern (Winter 2027)", "Toronto, ON",
+        tracker = Posting("RBC", "AI Developer Intern (Summer 2027)", "Toronto, ON",
                           RBC_GLOBAL, "tracker:x:1", source="t")
         new_strict, _, skipped = radar.triage([board, tracker], self.store)
         self.assertEqual([p.uid for p, _ in new_strict], ["workday:rbc:1"])
