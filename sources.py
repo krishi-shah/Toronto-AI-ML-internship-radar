@@ -32,6 +32,58 @@ USER_AGENT = (
 
 DEFAULT_TIMEOUT = 25
 MAX_RETRIES = 3
+# The largest real response (Simplify's listings.json) is about 13 MB. A body
+# past this is refused, counted after decompression, so a hostile or broken
+# server cannot exhaust the runner's memory with a huge or zipped response.
+MAX_RESPONSE_BYTES = 64 * 1024 * 1024
+
+
+class ResponseTooLarge(requests.RequestException):
+    """A response body went past ``MAX_RESPONSE_BYTES``."""
+
+
+class BlockedURL(requests.RequestException):
+    """A URL pointing at a private, loopback or link local address."""
+
+
+def _blocked_host(url: str) -> bool:
+    """Does ``url`` name an address that is not on the public internet?
+
+    Tracker rows are community edited, and the radar fetches posting pages
+    and careers sites they link. A row linking ``http://169.254.169.254/`` or
+    ``http://localhost:8080/`` must not make the runner request it. Only
+    literal addresses and local names are checked; public hostnames are left
+    to resolve normally.
+    """
+    import ipaddress
+
+    host = (urlparse(url).hostname or "").lower().rstrip(".")
+    if not host:
+        return True
+    if host == "localhost" or host.endswith((".localhost", ".local", ".internal")):
+        return True
+    try:
+        ip = ipaddress.ip_address(host)
+    except ValueError:
+        return False
+    return not ip.is_global
+
+
+def _read_capped(resp: requests.Response) -> None:
+    """Load a streamed body into ``resp``, refusing one past the cap."""
+    length = resp.headers.get("Content-Length", "")
+    if length.isdigit() and int(length) > MAX_RESPONSE_BYTES:
+        resp.close()
+        raise ResponseTooLarge(f"{length} bytes from {resp.url}")
+    chunks, total = [], 0
+    for chunk in resp.iter_content(64 * 1024):
+        total += len(chunk)
+        if total > MAX_RESPONSE_BYTES:
+            resp.close()
+            raise ResponseTooLarge(f"over {MAX_RESPONSE_BYTES} bytes from {resp.url}")
+        chunks.append(chunk)
+    resp._content = b"".join(chunks)
+    resp._content_consumed = True
 POLITENESS_GAP = 0.4  # seconds between requests to the same host
 
 
@@ -92,7 +144,10 @@ class Http:
     ) -> Optional[requests.Response]:
         """Issue a request with retry/backoff. Returns ``None`` on HTTP 304."""
         kwargs.setdefault("timeout", DEFAULT_TIMEOUT)
+        kwargs["stream"] = True
         headers = dict(kwargs.pop("headers", {}) or {})
+        if _blocked_host(url):
+            raise BlockedURL(f"refusing to fetch a non public address: {url}")
 
         if etag_key and self.store is not None:
             prev = self.store.get_etag(etag_key)
@@ -126,6 +181,7 @@ class Http:
                 raise last_exc
 
             resp.raise_for_status()
+            _read_capped(resp)
             if etag_key and self.store is not None and resp.headers.get("ETag"):
                 self.store.set_etag(etag_key, resp.headers["ETag"])
             return resp
@@ -1581,8 +1637,11 @@ def _xml_text(http: Http, url: str) -> str:
         return ""
     body = resp.content
     if body[:2] == b"\x1f\x8b":  # .xml.gz served without Content-Encoding
-        import gzip
-        body = gzip.decompress(body)
+        import zlib
+        inflate = zlib.decompressobj(16 + zlib.MAX_WBITS)
+        body = inflate.decompress(body, MAX_RESPONSE_BYTES)
+        if inflate.unconsumed_tail:
+            raise ResponseTooLarge(f"{url} unzips past {MAX_RESPONSE_BYTES} bytes")
     return body.decode("utf-8", "replace")
 
 
