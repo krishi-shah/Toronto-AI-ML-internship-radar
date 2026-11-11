@@ -6,7 +6,7 @@
 [![radar](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml/badge.svg)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/actions/workflows/radar.yml)
 [![Stars](https://img.shields.io/github/stars/krishi-shah/Toronto-AI-ML-internship-radar?style=flat&logo=github)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/stargazers)
 [![Last update](https://img.shields.io/github/last-commit/krishi-shah/Toronto-AI-ML-internship-radar?label=last%20update)](https://github.com/krishi-shah/Toronto-AI-ML-internship-radar/commits/main)
-[![RSS](https://img.shields.io/badge/subscribe-RSS-orange?logo=rss)](https://raw.githubusercontent.com/krishi-shah/Toronto-AI-ML-internship-radar/main/feed.xml)
+[![RSS](https://img.shields.io/badge/subscribe-RSS-orange?logo=rss)](#never-check-this-page-again)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 **Every Summer 2027 AI/ML internship and co op in and around Toronto, in one
@@ -18,7 +18,7 @@ Then it keeps only roles within commuting distance of Toronto and lists each
 role once. Free and open source, with no accounts and no paid APIs.
 
 **[See the roles](#the-feed)** &nbsp;·&nbsp;
-**[Subscribe with RSS](https://raw.githubusercontent.com/krishi-shah/Toronto-AI-ML-internship-radar/main/feed.xml)** &nbsp;·&nbsp;
+**[Get new roles automatically](#never-check-this-page-again)** &nbsp;·&nbsp;
 [JSON feed](feed.json) &nbsp;·&nbsp;
 [Suggest a company](../../issues/new?template=add_company.yml) &nbsp;·&nbsp;
 [How it works](HOW_IT_WORKS.md)
@@ -40,10 +40,16 @@ role once. Free and open source, with no accounts and no paid APIs.
 
 ## Never check this page again
 
-- **RSS:** add
-  `https://raw.githubusercontent.com/krishi-shah/Toronto-AI-ML-internship-radar/main/feed.xml`
-  to any RSS reader (Feedly, Inoreader, Slack) and new roles come
-  to you.
+- **RSS:** an RSS reader app (Feedly, Inoreader, or Slack's RSS app) shows
+  new roles as they're posted, like an inbox. Copy this link and add it as a
+  new feed in the app:
+
+  ```
+  https://raw.githubusercontent.com/krishi-shah/Toronto-AI-ML-internship-radar/main/feed.xml
+  ```
+
+  Opening the link in a browser shows raw code; that's normal, it's meant for
+  the reader app.
 - **JSON:** [`feed.json`](feed.json) has the same roles for your own scripts
   and bots.
 
