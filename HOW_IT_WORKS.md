@@ -93,20 +93,12 @@ python radar.py --reasons        stored postings by tier and reason, with sample
 
 Set in `NOTIFIERS` in [companies.py](companies.py), or per-run with the
 `RADAR_NOTIFIERS` environment variable, which is how the workflow renders the
-README, feeds and Discord alerts without also writing a dashboard nobody will
-open.
-
-**Discord alerts.** In your Discord server, open the channel's settings,
-then Integrations → Webhooks → New Webhook, and copy its URL. In the repo, add
-it under Settings → Secrets and variables → Actions → New repository secret,
-named `DISCORD_WEBHOOK_URL`. The next run posts new strict roles there. Keep
-the URL secret: anyone holding it can post to the channel.
+README and feeds without also writing a dashboard nobody will open.
 
 | Backend | What it does |
 |---|---|
 | `readme` | Rewrites the listings block of the README. **Used by the scheduled job.** |
 | `feed` | Writes `feed.xml` (RSS) and `feed.json`: strict then loose roles in the feed window, up to 200. **Used by the scheduled job.** |
-| `discord` | Posts each new strict role to a Discord channel, 10 per message, at most 30 per run. Turned on by a `DISCORD_WEBHOOK_URL` repository secret; skipped without it. **Used by the scheduled job.** |
 | `dashboard` | Rewrites `radar.html`. **The local default.** |
 | `toast` | Native Windows notification per strict hit, click to apply. Capped at 5 per run. Windows-only; add it to `NOTIFIERS` to enable. |
 
@@ -619,7 +611,7 @@ Corrections found along the way:
 | [radar.py](radar.py) | CLI, concurrent orchestration, pipeline |
 | [sources.py](sources.py) | ATS adapters, careers-page layer, tracker parsers, sniffer, prober |
 | [core.py](core.py) | Tier classifier, fingerprint, SQLite state and health |
-| [notify.py](notify.py) | README feed, RSS and JSON feeds, Discord alerts, HTML dashboard, Windows toasts, backend interface |
+| [notify.py](notify.py) | README feed, RSS and JSON feeds, HTML dashboard, Windows toasts, backend interface |
 | [HOW_IT_WORKS.md](HOW_IT_WORKS.md) | This page |
 | [companies.py](companies.py) | Curated target list, notifiers, freshness and cycle settings |
 | [auto_companies.py](auto_companies.py) | Generated list of boards promoted from discovery evidence |

@@ -39,13 +39,13 @@ role once. Free and open source, with no accounts and no paid APIs.
 
 - **RSS:** add
   `https://raw.githubusercontent.com/krishi-shah/Toronto-AI-ML-internship-radar/main/feed.xml`
-  to any RSS reader (Feedly, Inoreader, Slack, Discord bots) and new roles come
+  to any RSS reader (Feedly, Inoreader, Slack) and new roles come
   to you.
 - **JSON:** [`feed.json`](feed.json) has the same roles for your own scripts
   and bots.
 
 **Found it useful?** Star the repo so other students find it, and share it
-with your program's Discord.
+with your classmates.
 
 ---
 
