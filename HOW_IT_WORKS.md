@@ -390,8 +390,10 @@ after the name means it is an address, not the city, so RTX's
 `US-CT-WINDSOR LOCKS ~ 1 Hamilton Rd` is not Hamilton, Ontario. And
 "Ontario, California" and "Ontario, Oregon" are US cities, not the province.
 
-A posting naming several cycles keeps the best one: *"Winter 2027, Summer
-2027"* is a live Summer 2027 opportunity, not an early Winter one.
+A posting naming several cycles keeps the best one: *"Fall 2026, Summer
+2027"* is a live Summer 2027 opportunity, not a dead 2026 one. A season with
+no year closing the title (*"Software Engineer Co-op, AI, Summer"*) means the
+next such term.
 
 A Toronto city followed by the country code (*Markham, CA*) is Canada, not
 California; only a US state or a foreign country after the name rejects it.
@@ -424,7 +426,8 @@ Two deliberate calls, both favouring recall:
   target are rejected, since reqs get mislabelled and often span terms.
 
 Co-op spelling variants (`co-op`, `co op`, `coop`, `cooperative education`) and
-cycle tokens (`W27`, `S27`, `Winter 2027`, `Summer 2027`) are all covered.
+cycle tokens (`S27`, `Summer 2027`, `2027 Summer`, a bare `Summer` closing
+the title) are all covered.
 
 ### Dedupe and state
 

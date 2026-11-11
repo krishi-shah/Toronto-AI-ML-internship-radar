@@ -891,3 +891,30 @@ class TestStoredRowsFollowTheTarget(unittest.TestCase):
         self.store.record(post, LOOSE, "no AI signal", notified=True)
         radar.triage([post], self.store)
         self.assertEqual(self.store.stored_tier(post.uid), LOOSE)
+
+
+class TestBareSeason(unittest.TestCase):
+    """A season with no year closing the title means the next such term."""
+
+    def test_next_term(self):
+        from core import _next_term
+        nov_2026 = datetime(2026, 11, 10, 12, tzinfo=timezone.utc).timestamp()
+        self.assertEqual(_next_term(1, nov_2026), (2027, 1))
+        self.assertEqual(_next_term(5, nov_2026), (2027, 5))
+        mar_2027 = datetime(2027, 3, 1, 12, tzinfo=timezone.utc).timestamp()
+        self.assertEqual(_next_term(5, mar_2027), (2027, 5))
+        self.assertEqual(_next_term(1, mar_2027), (2028, 1))
+
+    def test_bare_season_titles(self):
+        with mock.patch("core.time.time",
+                        return_value=datetime(2026, 11, 10, 12, tzinfo=timezone.utc).timestamp()):
+            self.assertEqual(tier("Software Engineer Co-op, AI, Winter"), LOOSE)
+            self.assertEqual(tier("AI Solutions Specialist Co-op (Winter)"), LOOSE)
+            self.assertEqual(tier("Robotics ML Intern, Capture Systems, Summer"), STRICT)
+
+    def test_season_words_elsewhere_are_ignored(self):
+        from core import parse_cycles
+        self.assertEqual(parse_cycles("Summer Student, Data Science"), [])
+        self.assertEqual(parse_cycles("Winter Sports Data Intern"), [])
+        # An explicit year always wins over the bare rule.
+        self.assertEqual(parse_cycles("ML Intern, Summer 2028, Winter"), [(2028, 5)])

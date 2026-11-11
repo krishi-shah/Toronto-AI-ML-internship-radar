@@ -32,8 +32,8 @@ role once. Free and open source, with no accounts and no paid APIs.
 - **Fresh and clean.** AI/ML roles from the last 14 days, others from the last
   7, newest first. One row per role, and a role drops out once the employer
   takes it down.
-- **Summer 2027 focus.** Summer 2027 roles (and Waterloo's Spring term) lead.
-  Winter and Fall 2027 roles sit in *Loose*.
+- **Summer 2027 focus.** Summer 2027 roles (including Waterloo's Spring term)
+  lead the list. Roles for other terms sit in *Loose*.
 
 ## Never check this page again
 
