@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 113,
+ "count": 114,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:2212b9e2-0cac-4357-8314-902e2825e25d",
@@ -385,6 +385,18 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:manulife.wd3.myworkdayjobs.com:JR26080362",
+   "tier": "loose",
+   "title": "Winter Co-op 2027 - Business Technology",
+   "company": "Manulife Financial",
+   "location": "Toronto, Ontario",
+   "term": "",
+   "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Winter-Co-op-2027---Business-Technology_JR26080362",
+   "date": "2026-11-11T01:33:22+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {

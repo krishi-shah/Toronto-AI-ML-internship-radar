@@ -64,7 +64,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Tuesday 10 November, 21:04 Toronto &middot; 184/184 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 32 AI/ML matches &middot; last 14 days
 
@@ -103,10 +103,11 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | [GTM (FAE &amp; Customer Success) and Product Intern](https://job-boards.greenhouse.io/tenstorrentuniversity/jobs/5274249007) | Tenstorrent | Santa Clara, California, United States; Toronto, Ontario, Canada | - | 13 days ago |
 | [Intern, AI Value Creation Office](https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790) | Brookfield | Toronto, Ontario | - | date unknown |
 
-### Loose &middot; 81 to review
+### Loose &middot; 82 to review
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
+| [Winter Co-op 2027 - Business Technology](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Winter-Co-op-2027---Business-Technology_JR26080362) | Manulife Financial | Toronto, Ontario | - | **Today** |
 | [Information Security Analyst Co-op (Winter 2027)](https://jobs.lever.co/magnetforensics/21c3d181-2751-4255-8084-f82cdc799483) | Magnet Forensics | Waterloo / Ottawa / Ontario, remote, Co-op | Winter 2027 | **Today** |
 | [DevOps Analyst Intern](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/DevOps-Analyst-Intern_R0145523) | Hitachi Energy | Toronto, Ontario, Canada | - | **Today** |
 | [Data Analyst, Winter 2027 (Co-o/Internship) - 8 months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Data-Analyst--Winter-2027--Co-o-Internship----8-months_R260026973) | Bank of Montreal | Toronto, ON, CAN | Winter 2027 | **Today** |
@@ -189,7 +190,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | [Intern, Business Development (Winter 2027)](https://pictonmahoney.bamboohr.com/careers/385) | Picton Mahoney Asset Management | Toronto, Ontario | Winter 2027 | date unknown |
 | [Intern, Data Engineer (8 Months)](https://pictonmahoney.bamboohr.com/careers/387) | Picton Mahoney Asset Management | Toronto, Ontario | - | date unknown |
 
-<details><summary>Other fields &middot; 85 outside AI/ML</summary>
+<details><summary>Other fields &middot; 84 outside AI/ML</summary>
 
 | Role | Company | Location | Term | Posted |
 |---|---|---|---|---|
@@ -215,7 +216,6 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | [Student Intern, Human Resources](https://careers.celestica.com/job/Toronto-Student-Intern%2C-Human-Resources-ON/1456196333/) | Celestica | Toronto, ON, CA | - | Yesterday |
 | [Dealer Support Coordinator Student (4 months) - Winter 2027](https://canadiantirecorporation.wd3.myworkdayjobs.com/en-US/Enterprise_External_Careers_Site/job/Mobile-Location-Ontario-F009/Dealer-Support-Coordinator-Student--4-months----Winter-2027_JR167669) | Canadian Tire | Mobile Location Ontario \[F009\] | Winter 2027 | Yesterday |
 | [Enterprise Compliance Intern](https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/Enterprise-Compliance-Intern_R-6683) | TMX Group | Toronto - 100 Adelaide St W | - | Yesterday |
-| [Summer Intern 2027 - Accounting Analyst](https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Summer-Intern-2027---Accounting-Analyst_JR26090173) | Manulife Financial | Toronto, Ontario | - | Yesterday |
 | [Private Wealth Administrative Assistant - Vaughan, Winter 2027 (Co-op/Internship) - 4 months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Vaughan-ON-CAN/Private-Wealth-Administrative-Assistant---Vaughan--Winter-2027--Co-op-Internship----4-months_R260026141) | Bank of Montreal | Vaughan, ON, CAN | Winter 2027 | Yesterday |
 | [Private Wealth Analyst, Winter 2027 (Co-op/Internship) - 4 months](https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Private-Wealth-Analyst--Winter-2027--Co-op-Internship----4-months_R260031280) | Bank of Montreal | Toronto, ON, CAN | Winter 2027 | Yesterday |
 | [FPGA Design Verification Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/FPGA-Design-Verification-Intern_R03440) | Altera | Toronto, Ontario, Canada | - | Yesterday |
@@ -288,9 +288,9 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | 1Password \[ashby\] | 80 | ok |
 | AMD \[jibe\] | 106 | ok |
 | Acceldata \[lever\] | 38 | ok |
-| Accenture \[workday\] | 150 | ok |
+| Accenture \[workday\] | 147 | ok |
 | Ada \[greenhouse\] | 7 | ok |
-| Affirm \[greenhouse\] | 210 | ok |
+| Affirm \[greenhouse\] | 208 | ok |
 | Airbnb \[greenhouse\] | 202 | ok |
 | Altera \[workday\] | 183 | ok |
 | Amazon \[amazon\] | 162 | ok |
@@ -298,7 +298,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Anthropic \[greenhouse\] | 679 | ok |
 | Aon \[jibe\] | 40 | ok |
 | Astera Labs \[greenhouse\] | 90 | ok |
-| AtkinsRéalis \[workday\] | 485 | ok |
+| AtkinsRéalis \[workday\] | 486 | ok |
 | Autodesk \[workday:uni\] | - | **empty** |
 | Autodesk \[workday\] | 5 | ok |
 | BDO Canada \[workday\] | 234 | ok |
@@ -323,7 +323,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Ciena \[workday\] | 85 | ok |
 | Cisco \[html\] | 48 | ok |
 | Clearco \[ashby\] | 6 | ok |
-| Clio \[workday\] | 122 | ok |
+| Clio \[workday\] | 123 | ok |
 | Clutch Canada \[greenhouse\] | 80 | ok |
 | Cohere \[ashby\] | 127 | ok |
 | Coinbase \[greenhouse\] | 286 | ok |
@@ -357,7 +357,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Inovia \[getro\] | 407 | ok |
 | Instacart \[greenhouse\] | 88 | ok |
 | Intact \[workday\] | 154 | ok |
-| Intel \[workday\] | 606 | ok |
+| Intel \[workday\] | 607 | ok |
 | Jobber \[ashby\] | 38 | ok |
 | Jobright Data Internships \[tracker\] | 100 | ok |
 | Jobright SWE Internships \[tracker\] | 100 | ok |
@@ -386,14 +386,14 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Miovision \[ashby\] | 18 | ok |
 | MongoDB \[greenhouse\] | 377 | ok |
 | Neo Financial \[ashby\] | 59 | ok |
-| New-Grad-Positions \[tracker\] | 3242 | ok |
+| New-Grad-Positions \[tracker\] | 3239 | ok |
 | Nokia \[oracle\] | 31 | ok |
 | Nuclear Promise X \[ashby\] | 16 | ok |
 | Nvidia \[workday\] | 19 | ok |
 | OLG \[workday\] | 4 | ok |
 | OMERS \[workday\] | 49 | ok |
 | Okta \[greenhouse\] | 379 | ok |
-| Ontario Power Generation \[html\] | 14 | ok |
+| Ontario Power Generation \[html\] | 6 | ok |
 | Ontario Teachers' Pension Plan \[workday\] | 36 | ok |
 | OpenAI \[ashby\] | 828 | ok |
 | PagerDuty \[greenhouse\] | 49 | ok |
@@ -430,13 +430,13 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Shopify \[html\] | 114 | ok |
 | ShyftLabs \[lever\] | 28 | ok |
 | Signal 1 \[bamboohr\] | 8 | ok |
-| Snowflake \[ashby\] | 373 | ok |
+| Snowflake \[ashby\] | 374 | ok |
 | Solink \[ashby\] | 27 | ok |
 | StackAdapt \[greenhouse\] | 68 | ok |
 | Stantec \[oracle\] | 266 | ok |
 | Steel \[ashby\] | 1 | ok |
-| Stripe \[greenhouse\] | 779 | ok |
-| Summer2027-Internships \[tracker\] | 5397 | ok |
+| Stripe \[greenhouse\] | 778 | ok |
+| Summer2027-Internships \[tracker\] | 5392 | ok |
 | Sun Life \[workday:Campus\] | 6 | ok |
 | Sun Life \[workday\] | 119 | ok |
 | TD \[workday\] | 594 | ok |
@@ -456,7 +456,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | Varian \[workday\] | 22 | ok |
 | Vector Institute \[html\] | 30 | ok |
 | Veeda AI \[ashby\] | 10 | ok |
-| WTW \[oracle\] | 375 | ok |
+| WTW \[oracle\] | 377 | ok |
 | Waabi \[lever\] | 86 | ok |
 | Wattpad \[lever\] | 17 | ok |
 | Wealthsimple \[ashby\] | 37 | ok |
@@ -470,7 +470,7 @@ _Updated Tuesday 10 November, 20:31 Toronto &middot; 184/184 sources healthy &mi
 | vansh-Summer2027 \[tracker\] | 2398 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 170 boards discovered from Canadian postings: 169 ok, 1 failing, 33 promoted, 116 demoted._
+_Plus 170 boards discovered from Canadian postings: 170 ok, 33 promoted, 117 demoted._
 
 <!-- radar:listings:end -->
 
