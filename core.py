@@ -544,7 +544,27 @@ def parse_cycles(text: str) -> list[tuple[int, int]]:
         found.add((_norm_year(year), _SEASON_MONTH[season.lower()]))
     for letter, year in _CYCLE_SHORT_RE.findall(text or ""):
         found.add((_norm_year(year), _SEASON_MONTH[letter.lower()]))
+    # "Software Engineer Co-op, AI, Winter": a season with no year, closing
+    # the title. It means the next such term, so in November it is Winter
+    # 2027, not a term with no cycle at all.
+    if not found:
+        for season in _CYCLE_BARE_RE.findall(text or ""):
+            found.add(_next_term(_SEASON_MONTH[season.lower()]))
     return sorted(found)
+
+
+# A bare season after a comma, dash or bracket, closing the title (the title
+# is the first field of every text this is called on, joined with " | ").
+_CYCLE_BARE_RE = re.compile(
+    r"(?:,|\(|\s[-\u2013])\s*(winter|spring|summer|fall|autumn)\s*\)?\s*(?=\||$)",
+    re.IGNORECASE,
+)
+
+
+def _next_term(month: int, now: Optional[float] = None) -> tuple[int, int]:
+    """The next term starting in ``month``: this year's if it has not begun."""
+    today = datetime.fromtimestamp(now or time.time(), _TORONTO)
+    return (today.year if month >= today.month else today.year + 1, month)
 
 
 def _compile(terms: Iterable[str]) -> re.Pattern:
@@ -935,7 +955,7 @@ def _earliest_live_cycle() -> tuple[int, int]:
 def names_live_cycle(posting: Posting) -> bool:
     """Does the title or a term field name a live (earlier, target or later) cycle?
 
-    "ML Engineer - Winter 2027" carries no intern wording, but a work term
+    "ML Engineer - Summer 2027" carries no intern wording, but a work term
     attached to the role only makes sense for a student.
     """
     first = _earliest_live_cycle()

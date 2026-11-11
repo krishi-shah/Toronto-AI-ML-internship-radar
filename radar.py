@@ -1271,7 +1271,7 @@ def cmd_test(store: Store) -> int:
     """Fire one fake alert through every configured channel."""
     sample = Posting(
         company="Cohere",
-        title="Machine Learning Intern, Winter 2027",
+        title="Machine Learning Intern, Summer 2027",
         location="Toronto, Ontario, Canada",
         url="https://jobs.ashbyhq.com/cohere",
         uid="test",

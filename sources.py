@@ -663,9 +663,9 @@ def _resolve_workday_locations(http: Http, base: str, posts: Iterable[Posting]) 
 
     Workday's search summarises multi-site reqs as "N Locations", which names
     no city, so the classifier cannot place them. Real Toronto co-ops hide
-    behind it (TD's Winter 2027 SWE co-op lists Toronto, Mississauga and
+    behind it (TD's Summer 2027 SWE co-op lists Toronto, Mississauga and
     London). One detail request per posting, capped per board. A title that
-    names a live work term ("ML Engineer - Winter 2027") counts as student
+    names a live work term ("ML Engineer - Summer 2027") counts as student
     level here, as it does in the classifier.
     """
     from core import NEWGRAD_RE, STUDENT_RE, names_live_cycle
