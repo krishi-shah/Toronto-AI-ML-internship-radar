@@ -1552,6 +1552,179 @@ def _jsonld_postings(company: str, page: str, text: str) -> list[Posting]:
 
 
 # --------------------------------------------------------------------------
+# Job sitemaps
+#
+# Careers sites that draw their list with JavaScript, or hide it behind a
+# portal, often still publish a sitemap of every posting for search engines,
+# with a last-modified date. Reading it needs no browser: the sitemap lists
+# the postings, and each posting page's schema.org JobPosting supplies the
+# real title, place and date.
+# --------------------------------------------------------------------------
+
+# Path segments that mark a posting URL inside a site-wide sitemap.
+SITEMAP_JOB_PATH_RE = re.compile(
+    r"/(?:jobs?|careers?|positions?|openings?|postings?|opportunit(?:y|ies)|vacanc(?:y|ies)|"
+    r"requisitions?|job-?details?)/", re.I)
+# Child sitemaps worth opening inside a sitemap index.
+_SITEMAP_CHILD_RE = re.compile(r"job|career|position|opening|posting|vacanc|requisition", re.I)
+SITEMAP_MAX_AGE_DAYS = 21
+SITEMAP_MAX_PAGES = 40
+SITEMAP_MAX_CHILDREN = 10
+_OG_TITLE_RE = re.compile(
+    r"""<meta[^>]+property=["']og:title["'][^>]*content=["']([^"']+)""", re.I)
+_TITLE_TAG_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
+
+
+def _xml_text(http: Http, url: str) -> str:
+    resp = http.get(url)
+    if resp is None:
+        return ""
+    body = resp.content
+    if body[:2] == b"\x1f\x8b":  # .xml.gz served without Content-Encoding
+        import gzip
+        body = gzip.decompress(body)
+    return body.decode("utf-8", "replace")
+
+
+def _local(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1]
+
+
+def parse_sitemap(text: str) -> tuple[list[tuple[str, str]], list[str]]:
+    """``([(loc, lastmod), ...], [child sitemap URLs])`` from one sitemap file."""
+    try:
+        root = ET.fromstring(text.strip())
+    except ET.ParseError:
+        return [], []
+    urls: list[tuple[str, str]] = []
+    children: list[str] = []
+    for node in root:
+        fields = {_local(child.tag): (child.text or "").strip() for child in node}
+        loc = fields.get("loc", "")
+        if not loc:
+            continue
+        if _local(root.tag) == "sitemapindex":
+            children.append(loc)
+        else:
+            urls.append((loc, fields.get("lastmod", "")))
+    return urls, children
+
+
+def _sitemap_entries(http: Http, sitemap_url: str) -> list[tuple[str, str]]:
+    """Every ``(loc, lastmod)`` in a sitemap, following one level of index."""
+    urls, children = parse_sitemap(_xml_text(http, sitemap_url))
+    if children:
+        # Path only: the host is often careers.* and would match everything.
+        picked = [c for c in children if _SITEMAP_CHILD_RE.search(urlparse(c).path)] or children
+        for child in picked[:SITEMAP_MAX_CHILDREN]:
+            try:
+                more, _ = parse_sitemap(_xml_text(http, child))
+            except requests.HTTPError:
+                continue  # one dead child must not hide the others
+            urls.extend(more)
+    return urls
+
+
+def _page_title(text: str) -> str:
+    m = _OG_TITLE_RE.search(text) or _TITLE_TAG_RE.search(text)
+    return _WS_RE.sub(" ", unescape(m.group(1))).strip() if m else ""
+
+
+def sitemap(http: Http, company: str, token: str) -> list[Posting]:
+    """Postings listed in a careers site's sitemap.
+
+    ``token`` is the sitemap URL, optionally followed by ``|`` and a regex
+    that a posting URL must match (default: a /job/, /careers/, ... path
+    segment). Only entries modified in the last ``SITEMAP_MAX_AGE_DAYS`` are
+    opened, newest first, at most ``SITEMAP_MAX_PAGES`` a run. Each page read
+    is cached against its lastmod, so an unchanged posting costs nothing on
+    later runs. Entries with no lastmod are skipped: without a date every
+    run would reopen the whole site.
+    """
+    sitemap_url, _, pattern = token.partition("|")
+    match = re.compile(pattern, re.I) if pattern else SITEMAP_JOB_PATH_RE
+    cutoff = time.time() - SITEMAP_MAX_AGE_DAYS * 86400
+
+    entries = []
+    for loc, lastmod in _sitemap_entries(http, sitemap_url):
+        modified = _one_date(lastmod)
+        if modified and modified >= cutoff and match.search(loc):
+            entries.append((modified, loc, lastmod))
+    entries.sort(reverse=True)
+    capped = len(entries) > SITEMAP_MAX_PAGES
+    store = http.store
+
+    out: list[Posting] = []
+    for modified, loc, lastmod in entries[:SITEMAP_MAX_PAGES]:
+        key = f"sitemap:{loc}|{lastmod}"
+        cached = store.get_etag(key) if store is not None else None
+        if cached is not None:
+            rows = json.loads(cached)
+        else:
+            try:
+                text = http.text(loc) or ""
+            except requests.HTTPError:
+                continue  # a removed posting lingering in the sitemap
+            rows = [
+                {"title": p.title, "location": p.location, "url": p.url,
+                 "posted_at": p.posted_at}
+                for p in _jsonld_postings(company, loc, text)
+            ] or ([{"title": _page_title(text), "location": "", "url": loc,
+                    "posted_at": 0}] if _page_title(text) else [])
+            if store is not None:
+                store.set_etag(key, json.dumps(rows))
+        for row in rows:
+            out.append(Posting(
+                company=company,
+                title=row["title"],
+                location=row["location"],
+                url=row["url"] or loc,
+                uid=f"sitemap:{_bare_host(loc)}:{urlparse(loc).path.rstrip('/')}",
+                raw={"sitemap": sitemap_url, "lastmod": lastmod},
+                posted_at=row["posted_at"] or modified,
+            ))
+    return Partial(out) if capped else out
+
+
+ADAPTERS["sitemap"] = sitemap
+
+
+def find_sitemaps(http: Http, careers_url: str) -> list[tuple[str, int]]:
+    """Sitemaps on a careers host and how many recent posting URLs each holds.
+
+    Looks at robots.txt and the usual locations. For ``--sitemap``: the one
+    with the most recent postings is the token to configure.
+    """
+    parts = urlparse(careers_url if "://" in careers_url else f"https://{careers_url}")
+    root = f"{parts.scheme}://{parts.netloc}"
+    candidates: list[str] = []
+    try:
+        robots = http.text(f"{root}/robots.txt") or ""
+    except requests.HTTPError:
+        robots = ""
+    for line in robots.splitlines():
+        if line.lower().startswith("sitemap:"):
+            candidates.append(line.split(":", 1)[1].strip())
+    for path in ("/sitemap.xml", "/sitemap_index.xml", "/jobs/sitemap.xml",
+                 "/careers/sitemap.xml", "/sitemap-jobs.xml"):
+        if f"{root}{path}" not in candidates:
+            candidates.append(f"{root}{path}")
+
+    cutoff = time.time() - SITEMAP_MAX_AGE_DAYS * 86400
+    found = []
+    for url in candidates:
+        try:
+            entries = _sitemap_entries(http, url)
+        except (requests.RequestException, OSError, RuntimeError):
+            continue
+        recent = sum(1 for loc, mod in entries
+                     if SITEMAP_JOB_PATH_RE.search(loc) and _one_date(mod) >= cutoff)
+        if entries:
+            found.append((url, recent))
+    return sorted(found, key=lambda f: -f[1])
+
+
+# --------------------------------------------------------------------------
 # Layer 3: community trackers
 # --------------------------------------------------------------------------
 
@@ -2228,7 +2401,8 @@ def unplaced_hosts(postings: Iterable[Posting], skip: set[str]) -> list[dict]:
 
 
 def discover_boards(
-    postings: Iterable[Posting], known: set[tuple[str, str]]
+    postings: Iterable[Posting], known: set[tuple[str, str]],
+    canadian_only: bool = True,
 ) -> list[dict]:
     """Boards named by Canadian postings that are not already configured.
 
@@ -2236,6 +2410,10 @@ def discover_boards(
     ``hits`` is how many Canadian postings pointed at it. The name is the one
     the postings used most, so a role later scraped from the board itself
     fingerprints the same as its tracker copy.
+
+    With ``canadian_only`` False every posting counts, wherever it is: a US
+    company's Summer internship links the same board its Toronto office
+    posts on. ``hits`` then counts postings of any location.
     """
     from collections import Counter
 
@@ -2244,7 +2422,7 @@ def discover_boards(
     boards: dict[tuple[str, str], dict] = {}
     for post in postings:
         found = board_from_url(post.url)
-        if not found or not in_canada(post):
+        if not found or (canadian_only and not in_canada(post)):
             continue
         key = board_key(*found)
         if key in known:
