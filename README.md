@@ -735,8 +735,9 @@ terms that matched. Each posting is read once, within `DESC_PER_RUN` and
 ones. The same page also gives careers-page links the location and date their
 link text lacks.
 
-**Layer 3 — community trackers.** Seven tracker repos, including
-speedyapply's AI/ML-only list. Branch names differ (`dev` vs `main`), so each
+**Layer 3 — community trackers.** Nine tracker repos, including
+speedyapply's AI/ML-only list and Jobright's daily SWE and data internship
+lists, which link the title itself and carry same-day Toronto roles. Branch names differ (`dev` vs `main`), so each
 is tried rather than hardcoded. Apply buttons that are a badge image wrapped
 in a link resolve to the link, never the badge.
 

@@ -668,3 +668,30 @@ class TestProbe(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestJobrightTables(unittest.TestCase):
+    """Jobright links the title itself and wraps every name in a markdown link."""
+
+    README = """
+| Company | Job Title | Location | Work Model | Date Posted |
+| ----- | --------- |  --------- | ---- | ------- |
+| **[Celestica](https://www.celestica.com)** | **[Student Intern, SCM Data Scientist Job Details / Celestica International LP](https://jobright.ai/jobs/info/abc?utm_source=git)** | Toronto, ON, Canada | Hybrid | Nov 10 |
+| ↳ | **[Student Intern, SCM Data Scientist](https://jobright.ai/jobs/info/def?utm_source=git)** | Toronto, ON, Canada | Hybrid | Nov 9 |
+"""
+
+    def test_rows_are_read(self):
+        rows = sources.parse_tracker_readme(self.README)
+        self.assertEqual(len(rows), 2)
+        first, second = rows
+        self.assertEqual(first["company"], "Celestica")
+        self.assertEqual(first["title"], "Student Intern, SCM Data Scientist")
+        self.assertTrue(first["url"].startswith("https://jobright.ai/jobs/info/abc"))
+        self.assertEqual(first["location"], "Toronto, ON, Canada")
+        self.assertEqual(second["company"], "Celestica")
+
+    def test_trackers_are_configured(self):
+        import companies
+        repos = {t["repo"] for t in companies.TRACKERS}
+        self.assertIn("jobright-ai/2026-Software-Engineer-Internship", repos)
+        self.assertIn("jobright-ai/2026-Data-Analysis-Internship", repos)

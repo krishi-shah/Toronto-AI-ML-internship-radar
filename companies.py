@@ -357,6 +357,12 @@ TRACKERS: list[dict] = [
     # hanzili/canada_sde_intern_position removed: 404 on both main and master,
     # the repo is gone. It was failing every run and showing red in Sources.
     {"name": "Summer2027-Internships", "repo": "SimplifyJobs/Summer2027-Internships"},
+    # Jobright's daily internship lists. US heavy, but they carry Toronto roles the other trackers miss, posted the
+    # same day. Rows link Jobright's job page, not the employer's; dedupe still
+    # folds them into the employer's own copy when the radar has it. Only the
+    # last seven days are listed, so each run sees the newest roles.
+    {"name": "Jobright SWE Internships", "repo": "jobright-ai/2026-Software-Engineer-Internship"},
+    {"name": "Jobright Data Internships", "repo": "jobright-ai/2026-Data-Analysis-Internship"},
     {"name": "New-Grad-Positions", "repo": "SimplifyJobs/New-Grad-Positions"},
     {"name": "vansh-Summer2027", "repo": "vanshb03/Summer2027-Internships"},
     # AI/ML-only student roles, which is exactly this radar's target.
