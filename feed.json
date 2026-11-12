@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 112,
+ "count": 110,
  "jobs": [
+  {
+   "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
+   "tier": "strict",
+   "title": "AI Engineering Intern",
+   "company": "TMX Group",
+   "location": "Toronto - 100 Adelaide St W",
+   "term": "",
+   "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/AI-Engineering-Intern_R-6680",
+   "date": "2026-11-12T20:56:41+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
   {
    "id": "workday:astrazeneca.wd3.myworkdayjobs.com:R-260415",
    "tier": "strict",
@@ -48,18 +60,6 @@
    "term": "",
    "url": "https://jobs.dover.com/peripheral/6faa193a-8c36-4416-b97b-38602292f157",
    "date": "2026-11-10T16:37:52+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6adb95bfc5c64fa3d9cb02f6?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Student Intern, SCM Data Scientist",
-   "company": "Celestica",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6adb95bfc5c64fa3d9cb02f6?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-10T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -340,6 +340,54 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260026323",
+   "tier": "loose",
+   "title": "AI Developer, Winter 2027 (Co-op/Internship) - 4 months",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, CAN",
+   "term": "Winter 2027",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/AI-Developer--Winter-2027--Co-op-Internship----4-months_R260026323",
+   "date": "2026-11-12T20:55:56+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "eightfold:eaton.eightfold.ai:687239930904",
+   "tier": "loose",
+   "title": "Intern, Power Systems Engineering (4-12 month) - Milton, ON",
+   "company": "Eaton",
+   "location": "Milton, Ontario, CAN, L9T 5C3",
+   "term": "",
+   "url": "https://eaton.eightfold.ai/careers/job/687239930904",
+   "date": "2026-11-12T18:31:25+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "eightfold:eaton.eightfold.ai:687239932836",
+   "tier": "loose",
+   "title": "Intern, Power Systems Engineering (4-12 month) - Kitchener, ON",
+   "company": "Eaton",
+   "location": "Kitchener, Ontario, CAN, N2C 2M3",
+   "term": "",
+   "url": "https://eaton.eightfold.ai/careers/job/687239932836",
+   "date": "2026-11-12T18:29:41+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:fd6fadaf-50aa-430c-ba6c-1a00ec3b4cb2",
+   "tier": "loose",
+   "title": "AI Engineering Intern, Winter",
+   "company": "TMX Group",
+   "location": "Toronto, Canada",
+   "term": "Winter 2027",
+   "url": "https://tmx.wd3.myworkdayjobs.com/TMX_Careers/job/Toronto---100-Adelaide-St-W/AI-Engineering-Intern_R-6680",
+   "date": "2026-11-12T17:07:41+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Pickering%2C-Oshawa%2C-or-Darlington%2C-ON%29/59625-en_GB",
    "tier": "loose",
    "title": "Engineering New Graduate (Pickering, Oshawa, or Darlington, ON)",
@@ -364,6 +412,30 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:99666526",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99544714-photonics-test-engineer#content",
+   "date": "2026-11-12T11:58:40+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:99665667",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99546065-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-12T11:57:07+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:onehealthineers.wd3.myworkdayjobs.com:R-31892",
    "tier": "loose",
    "title": "Calibration Engineer Co-op",
@@ -372,6 +444,42 @@
    "term": "",
    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Calibration-Engineer-Co-op_R-31892",
    "date": "2026-11-12T03:09:33+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6adb9560389e06bb41ad2cb5?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Student Intern, SCM Data Analyst",
+   "company": "Celestica",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6adb9560389e06bb41ad2cb5?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-12T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Analyst, Enterprise Data and Records co-op",
+   "company": "CIBC",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-12T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:jci.wd5.myworkdayjobs.com:EB00075408",
+   "tier": "loose",
+   "title": "Software Engineering Co-Op",
+   "company": "Johnson Controls",
+   "location": "Burlington-Massachusetts-United States of America",
+   "term": "",
+   "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_EB00075408",
+   "date": "2026-11-11T20:56:33+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -460,30 +568,6 @@
    "ai_terms": ""
   },
   {
-   "id": "getro:jobs.realventures.com:99546065",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99411835-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-11T11:42:26+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99544714",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99478802-photonics-test-engineer#content",
-   "date": "2026-11-11T11:40:01+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6a960ee7c8763a3a87ffe2c7?utm_campaign=1079&utm_source=git",
    "tier": "loose",
    "title": "Software Engineer, Intern (Summer or Winter)",
@@ -503,18 +587,6 @@
    "location": "Toronto, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Analytics-Centre-of-Excellence-ON/1456506333/",
-   "date": "2026-11-11T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Information Technology Internship",
-   "company": "IDEMIA Public Security",
-   "location": "Oakville, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
    "date": "2026-11-11T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -576,6 +648,18 @@
    "term": "",
    "url": "https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/DevOps-Analyst-Intern_R0145523",
    "date": "2026-11-10T20:31:55+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:soti.wd3.myworkdayjobs.com:R10677",
+   "tier": "loose",
+   "title": "Software Developer Intern (May 2027 - 12 months)",
+   "company": "SOTI",
+   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
+   "term": "",
+   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern--May-2027---12-months-_R10677",
+   "date": "2026-11-10T20:31:54+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -880,6 +964,18 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:ttmtech.wd5.myworkdayjobs.com:R18900",
+   "tier": "loose",
+   "title": "Quality Engineering Intern",
+   "company": "TTM Technologies",
+   "location": "Toronto, Canada",
+   "term": "",
+   "url": "https://ttmtech.wd5.myworkdayjobs.com/en-US/jobs/job/Toronto-Canada/Quality-Engineering-Intern_R18900",
+   "date": "2026-11-07T20:56:47+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:olg.wd3.myworkdayjobs.com:R26_00700",
    "tier": "loose",
    "title": "Analytics Engineering & Measurement Student",
@@ -948,18 +1044,6 @@
    "term": "Winter 2027",
    "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Technology-Research-Associate--Winter-2027--Co-op-Internship----4-months_R260024978",
    "date": "2026-11-06T20:00:12+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:sunlife.wd3.myworkdayjobs.com:JR00127798",
-   "tier": "loose",
-   "title": "Student, Associate DevOps Engineer (Winter 2027)",
-   "company": "Sun Life",
-   "location": "Waterloo, Ontario",
-   "term": "Winter 2027",
-   "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Waterloo-Ontario/Student--Associate-DevOps-Engineer--Winter-2027-_JR00127798",
-   "date": "2026-11-06T19:59:31+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -1068,114 +1152,6 @@
    "term": "",
    "url": "https://stripe.com/jobs/search?gh_jid=8332683",
    "date": "2026-11-05T23:57:43+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:myview.wd3.myworkdayjobs.com:R2000695051",
-   "tier": "loose",
-   "title": "Loblaw Brands, Technology Transformation - Co-op Student",
-   "company": "Loblaw Companies",
-   "location": "1 Presidents Choice Circle, Brampton, ON",
-   "term": "",
-   "url": "https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/1-Presidents-Choice-Circle-Brampton-ON/Loblaw-Brands--Technology-Transformation---Co-op-Student_R2000695051",
-   "date": "2026-11-05T20:44:24+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:soti.wd3.myworkdayjobs.com:R10655",
-   "tier": "loose",
-   "title": "Software Developer Intern (May 2027 12 Months)",
-   "company": "SOTI",
-   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
-   "term": "",
-   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern--May-2027-12-Months-_R10655",
-   "date": "2026-11-05T20:44:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:soti.wd3.myworkdayjobs.com:R10650",
-   "tier": "loose",
-   "title": "Software Developer Intern - Android (May 2027 - 12 Months)",
-   "company": "SOTI",
-   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
-   "term": "",
-   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10650",
-   "date": "2026-11-05T20:44:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:soti.wd3.myworkdayjobs.com:R10639",
-   "tier": "loose",
-   "title": "Performance Test Engineer Intern (January 2027 - 12 months)",
-   "company": "SOTI",
-   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
-   "term": "",
-   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Performance-Test-Engineer-Intern--January-2027---12-months-_R10639",
-   "date": "2026-11-05T20:44:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:soti.wd3.myworkdayjobs.com:R10626",
-   "tier": "loose",
-   "title": "Performance Test Engineer Intern (May 2027 12 Months)",
-   "company": "SOTI",
-   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
-   "term": "",
-   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Performance-Test-Engineer-Intern--May-2027-12-Months-_R10626",
-   "date": "2026-11-05T20:44:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:magna.wd3.myworkdayjobs.com:R00268028",
-   "tier": "loose",
-   "title": "IT Co-op Student",
-   "company": "Magna",
-   "location": "Brampton, Ontario, CA",
-   "term": "",
-   "url": "https://magna.wd3.myworkdayjobs.com/en-US/Magna/job/Brampton-Ontario-CA/IT-Co-op-Student_R00268028-1",
-   "date": "2026-11-05T20:43:26+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:9917836c-27c7-44f7-903d-d0c17e250a06",
-   "tier": "loose",
-   "title": "QA Tester Intern, Datalogger Products, Fall",
-   "company": "AEM",
-   "location": "Victoria, Canada",
-   "term": "",
-   "url": "https://recruiting.paylocity.com/Recruiting/Jobs/Details/4639800",
-   "date": "2026-11-05T20:41:53+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:590f0187-974f-46ce-a63e-aa00578c8907",
-   "tier": "loose",
-   "title": "Software Engineer Intern, Summer",
-   "company": "DoorDash",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://job-boards.greenhouse.io/doordashcanada/jobs/8170944",
-   "date": "2026-11-05T18:59:42+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:404aa6a5-29c0-4a80-85bd-4daead5821f0",
-   "tier": "loose",
-   "title": "Platform Engineer Intern, Winter",
-   "company": "Nelnet",
-   "location": "Mississauga, Canada",
-   "term": "",
-   "url": "https://nelnet.wd1.myworkdayjobs.com/MyNelnet/job/CAN---MISSISSAUGA/Platform-Engineer-Intern--8-month-term-_R23266",
-   "date": "2026-11-05T17:36:41+00:00",
    "date_known": true,
    "ai_terms": ""
   },
