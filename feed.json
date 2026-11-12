@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 114,
+ "count": 112,
  "jobs": [
   {
    "id": "workday:astrazeneca.wd3.myworkdayjobs.com:R-260415",
@@ -340,6 +340,30 @@
    "ai_terms": ""
   },
   {
+   "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Pickering%2C-Oshawa%2C-or-Darlington%2C-ON%29/59625-en_GB",
+   "tier": "loose",
+   "title": "Engineering New Graduate (Pickering, Oshawa, or Darlington, ON)",
+   "company": "Ontario Power Generation",
+   "location": "Engineering New Graduate (Pickering, Oshawa, or Darlington, ON)",
+   "term": "",
+   "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Pickering%2C-Oshawa%2C-or-Darlington%2C-ON%29/59625-en_GB",
+   "date": "2026-11-12T13:00:16+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Renfrew%2C-ON%29/59767-en_GB",
+   "tier": "loose",
+   "title": "Engineering New Graduate (Renfrew, ON)",
+   "company": "Ontario Power Generation",
+   "location": "Engineering New Graduate (Renfrew, ON)",
+   "term": "",
+   "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Renfrew%2C-ON%29/59767-en_GB",
+   "date": "2026-11-12T13:00:16+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:onehealthineers.wd3.myworkdayjobs.com:R-31892",
    "tier": "loose",
    "title": "Calibration Engineer Co-op",
@@ -652,18 +676,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af430d055dfd18e245c3721?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Student Intern, Processes and Applications, Programmer",
-   "company": "Celestica",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6af430d055dfd18e245c3721?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-10T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "successfactors:careers.celestica.com:1456169333",
    "tier": "loose",
    "title": "Student Intern, Automation Support / Development Engineering",
@@ -683,6 +695,18 @@
    "location": "Newmarket, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Newmarket-Student-Intern%2C-Test-Manufacturing-and-Process-Engineering-ON/1456225233/",
+   "date": "2026-11-10T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineering Intern",
+   "company": "Trimble Inc.",
+   "location": "Richmond Hill, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
    "date": "2026-11-10T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -1144,74 +1168,14 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:nelnet.wd1.myworkdayjobs.com:R23266",
+   "id": "tracker:vanshb03/Summer2027-Internships:404aa6a5-29c0-4a80-85bd-4daead5821f0",
    "tier": "loose",
-   "title": "Platform Engineer Intern (8 month term)",
+   "title": "Platform Engineer Intern, Winter",
    "company": "Nelnet",
-   "location": "CAN - MISSISSAUGA",
-   "term": "",
-   "url": "https://nelnet.wd1.myworkdayjobs.com/en-US/MyNelnet/job/CAN---MISSISSAUGA/Platform-Engineer-Intern--8-month-term-_R23266",
-   "date": "2026-11-05T12:18:20+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:ryan.wd1.myworkdayjobs.com:R0020807",
-   "tier": "loose",
-   "title": "Summer 2027 Intern, Software Engineering",
-   "company": "Ryan",
-   "location": "North York ON",
-   "term": "Summer 2027",
-   "url": "https://ryan.wd1.myworkdayjobs.com/en-US/RyanCareers/job/North-York/Summer-2027-Intern--Software-Engineering_R0020807-1",
-   "date": "2026-11-05T12:18:01+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:2b0c3cad-4668-4df3-9486-b074b1189007",
-   "tier": "loose",
-   "title": "Robotics Software Co-op, Winter",
-   "company": "4AG Robotics",
-   "location": "Salmon Arm, Canada",
-   "term": "",
-   "url": "https://ats.rippling.com/4ag/jobs/71d97d10-87f2-4f53-88b7-97f27f392d24",
-   "date": "2026-11-05T10:06:57+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:85d7f227-a2d3-465f-bffa-863963928ef1",
-   "tier": "loose",
-   "title": "AI Solutions Specialist Co-op, Winter",
-   "company": "Rodan Energy Solutions Inc.",
    "location": "Mississauga, Canada",
    "term": "",
-   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/CrbmvnkugD/AI-Solutions-Specialist-Coop-Student-Winter-2027",
-   "date": "2026-11-05T10:06:57+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:a8261ef3-b6f9-4160-bacd-d68e298539ec",
-   "tier": "loose",
-   "title": "Data Operations Engineer AI Co-op, Winter",
-   "company": "Rodan Energy Solutions Inc.",
-   "location": "Mississauga, Canada",
-   "term": "",
-   "url": "https://rodanenergysolutionsinc.applytojob.com/apply/baC6tVrSpB/Data-Operations-Engineer-AI-Coop-Student-Winter-2027",
-   "date": "2026-11-05T10:06:57+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:a9a431f2-ef7a-4cc4-a5ff-7aa27b84143a",
-   "tier": "loose",
-   "title": "Web Software Developer Intern, WFM, Summer",
-   "company": "Genesys",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://genesys.wd1.myworkdayjobs.com/2_genesys_jobs/job/Toronto-Flexible/Web-Software-Developer-Intern--WFM-_JR112214-3",
-   "date": "2026-11-05T08:10:17+00:00",
+   "url": "https://nelnet.wd1.myworkdayjobs.com/MyNelnet/job/CAN---MISSISSAUGA/Platform-Engineer-Intern--8-month-term-_R23266",
+   "date": "2026-11-05T17:36:41+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -1319,6 +1283,18 @@
    "location": "Waterdown, ON, CA, L9H 0C5",
    "term": "",
    "url": "https://jobs.l3harris.com/job/Waterdown-Project-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1432399900/",
+   "date": "2026-11-01T17:04:32+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "successfactors:jobs.l3harris.com:1432400300",
+   "tier": "loose",
+   "title": "Software Engineering Co-Op (Waterdown, CAN)",
+   "company": "L3Harris Technologies",
+   "location": "Waterdown, ON, CA, L9H 0C5",
+   "term": "",
+   "url": "https://jobs.l3harris.com/job/Waterdown-Software-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1432400300/",
    "date": "2026-11-01T17:04:32+00:00",
    "date_known": false,
    "ai_terms": ""
