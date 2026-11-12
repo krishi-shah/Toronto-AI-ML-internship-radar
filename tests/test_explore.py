@@ -248,3 +248,17 @@ class TestBoardsFoundThroughTrackers(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestIssueBoards(unittest.TestCase):
+    def test_cisco_reads_workday_without_a_browser(self):
+        [cisco] = [c for c in cfg.COMPANIES if c["name"] == "Cisco"]
+        self.assertEqual(cisco["platform"], "workday")
+        self.assertFalse(cisco.get("browser"))
+        self.assertEqual(sources.board_from_url(
+            "https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/Toronto/123"),
+            ("workday", cisco["token"]))
+
+    def test_hydro_one_is_configured(self):
+        [hydro] = [c for c in cfg.COMPANIES if c["name"] == "Hydro One"]
+        self.assertEqual(hydro["platform"], "successfactors")

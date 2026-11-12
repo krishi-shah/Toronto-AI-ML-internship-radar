@@ -272,6 +272,10 @@ COMPANIES: list[dict] = [
     {"name": "Scotiabank", "platform": "successfactors",
      "token": "https://jobs.scotiabank.com/search/?q=co-op&locationsearch=Ontario",
      "ai_native": False, "country": "Canada"},
+    # Hydro One's student roles are all titled "... Co-op Student ...".
+    {"name": "Hydro One", "platform": "successfactors",
+     "token": "https://jobs.hydroone.com/search/?q=student&locationsearch=Ontario",
+     "ai_native": False, "country": "Canada"},
 
     # -- Careers pages, HTML layer ---------------------------------------
     # For careers pages with no API. Pages that embed schema.org JobPosting
@@ -303,11 +307,11 @@ COMPANIES: list[dict] = [
      "ai_native": False, "browser": True, "location": "Ontario, Canada"},
     # Signal 1 lists its roles on BambooHR, which has real places; no browser.
     {"name": "Signal 1", "platform": "bamboohr", "token": "signal1", "ai_native": True},
-    # Cisco is a Phenom site. On 17 Oct 2026 its search had no intern role in
-    # Canada at all, so a Phenom adapter was not worth writing yet.
-    {"name": "Cisco", "platform": "html",
-     "token": "https://careers.cisco.com/global/en/search-results?keywords=intern",
-     "ai_native": False, "browser": True},
+    # Cisco's careers site is Phenom, but its roles are also on a Workday
+    # board (found through tracker posting URLs), so no browser is needed.
+    {"name": "Cisco", "platform": "workday",
+     "token": "https://cisco.wd5.myworkdayjobs.com/wday/cxs/cisco/cisco_careers/jobs",
+     "ai_native": False},
 
     # Checked and left out, all covered by the trackers meanwhile:
     #   (Clio, CPP Investments, OMERS, Ontario Teachers', Intact, GM and Uber
@@ -323,8 +327,11 @@ COMPANIES: list[dict] = [
     #   OpenText       -- rendered links carry no location, and the search is global
     #   Layer 6, Private AI, Ross Video, eSentire, Huawei, Miovision,
     #   Moneris, Descartes -- rendered page has no role links
-    #   Borealis AI, Hydro One, Meta, SickKids -- only menu links; roles sit
-    #                     behind another portal
+    #   Meta -- only menu links; roles sit behind another portal
+    #   SickKids        -- Oracle PeopleSoft candidate gateway on port 8001,
+    #                     no API, sitemap or JobPosting markup
+    #   Borealis AI     -- RBC Borealis internships are posted through RBC,
+    #                     whose Workday boards are configured above
     #   League, Questrade -- 403 or no reachable careers host
     #   Magnet Forensics, Fullscript -- discovery already reaches their Lever
     #                     boards; a careers-page scrape would list each role twice
