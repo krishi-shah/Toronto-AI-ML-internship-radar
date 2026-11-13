@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 110,
+ "count": 104,
  "jobs": [
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
@@ -172,6 +172,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:fb3a1722-d295-4e12-998b-a2815107d43c",
+   "tier": "strict",
+   "title": "Deep Learning Research Intern, Summer 2027",
+   "company": "Qualcomm",
+   "location": "Markham, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://qualcomm.eightfold.ai/careers/job/446721913898",
+   "date": "2026-11-02T23:27:34+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6648",
    "tier": "strict",
    "title": "AI Governance & Policy Intern",
@@ -290,42 +302,6 @@
    "date": "2026-10-30T11:42:54+00:00",
    "date_known": true,
    "ai_terms": "machine learning, LLMs, data science"
-  },
-  {
-   "id": "eightfold:qualcomm.eightfold.ai:446721862429",
-   "tier": "strict",
-   "title": "FY27 Intern - AI Software Engineering Co-op  - Canada (4 months)",
-   "company": "Qualcomm",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721862429",
-   "date": "2026-10-30T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:qualcomm.eightfold.ai:446721862430",
-   "tier": "strict",
-   "title": "FY27 Intern - AI Software Systems Co-op - Canada (4 months)",
-   "company": "Qualcomm",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721862430",
-   "date": "2026-10-30T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:531fea3a-bf3a-4e79-b5bf-954e65b50b3c",
-   "tier": "strict",
-   "title": "Deep Learning Research Intern - Embodied AI - Interim Engineering Intern - Systems, Summer 2027",
-   "company": "Qualcomm",
-   "location": "Markham, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721858024",
-   "date": "2026-10-29T22:24:34+00:00",
-   "date_known": true,
-   "ai_terms": ""
   },
   {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
@@ -460,6 +436,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af63e0479862a378dcf20b2?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "WordPress Developer – Masters-Level Internship",
+   "company": "Brandon University",
+   "location": "Etobicoke, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6af63e0479862a378dcf20b2?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-12T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "Analyst, Enterprise Data and Records co-op",
@@ -564,18 +552,6 @@
    "term": "",
    "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/IT-Support-Intern_R-6686",
    "date": "2026-11-11T20:16:49+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6a960ee7c8763a3a87ffe2c7?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Engineer, Intern (Summer or Winter)",
-   "company": "Stripe",
-   "location": "Toronto",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6a960ee7c8763a3a87ffe2c7?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-11T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -988,6 +964,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:e33aa1d6-a247-4d85-88bb-0e5ab82df7d5",
+   "tier": "loose",
+   "title": "Digital Design Engineer Intern - Interim Engineering Intern - Systems, Summer 2027",
+   "company": "Qualcomm",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://qualcomm.eightfold.ai/careers/job/446722005254",
+   "date": "2026-11-06T23:13:10+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:vanshb03/Summer2027-Internships:f45125fe-2055-4dbc-886d-8a217273ec19",
    "tier": "loose",
    "title": "Analytics Engineering & Measurement Intern, Winter",
@@ -1092,66 +1080,6 @@
    "term": "",
    "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Full-Stack---Backend-I--Co-op----Canada_2024208",
    "date": "2026-11-06T12:00:28+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:intel.wd1.myworkdayjobs.com:JR0287535",
-   "tier": "loose",
-   "title": "Graphics Hardware Validation Undergraduate Engineering Intern",
-   "company": "Intel",
-   "location": "Canada, Toronto",
-   "term": "",
-   "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/Canada-Toronto/Graphics-Hardware-Validation-Undergraduate-Engineering-Intern_JR0287535",
-   "date": "2026-11-06T02:33:37+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:qualcomm.eightfold.ai:446722005254",
-   "tier": "loose",
-   "title": "FY27 Intern - Digital Design Engineering Intern - Canada (16 months)",
-   "company": "Qualcomm",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446722005254",
-   "date": "2026-11-06T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "oracle:fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com:41069",
-   "tier": "loose",
-   "title": "Service Router Test Student",
-   "company": "Nokia",
-   "location": "Canada",
-   "term": "",
-   "url": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/41069",
-   "date": "2026-11-06T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:1d0aac8e-a302-4553-958c-4f2eb9d6ddcd",
-   "tier": "loose",
-   "title": "Analytics Engineering & Measurement Student Intern, Winter 2027",
-   "company": "OLG",
-   "location": "Toronto, ON, Canada, Sault Ste. Marie, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://olg.wd3.myworkdayjobs.com/Careers-Students/job/Toronto-Ontario-Canada/Analytics-Engineering---Measurement-Student_R26_00700",
-   "date": "2026-11-06T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:stripe:8332683",
-   "tier": "loose",
-   "title": "Product Design Intern",
-   "company": "Stripe",
-   "location": "Toronto",
-   "term": "",
-   "url": "https://stripe.com/jobs/search?gh_jid=8332683",
-   "date": "2026-11-05T23:57:43+00:00",
    "date_known": true,
    "ai_terms": ""
   },
