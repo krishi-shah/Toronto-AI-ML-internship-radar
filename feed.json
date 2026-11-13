@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 104,
+ "count": 100,
  "jobs": [
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
@@ -160,6 +160,18 @@
    "ai_terms": ""
   },
   {
+   "id": "recruitee:huaweicanada:2801253",
+   "tier": "strict",
+   "title": "Intern Researcher- Computer Vision",
+   "company": "Huawei",
+   "location": "Markham, Ontario, Canada, Markham, Canada, False",
+   "term": "",
+   "url": "https://huaweicanada.recruitee.com/o/intern-researcher-computer-vision-3",
+   "date": "2026-11-03T16:41:09+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:rbc.wd3.myworkdayjobs.com:R-0000187401",
    "tier": "strict",
    "title": "2027 Capital Markets, Global Equities, AI Engineer (16 Months, Co-op)",
@@ -290,18 +302,6 @@
    "date": "2026-10-30T16:19:21+00:00",
    "date_known": true,
    "ai_terms": ""
-  },
-  {
-   "id": "breezy:lumerate:baf2283496ad",
-   "tier": "strict",
-   "title": "Data Associate (Winter/Spring 2027)",
-   "company": "Lumerate",
-   "location": "Canada, remote",
-   "term": "Spring 2027",
-   "url": "https://lumerate.breezy.hr/p/baf2283496ad-data-associate-winter-spring-2027",
-   "date": "2026-10-30T11:42:54+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, LLMs, data science"
   },
   {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
@@ -448,13 +448,13 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad91d76e4b94611ab85326a?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "Analyst, Enterprise Data and Records co-op",
    "company": "CIBC",
    "location": "Toronto, ON, Canada",
    "term": "",
-   "url": "https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
+   "url": "https://jobright.ai/jobs/info/6ad91d76e4b94611ab85326a?utm_campaign=1066&utm_source=git",
    "date": "2026-11-12T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -760,18 +760,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Engineering Intern",
-   "company": "Trimble Inc.",
-   "location": "Richmond Hill, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-10T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af37de310c7aed77861aedb?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "Research Intern",
@@ -1044,42 +1032,6 @@
    "term": "",
    "url": "https://job-boards.greenhouse.io/brave/jobs/8360001",
    "date": "2026-11-06T19:21:56+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:cisco.wd5.myworkdayjobs.com:2024136",
-   "tier": "loose",
-   "title": "Software Developer Embedded Systems II (Co-op) – Canada",
-   "company": "Cisco",
-   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Vancouver, British Columbia, Canada, Ottawa, Ontario, Canada, Canada",
-   "term": "",
-   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Embedded-Systems-II--Co-op----Canada_2024136",
-   "date": "2026-11-06T12:00:30+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:cisco.wd5.myworkdayjobs.com:2024111",
-   "tier": "loose",
-   "title": "Software Developer Embedded Systems I (Co-op) - Canada",
-   "company": "Cisco",
-   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Ottawa, Ontario, Canada, Canada",
-   "term": "",
-   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Embedded-Systems-I--Co-op----Canada_2024111",
-   "date": "2026-11-06T12:00:28+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:cisco.wd5.myworkdayjobs.com:2024208",
-   "tier": "loose",
-   "title": "Software Developer Full Stack / Backend I (Co-op) - Canada",
-   "company": "Cisco",
-   "location": "Kanata, Ontario, Canada, Saint-Laurent, Quebec, Canada, Calgary, Alberta, Canada, Toronto, Ontario, Canada, Montreal, Quebec, Canada, Vancouver, British Columbia, Canada, Halifax, Nova Scotia, Canada, Ottawa, Ontario, Canada, Canada",
-   "term": "",
-   "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Full-Stack---Backend-I--Co-op----Canada_2024208",
-   "date": "2026-11-06T12:00:28+00:00",
    "date_known": true,
    "ai_terms": ""
   },

@@ -6,6 +6,7 @@ normal run or ``--seed``, never by ``--check``.
 """
 
 AUTO_COMPANIES: list[dict] = [
+    {'name': 'AB InBev', 'platform': 'workday', 'token': 'https://abinbev.wd1.myworkdayjobs.com/wday/cxs/abinbev/CAN/jobs', 'ai_native': False},
     {'name': 'Accenture', 'platform': 'workday', 'token': 'https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs', 'ai_native': False},
     {'name': 'Alexion', 'platform': 'workday', 'token': 'https://astrazeneca.wd3.myworkdayjobs.com/wday/cxs/astrazeneca/alexion/jobs', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
@@ -14,7 +15,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'AtkinsRéalis', 'platform': 'workday', 'token': 'https://slihrms.wd3.myworkdayjobs.com/wday/cxs/slihrms/careers/jobs', 'ai_native': False},
     {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Campus/jobs', 'ai_native': False},
-    {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Privileged/jobs', 'ai_native': False},
     {'name': 'Bird Construction', 'platform': 'workday', 'token': 'https://bird.wd3.myworkdayjobs.com/wday/cxs/bird/BirdConstructionCareers/jobs', 'ai_native': False},
     {'name': 'BitGo', 'platform': 'greenhouse', 'token': 'bitgowinter2027', 'ai_native': False},
     {'name': 'Bree', 'platform': 'ashby', 'token': 'bree', 'ai_native': False},
@@ -33,10 +33,10 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Georgian Partners Growth', 'platform': 'ashby', 'token': 'georgian', 'ai_native': False},
     {'name': 'GHD', 'platform': 'oracle', 'token': 'https://ejov.fa.ca2.oraclecloud.com|CX', 'ai_native': False},
     {'name': 'Hitachi', 'platform': 'workday', 'token': 'https://hitachi.wd1.myworkdayjobs.com/wday/cxs/hitachi/hitachi/jobs', 'ai_native': False},
+    {'name': 'Huawei', 'platform': 'recruitee', 'token': 'huaweicanada', 'ai_native': False},
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
     {'name': 'Johnson Controls', 'platform': 'workday', 'token': 'https://jci.wd5.myworkdayjobs.com/wday/cxs/jci/JCI/jobs', 'ai_native': False},
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
-    {'name': 'Kepler Communications', 'platform': 'lever', 'token': 'kepler', 'ai_native': False},
     {'name': 'Kinaxis', 'platform': 'jibe', 'token': 'https://kinaxis.jibeapply.com', 'ai_native': False},
     {'name': 'L3Harris Technologies', 'platform': 'successfactors', 'token': 'https://jobs.l3harris.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'LSEG', 'platform': 'workday', 'token': 'https://lseg.wd3.myworkdayjobs.com/wday/cxs/lseg/Graduate_Careers/jobs', 'ai_native': False},
