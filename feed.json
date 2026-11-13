@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 100,
+ "count": 99,
  "jobs": [
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ada62244c3adc437cecc473?utm_campaign=1079&utm_source=git",
+   "tier": "strict",
+   "title": "Compiler Engineering Graduate Intern",
+   "company": "Intel",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6ada62244c3adc437cecc473?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-13T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, PyTorch, CUDA, AI frameworks, model serving, AI features"
+  },
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
    "tier": "strict",
@@ -268,42 +280,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:nvidia.wd5.myworkdayjobs.com:JR2024997",
-   "tier": "strict",
-   "title": "PhD Research Intern, Quantum and AI for Chemistry - 2027",
-   "company": "Nvidia",
-   "location": "Canada, Toronto",
-   "term": "",
-   "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Canada-Toronto/PhD-Research-Intern--Quantum-and-AI-for-Chemistry---2027_JR2024997",
-   "date": "2026-10-30T16:57:22+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:stripe:8328664",
-   "tier": "strict",
-   "title": "PhD Machine Learning Engineer, Intern",
-   "company": "Stripe",
-   "location": "Toronto",
-   "term": "",
-   "url": "https://stripe.com/jobs/search?gh_jid=8328664",
-   "date": "2026-10-30T16:19:24+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:stripe:8333122",
-   "tier": "strict",
-   "title": "Master's Machine Learning Engineer, Intern",
-   "company": "Stripe",
-   "location": "Toronto",
-   "term": "",
-   "url": "https://stripe.com/jobs/search?gh_jid=8333122",
-   "date": "2026-10-30T16:19:21+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -313,6 +289,66 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:canadiantirecorporation.wd3.myworkdayjobs.com:JR167748",
+   "tier": "loose",
+   "title": "Programmer Analyst Intern (12 months) - Winter 2027",
+   "company": "Canadian Tire",
+   "location": "Mississauga, ON",
+   "term": "Winter 2027",
+   "url": "https://canadiantirecorporation.wd3.myworkdayjobs.com/en-US/Enterprise_External_Careers_Site/job/Mississauga-ON/Programmer-Analyst-Intern--12-months----Winter-2027_JR167748",
+   "date": "2026-11-13T20:36:42+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:altera.wd1.myworkdayjobs.com:R03108",
+   "tier": "loose",
+   "title": "Quartus Compiler Software - Intern",
+   "company": "Altera",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Quartus-Compiler-Software---Intern_R03108",
+   "date": "2026-11-13T20:33:39+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe969f4ac55253f5d617a6?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineering Intern 2027 (Toronto)",
+   "company": "Pinterest",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6abe969f4ac55253f5d617a6?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-13T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "2027 Spring/Summer Data Co-op",
+   "company": "Precision Castparts",
+   "location": "Toronto, Ohio, United States",
+   "term": "Spring 2027",
+   "url": "https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-13T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/New-Grad-Positions:4287d783-c297-490e-8a07-772a66707407",
+   "tier": "loose",
+   "title": "Personal & Business Banking Development Program New Grad",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/BMO-Personal---Business-Banking-Development-Program--New-Graduate----2-Year-Program_R260031068-3",
+   "date": "2026-11-13T00:00:00+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -431,18 +467,6 @@
    "location": "Toronto, ON, Canada",
    "term": "",
    "url": "https://jobright.ai/jobs/info/6adb9560389e06bb41ad2cb5?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-12T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af63e0479862a378dcf20b2?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "WordPress Developer – Masters-Level Internship",
-   "company": "Brandon University",
-   "location": "Etobicoke, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6af63e0479862a378dcf20b2?utm_campaign=1079&utm_source=git",
    "date": "2026-11-12T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -568,6 +592,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Information Technology Internship",
+   "company": "IDEMIA Public Security",
+   "location": "Oakville, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-11T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:mbda.wd3.myworkdayjobs.com:R37622",
    "tier": "loose",
    "title": "Warheads Engineer - Undergraduate Placement 2027",
@@ -614,6 +650,18 @@
    "date": "2026-11-10T20:52:29+00:00",
    "date_known": true,
    "ai_terms": "LLMs, data science, conversational AI, AI features"
+  },
+  {
+   "id": "workday:capitalpower.wd10.myworkdayjobs.com:JR807220",
+   "tier": "loose",
+   "title": "Engineering Student",
+   "company": "Capital Power",
+   "location": "Brampton, ON",
+   "term": "",
+   "url": "https://capitalpower.wd10.myworkdayjobs.com/en-US/External/job/Brampton-ON/Engineering-Student_JR807220",
+   "date": "2026-11-10T20:39:14+00:00",
+   "date_known": true,
+   "ai_terms": ""
   },
   {
    "id": "workday:hitachi.wd1.myworkdayjobs.com:R0145523",
@@ -760,18 +808,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af37de310c7aed77861aedb?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "Research Intern",
-   "company": "CEM",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6af37de310c7aed77861aedb?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-10T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af4a4169144106c56a200ae?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "Intern, Trade Promotion Management Business and Data Analyst",
@@ -803,6 +839,18 @@
    "location": "YOW B",
    "term": "",
    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Application-Software-Developer-Co-Op_R-31984",
+   "date": "2026-11-09T23:03:49+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:onehealthineers.wd3.myworkdayjobs.com:R-31985",
+   "tier": "loose",
+   "title": "Embedded Software Developer Co-Op",
+   "company": "Varian",
+   "location": "YOW B",
+   "term": "",
+   "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Embedded-Software-Developer-Co-Op_R-31985",
    "date": "2026-11-09T23:03:49+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -972,66 +1020,6 @@
    "term": "",
    "url": "https://olg.wd3.myworkdayjobs.com/Careers-Students/job/Toronto-Ontario-Canada/Analytics-Engineering---Measurement-Student_R26_00700",
    "date": "2026-11-06T21:06:26+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:hootsuite:8360176",
-   "tier": "loose",
-   "title": "Co-op/Intern, Software Development - Winter 2027",
-   "company": "Hootsuite",
-   "location": "Vancouver, BC, Toronto, ON",
-   "term": "Winter 2027",
-   "url": "https://job-boards.greenhouse.io/hootsuite/jobs/8360176",
-   "date": "2026-11-06T20:26:40+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:329555f7-ccbb-4636-ada2-8ceff325cde4",
-   "tier": "loose",
-   "title": "Software Developer Co-op - Full Stack / Backend, Winter",
-   "company": "Cisco",
-   "location": "Kanata, Canada, Saint-Laurent, Canada, Calgary, Canada, Toronto, Canada, Montreal, Canada, Vancouver, Canada, Halifax, Canada, Ottawa, Canada",
-   "term": "Winter 2027",
-   "url": "https://cisco.wd5.myworkdayjobs.com/Cisco_Careers/job/Kanata-Ontario-Canada/Software-Developer-Full-Stack---Backend-I--Co-op----Canada_2024208",
-   "date": "2026-11-06T20:06:40+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bmo.wd3.myworkdayjobs.com:R260031068",
-   "tier": "loose",
-   "title": "BMO Personal & Business Banking Development Program (New Graduate) - 2 Year Program",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, CAN",
-   "term": "",
-   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-ON-CAN/BMO-Personal---Business-Banking-Development-Program--New-Graduate----2-Year-Program_R260031068-1",
-   "date": "2026-11-06T20:00:34+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bmo.wd3.myworkdayjobs.com:R260024978",
-   "tier": "loose",
-   "title": "Technology Research Associate, Winter 2027 (Co-op/Internship) - 4 months",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, CAN",
-   "term": "Winter 2027",
-   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Technology-Research-Associate--Winter-2027--Co-op-Internship----4-months_R260024978",
-   "date": "2026-11-06T20:00:12+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:brave:8360001",
-   "tier": "loose",
-   "title": "Software Engineering Intern - Waterloo University - Winter Session",
-   "company": "Brave",
-   "location": "Canada",
-   "term": "",
-   "url": "https://job-boards.greenhouse.io/brave/jobs/8360001",
-   "date": "2026-11-06T19:21:56+00:00",
    "date_known": true,
    "ai_terms": ""
   },
