@@ -1,20 +1,8 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 96,
+ "count": 94,
  "jobs": [
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ada62244c3adc437cecc473?utm_campaign=1079&utm_source=git",
-   "tier": "strict",
-   "title": "Compiler Engineering Graduate Intern",
-   "company": "Intel",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6ada62244c3adc437cecc473?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-13T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, PyTorch, CUDA, AI frameworks, model serving, AI features"
-  },
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
    "tier": "strict",
@@ -292,6 +280,18 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:99824018",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99777429-photonics-test-engineer#content",
+   "date": "2026-11-14T11:05:01+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "eightfold:bostonscientific.eightfold.ai:563602813946563",
    "tier": "loose",
    "title": "R&D Engineering Associate, Co-op",
@@ -336,18 +336,6 @@
    "term": "Winter 2027",
    "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99665667-production-development-engineering-intern-co-op-winter-2027#content",
    "date": "2026-11-13T12:32:54+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe969f4ac55253f5d617a6?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Engineering Intern 2027 (Toronto)",
-   "company": "Pinterest",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6abe969f4ac55253f5d617a6?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-13T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -468,18 +456,6 @@
    "term": "",
    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Calibration-Engineer-Co-op_R-31892",
    "date": "2026-11-12T03:09:33+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6adb9560389e06bb41ad2cb5?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "Student Intern, SCM Data Analyst",
-   "company": "Celestica",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6adb9560389e06bb41ad2cb5?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-12T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -772,18 +748,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:vanshb03/Summer2027-Internships:9fde1225-6b51-4da8-b8f2-e2c99bc66c60",
-   "tier": "loose",
-   "title": "IT Business Application Development Intern, Summer",
-   "company": "Celestica",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-IT-Business-Application-Development-ON/1455777233",
-   "date": "2026-11-10T04:07:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "successfactors:careers.celestica.com:1456226233",
    "tier": "loose",
    "title": "Student Intern, Process and Manufacturing Engineer",
@@ -815,6 +779,18 @@
    "location": "Newmarket, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Newmarket-Student-Intern%2C-Test-Manufacturing-and-Process-Engineering-ON/1456225233/",
+   "date": "2026-11-10T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineering Intern",
+   "company": "Trimble Inc.",
+   "location": "Richmond Hill, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6adbb7875dc7953215a34177?utm_campaign=1079&utm_source=git",
    "date": "2026-11-10T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
