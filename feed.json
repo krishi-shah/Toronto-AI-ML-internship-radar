@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 99,
+ "count": 96,
  "jobs": [
   {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ada62244c3adc437cecc473?utm_campaign=1079&utm_source=git",
@@ -292,6 +292,18 @@
    "ai_terms": ""
   },
   {
+   "id": "eightfold:bostonscientific.eightfold.ai:563602813946563",
+   "tier": "loose",
+   "title": "R&D Engineering Associate, Co-op",
+   "company": "Boston Scientific",
+   "location": "Canada | Canada-ON-Mississauga",
+   "term": "",
+   "url": "https://bostonscientific.eightfold.ai/careers/job/563602813946563",
+   "date": "2026-11-14T01:38:03+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:canadiantirecorporation.wd3.myworkdayjobs.com:JR167748",
    "tier": "loose",
    "title": "Programmer Analyst Intern (12 months) - Winter 2027",
@@ -316,6 +328,18 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:99777912",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99665667-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-13T12:32:54+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe969f4ac55253f5d617a6?utm_campaign=1079&utm_source=git",
    "tier": "loose",
    "title": "Software Engineering Intern 2027 (Toronto)",
@@ -335,6 +359,18 @@
    "location": "Toronto, Ohio, United States",
    "term": "Spring 2027",
    "url": "https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-13T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workable:datavisor-jobs:14ABD92A86",
+   "tier": "loose",
+   "title": "Infrastructure Engineer, Junior / New Grad (Toronto)",
+   "company": "DataVisor",
+   "location": "Toronto, Canada, remote",
+   "term": "",
+   "url": "https://apply.workable.com/j/14ABD92A86",
    "date": "2026-11-13T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -424,30 +460,6 @@
    "ai_terms": ""
   },
   {
-   "id": "getro:jobs.realventures.com:99666526",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99544714-photonics-test-engineer#content",
-   "date": "2026-11-12T11:58:40+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99665667",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99546065-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-12T11:57:07+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:onehealthineers.wd3.myworkdayjobs.com:R-31892",
    "tier": "loose",
    "title": "Calibration Engineer Co-op",
@@ -472,13 +484,13 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad91d76e4b94611ab85326a?utm_campaign=1066&utm_source=git",
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "Analyst, Enterprise Data and Records co-op",
    "company": "CIBC",
    "location": "Toronto, ON, Canada",
    "term": "",
-   "url": "https://jobright.ai/jobs/info/6ad91d76e4b94611ab85326a?utm_campaign=1066&utm_source=git",
+   "url": "https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
    "date": "2026-11-12T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -808,18 +820,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af4a4169144106c56a200ae?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "Intern, Trade Promotion Management Business and Data Analyst",
-   "company": "Saputo Inc.",
-   "location": "Georgetown, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6af4a4169144106c56a200ae?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-10T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:mbda.wd3.myworkdayjobs.com:R37316",
    "tier": "loose",
    "title": "Manufacturing Engineer - Undergraduate Placement 2027",
@@ -984,42 +984,6 @@
    "term": "",
    "url": "https://ttmtech.wd5.myworkdayjobs.com/en-US/jobs/job/Toronto-Canada/Quality-Engineering-Intern_R18900",
    "date": "2026-11-07T20:56:47+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:olg.wd3.myworkdayjobs.com:R26_00700",
-   "tier": "loose",
-   "title": "Analytics Engineering & Measurement Student",
-   "company": "OLG",
-   "location": "Toronto, Ontario, Canada, Sault Ste. Marie, Ontario, Canada, Canada",
-   "term": "",
-   "url": "https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students/job/Toronto-Ontario-Canada/Analytics-Engineering---Measurement-Student_R26_00700",
-   "date": "2026-11-07T02:01:34+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:e33aa1d6-a247-4d85-88bb-0e5ab82df7d5",
-   "tier": "loose",
-   "title": "Digital Design Engineer Intern - Interim Engineering Intern - Systems, Summer 2027",
-   "company": "Qualcomm",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446722005254",
-   "date": "2026-11-06T23:13:10+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:f45125fe-2055-4dbc-886d-8a217273ec19",
-   "tier": "loose",
-   "title": "Analytics Engineering & Measurement Intern, Winter",
-   "company": "OLG",
-   "location": "Toronto, Canada, Sault Ste. Marie, Canada",
-   "term": "",
-   "url": "https://olg.wd3.myworkdayjobs.com/Careers-Students/job/Toronto-Ontario-Canada/Analytics-Engineering---Measurement-Student_R26_00700",
-   "date": "2026-11-06T21:06:26+00:00",
    "date_known": true,
    "ai_terms": ""
   },
