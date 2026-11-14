@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 94,
+ "count": 93,
  "jobs": [
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
+   "tier": "strict",
+   "title": "Software Development Internship (Summer 2027)",
+   "company": "Autodesk",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-14T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "LLMs, data science, generative AI, AI agents"
+  },
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
    "tier": "strict",
@@ -292,6 +304,18 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:99823368",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99777912-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-14T11:03:46+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "eightfold:bostonscientific.eightfold.ai:563602813946563",
    "tier": "loose",
    "title": "R&D Engineering Associate, Co-op",
@@ -324,18 +348,6 @@
    "term": "",
    "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Quartus-Compiler-Software---Intern_R03108",
    "date": "2026-11-13T20:33:39+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99777912",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99665667-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-13T12:32:54+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -460,18 +472,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "Analyst, Enterprise Data and Records co-op",
-   "company": "CIBC",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6ad9157a67bec1d0d9c83193?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-12T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:jci.wd5.myworkdayjobs.com:EB00075408",
    "tier": "loose",
    "title": "Software Engineering Co-Op",
@@ -575,18 +575,6 @@
    "location": "Toronto, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Analytics-Centre-of-Excellence-ON/1456506333/",
-   "date": "2026-11-11T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Information Technology Internship",
-   "company": "IDEMIA Public Security",
-   "location": "Oakville, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6ac41a8f8ff3fb9b3bc8413c?utm_campaign=1079&utm_source=git",
    "date": "2026-11-11T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
