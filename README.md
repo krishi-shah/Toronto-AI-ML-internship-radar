@@ -64,7 +64,7 @@ Everything between the markers is generated. Do not hand-edit it.
 
 <!-- radar:listings:start -->
 
-_Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
+_Updated Saturday 14 November, 18:10 Toronto &middot; 225/227 sources healthy &middot; AI/ML last 14 days, others last 7 days, newest first._
 
 ### Strict &middot; 24 AI/ML matches &middot; last 14 days
 
@@ -104,6 +104,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | [R&amp;D Engineering Associate, Co-op](https://bostonscientific.eightfold.ai/careers/job/563602813946563) | Boston Scientific | Canada \| Canada-ON-Mississauga | - | Yesterday |
 | [Programmer Analyst Intern (12 months) - Winter 2027](https://canadiantirecorporation.wd3.myworkdayjobs.com/en-US/Enterprise_External_Careers_Site/job/Mississauga-ON/Programmer-Analyst-Intern--12-months----Winter-2027_JR167748) | Canadian Tire | Mississauga, ON | Winter 2027 | Yesterday |
 | [Quartus Compiler Software - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Quartus-Compiler-Software---Intern_R03108) | Altera | Toronto, Ontario, Canada | - | Yesterday |
+| [Software Developer Co-op, Winter](https://ssicorporate.bamboohr.com/careers/101) | SSI ShipConstructor | Victoria, Canada | Winter 2027 | Yesterday |
 | [2027 Spring/Summer Data Co-op](https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git) | Precision Castparts | Toronto, Ohio, United States | Spring 2027 | 2 days ago |
 | [Infrastructure Engineer, Junior / New Grad (Toronto)](https://apply.workable.com/j/14ABD92A86) | DataVisor | Toronto, Canada, remote | - | 2 days ago |
 | [Personal &amp; Business Banking Development Program New Grad](https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/BMO-Personal---Business-Banking-Development-Program--New-Graduate----2-Year-Program_R260031068-3) | Bank of Montreal | Toronto, ON, Canada | - | 2 days ago |
@@ -153,7 +154,6 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | [Software Engineer - Intern](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Software-Engineer----Intern_R03414) | Altera | Toronto, Ontario, Canada | - | 5 days ago |
 | [Student Intern, IT Business Application Development](https://careers.celestica.com/job/Toronto-Student-Intern%2C-IT-Business-Application-Development-ON/1455777233/) | Celestica | Toronto, ON, CA | - | 6 days ago |
 | [Associate Technology Leadership Advancement Program Intern, Summer 2027](https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Associate-Technology-Leadership-Advancement-Program---Summer-2027_2623078-1) | CIBC | Toronto, ON, Canada | Summer 2027 | 6 days ago |
-| [Quality Engineering Intern](https://ttmtech.wd5.myworkdayjobs.com/en-US/jobs/job/Toronto-Canada/Quality-Engineering-Intern_R18900) | TTM Technologies | Toronto, Canada | - | 7 days ago |
 | [Test Engineering, Co-op](https://armstrongfluidtechnology.bamboohr.com/careers/1001) | Armstrong Fluid Technology | Toronto, Ontario | - | date unknown |
 | [Test &amp; Integration Technician Co-op](https://jobs.l3harris.com/job/Waterdown-Test-&-Integration-Technician-Co-op-ON-L9H-0C5/1426011400/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
 | [Electro-Optical Engineering Co-Op (Waterdown, CAN)](https://jobs.l3harris.com/job/Waterdown-Electro-Optical-Engineering-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1428469000/) | L3Harris Technologies | Waterdown, ON, CA, L9H 0C5 | - | date unknown |
@@ -282,7 +282,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 |---|---|---|
 | Johnson Controls \[workday\] | 597 | **FAIL** HTTPError: HTTP 502 for https://jci.wd5.myworkdayjobs.com/wday/cxs/jci/JCI/jobs |
 | Procter &amp; Gamble \[workday\] | 25 | **FAIL** HTTPError: HTTP 521 for https://pg.wd5.myworkdayjobs.com/wday/cxs/pg/1000/jobs |
-| 1Password \[ashby\] | 80 | ok |
+| 1Password \[ashby\] | 81 | ok |
 | AB InBev \[workday\] | 84 | ok |
 | AECOM \[smartrecruiters\] | 260 | ok |
 | AMD \[jibe\] | 81 | ok |
@@ -294,8 +294,8 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | Alexion \[workday\] | 117 | ok |
 | Altera \[workday\] | 177 | ok |
 | Amazon \[amazon\] | 157 | ok |
-| American Express \[oracle\] | 168 | ok |
-| Anthropic \[greenhouse\] | 669 | ok |
+| American Express \[oracle\] | 169 | ok |
+| Anthropic \[greenhouse\] | 670 | ok |
 | Aon \[jibe\] | 39 | ok |
 | Astera Labs \[greenhouse\] | 89 | ok |
 | AtkinsRéalis \[workday\] | 484 | ok |
@@ -317,7 +317,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | CIBC \[workday:campus\] | 36 | ok |
 | CIBC \[workday\] | 363 | ok |
 | CPP Investments \[smartrecruiters\] | - | **empty** |
-| CVS Health \[workday\] | 788 | ok |
+| CVS Health \[workday\] | 780 | ok |
 | Canadian Tire \[workday\] | 125 | ok |
 | Canadian-Tech-Internships-2027 \[tracker\] | 266 | ok |
 | Capital One \[workday\] | 554 | ok |
@@ -327,7 +327,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | Ciena \[workday\] | 90 | ok |
 | Cintas \[successfactors\] | 108 | ok |
 | Cisco \[html\] | 48 | ok |
-| Cisco \[workday\] | 483 | ok |
+| Cisco \[workday\] | 484 | ok |
 | Clearco \[ashby\] | 6 | ok |
 | Clio \[workday\] | 131 | ok |
 | Clutch Canada \[greenhouse\] | 82 | ok |
@@ -408,7 +408,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | MongoDB \[greenhouse\] | 390 | ok |
 | Multimatic \[workday\] | 58 | ok |
 | Neo Financial \[ashby\] | 59 | ok |
-| New-Grad-Positions \[tracker\] | 3252 | ok |
+| New-Grad-Positions \[tracker\] | 3236 | ok |
 | Nokia \[oracle\] | 28 | ok |
 | Nuclear Promise X \[ashby\] | 16 | ok |
 | Nvidia \[workday\] | 18 | ok |
@@ -447,7 +447,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | Ryan \[workday\] | 23 | ok |
 | S&amp;P Global \[workday\] | 12 | ok |
 | SOTI \[workday\] | 21 | ok |
-| Samsara \[greenhouse\] | 317 | ok |
+| Samsara \[greenhouse\] | 318 | ok |
 | Scale AI \[greenhouse\] | 170 | ok |
 | Scotiabank \[successfactors:co-op\] | 9 | ok |
 | Scotiabank \[successfactors\] | 10 | ok |
@@ -465,11 +465,11 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | Stantec \[oracle\] | 266 | ok |
 | Steel \[ashby\] | 1 | ok |
 | Stripe \[greenhouse\] | 786 | ok |
-| Summer2027-Internships \[tracker\] | 5336 | ok |
+| Summer2027-Internships \[tracker\] | 5311 | ok |
 | Sun Life \[workday:Campus\] | 3 | ok |
 | Sun Life \[workday:experienced\] | 104 | ok |
 | Sun Life \[workday\] | 109 | ok |
-| TD \[workday\] | 560 | ok |
+| TD \[workday\] | 567 | ok |
 | TELUS \[successfactors:co-op\] | - | **empty** |
 | TELUS \[successfactors\] | 11 | ok |
 | TMX Group \[workday\] | 101 | ok |
@@ -478,7 +478,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | Telus Digital \[ashby\] | 59 | ok |
 | Tenstorrent \[greenhouse:tenstorrentuniversity\] | 13 | ok |
 | Tenstorrent \[greenhouse\] | 133 | ok |
-| Thermo Fisher Scientific \[workday\] | 585 | ok |
+| Thermo Fisher Scientific \[workday\] | 582 | ok |
 | Thinkific \[ashby\] | 3 | ok |
 | Thomson Reuters \[workday\] | 21 | ok |
 | Trimble \[workday\] | 13 | ok |
@@ -494,7 +494,7 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | W.W. Grainger \[successfactors\] | 17 | ok |
 | WTW \[oracle\] | 377 | ok |
 | Waabi \[lever\] | 86 | ok |
-| Walmart \[workday\] | 1000 | ok |
+| Walmart \[workday\] | 1003 | ok |
 | Wattpad \[lever\] | 17 | ok |
 | Wealthsimple \[ashby\] | 41 | ok |
 | Workday \[workday\] | 2 | ok |
@@ -505,10 +505,10 @@ _Updated Saturday 14 November, 13:55 Toronto &middot; 225/227 sources healthy &m
 | exacare ai \[rippling\] | 43 | ok |
 | speedyapply-AI-2027 \[tracker\] | 840 | ok |
 | speedyapply-SWE-2027 \[tracker\] | 853 | ok |
-| vansh-Summer2027 \[tracker\] | 2475 | ok |
+| vansh-Summer2027 \[tracker\] | 2478 | ok |
 | zapply-Internships-2027 \[tracker\] | 600 | ok |
 
-_Plus 294 boards discovered from Canadian postings: 293 ok, 1 failing, 60 promoted, 139 demoted._
+_Plus 295 boards discovered from Canadian postings: 294 ok, 1 failing, 60 promoted, 139 demoted._
 
 <!-- radar:listings:end -->
 

@@ -352,6 +352,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:864ef071-56cc-431a-b5d8-d7805c5aed18",
+   "tier": "loose",
+   "title": "Software Developer Co-op, Winter",
+   "company": "SSI ShipConstructor",
+   "location": "Victoria, Canada",
+   "term": "Winter 2027",
+   "url": "https://ssicorporate.bamboohr.com/careers/101",
+   "date": "2026-11-13T09:39:51+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
    "tier": "loose",
    "title": "2027 Spring/Summer Data Co-op",
@@ -936,18 +948,6 @@
    "term": "Summer 2027",
    "url": "https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Associate-Technology-Leadership-Advancement-Program---Summer-2027_2623078-1",
    "date": "2026-11-09T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:ttmtech.wd5.myworkdayjobs.com:R18900",
-   "tier": "loose",
-   "title": "Quality Engineering Intern",
-   "company": "TTM Technologies",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://ttmtech.wd5.myworkdayjobs.com/en-US/jobs/job/Toronto-Canada/Quality-Engineering-Intern_R18900",
-   "date": "2026-11-07T20:56:47+00:00",
    "date_known": true,
    "ai_terms": ""
   },
