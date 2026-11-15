@@ -37,7 +37,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Huawei', 'platform': 'recruitee', 'token': 'huaweicanada', 'ai_native': False},
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
-    {'name': 'Kinaxis', 'platform': 'jibe', 'token': 'https://kinaxis.jibeapply.com', 'ai_native': False},
     {'name': 'L3Harris Technologies', 'platform': 'successfactors', 'token': 'https://jobs.l3harris.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Lilly', 'platform': 'workday', 'token': 'https://lilly.wd115.myworkdayjobs.com/wday/cxs/lilly/cmp/jobs', 'ai_native': False},
     {'name': 'LSEG', 'platform': 'workday', 'token': 'https://lseg.wd3.myworkdayjobs.com/wday/cxs/lseg/Graduate_Careers/jobs', 'ai_native': False},
@@ -65,5 +64,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Volga Partners', 'platform': 'workable', 'token': 'volga-partners', 'ai_native': False},
     {'name': 'W.W. Grainger', 'platform': 'successfactors', 'token': 'https://jobs.grainger.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Walmart', 'platform': 'workday', 'token': 'https://walmart.wd504.myworkdayjobs.com/wday/cxs/walmart/WalmartExternal/jobs', 'ai_native': False},
+    {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
 ]
