@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 92,
+ "count": 91,
  "jobs": [
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afa391d48f3528e5a730a9a?utm_campaign=1079&utm_source=git",
+   "tier": "strict",
+   "title": "Software Engineer Intern (Summer 2027)",
+   "company": "Steel.dev",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6afa391d48f3528e5a730a9a?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-15T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "LLMs, AI agents, prompt engineering, AI features"
+  },
   {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
    "tier": "strict",
@@ -184,6 +196,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:c17840ea-dbaa-48f3-91e0-91e44c35a02c",
+   "tier": "strict",
+   "title": "SoC Engineering Intern, Summer 2027",
+   "company": "Qualcomm",
+   "location": "Markham, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://qualcomm.eightfold.ai/careers/job/446721914045",
+   "date": "2026-11-02T23:27:35+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, deep learning, LLMs, RAG, neural networks, generative AI, ML engineering, AI agents"
+  },
+  {
    "id": "tracker:SimplifyJobs/Summer2027-Internships:fb3a1722-d295-4e12-998b-a2815107d43c",
    "tier": "strict",
    "title": "Deep Learning Research Intern, Summer 2027",
@@ -232,42 +256,6 @@
    "ai_terms": ""
   },
   {
-   "id": "eightfold:qualcomm.eightfold.ai:446721913898",
-   "tier": "strict",
-   "title": "FY27 Intern - Deep Learning Research Internship - Canada (4 Months)",
-   "company": "Qualcomm",
-   "location": "Markham, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721913898",
-   "date": "2026-11-02T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:qualcomm.eightfold.ai:446721914045",
-   "tier": "strict",
-   "title": "FY27 Intern - Qualcomm SoC Engineering Internship - Canada (16 months)",
-   "company": "Qualcomm",
-   "location": "Markham, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721914045",
-   "date": "2026-11-02T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, deep learning, LLMs, RAG, neural networks, generative AI, ML engineering, AI agents"
-  },
-  {
-   "id": "oracle:egug.fa.us2.oraclecloud.com:26016035",
-   "tier": "strict",
-   "title": "Campus Undergraduate Summer Internship Program - 2027 AI Engineer, Enterprise Technology Services- Toronto, Ontario, CN",
-   "company": "American Express",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016035",
-   "date": "2026-11-02T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -292,26 +280,62 @@
    "ai_terms": ""
   },
   {
-   "id": "getro:jobs.realventures.com:99824018",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99777429-photonics-test-engineer#content",
-   "date": "2026-11-14T11:05:01+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99823368",
+   "id": "getro:jobs.realventures.com:99910534",
    "tier": "loose",
    "title": "Production Development Engineering Intern (Co-op), Winter 2027",
    "company": "Real Ventures",
    "location": "Mississauga, ON, Canada",
    "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99777912-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-14T11:03:46+00:00",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99823368-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-15T11:27:03+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:99910043",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99824018-photonics-test-engineer#content",
+   "date": "2026-11-15T11:25:45+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6aa44b19f7baf881567ce2ff?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineer Intern, Backend (Summer 2027 - Toronto)",
+   "company": "Lyft",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6aa44b19f7baf881567ce2ff?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-15T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6aa4766ff7baf881567ced3b?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineer Intern, Fullstack (Summer 2027 - Toronto)",
+   "company": "Lyft",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6aa4766ff7baf881567ced3b?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-15T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af9edd7a68705504bebab35?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Data Analyst Intern",
+   "company": "Ededge Learning",
+   "location": "Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6af9edd7a68705504bebab35?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-15T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -372,18 +396,6 @@
    "term": "Winter 2027",
    "url": "https://ssicorporate.bamboohr.com/careers/101",
    "date": "2026-11-13T09:39:51+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "2027 Spring/Summer Data Co-op",
-   "company": "Precision Castparts",
-   "location": "Toronto, Ohio, United States",
-   "term": "Spring 2027",
-   "url": "https://jobright.ai/jobs/info/6af70f9cd0eefb7d11b88a86?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-13T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -912,30 +924,6 @@
    "term": "",
    "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Software-Engineer----Intern_R03414",
    "date": "2026-11-09T08:30:53+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "successfactors:careers.celestica.com:1455777233",
-   "tier": "loose",
-   "title": "Student Intern, IT Business Application Development",
-   "company": "Celestica",
-   "location": "Toronto, ON, CA",
-   "term": "",
-   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-IT-Business-Application-Development-ON/1455777233/",
-   "date": "2026-11-09T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:a76274be-0fa3-4e1f-aad7-4b25d48341ce",
-   "tier": "loose",
-   "title": "Associate Technology Leadership Advancement Program Intern, Summer 2027",
-   "company": "CIBC",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://cibc.wd3.myworkdayjobs.com/search/job/Toronto-ON/Associate-Technology-Leadership-Advancement-Program---Summer-2027_2623078-1",
-   "date": "2026-11-09T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
