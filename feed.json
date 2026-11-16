@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 91,
+ "count": 88,
  "jobs": [
   {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afa391d48f3528e5a730a9a?utm_campaign=1079&utm_source=git",
@@ -244,18 +244,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:rockwellautomation.wd1.myworkdayjobs.com:R26-8569",
-   "tier": "strict",
-   "title": "Co-op, User Experience - Robotics",
-   "company": "Rockwell Automation",
-   "location": "Waterloo, Ontario, Canada",
-   "term": "",
-   "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External-Rockwell-Automation-Early-Careers/job/Waterloo-Ontario-Canada/Co-op--User-Experience---Robotics_R26-8569-2",
-   "date": "2026-11-02T08:00:53+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -348,18 +336,6 @@
    "term": "",
    "url": "https://bostonscientific.eightfold.ai/careers/job/563602813946563",
    "date": "2026-11-14T01:38:03+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af901059501ee962015de18?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Intern, Developer (Winter 2027)",
-   "company": "Bombardier",
-   "location": "Mississauga, Ontario, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobright.ai/jobs/info/6af901059501ee962015de18?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-14T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -772,6 +748,18 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:aliaxis.wd3.myworkdayjobs.com:R-58835",
+   "tier": "loose",
+   "title": "R&D Co-op Student, Winter 2027***Etudiante Coop R&D, Hiver 2027",
+   "company": "Alliaxis",
+   "location": "CA - Mississauga - R&D",
+   "term": "Winter 2027",
+   "url": "https://aliaxis.wd3.myworkdayjobs.com/en-US/aliaxis/job/CA---Mississauga---RD/R-D-Co-op-Student--Winter-2027---Etudiante-Coop-R-D--Hiver-2027_R-58835-1",
+   "date": "2026-11-10T12:57:38+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "successfactors:careers.celestica.com:1456226233",
    "tier": "loose",
    "title": "Student Intern, Process and Manufacturing Engineer",
@@ -900,30 +888,6 @@
    "term": "",
    "url": "https://job-boards.greenhouse.io/kensingtontours/jobs/5289223007",
    "date": "2026-11-09T14:49:36+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bb.wd3.myworkdayjobs.com:20260327",
-   "tier": "loose",
-   "title": "Marketing Data & AI Analyst Student (Winter 2027)",
-   "company": "Blackberry",
-   "location": "Waterloo, Ontario",
-   "term": "Winter 2027",
-   "url": "https://bb.wd3.myworkdayjobs.com/en-US/Student/job/Waterloo-Ontario/Marketing-Data---AI-Analyst-Student--Winter-2027-_20260327",
-   "date": "2026-11-09T08:33:20+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:altera.wd1.myworkdayjobs.com:R03414",
-   "tier": "loose",
-   "title": "Software Engineer -  Intern",
-   "company": "Altera",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Software-Engineer----Intern_R03414",
-   "date": "2026-11-09T08:30:53+00:00",
    "date_known": true,
    "ai_terms": ""
   },
