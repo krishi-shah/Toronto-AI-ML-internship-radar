@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 81,
+ "count": 82,
  "jobs": [
+  {
+   "id": "eightfold:qualcomm.eightfold.ai:446722198182",
+   "tier": "strict",
+   "title": "FY27 Intern - GPU Compiler Development Internship - Canada (4 months)",
+   "company": "Qualcomm",
+   "location": "Markham, Ontario, Canada",
+   "term": "",
+   "url": "https://qualcomm.eightfold.ai/careers/job/446722198182",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, deep learning, TensorFlow, scikit-learn, CUDA, AI features"
+  },
   {
    "id": "workday:manulife.wd3.myworkdayjobs.com:JR26090774",
    "tier": "strict",
@@ -256,30 +268,6 @@
    "ai_terms": "AI agents, LLM APIs"
   },
   {
-   "id": "tracker:vanshb03/Summer2027-Internships:89b230cc-8b66-479c-a38e-66b3cd83d8ac",
-   "tier": "strict",
-   "title": "Applied AI Test Engineer Intern, Summer",
-   "company": "Plusgrade",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://plusgrade.wd10.myworkdayjobs.com/Plusgrade_External_Site/job/CAN---Toronto/Applied-AI-Test-Engineer---Intern_JR100227",
-   "date": "2026-11-04T14:37:36+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:3a887abb-da12-4d1b-a34d-0acb9237d7c0",
-   "tier": "strict",
-   "title": "Applied AI Engineer Intern, Summer",
-   "company": "Plusgrade",
-   "location": "Toronto, Canada",
-   "term": "",
-   "url": "https://plusgrade.wd10.myworkdayjobs.com/Plusgrade_External_Site/job/CAN---Toronto/Applied-AI-Engineer-Intern_JR100233",
-   "date": "2026-11-04T14:06:20+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -289,6 +277,66 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:spgi.wd5.myworkdayjobs.com:332618",
+   "tier": "loose",
+   "title": "Summer intern, Financial Risk Analytics Product",
+   "company": "S&P Global",
+   "location": "Toronto, CAN",
+   "term": "",
+   "url": "https://spgi.wd5.myworkdayjobs.com/en-US/SPGI_Careers/job/Toronto-CAN/Summer-intern--Financial-Risk-Analytics-Product_332618-2",
+   "date": "2026-11-18T21:34:47+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:sunlife.wd3.myworkdayjobs.com:JR00127140",
+   "tier": "loose",
+   "title": "Student, Associate Front-End Developer (Winter 2027)",
+   "company": "Sun Life",
+   "location": "Sun Life Toronto One York, Sun Life Waterloo King, Canada",
+   "term": "Winter 2027",
+   "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Sun-Life-Toronto-One-York/Student--Associate-Front-End-Developer--Winter-2027-_JR00127140",
+   "date": "2026-11-18T21:29:06+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:rbc.wd3.myworkdayjobs.com:R-0000188001",
+   "tier": "loose",
+   "title": "2027 Winter – GRM, AI Developer Intern - Innovation & AI Center of Excellence (4 Months)",
+   "company": "Royal Bank of Canada",
+   "location": "TORONTO, Ontario, Canada",
+   "term": "Winter 2027",
+   "url": "https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter---GRM--AI-Developer-Intern---Innovation---AI-Center-of-Excellence--4-Months-_R-0000188001-3",
+   "date": "2026-11-18T21:29:02+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "smartrecruiters:AECOM2:744000162369224",
+   "tier": "loose",
+   "title": "Engineering Intern - Airport Projects",
+   "company": "AECOM",
+   "location": "Mississauga, ON, ca",
+   "term": "",
+   "url": "https://jobs.smartrecruiters.com/AECOM2/744000162369224",
+   "date": "2026-11-18T18:22:47+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:6241b7c4-485a-4501-9b08-68ef218c882c",
+   "tier": "loose",
+   "title": "Global Analytic Financial Engineering (GAFE) Co-op, Global Banking and Markets, Summer",
+   "company": "Scotiabank",
+   "location": "Toronto, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobs.scotiabank.com/job/Toronto-Global-Banking-and-Markets-Global-Analytic-Financial-Engineering-%28GAFE%29-InternCo-PEY-12-months-ON/608151217",
+   "date": "2026-11-18T17:40:33+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -304,6 +352,30 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:100133342",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100063899-photonics-test-engineer#content",
+   "date": "2026-11-18T11:41:46+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100132421",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100064613-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-18T11:40:29+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "smartrecruiters:VeoliaEnvironnementSA:744000162190640",
    "tier": "loose",
    "title": "Process Engineering Operations Intern",
@@ -312,6 +384,42 @@
    "term": "",
    "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000162190640",
    "date": "2026-11-18T00:47:25+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "oracle:hdks.fa.ca2.oraclecloud.com:9342",
+   "tier": "loose",
+   "title": "Technology Strategy - Winter 2027 Co-op/Intern",
+   "company": "Definity Financial",
+   "location": "Toronto, ONT, Canada",
+   "term": "Winter 2027",
+   "url": "https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/9342",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "successfactors:jobs.scotiabank.com:608151217",
+   "tier": "loose",
+   "title": "Global Banking and Markets - Global Analytic Financial Engineering (GAFE) Intern/Co - PEY 12 months",
+   "company": "Scotiabank",
+   "location": "Toronto, ON, CA",
+   "term": "",
+   "url": "https://jobs.scotiabank.com/job/Toronto-Global-Banking-and-Markets-Global-Analytic-Financial-Engineering-%28GAFE%29-InternCo-PEY-12-months-ON/608151217/",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afdb14552285bd9d8049867?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Analyst Intern (Winter 2027, 8 months)",
+   "company": "Hitachi Rail",
+   "location": "Toronto, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobright.ai/jobs/info/6afdb14552285bd9d8049867?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -360,30 +468,6 @@
    "term": "Spring 2027",
    "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8205829003",
    "date": "2026-11-17T20:19:59+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100064613",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99942341-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-17T13:35:50+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100063899",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99942937-photonics-test-engineer#content",
-   "date": "2026-11-17T13:34:37+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -448,18 +532,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afc68187df9c4ceafeb9d2c?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Developer - Full-Time Internship",
-   "company": "ReInvestWealth",
-   "location": "Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6afc68187df9c4ceafeb9d2c?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-17T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afc88bc6919d6792ef9edcd?utm_campaign=1079&utm_source=git",
    "tier": "loose",
    "title": "Software Engineering Spring 2027 Internship (Remote - Canada)",
@@ -480,18 +552,6 @@
    "term": "",
    "url": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/CA-ON---Ontario---Toronto/System-Engineer---Optical-DSP-Intern--PhD----Co-Op-2027_2604424",
    "date": "2026-11-16T22:57:42+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:generalmotors.wd5.myworkdayjobs.com:JR-202624328",
-   "tier": "loose",
-   "title": "2027 Winter Co-op Data Engineering Software Developer",
-   "company": "General Motors",
-   "location": "Oshawa, Ontario, Canada",
-   "term": "Winter 2027",
-   "url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Oshawa-Ontario-Canada/XMLNAME-2027-Winter-Co-op-Data-Engineering-Software-Developer_JR-202624328",
-   "date": "2026-11-16T22:56:47+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -613,18 +673,6 @@
    "url": "https://careers-epeconsulting.icims.com/jobs/2433/power-systems-engineer-intern---co-op/job",
    "date": "2026-11-15T19:32:13+00:00",
    "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:bostonscientific.eightfold.ai:563602813946563",
-   "tier": "loose",
-   "title": "R&D Engineering Associate, Co-op",
-   "company": "Boston Scientific",
-   "location": "Canada | Canada-ON-Mississauga",
-   "term": "",
-   "url": "https://bostonscientific.eightfold.ai/careers/job/563602813946563",
-   "date": "2026-11-14T01:38:03+00:00",
-   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -768,42 +816,6 @@
    "term": "",
    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Calibration-Engineer-Co-op_R-31892",
    "date": "2026-11-12T03:09:33+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:jci.wd5.myworkdayjobs.com:EB00075408",
-   "tier": "loose",
-   "title": "Software Engineering Co-Op",
-   "company": "Johnson Controls",
-   "location": "Burlington-Massachusetts-United States of America",
-   "term": "",
-   "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_EB00075408",
-   "date": "2026-11-11T20:56:33+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Timmins%2C-ON%29/59615-en_GB",
-   "tier": "loose",
-   "title": "Engineering New Graduate (Timmins, ON)",
-   "company": "Ontario Power Generation",
-   "location": "Engineering New Graduate (Timmins, ON)",
-   "term": "",
-   "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Timmins%2C-ON%29/59615-en_GB",
-   "date": "2026-11-11T20:24:04+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:tmx.wd3.myworkdayjobs.com:R-6686",
-   "tier": "loose",
-   "title": "IT Support Intern",
-   "company": "TMX Group",
-   "location": "Toronto - 100 Adelaide St W",
-   "term": "",
-   "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/IT-Support-Intern_R-6686",
-   "date": "2026-11-11T20:16:49+00:00",
    "date_known": true,
    "ai_terms": ""
   },

@@ -7,7 +7,8 @@ normal run or ``--seed``, never by ``--check``.
 
 AUTO_COMPANIES: list[dict] = [
     {'name': 'Accenture', 'platform': 'workday', 'token': 'https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs', 'ai_native': False},
-    {'name': 'Alexion', 'platform': 'workday', 'token': 'https://astrazeneca.wd3.myworkdayjobs.com/wday/cxs/astrazeneca/alexion/jobs', 'ai_native': False},
+    {'name': 'AECOM', 'platform': 'smartrecruiters', 'token': 'AECOM2', 'ai_native': False},
+    {'name': 'Alstom', 'platform': 'successfactors', 'token': 'https://jobsearch.alstom.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'AtkinsRéalis', 'platform': 'workday', 'token': 'https://slihrms.wd3.myworkdayjobs.com/wday/cxs/slihrms/careers/jobs', 'ai_native': False},
@@ -31,8 +32,8 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Hitachi', 'platform': 'workday', 'token': 'https://hitachi.wd1.myworkdayjobs.com/wday/cxs/hitachi/hitachi/jobs', 'ai_native': False},
     {'name': 'Huawei', 'platform': 'recruitee', 'token': 'huaweicanada', 'ai_native': False},
     {'name': 'Human Computer Lab', 'platform': 'ashby', 'token': 'human-computer-lab', 'ai_native': False},
+    {'name': 'Johnson Controls', 'platform': 'workday', 'token': 'https://jci.wd5.myworkdayjobs.com/wday/cxs/jci/JCI/jobs', 'ai_native': False},
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
-    {'name': 'Kinaxis', 'platform': 'jibe', 'token': 'https://kinaxis.jibeapply.com', 'ai_native': False},
     {'name': 'L3Harris Technologies', 'platform': 'successfactors', 'token': 'https://jobs.l3harris.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Lilly', 'platform': 'workday', 'token': 'https://lilly.wd115.myworkdayjobs.com/wday/cxs/lilly/cmp/jobs', 'ai_native': False},
     {'name': 'LSEG', 'platform': 'workday', 'token': 'https://lseg.wd3.myworkdayjobs.com/wday/cxs/lseg/Graduate_Careers/jobs', 'ai_native': False},
@@ -48,7 +49,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External-Rockwell-Automation-Early-Careers/jobs', 'ai_native': False},
     {'name': 'Rockwell Automation', 'platform': 'workday', 'token': 'https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External_Rockwell_Automation/jobs', 'ai_native': False},
     {'name': 'Ryan', 'platform': 'workday', 'token': 'https://ryan.wd1.myworkdayjobs.com/wday/cxs/ryan/RyanCareers/jobs', 'ai_native': False},
-    {'name': 'Semtech', 'platform': 'workday', 'token': 'https://semtech.wd1.myworkdayjobs.com/wday/cxs/semtech/SemtechCareers/jobs', 'ai_native': False},
     {'name': 'Sherwin-Williams', 'platform': 'oracle', 'token': 'https://ejhp.fa.us6.oraclecloud.com|CX_2', 'ai_native': False},
     {'name': 'ShyftLabs', 'platform': 'lever', 'token': 'shyftlabs', 'ai_native': False},
     {'name': 'SOTI', 'platform': 'workday', 'token': 'https://soti.wd3.myworkdayjobs.com/wday/cxs/soti/SOTI-Next-Gen/jobs', 'ai_native': False},
