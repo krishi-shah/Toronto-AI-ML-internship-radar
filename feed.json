@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 83,
+ "count": 80,
  "jobs": [
   {
    "id": "workday:manulife.wd3.myworkdayjobs.com:JR26090774",
@@ -244,6 +244,18 @@
    "ai_terms": "machine learning, LLMs, RAG, embeddings, data science, AI agents"
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:1b01e71f-1711-43ad-a242-e0c3f02a72c3",
+   "tier": "strict",
+   "title": "Machine Learning Engineering Intern, Summer",
+   "company": "Qualcomm",
+   "location": "Markham, Canada",
+   "term": "",
+   "url": "https://careers.qualcomm.com/careers/job/446721969461",
+   "date": "2026-11-05T02:06:39+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:SimplifyJobs/Summer2027-Internships:e8e696f2-23e9-4021-95e0-fe24d2a40c66",
    "tier": "strict",
    "title": "Junior Full-Stack Engineer Intern",
@@ -256,18 +268,6 @@
    "ai_terms": "AI agents, LLM APIs"
   },
   {
-   "id": "eightfold:qualcomm.eightfold.ai:446721969461",
-   "tier": "strict",
-   "title": "FY27 Intern - Machine Learning Engineering Internship - Canada (4 months)",
-   "company": "Qualcomm",
-   "location": "Markham, Ontario, Canada",
-   "term": "",
-   "url": "https://qualcomm.eightfold.ai/careers/job/446721969461",
-   "date": "2026-11-04T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -277,6 +277,18 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "smartrecruiters:VeoliaEnvironnementSA:744000162190640",
+   "tier": "loose",
+   "title": "Process Engineering Operations Intern",
+   "company": "Veolia",
+   "location": "Oakville, ON, ca",
+   "term": "",
+   "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000162190640",
+   "date": "2026-11-18T00:47:25+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -336,6 +348,30 @@
    "term": "Spring 2027",
    "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8205829003",
    "date": "2026-11-17T20:19:59+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100064613",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99942341-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-17T13:35:50+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100063899",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99942937-photonics-test-engineer#content",
+   "date": "2026-11-17T13:34:37+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -516,30 +552,6 @@
    "term": "",
    "url": "https://apply.careers.microsoft.com/careers/job/1970393557045545",
    "date": "2026-11-16T15:14:51+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99942937",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99910043-photonics-test-engineer#content",
-   "date": "2026-11-16T11:40:41+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:99942341",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/99910534-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-16T11:39:31+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -780,54 +792,6 @@
    "term": "",
    "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/IT-Support-Intern_R-6686",
    "date": "2026-11-11T20:16:49+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "successfactors:careers.celestica.com:1456506333",
-   "tier": "loose",
-   "title": "Student Intern, Analytics Centre of Excellence",
-   "company": "Celestica",
-   "location": "Toronto, ON, CA",
-   "term": "",
-   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Analytics-Centre-of-Excellence-ON/1456506333/",
-   "date": "2026-11-11T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:mbda.wd3.myworkdayjobs.com:R37622",
-   "tier": "loose",
-   "title": "Warheads Engineer - Undergraduate Placement 2027",
-   "company": "MBDA",
-   "location": "Bolton",
-   "term": "",
-   "url": "https://mbda.wd3.myworkdayjobs.com/en-US/MBDA-UK/job/Bolton/Warheads-Engineer---Undergraduate-Placement-2027_R37622",
-   "date": "2026-11-11T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:mbda.wd3.myworkdayjobs.com:R39032",
-   "tier": "loose",
-   "title": "Test, Calibration & Maintenance Engineer - Undergraduate Placement 2027",
-   "company": "MBDA",
-   "location": "Bolton, Stevenage, United Kingdom",
-   "term": "",
-   "url": "https://mbda.wd3.myworkdayjobs.com/en-US/MBDA-UK/job/Bolton/Test--Calibration---Maintenance-Engineer---Undergraduate-Placement-2027_R39032",
-   "date": "2026-11-11T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:bostonscientific.eightfold.ai:563602813602596",
-   "tier": "loose",
-   "title": "Process Engineering Associate, Co-op/New Grad",
-   "company": "Boston Scientific",
-   "location": "Canada |  N/A",
-   "term": "",
-   "url": "https://bostonscientific.eightfold.ai/careers/job/563602813602596",
-   "date": "2026-11-10T22:14:19+00:00",
    "date_known": true,
    "ai_terms": ""
   },
