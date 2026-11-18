@@ -40,6 +40,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs', 'ai_native': False},
     {'name': 'MBDA', 'platform': 'workday', 'token': 'https://mbda.wd3.myworkdayjobs.com/wday/cxs/mbda/MBDA-UK/jobs', 'ai_native': False},
     {'name': 'Multimatic', 'platform': 'workday', 'token': 'https://multimatic.wd10.myworkdayjobs.com/wday/cxs/multimatic/MMEC/jobs', 'ai_native': False},
+    {'name': 'Nuclear Promise X', 'platform': 'ashby', 'token': 'NPX', 'ai_native': False},
     {'name': 'Picton Mahoney Asset Management', 'platform': 'bamboohr', 'token': 'pictonmahoney', 'ai_native': False},
     {'name': 'Procter & Gamble', 'platform': 'workday', 'token': 'https://pg.wd5.myworkdayjobs.com/wday/cxs/pg/1000/jobs', 'ai_native': False},
     {'name': 'Red Bull', 'platform': 'smartrecruiters', 'token': 'RedBull', 'ai_native': False},
@@ -63,7 +64,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Volga Partners', 'platform': 'workable', 'token': 'volga-partners', 'ai_native': False},
     {'name': 'W.W. Grainger', 'platform': 'successfactors', 'token': 'https://jobs.grainger.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Walmart', 'platform': 'workday', 'token': 'https://walmart.wd504.myworkdayjobs.com/wday/cxs/walmart/WalmartExternal/jobs', 'ai_native': False},
-    {'name': 'Workday', 'platform': 'workday', 'token': 'https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday_Early_Career/jobs', 'ai_native': False},
     {'name': 'Yotta Labs', 'platform': 'ashby', 'token': 'yotta', 'ai_native': False},
     {'name': 'Zurich Insurance', 'platform': 'successfactors', 'token': 'https://www.careers.zurich.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
 ]

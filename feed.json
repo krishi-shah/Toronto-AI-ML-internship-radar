@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 80,
+ "count": 81,
  "jobs": [
   {
    "id": "workday:manulife.wd3.myworkdayjobs.com:JR26090774",
@@ -108,18 +108,6 @@
    "term": "Summer 2027",
    "url": "https://www.shopify.com/careers/applied-machine-learning-engineering-internships-summer-2027_1d6b9bb9-a132-4ad9-b33f-3e55d2cfc536",
    "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6aa45932c1928370a285d9f1?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Data Science Intern, Algorithms (Summer 2027 - Toronto)",
-   "company": "Lyft",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://jobright.ai/jobs/info/6aa45932c1928370a285d9f1?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -268,6 +256,30 @@
    "ai_terms": "AI agents, LLM APIs"
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:89b230cc-8b66-479c-a38e-66b3cd83d8ac",
+   "tier": "strict",
+   "title": "Applied AI Test Engineer Intern, Summer",
+   "company": "Plusgrade",
+   "location": "Toronto, Canada",
+   "term": "",
+   "url": "https://plusgrade.wd10.myworkdayjobs.com/Plusgrade_External_Site/job/CAN---Toronto/Applied-AI-Test-Engineer---Intern_JR100227",
+   "date": "2026-11-04T14:37:36+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:3a887abb-da12-4d1b-a34d-0acb9237d7c0",
+   "tier": "strict",
+   "title": "Applied AI Engineer Intern, Summer",
+   "company": "Plusgrade",
+   "location": "Toronto, Canada",
+   "term": "",
+   "url": "https://plusgrade.wd10.myworkdayjobs.com/Plusgrade_External_Site/job/CAN---Toronto/Applied-AI-Engineer-Intern_JR100233",
+   "date": "2026-11-04T14:06:20+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -276,6 +288,18 @@
    "term": "",
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "bamboohr:csmc:51",
+   "tier": "loose",
+   "title": "Engineering Intern (Labs)",
+   "company": "Canadian Strategic Missions",
+   "location": "Waterloo, Ontario",
+   "term": "",
+   "url": "https://csmc.bamboohr.com/careers/51",
+   "date": "2026-11-18T13:18:18+00:00",
    "date_known": false,
    "ai_terms": ""
   },
@@ -324,18 +348,6 @@
    "term": "",
    "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-in-Test-Intern--May-2027-12-Months-_R10676",
    "date": "2026-11-17T21:50:38+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bmo.wd3.myworkdayjobs.com:R260031939",
-   "tier": "loose",
-   "title": "Risk Analytics and AI Associate - Winter 2027 (Co-op/Internship) - 10 Weeks",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, CAN",
-   "term": "Winter 2027",
-   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Risk-Analytics-and-AI-Associate---Winter-2027--Co-op-Internship----10-Weeks_R260031939",
-   "date": "2026-11-17T21:50:10+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -443,6 +455,18 @@
    "location": "Canada",
    "term": "",
    "url": "https://jobright.ai/jobs/info/6afc68187df9c4ceafeb9d2c?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-17T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afc88bc6919d6792ef9edcd?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineering Spring 2027 Internship (Remote - Canada)",
+   "company": "Novo Nordisk",
+   "location": "Canada",
+   "term": "Spring 2027",
+   "url": "https://jobright.ai/jobs/info/6afc88bc6919d6792ef9edcd?utm_campaign=1079&utm_source=git",
    "date": "2026-11-17T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -564,18 +588,6 @@
    "term": "",
    "url": "https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/Rail-Infrastructure-Co-Op-Student_R-164340",
    "date": "2026-11-16T09:19:52+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Co-Op Full Stack Developer",
-   "company": "Gastronomous Technologies",
-   "location": "Oakville, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
