@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 82,
+ "count": 79,
  "jobs": [
+  {
+   "id": "workday:revvity.wd103.myworkdayjobs.com:JR-045796",
+   "tier": "strict",
+   "title": "Full-stack AI Developer Intern",
+   "company": "Revvity",
+   "location": "CAD Remote – ON",
+   "term": "",
+   "url": "https://revvity.wd103.myworkdayjobs.com/en-US/External/job/CAD-Remote--ON/Full-stack-AI-Developer-Intern_JR-045796",
+   "date": "2026-11-19T03:44:16+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
   {
    "id": "eightfold:qualcomm.eightfold.ai:446722198182",
    "tier": "strict",
@@ -14,6 +26,18 @@
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": "machine learning, deep learning, TensorFlow, scikit-learn, CUDA, AI features"
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afe29f40cde47528ec1280c?utm_campaign=1066&utm_source=git",
+   "tier": "strict",
+   "title": "Data Science Intern (Summer 2027)",
+   "company": "Guardian Capital Group",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6afe29f40cde47528ec1280c?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
   },
   {
    "id": "workday:manulife.wd3.myworkdayjobs.com:JR26090774",
@@ -124,30 +148,6 @@
    "ai_terms": ""
   },
   {
-   "id": "successfactors:www.careers.zurich.com:1377641357",
-   "tier": "strict",
-   "title": "Data Analytics & AI Intern",
-   "company": "Zurich Insurance",
-   "location": "Toronto, ON, CA",
-   "term": "",
-   "url": "https://www.careers.zurich.com/job/Toronto-Data-Analytics-&-AI-Intern-ON/1377641357/",
-   "date": "2026-11-16T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afb6f56b2e06df25797436d?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Data Analytics & AI Intern",
-   "company": "Zurich North America",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6afb6f56b2e06df25797436d?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-16T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
    "tier": "strict",
    "title": "AI Engineering Intern",
@@ -156,18 +156,6 @@
    "term": "",
    "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/AI-Engineering-Intern_R-6680",
    "date": "2026-11-12T20:56:41+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:astrazeneca.wd3.myworkdayjobs.com:R-260415",
-   "tier": "strict",
-   "title": "Co-Op, Development Operations AI & Automation Enablement Intern",
-   "company": "Alexion",
-   "location": "Canada - Mississauga",
-   "term": "",
-   "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/alexion/job/Canada---Mississauga/Co-Op--Development-Operations-AI---Automation-Enablement-Intern_R-260415",
-   "date": "2026-11-12T03:12:03+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -242,30 +230,6 @@
    "date": "2026-11-06T02:35:39+00:00",
    "date_known": true,
    "ai_terms": "machine learning, LLMs, RAG, embeddings, data science, AI agents"
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:1b01e71f-1711-43ad-a242-e0c3f02a72c3",
-   "tier": "strict",
-   "title": "Machine Learning Engineering Intern, Summer",
-   "company": "Qualcomm",
-   "location": "Markham, Canada",
-   "term": "",
-   "url": "https://careers.qualcomm.com/careers/job/446721969461",
-   "date": "2026-11-05T02:06:39+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:e8e696f2-23e9-4021-95e0-fe24d2a40c66",
-   "tier": "strict",
-   "title": "Junior Full-Stack Engineer Intern",
-   "company": "BiblioCommons",
-   "location": "Ontario, Canada",
-   "term": "",
-   "url": "https://volarisgroup.wd3.myworkdayjobs.com/BiblioCommons/job/Canada---Ontario/PEY---Junior-Fullstack-Engineer_R72454",
-   "date": "2026-11-05T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "AI agents, LLM APIs"
   },
   {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
@@ -407,6 +371,18 @@
    "location": "Toronto, ON, CA",
    "term": "",
    "url": "https://jobs.scotiabank.com/job/Toronto-Global-Banking-and-Markets-Global-Analytic-Financial-Engineering-%28GAFE%29-InternCo-PEY-12-months-ON/608151217/",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afdea620324c008a17e28fb?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Developer Intern (May 2027 12 Months)",
+   "company": "SOTI",
+   "location": "Mississauga, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6afdea620324c008a17e28fb?utm_campaign=1079&utm_source=git",
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -805,18 +781,6 @@
    "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Renfrew%2C-ON%29/59767-en_GB",
    "date": "2026-11-12T13:00:16+00:00",
    "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:onehealthineers.wd3.myworkdayjobs.com:R-31892",
-   "tier": "loose",
-   "title": "Calibration Engineer Co-op",
-   "company": "Varian",
-   "location": "YOW B",
-   "term": "",
-   "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB/job/YOW-B/Calibration-Engineer-Co-op_R-31892",
-   "date": "2026-11-12T03:09:33+00:00",
-   "date_known": true,
    "ai_terms": ""
   },
   {
