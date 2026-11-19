@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 79,
+ "count": 78,
  "jobs": [
   {
    "id": "workday:revvity.wd103.myworkdayjobs.com:JR-045796",
@@ -244,6 +244,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abaf0e3d2914e9273eee2a8?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Engineer, Intern (Summer 2027) - TOR",
+   "company": "DoorDash",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6abaf0e3d2914e9273eee2a8?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-19T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:spgi.wd5.myworkdayjobs.com:332618",
    "tier": "loose",
    "title": "Summer intern, Financial Risk Analytics Product",
@@ -400,6 +412,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afe828194233208f6594921?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Co-op or Intern, Technology - BizApps (January 2027)",
+   "company": "BDO Canada",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6afe828194233208f6594921?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-18T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "successfactors:jobsearch.alstom.com:1458197833",
    "tier": "loose",
    "title": "Maintenance Engineering (CO-OP Student)",
@@ -503,18 +527,6 @@
    "location": "Toronto, ON, CA",
    "term": "",
    "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Salesforce-Developer-1-ON/1458172833/",
-   "date": "2026-11-17T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afc88bc6919d6792ef9edcd?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Engineering Spring 2027 Internship (Remote - Canada)",
-   "company": "Novo Nordisk",
-   "location": "Canada",
-   "term": "Spring 2027",
-   "url": "https://jobright.ai/jobs/info/6afc88bc6919d6792ef9edcd?utm_campaign=1079&utm_source=git",
    "date": "2026-11-17T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -757,30 +769,6 @@
    "url": "https://tmx.wd3.myworkdayjobs.com/TMX_Careers/job/Toronto---100-Adelaide-St-W/AI-Engineering-Intern_R-6680",
    "date": "2026-11-12T17:07:41+00:00",
    "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Pickering%2C-Oshawa%2C-or-Darlington%2C-ON%29/59625-en_GB",
-   "tier": "loose",
-   "title": "Engineering New Graduate (Pickering, Oshawa, or Darlington, ON)",
-   "company": "Ontario Power Generation",
-   "location": "Engineering New Graduate (Pickering, Oshawa, or Darlington, ON)",
-   "term": "",
-   "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Pickering%2C-Oshawa%2C-or-Darlington%2C-ON%29/59625-en_GB",
-   "date": "2026-11-12T13:00:16+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "html:Ontario Power Generation:https://jobs.opg.com/job/Engineering-New-Graduate-%28Renfrew%2C-ON%29/59767-en_GB",
-   "tier": "loose",
-   "title": "Engineering New Graduate (Renfrew, ON)",
-   "company": "Ontario Power Generation",
-   "location": "Engineering New Graduate (Renfrew, ON)",
-   "term": "",
-   "url": "https://jobs.opg.com/job/Engineering-New-Graduate-%28Renfrew%2C-ON%29/59767-en_GB",
-   "date": "2026-11-12T13:00:16+00:00",
-   "date_known": false,
    "ai_terms": ""
   },
   {
