@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 84,
+ "count": 88,
  "jobs": [
   {
    "id": "bamboohr:euna:822",
@@ -24,18 +24,6 @@
    "term": "",
    "url": "https://jobs.ashbyhq.com/georgian/62da47ff-0424-4e28-bffa-cff0de8ca228",
    "date": "2026-11-19T15:51:17+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:revvity.wd103.myworkdayjobs.com:JR-045796",
-   "tier": "strict",
-   "title": "Full-stack AI Developer Intern",
-   "company": "Revvity",
-   "location": "CAD Remote – ON",
-   "term": "",
-   "url": "https://revvity.wd103.myworkdayjobs.com/en-US/External/job/CAD-Remote--ON/Full-stack-AI-Developer-Intern_JR-045796",
-   "date": "2026-11-19T03:44:16+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -74,18 +62,6 @@
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
-  },
-  {
-   "id": "workday:manulife.wd3.myworkdayjobs.com:JR26090774",
-   "tier": "strict",
-   "title": "Winter Co-op 2027 – Technology Enablement Analyst",
-   "company": "Manulife Financial",
-   "location": "Toronto, Ontario",
-   "term": "",
-   "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Winter-Co-op-2027---Technology-Enablement-Analyst_JR26090774-1",
-   "date": "2026-11-17T21:50:31+00:00",
-   "date_known": true,
-   "ai_terms": "LLMs, data science, generative AI, AI agents, prompt engineering"
   },
   {
    "id": "bamboohr:birdseyeaccount:287",
@@ -256,18 +232,6 @@
    "ai_terms": "LLMs, data science, generative AI, AI agents"
   },
   {
-   "id": "workday:bmo.wd3.myworkdayjobs.com:R260031097",
-   "tier": "strict",
-   "title": "Quantitative Analyst, Summer 2027 (Co-op/Internship) - 4 Months",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, CAN",
-   "term": "Summer 2027",
-   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Campus/job/Toronto-ON-CAN/Quantitative-Analyst--Summer-2027--Co-op-Internship----4-Months_R260031097-1",
-   "date": "2026-11-06T20:00:05+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, deep learning, data science"
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -280,6 +244,114 @@
    "ai_terms": ""
   },
   {
+   "id": "bamboohr:avnan:125",
+   "tier": "loose",
+   "title": "Electronics Engineering Technologist",
+   "company": "Avnan",
+   "location": "Mississauga, Ontario",
+   "term": "",
+   "url": "https://avnan.bamboohr.com/careers/125",
+   "date": "2026-11-20T21:22:39+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2876172",
+   "tier": "loose",
+   "title": "2027 Digital Graduate Program, Product Analyst, Data and AI Engineer",
+   "company": "Sanofi",
+   "location": "Toronto, ON",
+   "term": "",
+   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Product-Analyst--Data-and-AI-Engineer_R2876172-1",
+   "date": "2026-11-20T21:20:48+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2878973",
+   "tier": "loose",
+   "title": "2027 Digital Graduate Program, Digital Strategy and Operations Analyst",
+   "company": "Sanofi",
+   "location": "Toronto, ON",
+   "term": "",
+   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Digital-Strategy-and-Operations-Analyst_R2878973-1",
+   "date": "2026-11-20T21:20:48+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2879279",
+   "tier": "loose",
+   "title": "2027 Digital Graduate Program, Product Analyst",
+   "company": "Sanofi",
+   "location": "Toronto, ON",
+   "term": "",
+   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Product-Analyst-_R2879279-1",
+   "date": "2026-11-20T21:20:48+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
+  },
+  {
+   "id": "workday:jci.wd5.myworkdayjobs.com:EB00075404",
+   "tier": "loose",
+   "title": "Production Engineering Co-Op",
+   "company": "Johnson Controls",
+   "location": "Burlington-Massachusetts-United States of America",
+   "term": "",
+   "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Production-Engineering-Co-Op_EB00075404",
+   "date": "2026-11-20T21:16:35+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260023509",
+   "tier": "loose",
+   "title": "Personal & Business Banking Development Program (New Graduate)",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, CAN",
+   "term": "",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Personal---Business-Banking-Development-Program--New-Graduate-_R260023509",
+   "date": "2026-11-20T21:16:25+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "icims:careersen-mackenzieinvestments.icims.com:6446",
+   "tier": "loose",
+   "title": "Winter 2027 Intern – AI Program",
+   "company": "Mackenzie Investments",
+   "location": "Greater Toronto Area, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://careersen-mackenzieinvestments.icims.com/jobs/6446/winter-2027-intern-%e2%80%93-ai-program/job",
+   "date": "2026-11-20T11:52:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:careers.inovia.vc:100340868",
+   "tier": "loose",
+   "title": "[I] Software Engineer Intern - Infrastructure (Spring 2027)",
+   "company": "Peripheral Labs",
+   "location": "Toronto, ON, Canada",
+   "term": "Spring 2027",
+   "url": "https://app.dover.com/apply/peripheral/4f4baf30-f659-4172-881e-4497b3808ad0",
+   "date": "2026-11-20T11:40:05+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:eec7def1-2dd9-4afc-b912-c52ea1034c4c",
+   "tier": "loose",
+   "title": "Electronics Engineering Technologist Co-op, Winter 2027",
+   "company": "Avnan",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://avnan.bamboohr.com/careers/125/",
+   "date": "2026-11-20T11:21:23+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:vanshb03/Summer2027-Internships:d3d59fa6-0e91-4c1b-9d24-68a8ebab5712",
    "tier": "loose",
    "title": "Engineering Student Intern, AI/ML Specialist, Winter",
@@ -288,6 +360,42 @@
    "term": "Winter 2027",
    "url": "https://recruiting.ultipro.ca/MAC5000MCDW/JobBoard/7667adcc-47ae-477a-9183-0d8ef8bc0748/OpportunityDetail?opportunityId=b5aef546-676b-4f7a-8c20-acfa8f25069f",
    "date": "2026-11-20T01:11:11+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afac7fd948d1faa554e0d1d?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Student Intern, Process and Applications (SCM)",
+   "company": "Celestica",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6afac7fd948d1faa554e0d1d?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-20T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac7b8f0fcdafb60c6a455ad?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Intern - Software Engineer, Winter 2027",
+   "company": "EQ Bank",
+   "location": "Toronto, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobright.ai/jobs/info/6ac7b8f0fcdafb60c6a455ad?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-20T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af74a85c7349029d70941d2?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Quartus Compiler Software - Intern",
+   "company": "Altera",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6af74a85c7349029d70941d2?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-20T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -472,18 +580,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6aff1c5772b9be368528e670?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Development 2026 Co-Op",
-   "company": "Motorola Solutions",
-   "location": "Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6aff1c5772b9be368528e670?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-19T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6affce2c72b9be3685294293?utm_campaign=1079&utm_source=git",
    "tier": "loose",
    "title": "Co-op or Intern, Full-Stack Developer (January 2027)",
@@ -496,18 +592,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:spgi.wd5.myworkdayjobs.com:332618",
-   "tier": "loose",
-   "title": "Summer intern, Financial Risk Analytics Product",
-   "company": "S&P Global",
-   "location": "Toronto, CAN",
-   "term": "",
-   "url": "https://spgi.wd5.myworkdayjobs.com/en-US/SPGI_Careers/job/Toronto-CAN/Summer-intern--Financial-Risk-Analytics-Product_332618-2",
-   "date": "2026-11-18T21:34:47+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:sunlife.wd3.myworkdayjobs.com:JR00127140",
    "tier": "loose",
    "title": "Student, Associate Front-End Developer (Winter 2027)",
@@ -516,18 +600,6 @@
    "term": "Winter 2027",
    "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Sun-Life-Toronto-One-York/Student--Associate-Front-End-Developer--Winter-2027-_JR00127140",
    "date": "2026-11-18T21:29:06+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:rbc.wd3.myworkdayjobs.com:R-0000188001",
-   "tier": "loose",
-   "title": "2027 Winter – GRM, AI Developer Intern - Innovation & AI Center of Excellence (4 Months)",
-   "company": "Royal Bank of Canada",
-   "location": "TORONTO, Ontario, Canada",
-   "term": "Winter 2027",
-   "url": "https://rbc.wd3.myworkdayjobs.com/en-US/ExternalPrivatePostingStudents/job/TORONTO-Ontario-Canada/XMLNAME-2027-Winter---GRM--AI-Developer-Intern---Innovation---AI-Center-of-Excellence--4-Months-_R-0000188001-3",
-   "date": "2026-11-18T21:29:02+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -808,6 +880,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Co-Op Full Stack Developer",
+   "company": "Gastronomous Technologies",
+   "location": "Oakville, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-16T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "oracle:egug.fa.us2.oraclecloud.com:26016677",
    "tier": "loose",
    "title": "Campus Undergraduate Full-Time Engineer - 2027 Software Engineer I, Enterprise Technology Services- Toronto, Ontario, Canada",
@@ -829,42 +913,6 @@
    "url": "https://careers-epeconsulting.icims.com/jobs/2433/power-systems-engineer-intern---co-op/job",
    "date": "2026-11-15T19:32:13+00:00",
    "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:canadiantirecorporation.wd3.myworkdayjobs.com:JR167748",
-   "tier": "loose",
-   "title": "Programmer Analyst Intern (12 months) - Winter 2027",
-   "company": "Canadian Tire",
-   "location": "Mississauga, ON",
-   "term": "Winter 2027",
-   "url": "https://canadiantirecorporation.wd3.myworkdayjobs.com/en-US/Enterprise_External_Careers_Site/job/Mississauga-ON/Programmer-Analyst-Intern--12-months----Winter-2027_JR167748",
-   "date": "2026-11-13T20:36:42+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:altera.wd1.myworkdayjobs.com:R03108",
-   "tier": "loose",
-   "title": "Quartus Compiler Software - Intern",
-   "company": "Altera",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/Quartus-Compiler-Software---Intern_R03108",
-   "date": "2026-11-13T20:33:39+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:864ef071-56cc-431a-b5d8-d7805c5aed18",
-   "tier": "loose",
-   "title": "Software Developer Co-op, Winter",
-   "company": "SSI ShipConstructor",
-   "location": "Victoria, Canada",
-   "term": "Winter 2027",
-   "url": "https://ssicorporate.bamboohr.com/careers/101",
-   "date": "2026-11-13T09:39:51+00:00",
-   "date_known": true,
    "ai_terms": ""
   },
   {
