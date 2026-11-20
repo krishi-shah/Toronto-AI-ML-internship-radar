@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 89,
+ "count": 84,
  "jobs": [
   {
    "id": "bamboohr:euna:822",
@@ -268,18 +268,6 @@
    "ai_terms": "machine learning, deep learning, data science"
   },
   {
-   "id": "workday:elementfleet.wd3.myworkdayjobs.com:R105989",
-   "tier": "strict",
-   "title": "Forward Deployed Engineer (FDE) Intern (8-12 month intern)",
-   "company": "Element Fleet Management",
-   "location": "Toronto",
-   "term": "",
-   "url": "https://elementfleet.wd3.myworkdayjobs.com/en-US/External_Career_Site/job/Toronto/Forward-Deployed-Engineer--FDE--Intern--8-12-month-intern-_R105989",
-   "date": "2026-11-06T02:35:39+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, LLMs, RAG, embeddings, data science, AI agents"
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -289,6 +277,30 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:d3d59fa6-0e91-4c1b-9d24-68a8ebab5712",
+   "tier": "loose",
+   "title": "Engineering Student Intern, AI/ML Specialist, Winter",
+   "company": "MDA",
+   "location": "Richmond, Canada",
+   "term": "Winter 2027",
+   "url": "https://recruiting.ultipro.ca/MAC5000MCDW/JobBoard/7667adcc-47ae-477a-9183-0d8ef8bc0748/OpportunityDetail?opportunityId=b5aef546-676b-4f7a-8c20-acfa8f25069f",
+   "date": "2026-11-20T01:11:11+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:bf07fdd4-a43a-470b-afb8-5dde457d4650",
+   "tier": "loose",
+   "title": "Associate AI-Enablement Developer Co-op, Winter 2027",
+   "company": "EUNA Solutions",
+   "location": "Oakville, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://euna.bamboohr.com/careers/822/",
+   "date": "2026-11-19T23:51:27+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -448,14 +460,14 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abaf0e3d2914e9273eee2a8?utm_campaign=1079&utm_source=git",
+   "id": "workday:cibc.wd3.myworkdayjobs.com:2624159",
    "tier": "loose",
-   "title": "Software Engineer, Intern (Summer 2027) - TOR",
-   "company": "DoorDash",
-   "location": "Toronto, ON, Canada",
+   "title": "Global Markets, Global Markets, Summer 2027 Associate - Equity Research (4 months)",
+   "company": "CIBC",
+   "location": "Toronto, ON",
    "term": "Summer 2027",
-   "url": "https://jobright.ai/jobs/info/6abaf0e3d2914e9273eee2a8?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-19T00:00:00+00:00",
+   "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets--Global-Markets--Summer-2027-Associate---Equity-Research--4-months-_2624159",
+   "date": "2026-11-19T08:40:23+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -467,6 +479,18 @@
    "location": "Canada",
    "term": "",
    "url": "https://jobright.ai/jobs/info/6aff1c5772b9be368528e670?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-19T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6affce2c72b9be3685294293?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Co-op or Intern, Full-Stack Developer (January 2027)",
+   "company": "BDO Canada",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6affce2c72b9be3685294293?utm_campaign=1079&utm_source=git",
    "date": "2026-11-19T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -544,18 +568,6 @@
    "ai_terms": ""
   },
   {
-   "id": "smartrecruiters:VeoliaEnvironnementSA:744000162190640",
-   "tier": "loose",
-   "title": "Process Engineering Operations Intern",
-   "company": "Veolia",
-   "location": "Oakville, ON, ca",
-   "term": "",
-   "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000162190640",
-   "date": "2026-11-18T00:47:25+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "oracle:hdks.fa.ca2.oraclecloud.com:9342",
    "tier": "loose",
    "title": "Technology Strategy - Winter 2027 Co-op/Intern",
@@ -575,18 +587,6 @@
    "location": "Toronto, ON, CA",
    "term": "",
    "url": "https://jobs.scotiabank.com/job/Toronto-Global-Banking-and-Markets-Global-Analytic-Financial-Engineering-%28GAFE%29-InternCo-PEY-12-months-ON/608151217/",
-   "date": "2026-11-18T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afe828194233208f6594921?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Co-op or Intern, Technology - BizApps (January 2027)",
-   "company": "BDO Canada",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6afe828194233208f6594921?utm_campaign=1079&utm_source=git",
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -736,18 +736,6 @@
    "ai_terms": ""
   },
   {
-   "id": "smartrecruiters:VeoliaEnvironnementSA:744000161893169",
-   "tier": "loose",
-   "title": "Intern - Municipal Engineering",
-   "company": "Veolia",
-   "location": "Oakville, ON, ca",
-   "term": "",
-   "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000161893169",
-   "date": "2026-11-16T19:09:44+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:SimplifyJobs/Summer2027-Internships:2308660d-6e87-4b5c-9008-376f4a467804",
    "tier": "loose",
    "title": "Software Engineer Intern, Summer 2027",
@@ -880,30 +868,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workable:datavisor-jobs:14ABD92A86",
-   "tier": "loose",
-   "title": "Infrastructure Engineer, Junior / New Grad (Toronto)",
-   "company": "DataVisor",
-   "location": "Toronto, Canada, remote",
-   "term": "",
-   "url": "https://apply.workable.com/j/14ABD92A86",
-   "date": "2026-11-13T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/New-Grad-Positions:4287d783-c297-490e-8a07-772a66707407",
-   "tier": "loose",
-   "title": "Personal & Business Banking Development Program New Grad",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://bmo.wd3.myworkdayjobs.com/Privileged/job/Toronto-ON-CAN/BMO-Personal---Business-Banking-Development-Program--New-Graduate----2-Year-Program_R260031068-3",
-   "date": "2026-11-13T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "bamboohr:armstrongfluidtechnology:1001",
    "tier": "loose",
    "title": "Test Engineering, Co-op",
@@ -976,18 +940,6 @@
    "ai_terms": ""
   },
   {
-   "id": "successfactors:jobs.l3harris.com:1430127100",
-   "tier": "loose",
-   "title": "FPGA Software Tool Developer Co-Op (Waterdown, CAN)",
-   "company": "L3Harris Technologies",
-   "location": "Waterdown, ON, CA, L9H 0C5",
-   "term": "",
-   "url": "https://jobs.l3harris.com/job/Waterdown-FPGA-Software-Tool-Developer-Co-Op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1430127100/",
-   "date": "2026-11-01T17:04:32+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
    "id": "successfactors:jobs.l3harris.com:1430143700",
    "tier": "loose",
    "title": "Manufacturing Engineer Co-Op (Waterdown, CAN)",
@@ -1044,18 +996,6 @@
    "term": "",
    "url": "https://jobs.l3harris.com/job/Waterdown-Manufacturing-Engineering-Co-op-%28Waterdown%2C-CAN%29-ON-L9H-0C5/1441480800/",
    "date": "2026-11-01T17:04:32+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "bamboohr:pictonmahoney:385",
-   "tier": "loose",
-   "title": "Intern, Business Development (Winter 2027)",
-   "company": "Picton Mahoney Asset Management",
-   "location": "Toronto, Ontario",
-   "term": "Winter 2027",
-   "url": "https://pictonmahoney.bamboohr.com/careers/385",
-   "date": "2026-11-01T17:04:27+00:00",
    "date_known": false,
    "ai_terms": ""
   },
