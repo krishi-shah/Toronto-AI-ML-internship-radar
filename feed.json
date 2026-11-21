@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 93,
+ "count": 94,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
@@ -496,18 +496,6 @@
    "ai_terms": "LLMs, AI agents, LLM APIs"
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af74a85c7349029d70941d2?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Quartus Compiler Software - Intern",
-   "company": "Altera",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6af74a85c7349029d70941d2?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-20T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:SimplifyJobs/Summer2027-Internships:bf07fdd4-a43a-470b-afb8-5dde457d4650",
    "tier": "loose",
    "title": "Associate AI-Enablement Developer Co-op, Winter 2027",
@@ -604,6 +592,18 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:bdo.wd3.myworkdayjobs.com:JR7057",
+   "tier": "loose",
+   "title": "Co-op or Intern, Full-Stack Developer (January 2027)",
+   "company": "BDO Canada",
+   "location": "Toronto - Bay St, Ottawa - Kent St, Oakville, Canada",
+   "term": "",
+   "url": "https://bdo.wd3.myworkdayjobs.com/en-US/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Full-Stack-Developer--January-2027-_JR7057",
+   "date": "2026-11-19T20:14:09+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "smartrecruiters:VeoliaEnvironnementSA:744000162595159",
    "tier": "loose",
    "title": "Process Engineering Operations Co-op",
@@ -672,6 +672,30 @@
    "term": "Summer 2027",
    "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets--Global-Markets--Summer-2027-Associate---Equity-Research--4-months-_2624159",
    "date": "2026-11-19T08:40:23+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:b5e9a29a-b709-4d78-8e07-c795aad202ea",
+   "tier": "loose",
+   "title": "Software Developer Co-op - Common Cloud Services",
+   "company": "Ribbon",
+   "location": "Canada",
+   "term": "",
+   "url": "https://vhr-genband.wd1.myworkdayjobs.com/ribboncareers/job/Canada-Quebec-Montreal/Software-Developer---Common-Cloud-Services--Co-Op-_REQ-2026-3079",
+   "date": "2026-11-19T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:1c8568f5-b1a8-49f9-bb58-c2ee2766d892",
+   "tier": "loose",
+   "title": "Software Developer Co-op, Common Cloud Services, Winter",
+   "company": "Ribbon",
+   "location": "Canada",
+   "term": "Winter 2027",
+   "url": "https://vhr-genband.wd1.myworkdayjobs.com/ribboncareers/job/Canada-Quebec-Montreal/Software-Developer---Common-Cloud-Services--Co-Op-_REQ-2026-3079",
+   "date": "2026-11-19T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -936,18 +960,6 @@
    "term": "",
    "url": "https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/Rail-Infrastructure-Co-Op-Student_R-164340",
    "date": "2026-11-16T09:19:52+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Co-Op Full Stack Developer",
-   "company": "Gastronomous Technologies",
-   "location": "Oakville, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6a57628eefb06a45240da31d?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
