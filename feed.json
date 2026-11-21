@@ -1,8 +1,68 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 88,
+ "count": 93,
  "jobs": [
+  {
+   "id": "workday:myview.wd3.myworkdayjobs.com:R2000695571",
+   "tier": "strict",
+   "title": "Software Development - Co-op Student",
+   "company": "Loblaw Companies",
+   "location": "500 Lake Shore Blvd W, Toronto, ON",
+   "term": "",
+   "url": "https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Software-Development---Co-op-Student_R2000695571",
+   "date": "2026-11-21T03:20:59+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
+  },
+  {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260026715",
+   "tier": "strict",
+   "title": "Quantitative Developer (Alpha Research Team) - GAM, Summer 2027 (Co-op/Internship) - 12 months",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, CAN",
+   "term": "Summer 2027",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Quantitative-Developer--Alpha-Research-Team----GAM--Summer-2027--Co-op-Internship----12-months_R260026715-2",
+   "date": "2026-11-21T03:17:34+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, data science, model serving"
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:9c743997-1249-48d8-9344-3184ae6b7d6c",
+   "tier": "strict",
+   "title": "Data and Artificial Intelligence Student Intern",
+   "company": "Meridian Credit Union",
+   "location": "Etobicoke, ON, Canada, St. Catharines, ON, Canada",
+   "term": "",
+   "url": "https://recruiting.ultipro.ca/MER5001MCUL/JobBoard/6c1f133f-d0ac-48cd-a17d-bc54fe044ce3/OpportunityDetail?opportunityId=ea375757-76a7-4b9e-81d0-478ed7beb2e1",
+   "date": "2026-11-20T23:21:53+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:3b2feb23-bb5c-496d-bb8d-a059ce89b288",
+   "tier": "strict",
+   "title": "Product Management Intern, Summer 2027",
+   "company": "Method",
+   "location": "Remote in USA, Santa Clara, CA, Charlotte, NC, NYC, Remote in Canada",
+   "term": "Summer 2027",
+   "url": "https://job-boards.greenhouse.io/method/jobs/8207585003",
+   "date": "2026-11-20T19:24:46+00:00",
+   "date_known": true,
+   "ai_terms": "data science, generative AI, AI agents"
+  },
+  {
+   "id": "greenhouse:method:8207585003",
+   "tier": "strict",
+   "title": "Residency Internship Program - Product Management",
+   "company": "Method",
+   "location": "Charlotte, New York, Santa Clara, Remote - US, Canada",
+   "term": "",
+   "url": "https://job-boards.greenhouse.io/method/jobs/8207585003",
+   "date": "2026-11-20T19:24:46+00:00",
+   "date_known": true,
+   "ai_terms": "data science, generative AI, AI agents"
+  },
   {
    "id": "bamboohr:euna:822",
    "tier": "strict",
@@ -50,18 +110,6 @@
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": "machine learning, deep learning, TensorFlow, scikit-learn, CUDA, AI features"
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afe29f40cde47528ec1280c?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Data Science Intern (Summer 2027)",
-   "company": "Guardian Capital Group",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://jobright.ai/jobs/info/6afe29f40cde47528ec1280c?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-18T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
   },
   {
    "id": "bamboohr:birdseyeaccount:287",
@@ -220,18 +268,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:datarobot.wd1.myworkdayjobs.com:R-102764",
-   "tier": "strict",
-   "title": "Software Design Engineer Intern",
-   "company": "DataRobot",
-   "location": "Boston, Massachusetts, US, Seattle, Washington, US, Remote Canada - ON, San Francisco, California, US, United States of America",
-   "term": "",
-   "url": "https://datarobot.wd1.myworkdayjobs.com/en-US/DataRobot_External_Careers/job/Boston-Massachusetts-US/Software-Design-Engineer-Intern_R-102764",
-   "date": "2026-11-07T02:03:08+00:00",
-   "date_known": true,
-   "ai_terms": "LLMs, data science, generative AI, AI agents"
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -241,6 +277,18 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:7cb1abde-324e-47e4-86ee-9e38eff76880",
+   "tier": "loose",
+   "title": "Salesforce Developer 1 Intern, Summer",
+   "company": "Celestica",
+   "location": "Toronto, Canada",
+   "term": "Summer 2027",
+   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Salesforce-Developer-1-ON/1458172833",
+   "date": "2026-11-21T00:41:45+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -316,6 +364,54 @@
    "ai_terms": ""
   },
   {
+   "id": "greenhouse:method:8208724003",
+   "tier": "loose",
+   "title": "Residency Internship Program - Engineering",
+   "company": "Method",
+   "location": "Charlotte, New York, Santa Clara, Remote - US, Canada",
+   "term": "",
+   "url": "https://job-boards.greenhouse.io/method/jobs/8208724003",
+   "date": "2026-11-20T19:24:07+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:b564a289-e391-4f0b-b6fe-83e02e88feca",
+   "tier": "loose",
+   "title": "Software Development Co-op, Winter",
+   "company": "Loblaw Companies",
+   "location": "Toronto, Canada",
+   "term": "Winter 2027",
+   "url": "https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Software-Development---Co-op-Student_R2000695571",
+   "date": "2026-11-20T16:10:11+00:00",
+   "date_known": true,
+   "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
+  },
+  {
+   "id": "getro:jobs.realventures.com:100349328",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100280795-photonics-test-engineer#content",
+   "date": "2026-11-20T11:55:38+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100347883",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100282071-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-20T11:54:19+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "icims:careersen-mackenzieinvestments.icims.com:6446",
    "tier": "loose",
    "title": "Winter 2027 Intern – AI Program",
@@ -374,6 +470,18 @@
    "date": "2026-11-20T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/New-Grad-Positions:fdecba0c-d4eb-4bba-839b-1dce5788c465",
+   "tier": "loose",
+   "title": "Software Engineer New Grad",
+   "company": "Keplar",
+   "location": "Toronto, ON, Canada, Waterloo, ON, Canada",
+   "term": "",
+   "url": "https://jobs.ashbyhq.com/keplar/9da9bb8e-d7f1-4247-b6da-8392ebc852bd/application?embed=true",
+   "date": "2026-11-20T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "LLMs, AI agents, LLM APIs"
   },
   {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac7b8f0fcdafb60c6a455ad?utm_campaign=1079&utm_source=git",
@@ -540,30 +648,6 @@
    "term": "Spring 2027",
    "url": "https://jobs.dover.com/peripheral/1ef74a94-ed4a-44b8-a08a-cc662066cf0c",
    "date": "2026-11-19T18:40:45+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100282071",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100132421-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-19T13:00:22+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100280795",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100133342-photonics-test-engineer#content",
-   "date": "2026-11-19T12:58:48+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -772,18 +856,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:bc1488c1-9306-473d-8806-8f2222f6a278",
-   "tier": "loose",
-   "title": "Technology Enablement Analyst Co-op, Winter 2027",
-   "company": "Manulife Financial",
-   "location": "Toronto, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_adminJobs/job/Toronto-Ontario/Winter-Co-op-2027---Technology-Enablement-Analyst_JR26090774-1",
-   "date": "2026-11-17T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "LLMs, data science, generative AI, AI agents, prompt engineering"
-  },
-  {
    "id": "workday:marvell.wd1.myworkdayjobs.com:2604424",
    "tier": "loose",
    "title": "System Engineer - Optical DSP Intern (PhD) - Co-Op 2027",
@@ -792,18 +864,6 @@
    "term": "",
    "url": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/CA-ON---Ontario---Toronto/System-Engineer---Optical-DSP-Intern--PhD----Co-Op-2027_2604424",
    "date": "2026-11-16T22:57:42+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:manulife.wd3.myworkdayjobs.com:JR26080163",
-   "tier": "loose",
-   "title": "Winter Co-op 2027 - Product Designer (UX/UI/HCI)",
-   "company": "Manulife Financial",
-   "location": "Toronto, Ontario, Waterloo, Ontario, Canada",
-   "term": "",
-   "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs/job/Toronto-Ontario/Winter-Co-op-2027---Product-Designer_JR26080163",
-   "date": "2026-11-16T22:56:47+00:00",
    "date_known": true,
    "ai_terms": ""
   },
