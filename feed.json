@@ -4,6 +4,18 @@
  "count": 93,
  "jobs": [
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
+   "tier": "strict",
+   "title": "Data Engineering Intern, Summer",
+   "company": "Canadian Solar",
+   "location": "Kitchener, Canada",
+   "term": "Summer 2027",
+   "url": "https://canadiansolar.wd5.myworkdayjobs.com/CanadianSolar/job/Kitchener-ON/Data-Engineering-Intern_10001603",
+   "date": "2026-11-21T05:11:31+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:myview.wd3.myworkdayjobs.com:R2000695571",
    "tier": "strict",
    "title": "Software Development - Co-op Student",
@@ -88,14 +100,14 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6aa51fcd42411952ff9a72f5?utm_campaign=1066&utm_source=git",
+   "id": "workday:canadiansolar.wd5.myworkdayjobs.com:10001603",
    "tier": "strict",
-   "title": "[Summer 2027 Intern - Elevate/Data Science [UG/Masters]](https://jobright.ai/jobs/info/6aa51fcd42411952ff9a72f5?utm_campaign=1066&utm_source=git)",
-   "company": "Simon-Kucher",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://jobright.ai/jobs/info/6aa51fcd42411952ff9a72f5?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-19T00:00:00+00:00",
+   "title": "Data Engineering Intern",
+   "company": "Canadian Solar",
+   "location": "Kitchener, ON",
+   "term": "",
+   "url": "https://canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Kitchener-ON/Data-Engineering-Intern_10001603",
+   "date": "2026-11-19T12:50:35+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -484,18 +496,6 @@
    "ai_terms": "LLMs, AI agents, LLM APIs"
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ac7b8f0fcdafb60c6a455ad?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Intern - Software Engineer, Winter 2027",
-   "company": "EQ Bank",
-   "location": "Toronto, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobright.ai/jobs/info/6ac7b8f0fcdafb60c6a455ad?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-20T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6af74a85c7349029d70941d2?utm_campaign=1079&utm_source=git",
    "tier": "loose",
    "title": "Quartus Compiler Software - Intern",
@@ -652,6 +652,18 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:canadiansolar.wd5.myworkdayjobs.com:10001601",
+   "tier": "loose",
+   "title": "Technical Writer Intern",
+   "company": "Canadian Solar",
+   "location": "Kitchener, ON",
+   "term": "",
+   "url": "https://canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Kitchener-ON/Technical-Writer-Intern_10001601-1",
+   "date": "2026-11-19T12:50:35+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:cibc.wd3.myworkdayjobs.com:2624159",
    "tier": "loose",
    "title": "Global Markets, Global Markets, Summer 2027 Associate - Equity Research (4 months)",
@@ -660,18 +672,6 @@
    "term": "Summer 2027",
    "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets--Global-Markets--Summer-2027-Associate---Equity-Research--4-months-_2624159",
    "date": "2026-11-19T08:40:23+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6affce2c72b9be3685294293?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Co-op or Intern, Full-Stack Developer (January 2027)",
-   "company": "BDO Canada",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6affce2c72b9be3685294293?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-19T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
