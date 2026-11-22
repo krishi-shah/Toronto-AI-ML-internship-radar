@@ -292,26 +292,38 @@
    "ai_terms": ""
   },
   {
-   "id": "getro:jobs.realventures.com:100488437",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100347883-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-21T12:58:50+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100487237",
+   "id": "getro:jobs.realventures.com:100528516",
    "tier": "loose",
    "title": "Photonics Test Engineer",
    "company": "Real Ventures",
    "location": "Toronto, ON, Canada",
    "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100349328-photonics-test-engineer#content",
-   "date": "2026-11-21T12:57:33+00:00",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100487237-photonics-test-engineer#content",
+   "date": "2026-11-22T11:59:29+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100527970",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100488437-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-22T11:58:20+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6aac356295c707f49dff027e?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Software Developer Intern",
+   "company": "Nuclear Promise X",
+   "location": "Ontario, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6aac356295c707f49dff027e?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-22T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -973,18 +985,6 @@
    "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677",
    "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "icims:careers-epeconsulting.icims.com:2433",
-   "tier": "loose",
-   "title": "Power Systems Engineer Intern - Co-Op",
-   "company": "Electric Power Engineers",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://careers-epeconsulting.icims.com/jobs/2433/power-systems-engineer-intern---co-op/job",
-   "date": "2026-11-15T19:32:13+00:00",
-   "date_known": false,
    "ai_terms": ""
   },
   {
