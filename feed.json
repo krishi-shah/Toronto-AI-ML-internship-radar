@@ -292,6 +292,30 @@
    "ai_terms": ""
   },
   {
+   "id": "getro:jobs.realventures.com:100488437",
+   "tier": "loose",
+   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
+   "company": "Real Ventures",
+   "location": "Mississauga, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100347883-production-development-engineering-intern-co-op-winter-2027#content",
+   "date": "2026-11-21T12:58:50+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:jobs.realventures.com:100487237",
+   "tier": "loose",
+   "title": "Photonics Test Engineer",
+   "company": "Real Ventures",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100349328-photonics-test-engineer#content",
+   "date": "2026-11-21T12:57:33+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:vanshb03/Summer2027-Internships:7cb1abde-324e-47e4-86ee-9e38eff76880",
    "tier": "loose",
    "title": "Salesforce Developer 1 Intern, Summer",
@@ -398,30 +422,6 @@
    "date": "2026-11-20T16:10:11+00:00",
    "date_known": true,
    "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
-  },
-  {
-   "id": "getro:jobs.realventures.com:100349328",
-   "tier": "loose",
-   "title": "Photonics Test Engineer",
-   "company": "Real Ventures",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100280795-photonics-test-engineer#content",
-   "date": "2026-11-20T11:55:38+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:jobs.realventures.com:100347883",
-   "tier": "loose",
-   "title": "Production Development Engineering Intern (Co-op), Winter 2027",
-   "company": "Real Ventures",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100282071-production-development-engineering-intern-co-op-winter-2027#content",
-   "date": "2026-11-20T11:54:19+00:00",
-   "date_known": true,
-   "ai_terms": ""
   },
   {
    "id": "icims:careersen-mackenzieinvestments.icims.com:6446",
