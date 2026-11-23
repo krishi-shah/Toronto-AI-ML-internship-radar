@@ -964,6 +964,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:SimplifyJobs/New-Grad-Positions:1f5243e7-418c-45e0-a517-5603c9d3eae6",
+   "tier": "loose",
+   "title": "Campus Undergraduate Full-Time Engineer - Software Engineer 1",
+   "company": "American Express",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677",
+   "date": "2026-11-16T15:13:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:slihrms.wd3.myworkdayjobs.com:R-164340",
    "tier": "loose",
    "title": "Rail Infrastructure Co-Op Student",
@@ -972,18 +984,6 @@
    "term": "",
    "url": "https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/Rail-Infrastructure-Co-Op-Student_R-164340",
    "date": "2026-11-16T09:19:52+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "oracle:egug.fa.us2.oraclecloud.com:26016677",
-   "tier": "loose",
-   "title": "Campus Undergraduate Full-Time Engineer - 2027 Software Engineer I, Enterprise Technology Services- Toronto, Ontario, Canada",
-   "company": "American Express",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677",
-   "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
