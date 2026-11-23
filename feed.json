@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 94,
+ "count": 92,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
@@ -216,18 +216,6 @@
    "term": "Summer 2027",
    "url": "https://www.shopify.com/careers/applied-machine-learning-engineering-internships-summer-2027_1d6b9bb9-a132-4ad9-b33f-3e55d2cfc536",
    "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "successfactors:www.careers.zurich.com:1377641357",
-   "tier": "strict",
-   "title": "Data Analytics & AI Intern",
-   "company": "Zurich Insurance",
-   "location": "Toronto, ON, CA",
-   "term": "",
-   "url": "https://www.careers.zurich.com/job/Toronto-Data-Analytics-&-AI-Intern-ON/1377641357/",
-   "date": "2026-11-16T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -972,18 +960,6 @@
    "term": "",
    "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677",
    "date": "2026-11-16T15:13:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:slihrms.wd3.myworkdayjobs.com:R-164340",
-   "tier": "loose",
-   "title": "Rail Infrastructure Co-Op Student",
-   "company": "AtkinsRéalis",
-   "location": "CA.ON.Toronto.191 The West Mall",
-   "term": "",
-   "url": "https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/Rail-Infrastructure-Co-Op-Student_R-164340",
-   "date": "2026-11-16T09:19:52+00:00",
    "date_known": true,
    "ai_terms": ""
   },
