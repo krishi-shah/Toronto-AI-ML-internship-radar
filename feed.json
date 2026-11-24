@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 88,
+ "count": 83,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
@@ -280,6 +280,18 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260032429",
+   "tier": "loose",
+   "title": "Commercial Banking Rotational Internship (Office of Chief Data & Analytics, Business Enablement and Strategic Initiatives), Summer 2027 - 4 Months",
+   "company": "BMO",
+   "location": "Toronto, ON, CAN",
+   "term": "Summer 2027",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Toronto-ON-CAN/Commercial-Banking-Rotational-Internship--Office-of-Chief-Data---Analytics--Business-Enablement-and-Strategic-Initiatives---Summer-2027---4-Months_R260032429-1",
+   "date": "2026-11-24T14:58:47+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:pg.wd5.myworkdayjobs.com:R000163079",
    "tier": "loose",
    "title": "Automation Apprenticeship/Co-Op Winter 2027/Apprentissage ou stage en automatisation – Hiver 2027",
@@ -372,18 +384,6 @@
    "term": "Winter 2027",
    "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100488437-production-development-engineering-intern-co-op-winter-2027#content",
    "date": "2026-11-22T11:58:20+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6aac356295c707f49dff027e?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Software Developer Intern",
-   "company": "Nuclear Promise X",
-   "location": "Ontario, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6aac356295c707f49dff027e?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-22T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -540,18 +540,6 @@
    "term": "Winter 2027",
    "url": "https://recruiting.ultipro.ca/MAC5000MCDW/JobBoard/7667adcc-47ae-477a-9183-0d8ef8bc0748/OpportunityDetail?opportunityId=b5aef546-676b-4f7a-8c20-acfa8f25069f",
    "date": "2026-11-20T01:11:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afac7fd948d1faa554e0d1d?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "Student Intern, Process and Applications (SCM)",
-   "company": "Celestica",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6afac7fd948d1faa554e0d1d?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-20T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -748,18 +736,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:b5e9a29a-b709-4d78-8e07-c795aad202ea",
-   "tier": "loose",
-   "title": "Software Developer Co-op - Common Cloud Services",
-   "company": "Ribbon",
-   "location": "Canada",
-   "term": "",
-   "url": "https://vhr-genband.wd1.myworkdayjobs.com/ribboncareers/job/Canada-Quebec-Montreal/Software-Developer---Common-Cloud-Services--Co-Op-_REQ-2026-3079",
-   "date": "2026-11-19T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "tracker:vanshb03/Summer2027-Internships:1c8568f5-b1a8-49f9-bb58-c2ee2766d892",
    "tier": "loose",
    "title": "Software Developer Co-op, Common Cloud Services, Winter",
@@ -876,42 +852,6 @@
    "term": "Spring 2027",
    "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8205829003",
    "date": "2026-11-17T20:19:59+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:1fc87853-88be-4d79-be3e-74d4761d21dc",
-   "tier": "loose",
-   "title": "Computer Science Co-op, Winter",
-   "company": "Critical Environment Technologies",
-   "location": "Delta, Canada",
-   "term": "Winter 2027",
-   "url": "https://cetci.bamboohr.com/careers/92",
-   "date": "2026-11-17T07:46:35+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:72649a86-d70f-46de-8b0f-8ce6aaea71b7",
-   "tier": "loose",
-   "title": "Software Developer Intern",
-   "company": "Birdseye Security Solutions",
-   "location": "Mississauga, ON, Canada",
-   "term": "",
-   "url": "https://birdseyeaccount.bamboohr.com/careers/286/",
-   "date": "2026-11-17T07:13:55+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:67d485cd-fa93-439c-a03d-f4f087f87a50",
-   "tier": "loose",
-   "title": "Software Developer Intern, Summer",
-   "company": "Birdseye Security Solutions",
-   "location": "Mississauga, Canada",
-   "term": "Summer 2027",
-   "url": "https://birdseyeaccount.bamboohr.com/careers/286",
-   "date": "2026-11-17T07:13:55+00:00",
    "date_known": true,
    "ai_terms": ""
   },
