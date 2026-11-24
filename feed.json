@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 92,
+ "count": 88,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
@@ -277,6 +277,78 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:pg.wd5.myworkdayjobs.com:R000163079",
+   "tier": "loose",
+   "title": "Automation Apprenticeship/Co-Op Winter 2027/Apprentissage ou stage en automatisation – Hiver 2027",
+   "company": "Procter & Gamble",
+   "location": "GRTR TORONTO FULFILLMENT CTR",
+   "term": "Winter 2027",
+   "url": "https://pg.wd5.myworkdayjobs.com/en-US/1000/job/GRTR-TORONTO-FULFILLMENT-CTR/Automation-Apprenticeship-Co-Op-Winter-2027-Apprentissage-ou-stage-en-automatisation---Hiver-2027_R000163079",
+   "date": "2026-11-24T02:58:30+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:canadiantirecorporation.wd3.myworkdayjobs.com:JR168222",
+   "tier": "loose",
+   "title": "Software Development Student (4 Months) - Winter 2027",
+   "company": "Canadian Tire",
+   "location": "Toronto, ON",
+   "term": "Winter 2027",
+   "url": "https://canadiantirecorporation.wd3.myworkdayjobs.com/en-US/Enterprise_External_Careers_Site/job/Toronto-ON/Software-Development-Student--4-Months----Winter-2027_JR168222",
+   "date": "2026-11-24T02:58:20+00:00",
+   "date_known": true,
+   "ai_terms": "data science, prompt engineering, LLM APIs, conversational AI"
+  },
+  {
+   "id": "workday:sunlife.wd3.myworkdayjobs.com:JR00130144",
+   "tier": "loose",
+   "title": "Student, Mobile Device Support Analyst (Winter 2027 - Summer 2027)",
+   "company": "Sun Life",
+   "location": "North York, Ontario",
+   "term": "Winter 2027, Summer 2027",
+   "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/North-York-Ontario/Student--Mobile-Device-Support-Analyst--Winter-2027---Summer-2027-_JR00130144",
+   "date": "2026-11-24T02:57:19+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "greenhouse:brave:8412598",
+   "tier": "loose",
+   "title": "Systems Build Intern - Waterloo University",
+   "company": "Brave",
+   "location": "Canada",
+   "term": "",
+   "url": "https://job-boards.greenhouse.io/brave/jobs/8412598",
+   "date": "2026-11-23T21:56:59+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "greenhouse:brave:8412532",
+   "tier": "loose",
+   "title": "Software Development Intern - Waterloo University - Web3 Core",
+   "company": "Brave",
+   "location": "Canada",
+   "term": "",
+   "url": "https://job-boards.greenhouse.io/brave/jobs/8412532",
+   "date": "2026-11-23T21:31:25+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b047d6d566251ad7b8625c1?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "CO-OP Assistant Asset Management Data Analyst",
+   "company": "City of Brampton",
+   "location": "Brampton, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6b047d6d566251ad7b8625c1?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-23T00:00:00+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -700,18 +772,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:sunlife.wd3.myworkdayjobs.com:JR00127140",
-   "tier": "loose",
-   "title": "Student, Associate Front-End Developer (Winter 2027)",
-   "company": "Sun Life",
-   "location": "Sun Life Toronto One York, Sun Life Waterloo King, Canada",
-   "term": "Winter 2027",
-   "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/Sun-Life-Toronto-One-York/Student--Associate-Front-End-Developer--Winter-2027-_JR00127140",
-   "date": "2026-11-18T21:29:06+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "smartrecruiters:AECOM2:744000162369224",
    "tier": "loose",
    "title": "Engineering Intern - Airport Projects",
@@ -852,114 +912,6 @@
    "term": "Summer 2027",
    "url": "https://birdseyeaccount.bamboohr.com/careers/286",
    "date": "2026-11-17T07:13:55+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "oracle:emit.fa.ca3.oraclecloud.com:94097",
-   "tier": "loose",
-   "title": "Intern, Transit and Rail Engineering",
-   "company": "WSP",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://emit.fa.ca3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001/job/94097",
-   "date": "2026-11-17T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "successfactors:careers.celestica.com:1458172833",
-   "tier": "loose",
-   "title": "Student Intern, Salesforce Developer 1",
-   "company": "Celestica",
-   "location": "Toronto, ON, CA",
-   "term": "",
-   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Salesforce-Developer-1-ON/1458172833/",
-   "date": "2026-11-17T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:marvell.wd1.myworkdayjobs.com:2604424",
-   "tier": "loose",
-   "title": "System Engineer - Optical DSP Intern (PhD) - Co-Op 2027",
-   "company": "Marvell",
-   "location": "CA-ON - Ontario - Toronto, CA-ON - Ottawa, Canada",
-   "term": "",
-   "url": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/CA-ON---Ontario---Toronto/System-Engineer---Optical-DSP-Intern--PhD----Co-Op-2027_2604424",
-   "date": "2026-11-16T22:57:42+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:2308660d-6e87-4b5c-9008-376f4a467804",
-   "tier": "loose",
-   "title": "Software Engineer Intern, Summer 2027",
-   "company": "Shopify",
-   "location": "Montreal, QC, Canada, Toronto, ON, Canada, Ottawa, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://www.shopify.com/careers/can-software-engineering-internships-summer-2027_7ebb28da-0f4a-40ae-b41f-f5de60f3ca2a",
-   "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:c8718487-1c23-48cb-9c04-3d4d44bc977b",
-   "tier": "loose",
-   "title": "Data Intern, Summer 2027",
-   "company": "Shopify",
-   "location": "Montreal, QC, Canada, Toronto, ON, Canada, NYC, Ottawa, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://www.shopify.com/careers/data-internships-summer-2027_33763bbb-341b-4d78-be50-4076570e5e95",
-   "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:1d22db6f-f91c-43a7-9c93-0c5d73d1e995",
-   "tier": "loose",
-   "title": "Software Engineer Intern, Summer",
-   "company": "Shopify",
-   "location": "Montreal, Canada, Toronto, Canada, Ottawa, Canada",
-   "term": "Summer 2027",
-   "url": "https://www.shopify.com/careers/can-software-engineering-internships-summer-2027_7ebb28da-0f4a-40ae-b41f-f5de60f3ca2a",
-   "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:21d81279-a66a-4fee-b9eb-5108be8a9010",
-   "tier": "loose",
-   "title": "Data Intern, Summer",
-   "company": "Shopify",
-   "location": "Montreal, Canada, Toronto, Canada, New York, NY, Ottawa, Canada",
-   "term": "Summer 2027",
-   "url": "https://www.shopify.com/careers/data-internships-summer-2027_33763bbb-341b-4d78-be50-4076570e5e95",
-   "date": "2026-11-16T15:31:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "eightfold:apply.careers.microsoft.com:1970393557045545",
-   "tier": "loose",
-   "title": "Solution Engineering Internship Opportunities",
-   "company": "Microsoft",
-   "location": "Canada, Ontario, Toronto",
-   "term": "",
-   "url": "https://apply.careers.microsoft.com/careers/job/1970393557045545",
-   "date": "2026-11-16T15:14:51+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/New-Grad-Positions:1f5243e7-418c-45e0-a517-5603c9d3eae6",
-   "tier": "loose",
-   "title": "Campus Undergraduate Full-Time Engineer - Software Engineer 1",
-   "company": "American Express",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677",
-   "date": "2026-11-16T15:13:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
