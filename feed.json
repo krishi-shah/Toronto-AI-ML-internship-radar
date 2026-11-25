@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 82,
+ "count": 84,
  "jobs": [
   {
    "id": "workday:altera.wd1.myworkdayjobs.com:R03487",
@@ -316,6 +316,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:vanshb03/Summer2027-Internships:8df5ca5a-b9aa-4fa4-84e1-8a19f0dacb24",
+   "tier": "loose",
+   "title": "Data Engineering Intern, Winter",
+   "company": "Super",
+   "location": "Toronto, Canada",
+   "term": "Winter 2027",
+   "url": "https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807",
+   "date": "2026-11-24T22:40:52+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "tracker:vanshb03/Summer2027-Internships:93820c5a-1360-4af5-a80e-d794dfd06b36",
    "tier": "loose",
    "title": "Data and Business Intelligence Analyst Intern, Winter",
@@ -336,6 +348,18 @@
    "term": "Summer 2027",
    "url": "https://altera.wd1.myworkdayjobs.com/altera/job/Toronto-Ontario-Canada/Embedded-Solutions-Intern_R03512",
    "date": "2026-11-24T15:39:09+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "icims:jobs-kinaxis.icims.com:36672",
+   "tier": "loose",
+   "title": "Intern Engineer, Data & Analytics",
+   "company": "Kinaxis",
+   "location": "Remote, Canada",
+   "term": "",
+   "url": "https://jobs-kinaxis.icims.com/jobs/36672/intern-engineer%2c-data-%26-analytics/job",
+   "date": "2026-11-24T15:02:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -384,6 +408,18 @@
    "term": "Winter 2027, Summer 2027",
    "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/Campus/job/North-York-Ontario/Student--Mobile-Device-Support-Analyst--Winter-2027---Summer-2027-_JR00130144",
    "date": "2026-11-24T02:57:19+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ae15beb05a39c3e2c71227d?utm_campaign=1079&utm_source=git",
+   "tier": "loose",
+   "title": "Engineering Intern",
+   "company": "Brim Financial",
+   "location": "Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6ae15beb05a39c3e2c71227d?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-24T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -829,18 +865,6 @@
    "url": "https://jobs.scotiabank.com/job/Toronto-Global-Banking-and-Markets-Global-Analytic-Financial-Engineering-%28GAFE%29-InternCo-PEY-12-months-ON/608151217",
    "date": "2026-11-18T17:40:33+00:00",
    "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "bamboohr:csmc:51",
-   "tier": "loose",
-   "title": "Engineering Intern (Labs)",
-   "company": "Canadian Strategic Missions",
-   "location": "Waterloo, Ontario",
-   "term": "",
-   "url": "https://csmc.bamboohr.com/careers/51",
-   "date": "2026-11-18T13:18:18+00:00",
-   "date_known": false,
    "ai_terms": ""
   },
   {
