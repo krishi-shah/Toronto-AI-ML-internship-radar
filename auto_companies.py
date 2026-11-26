@@ -7,7 +7,6 @@ normal run or ``--seed``, never by ``--check``.
 
 AUTO_COMPANIES: list[dict] = [
     {'name': 'Accenture', 'platform': 'workday', 'token': 'https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs', 'ai_native': False},
-    {'name': 'AECOM', 'platform': 'smartrecruiters', 'token': 'AECOM2', 'ai_native': False},
     {'name': 'Alstom', 'platform': 'successfactors', 'token': 'https://jobsearch.alstom.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
@@ -38,6 +37,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Kensington', 'platform': 'greenhouse', 'token': 'kensingtontours', 'ai_native': False},
     {'name': 'KPMG', 'platform': 'jibe', 'token': 'https://careers.kpmg.ca', 'ai_native': False},
     {'name': 'L3Harris Technologies', 'platform': 'successfactors', 'token': 'https://jobs.l3harris.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
+    {'name': 'Lilly', 'platform': 'workday', 'token': 'https://lilly.wd115.myworkdayjobs.com/wday/cxs/lilly/cmp/jobs', 'ai_native': False},
     {'name': 'LSEG', 'platform': 'workday', 'token': 'https://lseg.wd3.myworkdayjobs.com/wday/cxs/lseg/Graduate_Careers/jobs', 'ai_native': False},
     {'name': 'Manulife Financial', 'platform': 'workday', 'token': 'https://manulife.wd3.myworkdayjobs.com/wday/cxs/manulife/MFCJH_adminJobs/jobs', 'ai_native': False},
     {'name': 'Marvell', 'platform': 'workday', 'token': 'https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs', 'ai_native': False},

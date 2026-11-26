@@ -1,8 +1,20 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 88,
+ "count": 81,
  "jobs": [
+  {
+   "id": "getro:careers.inovia.vc:100804491",
+   "tier": "strict",
+   "title": "[I] Robotics Engineering Intern - Capture Systems (May 2027)",
+   "company": "Peripheral Labs",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://app.dover.com/apply/peripheral/6faa193a-8c36-4416-b97b-38602292f157",
+   "date": "2026-11-26T12:00:12+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
   {
    "id": "tracker:vanshb03/Summer2027-Internships:9c8a2d5d-446d-44ce-9c2b-87492fcb6b80",
    "tier": "strict",
@@ -84,18 +96,6 @@
    "term": "",
    "url": "https://jobright.ai/jobs/info/6b05d8670a025d0ca4ff5e83?utm_campaign=1066&utm_source=git",
    "date": "2026-11-24T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "AI agents, conversational AI, AI features"
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b05bd62707ad7f35053a12e?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Data and Business Intelligence Analyst, Intern",
-   "company": "Hitachi Energy",
-   "location": "Scarborough, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6b05bd62707ad7f35053a12e?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-23T00:00:00+00:00",
    "date_known": true,
    "ai_terms": "AI agents, conversational AI, AI features"
   },
@@ -328,18 +328,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:tmx.wd3.myworkdayjobs.com:R-6680",
-   "tier": "strict",
-   "title": "AI Engineering Intern",
-   "company": "TMX Group",
-   "location": "Toronto - 100 Adelaide St W",
-   "term": "",
-   "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers/job/Toronto---100-Adelaide-St-W/AI-Engineering-Intern_R-6680",
-   "date": "2026-11-12T20:56:41+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -352,6 +340,42 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:lilly.wd115.myworkdayjobs.com:R-116221",
+   "tier": "loose",
+   "title": "Customer Insights & Analytics Intern",
+   "company": "Lilly",
+   "location": "CA: Toronto ON",
+   "term": "",
+   "url": "https://lilly.wd115.myworkdayjobs.com/en-US/cmp/job/CA-Toronto-ON/Customer-Insights---Analytics-Intern_R-116221",
+   "date": "2026-11-26T22:30:24+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:cibc.wd3.myworkdayjobs.com:2618798",
+   "tier": "loose",
+   "title": "Global Markets, Summer 2027 Associate - Equity Research",
+   "company": "CIBC",
+   "location": "Toronto, ON",
+   "term": "Summer 2027",
+   "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets-Equity-Research--Summer-2027-Associate--4-months-_2618798",
+   "date": "2026-11-26T22:25:09+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6afac7e21460f8021289d048?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Student Intern, Buying and Planning Data Analytics",
+   "company": "Celestica",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6afac7e21460f8021289d048?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-26T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "smartrecruiters:AECOM2:744000163769529",
    "tier": "loose",
    "title": "Engineering Intern - Airport Projects",
@@ -360,6 +384,18 @@
    "term": "",
    "url": "https://jobs.smartrecruiters.com/AECOM2/744000163769529",
    "date": "2026-11-25T22:30:22+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:f129e32f-4987-4314-b0a7-a02c2c74e440",
+   "tier": "loose",
+   "title": "Software Intern, Winter",
+   "company": "ABB",
+   "location": "Dorval, Canada",
+   "term": "Winter 2027",
+   "url": "https://abb.wd3.myworkdayjobs.com/external_career_page/job/Dorval-Quebec-Canada/Software-Intern---Winter-2027_JR00053791",
+   "date": "2026-11-25T21:40:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -508,18 +544,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6ae15beb05a39c3e2c71227d?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Engineering Intern",
-   "company": "Brim Financial",
-   "location": "Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6ae15beb05a39c3e2c71227d?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-24T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "greenhouse:brave:8412598",
    "tier": "loose",
    "title": "Systems Build Intern - Waterloo University",
@@ -604,42 +628,6 @@
    "ai_terms": ""
   },
   {
-   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2876172",
-   "tier": "loose",
-   "title": "2027 Digital Graduate Program, Product Analyst, Data and AI Engineer",
-   "company": "Sanofi",
-   "location": "Toronto, ON",
-   "term": "",
-   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Product-Analyst--Data-and-AI-Engineer_R2876172-1",
-   "date": "2026-11-20T21:20:48+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2878973",
-   "tier": "loose",
-   "title": "2027 Digital Graduate Program, Digital Strategy and Operations Analyst",
-   "company": "Sanofi",
-   "location": "Toronto, ON",
-   "term": "",
-   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Digital-Strategy-and-Operations-Analyst_R2878973-1",
-   "date": "2026-11-20T21:20:48+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:sanofi.wd3.myworkdayjobs.com:R2879279",
-   "tier": "loose",
-   "title": "2027 Digital Graduate Program, Product Analyst",
-   "company": "Sanofi",
-   "location": "Toronto, ON",
-   "term": "",
-   "url": "https://sanofi.wd3.myworkdayjobs.com/en-US/sanoficareers/job/Toronto-ON/XMLNAME-2027-Digital-Graduate-Program--Product-Analyst-_R2879279-1",
-   "date": "2026-11-20T21:20:48+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
-  },
-  {
    "id": "workday:jci.wd5.myworkdayjobs.com:EB00075404",
    "tier": "loose",
    "title": "Production Engineering Co-Op",
@@ -707,6 +695,18 @@
    "location": "Toronto, ON, Canada",
    "term": "Spring 2027",
    "url": "https://app.dover.com/apply/peripheral/4f4baf30-f659-4172-881e-4497b3808ad0",
+   "date": "2026-11-20T11:40:05+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "getro:careers.inovia.vc:100340866",
+   "tier": "loose",
+   "title": "[I] Software Engineering Intern - Viewer (Spring 2027)",
+   "company": "Peripheral Labs",
+   "location": "Toronto, ON, Canada",
+   "term": "Spring 2027",
+   "url": "https://app.dover.com/apply/peripheral/1ef74a94-ed4a-44b8-a08a-cc662066cf0c",
    "date": "2026-11-20T11:40:05+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -828,90 +828,6 @@
    "term": "Winter 2027",
    "url": "https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Commercial-Deposits--Money-Movement---Digital-Channels-Intern-Co-op--Winter-2027-_R_1503532",
    "date": "2026-11-19T23:07:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:730a5a8e-d62a-4ba8-afd5-42b33db19ad6",
-   "tier": "loose",
-   "title": "Associate AI-Enablement Developer Co-op, Winter",
-   "company": "EUNA Solutions",
-   "location": "Oakville, Canada",
-   "term": "Winter 2027",
-   "url": "https://euna.bamboohr.com/careers/822",
-   "date": "2026-11-19T21:11:01+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bdo.wd3.myworkdayjobs.com:JR7057",
-   "tier": "loose",
-   "title": "Co-op or Intern, Full-Stack Developer (January 2027)",
-   "company": "BDO Canada",
-   "location": "Toronto - Bay St, Ottawa - Kent St, Oakville, Canada",
-   "term": "",
-   "url": "https://bdo.wd3.myworkdayjobs.com/en-US/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Full-Stack-Developer--January-2027-_JR7057",
-   "date": "2026-11-19T20:14:09+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "smartrecruiters:VeoliaEnvironnementSA:744000162595159",
-   "tier": "loose",
-   "title": "Process Engineering Operations Co-op",
-   "company": "Veolia",
-   "location": "Oakville, ON, ca",
-   "term": "",
-   "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000162595159",
-   "date": "2026-11-19T19:58:55+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "smartrecruiters:VeoliaEnvironnementSA:744000162590191",
-   "tier": "loose",
-   "title": "Municipal Engineering Co-op",
-   "company": "Veolia",
-   "location": "Oakville, ON, ca",
-   "term": "",
-   "url": "https://jobs.smartrecruiters.com/VeoliaEnvironnementSA/744000162590191",
-   "date": "2026-11-19T19:41:29+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "smartrecruiters:AECOM2:744000162583857",
-   "tier": "loose",
-   "title": "Geotechnical Engineering Intern",
-   "company": "AECOM",
-   "location": "Mississauga, ON, ca",
-   "term": "",
-   "url": "https://jobs.smartrecruiters.com/AECOM2/744000162583857",
-   "date": "2026-11-19T18:44:28+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:c39516f2-0c01-49b0-bfb7-20fe3fe0ae50",
-   "tier": "loose",
-   "title": "Software Engineering Intern, Viewer, Spring",
-   "company": "Peripheral",
-   "location": "Toronto, Canada",
-   "term": "Spring 2027",
-   "url": "https://jobs.dover.com/peripheral/1ef74a94-ed4a-44b8-a08a-cc662066cf0c",
-   "date": "2026-11-19T18:40:45+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:canadiansolar.wd5.myworkdayjobs.com:10001601",
-   "tier": "loose",
-   "title": "Technical Writer Intern",
-   "company": "Canadian Solar",
-   "location": "Kitchener, ON",
-   "term": "",
-   "url": "https://canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Kitchener-ON/Technical-Writer-Intern_10001601-1",
-   "date": "2026-11-19T12:50:35+00:00",
    "date_known": true,
    "ai_terms": ""
   },
