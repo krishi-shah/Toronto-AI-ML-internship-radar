@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 92,
+ "count": 88,
  "jobs": [
   {
    "id": "tracker:vanshb03/Summer2027-Internships:9c8a2d5d-446d-44ce-9c2b-87492fcb6b80",
@@ -460,18 +460,6 @@
    "ai_terms": ""
   },
   {
-   "id": "icims:jobs-kinaxis.icims.com:36672",
-   "tier": "loose",
-   "title": "Intern Engineer, Data & Analytics",
-   "company": "Kinaxis",
-   "location": "Remote, Canada",
-   "term": "",
-   "url": "https://jobs-kinaxis.icims.com/jobs/36672/intern-engineer%2c-data-%26-analytics/job",
-   "date": "2026-11-24T15:02:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "workday:bmo.wd3.myworkdayjobs.com:R260032429",
    "tier": "loose",
    "title": "Commercial Banking Rotational Internship (Office of Chief Data & Analytics, Business Enablement and Strategic Initiatives), Summer 2027 - 4 Months",
@@ -552,18 +540,6 @@
    "term": "",
    "url": "https://job-boards.greenhouse.io/brave/jobs/8412532",
    "date": "2026-11-23T21:31:25+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b047d6d566251ad7b8625c1?utm_campaign=1066&utm_source=git",
-   "tier": "loose",
-   "title": "CO-OP Assistant Asset Management Data Analyst",
-   "company": "City of Brampton",
-   "location": "Brampton, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6b047d6d566251ad7b8625c1?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-23T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -936,30 +912,6 @@
    "term": "",
    "url": "https://canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Kitchener-ON/Technical-Writer-Intern_10001601-1",
    "date": "2026-11-19T12:50:35+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:cibc.wd3.myworkdayjobs.com:2624159",
-   "tier": "loose",
-   "title": "Global Markets, Global Markets, Summer 2027 Associate - Equity Research (4 months)",
-   "company": "CIBC",
-   "location": "Toronto, ON",
-   "term": "Summer 2027",
-   "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets--Global-Markets--Summer-2027-Associate---Equity-Research--4-months-_2624159",
-   "date": "2026-11-19T08:40:23+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:1c8568f5-b1a8-49f9-bb58-c2ee2766d892",
-   "tier": "loose",
-   "title": "Software Developer Co-op, Common Cloud Services, Winter",
-   "company": "Ribbon",
-   "location": "Canada",
-   "term": "Winter 2027",
-   "url": "https://vhr-genband.wd1.myworkdayjobs.com/ribboncareers/job/Canada-Quebec-Montreal/Software-Developer---Common-Cloud-Services--Co-Op-_REQ-2026-3079",
-   "date": "2026-11-19T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
