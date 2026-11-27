@@ -7,11 +7,11 @@ normal run or ``--seed``, never by ``--check``.
 
 AUTO_COMPANIES: list[dict] = [
     {'name': 'Accenture', 'platform': 'workday', 'token': 'https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs', 'ai_native': False},
+    {'name': 'AECOM', 'platform': 'smartrecruiters', 'token': 'AECOM2', 'ai_native': False},
     {'name': 'Alstom', 'platform': 'successfactors', 'token': 'https://jobsearch.alstom.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Altera', 'platform': 'workday', 'token': 'https://altera.wd1.myworkdayjobs.com/wday/cxs/altera/altera/jobs', 'ai_native': False},
     {'name': 'Astera Labs', 'platform': 'greenhouse', 'token': 'asteraearlycareer2027', 'ai_native': False},
     {'name': 'AtkinsRéalis', 'platform': 'workday', 'token': 'https://slihrms.wd3.myworkdayjobs.com/wday/cxs/slihrms/careers/jobs', 'ai_native': False},
-    {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Campus/jobs', 'ai_native': False},
     {'name': 'Bank of Montreal', 'platform': 'workday', 'token': 'https://bmo.wd3.myworkdayjobs.com/wday/cxs/bmo/Privileged/jobs', 'ai_native': False},
     {'name': 'BDO Canada', 'platform': 'workday', 'token': 'https://bdo.wd3.myworkdayjobs.com/wday/cxs/bdo/BDO/jobs', 'ai_native': False},
     {'name': 'Birdseye Security Solutions', 'platform': 'bamboohr', 'token': 'birdseyeaccount', 'ai_native': False},
@@ -22,6 +22,7 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Cardinal Health', 'platform': 'workday', 'token': 'https://cardinalhealth.wd1.myworkdayjobs.com/wday/cxs/cardinalhealth/EXT/jobs', 'ai_native': False},
     {'name': 'Celestica', 'platform': 'successfactors', 'token': 'https://careers.celestica.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
     {'name': 'Cintas', 'platform': 'successfactors', 'token': 'https://careers.cintas.com/search/?q=&locationsearch=Ontario', 'ai_native': False},
+    {'name': 'Clutch Canada', 'platform': 'greenhouse', 'token': 'clutch', 'ai_native': False},
     {'name': 'Crowe', 'platform': 'workday', 'token': 'https://crowe.wd12.myworkdayjobs.com/wday/cxs/crowe/external_careers/jobs', 'ai_native': False},
     {'name': 'Eaton', 'platform': 'eightfold', 'token': 'eaton.eightfold.ai|eaton.com', 'ai_native': False},
     {'name': 'Equitable Bank', 'platform': 'lever', 'token': 'eqbank', 'ai_native': False},
@@ -53,7 +54,6 @@ AUTO_COMPANIES: list[dict] = [
     {'name': 'Saputo', 'platform': 'workday', 'token': 'https://saputo.wd5.myworkdayjobs.com/wday/cxs/saputo/Saputo_External_Careers/jobs', 'ai_native': False},
     {'name': 'ShyftLabs', 'platform': 'lever', 'token': 'shyftlabs', 'ai_native': False},
     {'name': 'SOTI', 'platform': 'workday', 'token': 'https://soti.wd3.myworkdayjobs.com/wday/cxs/soti/SOTI-Next-Gen/jobs', 'ai_native': False},
-    {'name': 'Stanley Black & Decker', 'platform': 'workday', 'token': 'https://sbdinc.wd1.myworkdayjobs.com/wday/cxs/sbdinc/Stanley_Black_Decker_Career_Site/jobs', 'ai_native': False},
     {'name': 'Stantec', 'platform': 'oracle', 'token': 'https://hdhl.fa.us6.oraclecloud.com|CX_1', 'ai_native': False},
     {'name': 'Sun Life', 'platform': 'workday', 'token': 'https://sunlife.wd3.myworkdayjobs.com/wday/cxs/sunlife/experienced/jobs', 'ai_native': False},
     {'name': 'Super.com', 'platform': 'ashby', 'token': 'super.com', 'ai_native': False},

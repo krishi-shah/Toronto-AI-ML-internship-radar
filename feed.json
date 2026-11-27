@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 81,
+ "count": 71,
  "jobs": [
   {
    "id": "getro:careers.inovia.vc:100804491",
@@ -26,30 +26,6 @@
    "date": "2026-11-25T18:39:07+00:00",
    "date_known": true,
    "ai_terms": ""
-  },
-  {
-   "id": "workday:altera.wd1.myworkdayjobs.com:R03487",
-   "tier": "strict",
-   "title": "AI Software Development Engineer Intern",
-   "company": "Altera",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/AI-Software-Development-Engineer-Intern_R03487",
-   "date": "2026-11-25T00:57:04+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:hitachi.wd1.myworkdayjobs.com:R0151457",
-   "tier": "strict",
-   "title": "Data and Business Intelligence Analyst, Intern",
-   "company": "Hitachi",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Toronto-Ontario-Canada/Data-and-Business-Intelligence-Analyst--Intern_R0151457",
-   "date": "2026-11-25T00:53:19+00:00",
-   "date_known": true,
-   "ai_terms": "AI agents, conversational AI, AI features"
   },
   {
    "id": "successfactors:careers.celestica.com:1460691233",
@@ -86,18 +62,6 @@
    "date": "2026-11-24T22:40:52+00:00",
    "date_known": true,
    "ai_terms": ""
-  },
-  {
-   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b05d8670a025d0ca4ff5e83?utm_campaign=1066&utm_source=git",
-   "tier": "strict",
-   "title": "Data and Business Intelligence Analyst, Intern",
-   "company": "Hitachi Rail",
-   "location": "Scarborough, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6b05d8670a025d0ca4ff5e83?utm_campaign=1066&utm_source=git",
-   "date": "2026-11-24T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "AI agents, conversational AI, AI features"
   },
   {
    "id": "tracker:vanshb03/Summer2027-Internships:935a1b1f-6155-4d73-929a-122993d8f875",
@@ -204,18 +168,6 @@
    "term": "",
    "url": "https://canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Kitchener-ON/Data-Engineering-Intern_10001603",
    "date": "2026-11-19T12:50:35+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:saputo.wd5.myworkdayjobs.com:JR68381",
-   "tier": "strict",
-   "title": "Intern, Data Engineer Enterprise Analytics",
-   "company": "Saputo",
-   "location": "Mississauga, ON",
-   "term": "",
-   "url": "https://saputo.wd5.myworkdayjobs.com/en-US/Saputo_External_Careers/job/Mississauga-ON/Intern--Data-Engineer-Enterprise-Analytics_JR68381",
-   "date": "2026-11-18T22:42:01+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -328,6 +280,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
+   "tier": "strict",
+   "title": "Software Development Internship (Summer 2027)",
+   "company": "Autodesk",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
+   "date": "2026-11-14T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": "LLMs, data science, generative AI, AI agents"
+  },
+  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -337,6 +301,30 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260031145",
+   "tier": "loose",
+   "title": "Product Associate, Summer 2027 (Co-op/Internship) - 4 Months",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, CAN",
+   "term": "Summer 2027",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Product-Associate--Summer-2027--Co-op-Internship----4-Months_R260031145-2",
+   "date": "2026-11-27T09:46:02+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:b482502c-37d5-4da2-8d19-bc7a1356fd29",
+   "tier": "loose",
+   "title": "Technical-Engineering Intern, Summer 2027",
+   "company": "Synopsys",
+   "location": "Mississauga, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://synopsys.avature.net/careers/JobDetail/19725",
+   "date": "2026-11-27T02:30:46+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -360,6 +348,18 @@
    "term": "Summer 2027",
    "url": "https://cibc.wd3.myworkdayjobs.com/en-US/campus/job/Toronto-ON/Global-Markets-Equity-Research--Summer-2027-Associate--4-months-_2618798",
    "date": "2026-11-26T22:25:09+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:slihrms.wd3.myworkdayjobs.com:R-162198",
+   "tier": "loose",
+   "title": "New Graduate, Rail, Transit Systems & Telecoms",
+   "company": "AtkinsRéalis",
+   "location": "CA.ON.Toronto.191 The West Mall, CA.AB.Calgary.144-4th avenue SW Suite 2200 (West Tower), CA.BC.Vancouver. 733 Seymour St., Canada",
+   "term": "",
+   "url": "https://slihrms.wd3.myworkdayjobs.com/en-US/careers/job/CAONToronto191-The-West-Mall/New-Graduate--Rail--Transit-Systems---Telecoms-Division_R-162198",
+   "date": "2026-11-26T09:46:26+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -436,18 +436,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6afac7c89331e23f79cde02a?utm_campaign=1079&utm_source=git",
-   "tier": "loose",
-   "title": "Student Intern, Processes and Applications, Programmer",
-   "company": "Celestica",
-   "location": "Toronto, ON, Canada",
-   "term": "",
-   "url": "https://jobright.ai/jobs/info/6afac7c89331e23f79cde02a?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-25T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
    "id": "successfactors:careers.celestica.com:1460684533",
    "tier": "loose",
    "title": "Student Intern, Engineering Data Analytics",
@@ -472,18 +460,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:vanshb03/Summer2027-Internships:93820c5a-1360-4af5-a80e-d794dfd06b36",
-   "tier": "loose",
-   "title": "Data and Business Intelligence Analyst Intern, Winter",
-   "company": "Hitachi",
-   "location": "Toronto, Canada",
-   "term": "Winter 2027",
-   "url": "https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Toronto-Ontario-Canada/Data-and-Business-Intelligence-Analyst--Intern_R0151457",
-   "date": "2026-11-24T16:09:10+00:00",
-   "date_known": true,
-   "ai_terms": "AI agents, conversational AI, AI features"
-  },
-  {
    "id": "tracker:vanshb03/Summer2027-Internships:ee8546e3-06c5-4a28-9cc9-4ceb60f70d19",
    "tier": "loose",
    "title": "Embedded Solutions Intern, Summer",
@@ -504,6 +480,18 @@
    "term": "Summer 2027",
    "url": "https://bmo.wd3.myworkdayjobs.com/en-US/External/job/Toronto-ON-CAN/Commercial-Banking-Rotational-Internship--Office-of-Chief-Data---Analytics--Business-Enablement-and-Strategic-Initiatives---Summer-2027---4-Months_R260032429-1",
    "date": "2026-11-24T14:58:47+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:soti.wd3.myworkdayjobs.com:R10703",
+   "tier": "loose",
+   "title": "Software Developer Intern (May 2027 12 Months)",
+   "company": "SOTI",
+   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
+   "term": "",
+   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern--May-2027-12-Months-_R10703-2",
+   "date": "2026-11-24T02:58:39+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -720,114 +708,6 @@
    "term": "Winter 2027",
    "url": "https://avnan.bamboohr.com/careers/125/",
    "date": "2026-11-20T11:21:23+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:d3d59fa6-0e91-4c1b-9d24-68a8ebab5712",
-   "tier": "loose",
-   "title": "Engineering Student Intern, AI/ML Specialist, Winter",
-   "company": "MDA",
-   "location": "Richmond, Canada",
-   "term": "Winter 2027",
-   "url": "https://recruiting.ultipro.ca/MAC5000MCDW/JobBoard/7667adcc-47ae-477a-9183-0d8ef8bc0748/OpportunityDetail?opportunityId=b5aef546-676b-4f7a-8c20-acfa8f25069f",
-   "date": "2026-11-20T01:11:11+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/New-Grad-Positions:fdecba0c-d4eb-4bba-839b-1dce5788c465",
-   "tier": "loose",
-   "title": "Software Engineer New Grad",
-   "company": "Keplar",
-   "location": "Toronto, ON, Canada, Waterloo, ON, Canada",
-   "term": "",
-   "url": "https://jobs.ashbyhq.com/keplar/9da9bb8e-d7f1-4247-b6da-8392ebc852bd/application?embed=true",
-   "date": "2026-11-20T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "LLMs, AI agents, LLM APIs"
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:bf07fdd4-a43a-470b-afb8-5dde457d4650",
-   "tier": "loose",
-   "title": "Associate AI-Enablement Developer Co-op, Winter 2027",
-   "company": "EUNA Solutions",
-   "location": "Oakville, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://euna.bamboohr.com/careers/822/",
-   "date": "2026-11-19T23:51:27+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "bamboohr:pictonmahoney:394",
-   "tier": "loose",
-   "title": "Intern, Equity Research (Winter 2027)",
-   "company": "Picton Mahoney Asset Management",
-   "location": "Toronto, Ontario",
-   "term": "Winter 2027",
-   "url": "https://pictonmahoney.bamboohr.com/careers/394",
-   "date": "2026-11-19T23:13:23+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:mckesson.wd3.myworkdayjobs.com:JR0153988",
-   "tier": "loose",
-   "title": "Analyst, IT Vendor Management – New Grad Opportunity",
-   "company": "McKesson",
-   "location": "CAN, ON, Mississauga",
-   "term": "",
-   "url": "https://mckesson.wd3.myworkdayjobs.com/en-US/External_Careers/job/CAN-ON-Mississauga/Analyst--IT-Vendor-Management---New-Grad-Opportunity_JR0153988",
-   "date": "2026-11-19T23:10:33+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:accenture.wd103.myworkdayjobs.com:R00353362",
-   "tier": "loose",
-   "title": "Accenture Strategy Consultant Development Program - Summer Consultant (MBA Intern) - Canada - NAELFY27",
-   "company": "Accenture",
-   "location": "",
-   "term": "",
-   "url": "https://accenture.wd103.myworkdayjobs.com/en-US/AccentureCareers/job/Toronto-40-King-St-W-Corp/Accenture-Strategy-Consultant-Development-Program---Summer-Consultant--MBA-Intern----Canada---NAELFY27_R00353362",
-   "date": "2026-11-19T23:08:37+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:soti.wd3.myworkdayjobs.com:R10718",
-   "tier": "loose",
-   "title": "Software Developer Intern - SOTI XSight (May 2027 12 Months)",
-   "company": "SOTI",
-   "location": "Mississauga, Canada – Meadowvale Office (HQ)",
-   "term": "",
-   "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-XSight--May-2027-12-Months-_R10718",
-   "date": "2026-11-19T23:08:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:altera.wd1.myworkdayjobs.com:R03445",
-   "tier": "loose",
-   "title": "FPGA Software Engineer Intern",
-   "company": "Altera",
-   "location": "Toronto, Ontario, Canada",
-   "term": "",
-   "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera/job/Toronto-Ontario-Canada/FPGA-Software-Engineer-Intern_R03445",
-   "date": "2026-11-19T23:07:25+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:td.wd3.myworkdayjobs.com:R_1503532",
-   "tier": "loose",
-   "title": "Commercial Deposits, Money Movement & Digital Channels Intern/Co-op (Winter 2027)",
-   "company": "TD",
-   "location": "Toronto, Ontario",
-   "term": "Winter 2027",
-   "url": "https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers/job/Toronto-Ontario/Commercial-Deposits--Money-Movement---Digital-Channels-Intern-Co-op--Winter-2027-_R_1503532",
-   "date": "2026-11-19T23:07:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
