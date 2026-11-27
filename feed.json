@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 71,
+ "count": 67,
  "jobs": [
   {
    "id": "getro:careers.inovia.vc:100804491",
@@ -304,6 +304,30 @@
    "ai_terms": ""
   },
   {
+   "id": "workday:homedepot.wd5.myworkdayjobs.com:Req195012",
+   "tier": "loose",
+   "title": "Intern, Full Stack Software Developer",
+   "company": "The Home Depot",
+   "location": "CANADA STORE SUPPORT CENTER - 7000",
+   "term": "",
+   "url": "https://homedepot.wd5.myworkdayjobs.com/en-US/CareerDepotCanada/job/CANADA-STORE-SUPPORT-CENTER---7000/Intern--Full-Stack-Software-Developer_Req195012",
+   "date": "2026-11-27T22:09:59+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:bdf1ad33-cb3a-41ed-b13e-32f21e4d2b59",
+   "tier": "loose",
+   "title": "Full Stack Software Developer Intern, Winter",
+   "company": "The Home Depot",
+   "location": "Canada",
+   "term": "Winter 2027",
+   "url": "https://homedepot.wd5.myworkdayjobs.com/CareerDepotCanada/job/CANADA-STORE-SUPPORT-CENTER---7000/Intern--Full-Stack-Software-Developer_Req195012",
+   "date": "2026-11-27T21:09:31+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:bmo.wd3.myworkdayjobs.com:R260031145",
    "tier": "loose",
    "title": "Product Associate, Summer 2027 (Co-op/Internship) - 4 Months",
@@ -328,6 +352,30 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b097139aaf0c31c7c96eb5d?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Data Analyst Intern",
+   "company": "Ededge Learning",
+   "location": "Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6b097139aaf0c31c7c96eb5d?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-27T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b09b29ab80cc2b409d8550a?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Analytics & Intelligence Intern",
+   "company": "Intercept",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6b09b29ab80cc2b409d8550a?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-27T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:lilly.wd115.myworkdayjobs.com:R-116221",
    "tier": "loose",
    "title": "Customer Insights & Analytics Intern",
@@ -336,6 +384,18 @@
    "term": "",
    "url": "https://lilly.wd115.myworkdayjobs.com/en-US/cmp/job/CA-Toronto-ON/Customer-Insights---Analytics-Intern_R-116221",
    "date": "2026-11-26T22:30:24+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:bmo.wd3.myworkdayjobs.com:R260023537",
+   "tier": "loose",
+   "title": "Personal & Business Banking Development Program (New Graduate)",
+   "company": "Bank of Montreal",
+   "location": "Toronto, ON, CAN",
+   "term": "",
+   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Personal---Business-Banking-Development-Program--New-Graduate-_R260023537",
+   "date": "2026-11-26T22:26:12+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -600,114 +660,6 @@
    "term": "",
    "url": "https://saputo.wd5.myworkdayjobs.com/en-US/Saputo_External_Careers/job/Georgetown-ON/Intern--Engineering_JR68612",
    "date": "2026-11-20T22:42:03+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "bamboohr:avnan:125",
-   "tier": "loose",
-   "title": "Electronics Engineering Technologist",
-   "company": "Avnan",
-   "location": "Mississauga, Ontario",
-   "term": "",
-   "url": "https://avnan.bamboohr.com/careers/125",
-   "date": "2026-11-20T21:22:39+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:jci.wd5.myworkdayjobs.com:EB00075404",
-   "tier": "loose",
-   "title": "Production Engineering Co-Op",
-   "company": "Johnson Controls",
-   "location": "Burlington-Massachusetts-United States of America",
-   "term": "",
-   "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Production-Engineering-Co-Op_EB00075404",
-   "date": "2026-11-20T21:16:35+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:bmo.wd3.myworkdayjobs.com:R260023509",
-   "tier": "loose",
-   "title": "Personal & Business Banking Development Program (New Graduate)",
-   "company": "Bank of Montreal",
-   "location": "Toronto, ON, CAN",
-   "term": "",
-   "url": "https://bmo.wd3.myworkdayjobs.com/en-US/Privileged/job/Toronto-ON-CAN/Personal---Business-Banking-Development-Program--New-Graduate-_R260023509",
-   "date": "2026-11-20T21:16:25+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "greenhouse:method:8208724003",
-   "tier": "loose",
-   "title": "Residency Internship Program - Engineering",
-   "company": "Method",
-   "location": "Charlotte, New York, Santa Clara, Remote - US, Canada",
-   "term": "",
-   "url": "https://job-boards.greenhouse.io/method/jobs/8208724003",
-   "date": "2026-11-20T19:24:07+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:b564a289-e391-4f0b-b6fe-83e02e88feca",
-   "tier": "loose",
-   "title": "Software Development Co-op, Winter",
-   "company": "Loblaw Companies",
-   "location": "Toronto, Canada",
-   "term": "Winter 2027",
-   "url": "https://myview.wd3.myworkdayjobs.com/paradox_careers/job/500-Lake-Shore-Blvd-W-Toronto-ON/Software-Development---Co-op-Student_R2000695571",
-   "date": "2026-11-20T16:10:11+00:00",
-   "date_known": true,
-   "ai_terms": "machine learning, data science, generative AI, ML engineering, AI features"
-  },
-  {
-   "id": "icims:careersen-mackenzieinvestments.icims.com:6446",
-   "tier": "loose",
-   "title": "Winter 2027 Intern – AI Program",
-   "company": "Mackenzie Investments",
-   "location": "Greater Toronto Area, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://careersen-mackenzieinvestments.icims.com/jobs/6446/winter-2027-intern-%e2%80%93-ai-program/job",
-   "date": "2026-11-20T11:52:00+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:careers.inovia.vc:100340868",
-   "tier": "loose",
-   "title": "[I] Software Engineer Intern - Infrastructure (Spring 2027)",
-   "company": "Peripheral Labs",
-   "location": "Toronto, ON, Canada",
-   "term": "Spring 2027",
-   "url": "https://app.dover.com/apply/peripheral/4f4baf30-f659-4172-881e-4497b3808ad0",
-   "date": "2026-11-20T11:40:05+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "getro:careers.inovia.vc:100340866",
-   "tier": "loose",
-   "title": "[I] Software Engineering Intern - Viewer (Spring 2027)",
-   "company": "Peripheral Labs",
-   "location": "Toronto, ON, Canada",
-   "term": "Spring 2027",
-   "url": "https://app.dover.com/apply/peripheral/1ef74a94-ed4a-44b8-a08a-cc662066cf0c",
-   "date": "2026-11-20T11:40:05+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:SimplifyJobs/Summer2027-Internships:eec7def1-2dd9-4afc-b912-c52ea1034c4c",
-   "tier": "loose",
-   "title": "Electronics Engineering Technologist Co-op, Winter 2027",
-   "company": "Avnan",
-   "location": "Mississauga, ON, Canada",
-   "term": "Winter 2027",
-   "url": "https://avnan.bamboohr.com/careers/125/",
-   "date": "2026-11-20T11:21:23+00:00",
    "date_known": true,
    "ai_terms": ""
   },
