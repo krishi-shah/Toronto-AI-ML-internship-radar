@@ -1,7 +1,7 @@
 {
  "title": "Toronto AI/ML Internship Radar",
  "home": "https://github.com/krishi-shah/Toronto-AI-ML-internship-radar",
- "count": 67,
+ "count": 72,
  "jobs": [
   {
    "id": "getro:careers.inovia.vc:100804491",
@@ -60,6 +60,18 @@
    "term": "",
    "url": "https://jobs.ashbyhq.com/super.com/5251792e-093d-42c6-ae9e-08c656e90807",
    "date": "2026-11-24T22:40:52+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:b2b7c029-dca8-4ebc-a336-989f632c526e",
+   "tier": "strict",
+   "title": "AI Specialist Intern",
+   "company": "iA Financial Group",
+   "location": "Toronto, ON, Canada",
+   "term": "",
+   "url": "https://ia.wd3.myworkdayjobs.com/Professional/job/Toronto-Ontario/AI-Specialist_JR10028300",
+   "date": "2026-11-23T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
   },
@@ -172,6 +184,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:94714661-21c6-4c64-8f29-c95da3d8a76d",
+   "tier": "strict",
+   "title": "Data Engineer Intern",
+   "company": "Canadian Solar",
+   "location": "Kitchener, ON, Canada",
+   "term": "",
+   "url": "https://canadiansolar.wd5.myworkdayjobs.com/CanadianSolar/job/Kitchener-ON/Data-Engineering-Intern_10001603",
+   "date": "2026-11-19T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "eightfold:qualcomm.eightfold.ai:446722198182",
    "tier": "strict",
    "title": "FY27 Intern - GPU Compiler Development Internship - Canada (4 months)",
@@ -182,30 +206,6 @@
    "date": "2026-11-18T00:00:00+00:00",
    "date_known": true,
    "ai_terms": "machine learning, deep learning, TensorFlow, scikit-learn, CUDA, AI features"
-  },
-  {
-   "id": "bamboohr:birdseyeaccount:287",
-   "tier": "strict",
-   "title": "Intern AI Systems (Toronto)",
-   "company": "Birdseye Security Solutions",
-   "location": "Mississauga, Ontario",
-   "term": "",
-   "url": "https://birdseyeaccount.bamboohr.com/careers/287",
-   "date": "2026-11-17T09:25:30+00:00",
-   "date_known": false,
-   "ai_terms": ""
-  },
-  {
-   "id": "bamboohr:birdseyeaccount:289",
-   "tier": "strict",
-   "title": "Intern Computer Vision (Toronto)",
-   "company": "Birdseye Security Solutions",
-   "location": "Mississauga, Ontario",
-   "term": "",
-   "url": "https://birdseyeaccount.bamboohr.com/careers/289",
-   "date": "2026-11-17T09:25:30+00:00",
-   "date_known": false,
-   "ai_terms": ""
   },
   {
    "id": "tracker:vanshb03/Summer2027-Internships:62c25e2e-7c8f-4e4a-bde4-ce05fb203ce7",
@@ -280,18 +280,6 @@
    "ai_terms": ""
   },
   {
-   "id": "tracker:jobright-ai/2026-Software-Engineer-Internship:https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
-   "tier": "strict",
-   "title": "Software Development Internship (Summer 2027)",
-   "company": "Autodesk",
-   "location": "Toronto, ON, Canada",
-   "term": "Summer 2027",
-   "url": "https://jobright.ai/jobs/info/6abe9b410e027c0f3b399c40?utm_campaign=1079&utm_source=git",
-   "date": "2026-11-14T00:00:00+00:00",
-   "date_known": true,
-   "ai_terms": "LLMs, data science, generative AI, AI agents"
-  },
-  {
    "id": "workday:brookfield.wd5.myworkdayjobs.com:/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "tier": "strict",
    "title": "Intern, AI Value Creation Office",
@@ -301,6 +289,78 @@
    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfieldprivate/job/Toronto-Ontario/Intern--AI-Value-Creation-Office_R2048790",
    "date": "2026-11-01T17:04:07+00:00",
    "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "bamboohr:intercept:49",
+   "tier": "loose",
+   "title": "Solutions Engineering Co-op",
+   "company": "Intercept",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://intercept.bamboohr.com/careers/49",
+   "date": "2026-11-28T04:06:05+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "bamboohr:intercept:50",
+   "tier": "loose",
+   "title": "Analytics & Intelligence Co-op",
+   "company": "Intercept",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://intercept.bamboohr.com/careers/50",
+   "date": "2026-11-28T04:06:05+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "bamboohr:intercept:48",
+   "tier": "loose",
+   "title": "Product Co-op",
+   "company": "Intercept",
+   "location": "Toronto, Ontario, Canada",
+   "term": "",
+   "url": "https://intercept.bamboohr.com/careers/48",
+   "date": "2026-11-28T04:06:04+00:00",
+   "date_known": false,
+   "ai_terms": ""
+  },
+  {
+   "id": "workday:ryan.wd1.myworkdayjobs.com:R0020841",
+   "tier": "loose",
+   "title": "Summer 2027 Intern, Scientific Research and Development",
+   "company": "Ryan",
+   "location": "Mississauga ON",
+   "term": "Summer 2027",
+   "url": "https://ryan.wd1.myworkdayjobs.com/en-US/RyanCareers/job/Mississauga/Summer-2027-Intern--Scientific-Research-and-Development_R0020841-1",
+   "date": "2026-11-28T04:00:49+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:vanshb03/Summer2027-Internships:8994f0fc-3740-4a65-8141-2355d6d8f40b",
+   "tier": "loose",
+   "title": "Developer Co-op, Winter",
+   "company": "CARFAX Canada",
+   "location": "London, Canada",
+   "term": "Winter 2027",
+   "url": "https://carfaxcanada.bamboohr.com/careers/84",
+   "date": "2026-11-27T23:44:23+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:5697b42b-a6eb-412b-baa0-0510105eca3d",
+   "tier": "loose",
+   "title": "Solutions Engineer Co-op, Summer 2027",
+   "company": "Intercept",
+   "location": "Toronto, ON, Canada",
+   "term": "Summer 2027",
+   "url": "https://intercept.bamboohr.com/careers/49/",
+   "date": "2026-11-27T23:40:51+00:00",
+   "date_known": true,
    "ai_terms": ""
   },
   {
@@ -376,6 +436,18 @@
    "ai_terms": ""
   },
   {
+   "id": "tracker:jobright-ai/2026-Data-Analysis-Internship:https://jobright.ai/jobs/info/6b0a108bdd884ad2cc58f3a6?utm_campaign=1066&utm_source=git",
+   "tier": "loose",
+   "title": "Intern-Stage Environmental Data Analytics and Dashboards",
+   "company": "CN",
+   "location": "Brampton, ON, Canada",
+   "term": "",
+   "url": "https://jobright.ai/jobs/info/6b0a108bdd884ad2cc58f3a6?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-27T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
    "id": "workday:lilly.wd115.myworkdayjobs.com:R-116221",
    "tier": "loose",
    "title": "Customer Insights & Analytics Intern",
@@ -431,6 +503,18 @@
    "location": "Toronto, ON, Canada",
    "term": "",
    "url": "https://jobright.ai/jobs/info/6afac7e21460f8021289d048?utm_campaign=1066&utm_source=git",
+   "date": "2026-11-26T00:00:00+00:00",
+   "date_known": true,
+   "ai_terms": ""
+  },
+  {
+   "id": "tracker:SimplifyJobs/Summer2027-Internships:976033ce-451f-45fb-bfed-a94775011043",
+   "tier": "loose",
+   "title": "Data Analyst Intern, Winter 2027",
+   "company": "TMX Group",
+   "location": "Toronto, ON, Canada",
+   "term": "Winter 2027",
+   "url": "https://tmx.wd3.myworkdayjobs.com/TMX_Careers/job/Toronto---100-Adelaide-St-W/Canadian-Capital-Markets---Data-Analyst-Intern_R-6758",
    "date": "2026-11-26T00:00:00+00:00",
    "date_known": true,
    "ai_terms": ""
@@ -636,30 +720,6 @@
    "term": "Winter 2027",
    "url": "https://jobs.realventures.com/companies/real-ventures/jobs/100488437-production-development-engineering-intern-co-op-winter-2027#content",
    "date": "2026-11-22T11:58:20+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "tracker:vanshb03/Summer2027-Internships:7cb1abde-324e-47e4-86ee-9e38eff76880",
-   "tier": "loose",
-   "title": "Salesforce Developer 1 Intern, Summer",
-   "company": "Celestica",
-   "location": "Toronto, Canada",
-   "term": "Summer 2027",
-   "url": "https://careers.celestica.com/job/Toronto-Student-Intern%2C-Salesforce-Developer-1-ON/1458172833",
-   "date": "2026-11-21T00:41:45+00:00",
-   "date_known": true,
-   "ai_terms": ""
-  },
-  {
-   "id": "workday:saputo.wd5.myworkdayjobs.com:JR68612",
-   "tier": "loose",
-   "title": "Intern, Engineering",
-   "company": "Saputo",
-   "location": "Georgetown, ON",
-   "term": "",
-   "url": "https://saputo.wd5.myworkdayjobs.com/en-US/Saputo_External_Careers/job/Georgetown-ON/Intern--Engineering_JR68612",
-   "date": "2026-11-20T22:42:03+00:00",
    "date_known": true,
    "ai_terms": ""
   },
