@@ -112,9 +112,16 @@ jobs:
 
       - name: Run radar
         env:
-          # Renders README.md, feed.json and feed.xml. The HTML dashboard is
-          # a local-only channel.
-          RADAR_NOTIFIERS: readme,feed
+          # Renders README.md, feed.json and feed.xml, and mails new strict
+          # roles when the SMTP secrets are set. The HTML dashboard is a
+          # local-only channel.
+          RADAR_NOTIFIERS: readme,feed,email
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           # Tracker listings and job titles carry emoji, and the runner's
           # default encoding cannot always encode them.
           PYTHONIOENCODING: utf-8

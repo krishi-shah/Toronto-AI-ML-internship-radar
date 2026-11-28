@@ -16,9 +16,11 @@ from __future__ import annotations
 
 import html
 import os
+import smtplib
 import subprocess
 import sys
 import time
+from email.message import EmailMessage
 from typing import Any, Iterable, Optional, Protocol, Sequence
 
 import companies as cfg
@@ -789,6 +791,71 @@ class FeedWriter:
 
 
 # --------------------------------------------------------------------------
+# Email
+# --------------------------------------------------------------------------
+
+# Read from repository secrets in GitHub Actions. Any blank one leaves the
+# backend out of the run rather than failing it.
+_EMAIL_KEYS = ("SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD", "EMAIL_FROM", "EMAIL_TO")
+
+
+def email_settings(environ: Any) -> Optional[dict]:
+    """SMTP settings from the environment, or None when any are missing or invalid."""
+    values = {key: (environ.get(key) or "").strip() for key in _EMAIL_KEYS}
+    if not all(values.values()):
+        return None
+    try:
+        port = int((environ.get("SMTP_PORT") or "587").strip())
+    except ValueError:
+        return None
+    return {**values, "port": port}
+
+
+class EmailNotifier:
+    """Mails each new strict role over STARTTLS.
+
+    Only strict hits are sent. Digest and health messages stay on the other
+    channels, so those methods report nothing sent.
+    """
+
+    name = "email"
+
+    def __init__(self, settings: dict) -> None:
+        self.settings = settings
+
+    def strict(self, hits: Sequence[tuple[Posting, Verdict]]) -> bool:
+        if not hits:
+            return False
+        s = self.settings
+        count = len(hits)
+        lines = []
+        for post, _verdict in hits:
+            where = post.location or "location not listed"
+            lines.append(f"{post.title} at {post.company} ({where})\n{post.url}\n")
+
+        msg = EmailMessage()
+        msg["Subject"] = f"Radar: {count} new AI/ML role{'s' if count != 1 else ''}"
+        msg["From"] = s["EMAIL_FROM"]
+        msg["To"] = s["EMAIL_TO"]
+        msg.set_content("\n".join(lines))
+        try:
+            with smtplib.SMTP(s["SMTP_HOST"], s["port"], timeout=30) as smtp:
+                smtp.starttls()
+                smtp.login(s["SMTP_USER"], s["SMTP_PASSWORD"])
+                smtp.send_message(msg)
+        except (OSError, smtplib.SMTPException) as exc:
+            print(f"  ! email send failed: {exc}")
+            return False
+        return True
+
+    def digest(self, rows: Sequence[Any]) -> bool:
+        return False
+
+    def health(self, message: str) -> bool:
+        return False
+
+
+# --------------------------------------------------------------------------
 # Assembly
 # --------------------------------------------------------------------------
 
@@ -817,6 +884,14 @@ def build_notifiers(names: Iterable[str], store: Any) -> list[Notifier]:
             built.append(ReadmeWriter(store))
         elif name == "feed":
             built.append(FeedWriter(store))
+        elif name == "email":
+            settings = email_settings(os.environ)
+            if settings:
+                built.append(EmailNotifier(settings))
+            elif any((os.environ.get(key) or "").strip() for key in _EMAIL_KEYS):
+                # Partly configured is a mistake worth a warning. Not configured
+                # at all is the normal state of a run without the secrets.
+                print("  ! email needs SMTP_HOST, SMTP_USER, SMTP_PASSWORD, EMAIL_FROM and EMAIL_TO, skipping")
         else:
             print(f"  ! unknown notifier '{name}', skipping")
     return built
